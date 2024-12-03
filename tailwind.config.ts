@@ -8,34 +8,55 @@ export default {
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#8C0707",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
+          DEFAULT: "#0D1D70",
           foreground: "hsl(var(--secondary-foreground))",
         },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+        tertiary: {
+          DEFAULT: "#630505",
+          foreground: "hsl(var(--secondary-foreground))",
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+        table: {
+          background: "#EAEDFC",
+          foreground: "#0D1D70",
+          rows: "#F8F9FA",
         },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+        contactList: {
+          scholarship: "#009CFF",
+          consultation: "#6160B7",
+          report: "#FF7246",
+          request: "#00B485",
+          others: "#7C7375",
+          internship: "#EF476F",
         },
+        shadow: {
+          table: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)",
+        },
+        // card: {
+        //   DEFAULT: "hsl(var(--card))",
+        //   foreground: "hsl(var(--card-foreground))",
+        // },
+        // popover: {
+        //   DEFAULT: "hsl(var(--popover))",
+        //   foreground: "hsl(var(--popover-foreground))",
+        // },
+
+        // muted: {
+        //   DEFAULT: "hsl(var(--muted))",
+        //   foreground: "hsl(var(--muted-foreground))",
+        // },
+        // accent: {
+        //   DEFAULT: "hsl(var(--accent))",
+        //   foreground: "hsl(var(--accent-foreground))",
+        // },
+        // destructive: {
+        //   DEFAULT: "hsl(var(--destructive))",
+        //   foreground: "hsl(var(--destructive-foreground))",
+        // },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
       },
@@ -49,13 +70,9 @@ export default {
         h2: "18px",
         b1: "16px",
         b2: "14px",
-        b3: "13px",
-        b4: "12px",
+        b3: "12px",
       },
-      fontFamily: {
-        notoThai: ["NotoSansThai"],
-        manrope: ["Manrope"],
-      },
+      fontFamily: {},
     },
   },
   plugins: [require("tailwindcss-animate")],
