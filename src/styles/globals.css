@@ -20,6 +20,31 @@
   }
 } */
 
+/* For Firefox */
+.scroller {
+  scrollbar-width: thin;
+  scrollbar-color: darkgrey lightgrey;
+  scrollbar-gutter: stable both-edges;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4f4f4;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1;
+  border-radius: 8px;
+  border: 2px solid transparent;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
