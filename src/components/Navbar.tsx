@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <>
       <div
-        className="min-h-14 bg-gradient-to-r from-[#0077b6] to-[#023e8a] border-b border-[#e0e0e0] text-secondary px-6 inline-flex w-full justify-between items-center z-50 border-none"
+        className="min-h-14 bg-gradient-to-r from-[#009999] to-[#004d4d] border-b border-[#e0e0e0] text-secondary px-6 inline-flex w-full justify-between items-center z-50 border-none"
         style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
       >
         <div className="flex items-center gap-2 -ml-1">

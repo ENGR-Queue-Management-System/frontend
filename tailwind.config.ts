@@ -6,10 +6,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        default: "#333333",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#0077b6",
+          DEFAULT: "#009999",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -21,8 +22,8 @@ export default {
           foreground: "hsl(var(--secondary-foreground))",
         },
         table: {
-          background: "#EAEDFC",
-          foreground: "#0D1D70",
+          background: "#D9F0F0",
+          foreground: "#009999",
           rows: "#F8F9FA",
         },
         contactList: {

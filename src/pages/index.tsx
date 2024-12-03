@@ -3,11 +3,49 @@ import Image from "next/image";
 import { Route } from "@/config/Route";
 import { useRouter } from "next/navigation";
 import logoEng from "../../public/images/logoEng1.png";
-import IconLocation from "../../public/icons/location.svg?react";
+// import IconLocation from "../../public/icons/location.svg?react";
 import cmuLogoWhite from "../../public/images/cmuLogoLogin.png";
 import Icon from "@/components/Icon";
 export default function Home() {
   const router = useRouter();
+
+  const dataDone = [
+    {
+      id: 1,
+      studentId: "640610656",
+      name: "ภัทรกณ ตาคำ",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "อื่นๆ",
+      description:
+        "ขอคำปรึกษาเรื่องทั่วไปครับ เพราะมีหลายเรื่องที่อยากรู้เพิ่มเติม",
+    },
+    {
+      id: 2,
+      studentId: "640610652",
+      name: "พันธุ์ธัช หมื่นปราบ",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "ทุนการศึกษา",
+      description:
+        "ยื่นขอทุนการศึกษาครับ อยากได้รับการสนับสนุนเพื่อการเรียนต่อ",
+    },
+    {
+      id: 3,
+      studentId: "640610627",
+      name: "ฐิตายุ ฟุ้งธรรม",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "ขอคำปรึกษาด้านวิชาการ",
+      description: "ต้องการคำปรึกษาเกี่ยวกับการ path เรียน ME ครับ",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+  ];
   return (
     <div className=" flex items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
       <main className="flex gradient-bg h-screen w-screen justify-center  items-center bg-cover bg-center">
@@ -44,24 +82,35 @@ export default function Home() {
               Sign in CMU Account
             </Button>
           </div>
-          <div className="h-[400px]  bg-[#535353]/30 rounded-[10px] shadow flex-col justify-center items-center  ">
-            <div className="h-[300.38px] flex-col justify-start items-center gap-[50px] flex">
-              <div className=" text-white py-2 w-full">
-                <Icon IconComponent={IconLocation} />
-                <p>ห้องพัฒนาคุณภาพนักศึกษา</p>
-                <p>Student development Room</p>
+          <div
+            className="flex gap-5 flex-col  h-[70%] w-[40%] bg-white rounded-lg border border-[#E5DDEA] text-[14px] px-6 py-4 pb-8 justify-start items-center"
+            style={{
+              boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <div className="flex  flex-col flex-1 w-full text-[14px]">
+              <div className="flex justify-between w-full pb-4 border-b">
+                <p>21 พ.ย. 2567</p>
+                <p>16:10:12</p>
               </div>
-              <div className="self-stretch h-[38.70px] flex-col justify-start items-center gap-[15px] flex">
-                <div className="px-5 py-[13px] bg-white rounded-lg flex-col justify-center items-center gap-2.5 flex">
-                  <div className="self-stretch justify-center items-center gap-3 inline-flex">
-                    <img
-                      className="w-10 h-[12.70px]"
-                      src="https://via.placeholder.com/40x13"
-                    />
-                    <div className="text-center text-[#696aa9] text-xs font-semibold font-['Manrope'] leading-3">
-                      Sign in CMU Account
-                    </div>
+
+              <div className="flex flex-col gap-6 px-6 justify-between items-center h-full text-medium">
+                <div className="flex flex-col gap-8 mt-4 h-full items-center justify-center">
+                  <div className="text-center font-medium">
+                    <p className="text-[24px]">คิวที่กำลังให้บริการ </p>
+                    <p className="text-[20px]">Current Serving </p>
                   </div>
+                  <div className="w-40 h-40 border-[3px] border-primary text-primary rounded-[100%] flex items-center justify-center font-semibold text-[40px]">
+                    004
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center w-full gap-2 text-[20px] text-primary">
+                  <div className="text-start text-default">
+                    <p>คิวล่าสุด</p>
+                    <p className="font-medium">Latest Queue</p>
+                  </div>
+                  <p className="text-[36px]">022</p>
                 </div>
               </div>
             </div>
