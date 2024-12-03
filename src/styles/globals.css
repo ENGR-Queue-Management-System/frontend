@@ -42,11 +42,14 @@
 .gradient-bg {
   height: 100vh;
   width: 100%;
-  background: radial-gradient(circle at center bottom, #a8d8ea, #0077b6, #023e8a);}
-
-
-
-
+  background: radial-gradient(
+    circle at center bottom,
+    #66e0e0,
+    #33bfbf,
+    #007d7d,
+    #004d4d
+  );
+}
 
 ::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
