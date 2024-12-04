@@ -1,32 +1,13 @@
-import type { NextConfig } from "next";
+import { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   webpack(config) {
     config.module.rules.push({
-      // loader: "@svgr/webpack",
-      // options: {
-      //   svgo: true,
-      //   svgoConfig: {
-      //     plugins: [
-      //       {
-      //         name: "preset-default",
-      //         params: {
-      //           overrides: { removeViewBox: false },
-      //         },
-      //       },
-      //     ],
-      //   },
-      // },
       test: /\.svg$/,
-      use: ['@svgr/webpack'],
+      use: ["@svgr/webpack"],
     });
-
     return config;
   },
 };
 
-module.exports = {
-  trailingSlash: true,
-}
-
-export default nextConfig;
+module.exports = nextConfig;
