@@ -73,6 +73,12 @@ export default {
         b2: "14px",
         b3: "12px",
       },
+      screens: {
+        sm: "1024px",
+        ipad11: "1180px",
+        macair133: "1200px",
+        samsungA24: "1450px",
+      },
       fontFamily: {},
     },
   },

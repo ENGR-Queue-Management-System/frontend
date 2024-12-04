@@ -214,6 +214,132 @@ export default function AdminIndex() {
       description:
         "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
     },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
+    {
+      id: 4,
+      studentId: "630612184",
+      name: "พีระ อรุณรัตน์",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+      category: "แจ้งปัญหาด้านการเรียนการสอน",
+      description:
+        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    },
   ];
 
   return (
@@ -229,7 +355,7 @@ export default function AdminIndex() {
           </TabsList>
           <TabsContent
             value="incoming"
-            className="flex -mt-1 gap-4 max-h-full overflow-hidden"
+            className="flex  gap-4 max-h-full overflow-hidden"
           >
             <div
               className="w-[60%] h-full rounded-lg overflow-clip overflow-y-auto border border-[#E5DDEA] shadow-shadow-table"
@@ -242,9 +368,10 @@ export default function AdminIndex() {
                   <TableRow className="sticky text-[14px] font-bold top-0 z-30">
                     <TableHead className="w-[100px]">เลขคิว</TableHead>
                     <TableHead>รหัสนักศึกษา</TableHead>
-                    <TableHead>ห้องติดต่อ</TableHead>
+
                     <TableHead>ชื่อ-นามสกุล</TableHead>
                     <TableHead>รายการติดต่อ</TableHead>
+                    <TableHead></TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody className=" font-normal text-b2">
@@ -299,12 +426,12 @@ export default function AdminIndex() {
                 <Switch />
               </div>
               <div
-                className="flex  flex-col h-full bg-white rounded-lg border border-[#E5DDEA] text-[14px] px-6 pt-6  py-2"
+                className="flex  flex-col h-full bg-white rounded-lg overflow-auto border border-[#E5DDEA] px-6 py-2 "
                 style={{
                   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                <div className="flex flex-col gap-6 justify-between  py-4 items-center h-full">
+                <div className="flex flex-col gap-2 justify-between  py-4 items-center h-full">
                   <div className="flex justify-center flex-col items-center">
                     <p className="text-[24px] font-normal ">
                       คิวที่กำลังให้บริการ{" "}
@@ -312,17 +439,16 @@ export default function AdminIndex() {
                     <p className="text-primary  text-[16px] ">
                       ห้องงานพัฒนาคุณภาพนักศึกษา
                     </p>
-                    <div className=" mt-8 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center font-medium text-[80px]">
+                    <div className=" samsungA24:mt-5 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[96px] font-medium text-[52px]">
                       004
                     </div>
-
-                    <div className="text-center gap-2 text-[20px] text-primary">
-                      <div className="mt-5">
+                    <div className="text-center items-center justify-center flex flex-col g samsungA24:text-[22px] text-[16px] text-primary">
+                      <div className="mt-2">
                         <p className="font-medium">
                           {dataDone[3].studentId} - {dataDone[3].name}
                         </p>
                       </div>
-                      <div className="flex  gap-2 mt-3 text-[16px] items-center text-[#333333]">
+                      <div className="flex  gap-2 mt-3 samsungA24:text-[20px] text-[14px] items-center text-[#333333]">
                         <div
                           className={`${
                             dataDone[3].category === "อื่นๆ"
@@ -344,20 +470,56 @@ export default function AdminIndex() {
 
                         {dataDone[3].category}
                       </div>
-                    </div>
-                  </div>
-
+                    </div>{" "}
+                  </div>{" "}
                   <div className="flex flex-col items-end justify-end gap-4 w-full">
-                    <Button className="w-full items-center flex h-16">
-                      <p className="text-[18px]">คิวถัดไป</p>
-                      <Icon IconComponent={IconNext} className="!size-5"/>
+                    <div className=" p-4 rounded-3xl samsungA24:text-[22px] text-[16px]  !w-full flex flex-col bg-table-background">
+                      <div className="gap-2 flex flex-col">
+                        <p className=" text-table-foreground mb-1 font-medium">
+                          {" "}
+                          รายละเอียดคิวถัดไป
+                        </p>
+                        <p className=" text-[14px] samsungA24:text-[18px]">
+                          เลขคิว: 005
+                        </p>
+                        <p className=" text-[14px] samsungA24:text-[18px]">
+                          650610795 - เพ็ญพิชชา ทองคำ
+                        </p>
+                        <div className="flex text-[14px] samsungA24:text-[18px] items-center gap-3">
+                          <div
+                            className={`${
+                              dataDone[3].category === "อื่นๆ"
+                                ? "bg-contactList-others"
+                                : dataDone[3].category === "ทุนการศึกษา"
+                                ? "bg-contactList-scholarship"
+                                : dataDone[3].category ===
+                                  "ขอคำปรึกษาด้านวิชาการ"
+                                ? "bg-contactList-consultation"
+                                : dataDone[3].category ===
+                                  "แจ้งปัญหาด้านการเรียนการสอน"
+                                ? "bg-contactList-report"
+                                : dataDone[3].category ===
+                                  "ขอจัดกิจกรรมหรือโครงการพิเศษ"
+                                ? "bg-contactList-request"
+                                : dataDone[3].category ===
+                                    "ฝึกงาน-สหกิจศึกษา" &&
+                                  "bg-contactList-internship"
+                            } h-3 w-3 rounded-[100%]`}
+                          ></div>
+                          {dataDone[3].category}
+                        </div>
+                      </div>
+                    </div>
+                    <Button className="w-full items-center flex samsungA24:h-14 h-12">
+                      <p className="samsungA24:text-[18px]">คิวถัดไป</p>
+                      <Icon IconComponent={IconNext} className="!size-5" />
                     </Button>
                     <Button
                       variant="outline"
-                      className="w-full py-8 text-[18px]"
+                      className="w-full samsungA24:h-14 h-12  text-[14px] samsungA24:text-[18px]"
                     >
                       เรียกซ้ำ
-                      <Icon IconComponent={IconRecall} className="!size-5"/>
+                      <Icon IconComponent={IconRecall} className="!size-5" />
                     </Button>
                   </div>
                 </div>
@@ -366,30 +528,28 @@ export default function AdminIndex() {
           </TabsContent>
           <TabsContent
             value="called"
-            className="flex-1 overflow-hidden  h-full"
+            className="flex -mt-[32px]  gap-4 max-h-full overflow-hidden"
           >
             <div
-              className="w-full rounded-lg  overflow-clip overflow-y-auto border border-[#E5DDEA] "
+              className="w-full rounded-lg   overflow-clip overflow-y-auto border border-[#E5DDEA] "
               style={{
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <Table>
-                <TableHeader >
-                  <TableRow>
+              <Table striped={true}>
+                <TableHeader>
+                  <TableRow className="sticky text-[14px] font-bold top-0 z-30">
                     <TableHead className="w-[100px]">เลขคิว</TableHead>
-                    <TableHead>รหัสนักศกษา</TableHead>
+                    <TableHead>รหัสนักศึกษา</TableHead>
                     <TableHead>ชื่อ-นามสกุล</TableHead>
                     <TableHead>รายการติดต่อ</TableHead>
-                    <TableHead className="w-[50%]">
-                      รายละเอียดเพิ่มเติม
-                    </TableHead>
+                    <TableHead className="w-[50%]">เพิ่มเติม</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody className=" font-normal text-b2">
                   {dataDone.map((item) => (
                     <TableRow key={item.id}>
-                      <TableCell className="font-medium">
+                      <TableCell className="font-medium py-4">
                         {item.id < 10 ? "00" : item.id < 100 && "0"}
                         {item.id}
                       </TableCell>
@@ -414,7 +574,7 @@ export default function AdminIndex() {
                         ></div>
                         {item.category}
                       </TableCell>
-                     <p>dkdkd</p>
+                      <TableCell></TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
