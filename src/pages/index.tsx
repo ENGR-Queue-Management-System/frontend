@@ -50,7 +50,6 @@ export default function Home() {
     <div className=" flex items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
       <main className="flex gradient-bg h-screen w-screen justify-center  items-center bg-cover bg-center">
         <div className="flex h-screen w-screen justify-between items-center inset-0 px-36  bg-gray-100/5">
-          {" "}
           <div className="text-white flex flex-col gap-5">
             <Image
               src={logoEng}
