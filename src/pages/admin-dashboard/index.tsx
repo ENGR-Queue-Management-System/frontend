@@ -1,8 +1,10 @@
 import Navbar from "@/components/Navbar";
+import Icon from "@/components/Icon";
+import IconNext from "../../../public/icons/next.svg";
+import IconRecall from "../../../public/icons/repeat.svg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import IconSpeech from "../../../public/icons/speechBubble.svg?react";
-// import IconLocation from "../../public/icons/location.svg?react";
-
+// import IconSpeech from "../../../public/icons/speechBubble.svg";
+// import IconLocation from "../../public/icons/location.svg";
 import {
   Table,
   TableBody,
@@ -12,7 +14,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 
@@ -216,11 +217,11 @@ export default function AdminIndex() {
   ];
 
   return (
-    <div className="flex flex-col overflow-hidden">
+    <div className="flex flex-col h-screen w-screen overflow-hidden">
       <Navbar />
-      <div className="px-12 py-2">
-        <Tabs defaultValue="incoming">
-          <TabsList>
+      <div className="px-4 flex flex-col h-full w-full overflow-hidden bg-[#f9f9f9] pt-3 ">
+        <Tabs className="flex flex-col !w-full !h-full" defaultValue="incoming">
+          <TabsList className="!w-full">
             <TabsTrigger value="incoming">
               รอเรียกคิว ({data.length})
             </TabsTrigger>
@@ -228,35 +229,34 @@ export default function AdminIndex() {
           </TabsList>
           <TabsContent
             value="incoming"
-            className="flex gap-5 flex-1 overflow-hidden "
+            className="flex -mt-1 gap-4 max-h-full overflow-hidden"
           >
             <div
-              className="w-[80%] rounded-lg max-h-[40vw]  overflow-clip overflow-y-auto border border-[#E5DDEA] shadow-shadow-table mt-1"
+              className="w-[60%] h-full rounded-lg overflow-clip overflow-y-auto border border-[#E5DDEA] shadow-shadow-table"
               style={{
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <Table>
+              <Table striped={true}>
                 <TableHeader>
-                  <TableRow className="sticky top-0 z-30">
+                  <TableRow className="sticky text-[14px] font-bold top-0 z-30">
                     <TableHead className="w-[100px]">เลขคิว</TableHead>
                     <TableHead>รหัสนักศึกษา</TableHead>
                     <TableHead>ห้องติดต่อ</TableHead>
                     <TableHead>ชื่อ-นามสกุล</TableHead>
                     <TableHead>รายการติดต่อ</TableHead>
-                    <TableHead></TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody className=" font-normal text-b2">
                   {data.map((item) => (
                     <TableRow key={item.id}>
-                      <TableCell className="font-medium">
+                      <TableCell className="font-medium py-4">
                         {item.id < 10 ? "00" : item.id < 100 && "0"}
                         {item.id}
                       </TableCell>
                       <TableCell>{item.studentId}</TableCell>
                       <TableCell>{item.name}</TableCell>
-                      <TableCell className="flex gap-2 items-center">
+                      <TableCell className="flex gap-2  translate-y-[6px] items-center">
                         <div
                           className={`${
                             item.category === "อื่นๆ"
@@ -281,8 +281,7 @@ export default function AdminIndex() {
                 </TableBody>
               </Table>
             </div>
-
-            <div className="flex flex-col gap-5 h-[40.5vw] w-[40%] text-[15px] font-medium p-1">
+            <div className="flex flex-col gap-4 max-h-full w-[40%] text-[15px] font-medium">
               <div
                 className="flex bg-white rounded-lg border border-[#E5DDEA] text-[15px] px-6 py-4 justify-between items-center"
                 style={{
@@ -291,7 +290,7 @@ export default function AdminIndex() {
               >
                 <div>
                   <div className="flex-col">
-                    <p>รับคิวนักศึกษา</p>
+                    <p className="text-[16px]">รับคิวนักศึกษา</p>
                     <p className="text-primary text-[13px] ">
                       ห้องงานพัฒนาคุณภาพนักศึกษา
                     </p>
@@ -300,24 +299,30 @@ export default function AdminIndex() {
                 <Switch />
               </div>
               <div
-                className="flex gap-5 flex-col h-full bg-white rounded-lg border border-[#E5DDEA] text-[14px] px-6 py-4 justify-start items-center"
+                className="flex  flex-col h-full bg-white rounded-lg border border-[#E5DDEA] text-[14px] px-6 pt-6  py-2"
                 style={{
                   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                <div className="flex  flex-col flex-1 w-full text-[14px]">
-                  <div className="flex justify-between w-full pb-4 border-b">
-                    <p>21 พ.ย. 2567</p>
-                    <p>16:10:12</p>
-                  </div>
-                  <div className="flex flex-col gap-6  justify-center items-center h-full">
-                    <p className="text-[24px] ">คิวที่กำลังให้บริการ </p>
-                    <div className="w-36 h-36 border-[3px] border-primary text-primary rounded-[100%] flex items-center justify-center font-semibold text-[40px]">
+                <div className="flex flex-col gap-6 justify-between  py-4 items-center h-full">
+                  <div className="flex justify-center flex-col items-center">
+                    <p className="text-[24px] font-normal ">
+                      คิวที่กำลังให้บริการ{" "}
+                    </p>
+                    <p className="text-primary  text-[16px] ">
+                      ห้องงานพัฒนาคุณภาพนักศึกษา
+                    </p>
+                    <div className=" mt-8 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center font-medium text-[80px]">
                       004
                     </div>
 
-                    <div className="text-center gap-2 text-[20px] text-secondary">
-                      <div className="flex gap-2 items-center text-black">
+                    <div className="text-center gap-2 text-[20px] text-primary">
+                      <div className="mt-5">
+                        <p className="font-medium">
+                          {dataDone[3].studentId} - {dataDone[3].name}
+                        </p>
+                      </div>
+                      <div className="flex  gap-2 mt-3 text-[16px] items-center text-[#333333]">
                         <div
                           className={`${
                             dataDone[3].category === "อื่นๆ"
@@ -336,43 +341,44 @@ export default function AdminIndex() {
                                 "bg-contactList-internship"
                           } h-3 w-3 rounded-[100%]`}
                         ></div>
+
                         {dataDone[3].category}
-                      </div>
-                      <div className="mt-4">
-                        <p>{dataDone[3].studentId}</p>
-                        <p>{dataDone[3].name}</p>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="flex gap-5 w-full">
-                  <Button
-                    variant="secondary"
-                    className="w-full py-6 text-[16px]"
-                  >
-                    เรียกซ้ำ
-                  </Button>
-                  <Button className="w-full py-6 text-[16px]">คิวถัดไป</Button>
+                  <div className="flex flex-col items-end justify-end gap-4 w-full">
+                    <Button className="w-full items-center flex h-16">
+                      <p className="text-[18px]">คิวถัดไป</p>
+                      <Icon IconComponent={IconNext} className="!size-5"/>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="w-full py-8 text-[18px]"
+                    >
+                      เรียกซ้ำ
+                      <Icon IconComponent={IconRecall} className="!size-5"/>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
           </TabsContent>
           <TabsContent
             value="called"
-            className="flex-1 overflow-hidden -mt-[0.5] h-full"
+            className="flex-1 overflow-hidden  h-full"
           >
             <div
-              className="w-full rounded-lg  overflow-clip overflow-y-auto border border-[#E5DDEA] mt-1"
+              className="w-full rounded-lg  overflow-clip overflow-y-auto border border-[#E5DDEA] "
               style={{
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
               }}
             >
               <Table>
-                <TableHeader>
+                <TableHeader >
                   <TableRow>
                     <TableHead className="w-[100px]">เลขคิว</TableHead>
-                    <TableHead>รหัสนักศึกษา</TableHead>
+                    <TableHead>รหัสนักศกษา</TableHead>
                     <TableHead>ชื่อ-นามสกุล</TableHead>
                     <TableHead>รายการติดต่อ</TableHead>
                     <TableHead className="w-[50%]">
@@ -408,7 +414,7 @@ export default function AdminIndex() {
                         ></div>
                         {item.category}
                       </TableCell>
-                      <TableCell>{item.description}</TableCell>
+                     <p>dkdkd</p>
                     </TableRow>
                   ))}
                 </TableBody>

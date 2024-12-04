@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 
 const Table = React.forwardRef<
   HTMLTableElement,
-  React.HTMLAttributes<HTMLTableElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLTableElement> & { striped?: boolean }
+>(({ className, striped = false, ...props }, ref) => (
   <div className="relative w-full overflow-auto">
     <table
       ref={ref}
@@ -14,7 +14,16 @@ const Table = React.forwardRef<
         className
       )}
       {...props}
-    />
+    >
+      {React.Children.map(props.children, (child) =>
+        React.isValidElement(child) && child.type === TableBody
+          ? React.cloneElement(
+              child as React.ReactElement<{ striped?: boolean }>,
+              { striped }
+            )
+          : child
+      )}
+    </table>
   </div>
 ));
 Table.displayName = "Table";
@@ -33,14 +42,24 @@ TableHeader.displayName = "TableHeader";
 
 const TableBody = React.forwardRef<
   HTMLTableSectionElement,
-  React.HTMLAttributes<HTMLTableSectionElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLTableSectionElement> & { striped?: boolean }
+>(({ className, striped = false, ...props }, ref) => (
   <tbody
     ref={ref}
     className={cn("[&_tr:last-child]:border-0 bg-white", className)}
     {...props}
-  />
+  >
+    {React.Children.map(props.children, (child) =>
+      React.isValidElement(child) && child.type === TableRow
+        ? React.cloneElement(
+            child as React.ReactElement<{ striped?: boolean }>,
+            { striped }
+          )
+        : child
+    )}
+  </tbody>
 ));
+
 TableBody.displayName = "TableBody";
 
 const TableFooter = React.forwardRef<
@@ -60,11 +79,15 @@ TableFooter.displayName = "TableFooter";
 
 const TableRow = React.forwardRef<
   HTMLTableRowElement,
-  React.HTMLAttributes<HTMLTableRowElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLTableRowElement> & { striped?: boolean }
+>(({ className, striped = false, ...props }, ref) => (
   <tr
     ref={ref}
-    className={cn("py-5 border-b transition-colors", className)}
+    className={cn(
+      "py-5 border-b transition-colors",
+      striped ? "odd:bg-[#f2f2f2]" : "",
+      className
+    )}
     {...props}
   />
 ));
