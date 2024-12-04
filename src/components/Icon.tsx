@@ -19,7 +19,7 @@ class Icon extends React.Component<Props, any> {
     const { IconComponent, className, style, outlined, onClick } = this.props;
     return (
       <div
-        className="flex justify-center items-center h-full"
+        className="flex justify-center items-center h-fit"
         onClick={onClick}
       >
         <IconComponent

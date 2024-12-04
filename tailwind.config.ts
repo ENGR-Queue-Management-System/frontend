@@ -22,7 +22,7 @@ export default {
           foreground: "hsl(var(--secondary-foreground))",
         },
         table: {
-          background: "#D9F0F0",
+          background: "#e4f7f7",
           foreground: "#009999",
           rows: "#F8F9FA",
         },

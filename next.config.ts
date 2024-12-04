@@ -3,14 +3,25 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   webpack(config) {
     config.module.rules.push({
+      loader: "@svgr/webpack",
+      // options: {
+      //   svgo: true,
+      //   svgoConfig: {
+      //     plugins: [
+      //       {
+      //         name: "preset-default",
+      //         params: {
+      //           overrides: { removeViewBox: false },
+      //         },
+      //       },
+      //     ],
+      //   },
+      // },
       test: /\.svg$/,
-      use: ["@svgr/webpack"],
     });
 
     return config;
   },
 };
-
-/* config options here */
 
 export default nextConfig;
