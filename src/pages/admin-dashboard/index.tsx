@@ -433,7 +433,7 @@ export default function AdminIndex() {
                 }}
               >
                 <div className="flex flex-col  justify-between items-center h-full ">
-                  <div className="flex justify-start flex-col items-center mt-3 samsungA24:mt-7 samsungA24:gap-5 h-full">
+                  <div className="flex justify-start flex-col items-center mt-2  samsungA24:gap-5 h-full">
                     <div className="text-center ">
                       <p className="text-[20px] samsungA24:text-[23px] font-normal ">
                         คิวที่คุณกำลังให้บริการ{" "}
@@ -442,7 +442,7 @@ export default function AdminIndex() {
                         ห้องงานพัฒนาคุณภาพนักศึกษา
                       </p>
                     </div>
-                    <div className=" samsungA24:mt-3 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] font-medium text-[52px]">
+                    <div className=" samsungA24:mt-3 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[80px] font-medium text-[52px]">
                       A004
                     </div>
                     <div className="text-center items-center justify-center flex flex-col  samsungA24:text-[22px] text-[18px] text-primary">
@@ -486,10 +486,10 @@ export default function AdminIndex() {
                         </div>
 
                         <div className="flex flex-col gap-1 ml-6">
-                          <p className=" text-[14px] samsungA24:text-[18px]">
+                          <p className=" text-[14px] text-default samsungA24:text-[18px]">
                             {data[0].studentId} - {data[0].name}
                           </p>
-                          <div className="flex text-[14px] samsungA24:text-[18px] items-center gap-3">
+                          <div className="flex text-[14px] text-default samsungA24:text-[18px] items-center gap-3">
                             <div
                               className={`${
                                 data[0].category === "อื่นๆ"
