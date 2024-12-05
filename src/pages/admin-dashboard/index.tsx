@@ -365,16 +365,16 @@ export default function AdminIndex() {
             >
               <Table striped={true}>
                 <TableHeader>
-                  <TableRow className="sticky text-[14px] font-bold top-0 z-30">
-                    <TableHead className="w-[100px]">เลขคิว</TableHead>
+                  <TableRow className="sticky text-b2  samsungA24:text-b1 font-bold top-0 z-30">
+                    <TableHead>เลขคิว</TableHead>
                     <TableHead>รหัสนักศึกษา</TableHead>
 
                     <TableHead>ชื่อ-นามสกุล</TableHead>
                     <TableHead>รายการติดต่อ</TableHead>
-                    <TableHead></TableHead>
+                    <TableHead>เพิ่มเติม</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody className=" font-normal text-b2">
+                <TableBody className=" font-normal text-b2 samsungA24:text-b1">
                   {data.map((item) => (
                     <TableRow key={item.id}>
                       <TableCell className="font-medium py-4">
@@ -410,7 +410,7 @@ export default function AdminIndex() {
             </div>
             <div className="flex flex-col gap-4 max-h-full w-[40%] text-[15px] font-medium">
               <div
-                className="flex bg-white rounded-lg border border-[#E5DDEA] text-[15px] px-6 py-4 justify-between items-center"
+                className="flex bg-white rounded-lg border border-[#E5DDEA] text-[15px] px-6 py-3 justify-between items-center"
                 style={{
                   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
                 }}
@@ -426,29 +426,29 @@ export default function AdminIndex() {
                 <Switch />
               </div>
               <div
-                className="flex  flex-col h-full bg-white rounded-lg overflow-auto border border-[#E5DDEA] px-6 py-2 "
+                className="flex  flex-col h-full bg-white rounded-lg overflow-auto border border-[#E5DDEA] px-6 py-4  "
                 style={{
                   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                <div className="flex flex-col gap-2 justify-between  py-4 items-center h-full">
-                  <div className="flex justify-center flex-col items-center">
-                    <p className="text-[24px] font-normal ">
-                      คิวที่กำลังให้บริการ{" "}
+                <div className="flex flex-col  justify-between  items-center h-full">
+                  <div className="flex justify-center flex-col items-center mt-7">
+                    <p className="text-[20px] samsungA24:text-[23px] font-normal ">
+                      คิวที่คุณกำลังให้บริการ{" "}
                     </p>
-                    <p className="text-primary  text-[16px] ">
+                    <p className="text-primary  text-[16px] samsungA24:text-[20px] ">
                       ห้องงานพัฒนาคุณภาพนักศึกษา
                     </p>
-                    <div className=" samsungA24:mt-5 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[96px] font-medium text-[52px]">
+                    <div className=" samsungA24:mt-3 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[70px] font-medium text-[50px]">
                       004
                     </div>
-                    <div className="text-center items-center justify-center flex flex-col g samsungA24:text-[22px] text-[16px] text-primary">
+                    <div className="text-center items-center justify-center flex flex-col  samsungA24:text-[22px] text-[18px] text-primary">
                       <div className="mt-2">
                         <p className="font-medium">
                           {dataDone[3].studentId} - {dataDone[3].name}
                         </p>
                       </div>
-                      <div className="flex  gap-2 mt-3 samsungA24:text-[20px] text-[14px] items-center text-[#333333]">
+                      <div className="flex  gap-2 mt-3 samsungA24:text-[18px] text-[16px] items-center text-[#333333]">
                         <div
                           className={`${
                             dataDone[3].category === "อื่นๆ"
@@ -472,16 +472,14 @@ export default function AdminIndex() {
                       </div>
                     </div>{" "}
                   </div>{" "}
-                  <div className="flex flex-col items-end justify-end gap-4 w-full">
-                    <div className=" p-4 rounded-3xl samsungA24:text-[22px] text-[16px]  !w-full flex flex-col bg-table-background">
+                  <div className="flex flex-col items-end justify-end gap-2 w-full">
+                    <div className=" pt-4 pb-5 px-6 rounded-2xl samsungA24:text-[20px] text-[16px]  !w-full flex flex-col bg-table-background">
                       <div className="gap-2 flex flex-col">
                         <p className=" text-table-foreground mb-1 font-medium">
                           {" "}
-                          รายละเอียดคิวถัดไป
+                          คิวถัดไปเลขคิว 005
                         </p>
-                        <p className=" text-[14px] samsungA24:text-[18px]">
-                          เลขคิว: 005
-                        </p>
+                        
                         <p className=" text-[14px] samsungA24:text-[18px]">
                           650610795 - เพ็ญพิชชา ทองคำ
                         </p>
@@ -510,17 +508,18 @@ export default function AdminIndex() {
                         </div>
                       </div>
                     </div>
+                    <div className="flex flex-col w-full gap-4">
                     <Button className="w-full items-center flex samsungA24:h-14 h-12">
                       <p className="samsungA24:text-[18px]">คิวถัดไป</p>
                       <Icon IconComponent={IconNext} className="!size-5" />
                     </Button>
                     <Button
                       variant="outline"
-                      className="w-full samsungA24:h-14 h-12  text-[14px] samsungA24:text-[18px]"
+                      className="w-full samsungA24:h-14 h-12 text-[14px] samsungA24:text-[18px]"
                     >
                       เรียกซ้ำ
                       <Icon IconComponent={IconRecall} className="!size-5" />
-                    </Button>
+                    </Button></div>
                   </div>
                 </div>
               </div>
@@ -538,7 +537,7 @@ export default function AdminIndex() {
             >
               <Table striped={true}>
                 <TableHeader>
-                  <TableRow className="sticky text-[14px] font-bold top-0 z-30">
+                  <TableRow className="sticky text-b2 samsungA24:text-b1 font-bold top-0 z-30">
                     <TableHead className="w-[100px]">เลขคิว</TableHead>
                     <TableHead>รหัสนักศึกษา</TableHead>
                     <TableHead>ชื่อ-นามสกุล</TableHead>
@@ -546,10 +545,10 @@ export default function AdminIndex() {
                     <TableHead className="w-[50%]">เพิ่มเติม</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody className=" font-normal text-b2">
+                <TableBody className=" font-normal text-b2 samsungA24:text-b1">
                   {dataDone.map((item) => (
                     <TableRow key={item.id}>
-                      <TableCell className="font-medium py-4">
+                      <TableCell className="font-medium py-4 ">
                         {item.id < 10 ? "00" : item.id < 100 && "0"}
                         {item.id}
                       </TableCell>
