@@ -30,7 +30,7 @@ const AddAdminModal: React.FC<PopupProps> = ({
           {IconComponent && (
             <IconComponent className="h-5 w-5 -translate-x-1 stroke-[#333333]" />
           )}
-          <span className="ml-2">{triggerText}</span>
+          <span className="ml-1">{triggerText}</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[50vw]">
