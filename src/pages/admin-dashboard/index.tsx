@@ -214,132 +214,132 @@ export default function AdminIndex() {
       description:
         "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
     },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
+    // {
+    //   id: 4,
+    //   studentId: "630612184",
+    //   name: "พีระ อรุณรัตน์",
+    //   room: "งานพัฒนาคุณภาพนักศึกษา",
+    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
+    //   description:
+    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
+    // },
   ];
 
   return (
@@ -351,7 +351,9 @@ export default function AdminIndex() {
             <TabsTrigger value="incoming">
               รอเรียกคิว ({data.length})
             </TabsTrigger>
-            <TabsTrigger value="called">คิวที่เรียกไปแล้ว (13)</TabsTrigger>
+            <TabsTrigger value="called">
+              คิวที่เรียกไปแล้ว ({dataDone.length})
+            </TabsTrigger>
           </TabsList>
           <TabsContent
             value="incoming"
@@ -431,15 +433,17 @@ export default function AdminIndex() {
                   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                <div className="flex flex-col  justify-between  items-center h-full">
-                  <div className="flex justify-center flex-col items-center mt-7">
-                    <p className="text-[20px] samsungA24:text-[23px] font-normal ">
-                      คิวที่คุณกำลังให้บริการ{" "}
-                    </p>
-                    <p className="text-primary  text-[16px] samsungA24:text-[20px] ">
-                      ห้องงานพัฒนาคุณภาพนักศึกษา
-                    </p>
-                    <div className=" samsungA24:mt-3 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[70px] font-medium text-[50px]">
+                <div className="flex flex-col  justify-between items-center h-full ">
+                  <div className="flex justify-start flex-col items-center mt-3 samsungA24:mt-7 samsungA24:gap-5 h-full">
+                    <div className="text-center ">
+                      <p className="text-[20px] samsungA24:text-[23px] font-normal ">
+                        คิวที่คุณกำลังให้บริการ{" "}
+                      </p>
+                      <p className="text-primary  text-[16px] samsungA24:text-[20px] ">
+                        ห้องงานพัฒนาคุณภาพนักศึกษา
+                      </p>
+                    </div>
+                    <div className=" samsungA24:mt-3 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] font-medium text-[52px]">
                       004
                     </div>
                     <div className="text-center items-center justify-center flex flex-col  samsungA24:text-[22px] text-[18px] text-primary">
@@ -448,7 +452,7 @@ export default function AdminIndex() {
                           {dataDone[3].studentId} - {dataDone[3].name}
                         </p>
                       </div>
-                      <div className="flex  gap-2 mt-3 samsungA24:text-[18px] text-[16px] items-center text-[#333333]">
+                      <div className="flex  gap-2 mt-1 samsungA24:text-[18px] text-[16px] items-center text-[#333333]">
                         <div
                           className={`${
                             dataDone[3].category === "อื่นๆ"
@@ -472,54 +476,57 @@ export default function AdminIndex() {
                       </div>
                     </div>{" "}
                   </div>{" "}
-                  <div className="flex flex-col items-end justify-end gap-2 w-full">
-                    <div className=" pt-4 pb-5 px-6 rounded-2xl samsungA24:text-[20px] text-[16px]  !w-full flex flex-col bg-table-background">
-                      <div className="gap-2 flex flex-col">
-                        <p className=" text-table-foreground mb-1 font-medium">
-                          {" "}
-                          คิวถัดไปเลขคิว 005
-                        </p>
-                        
-                        <p className=" text-[14px] samsungA24:text-[18px]">
-                          650610795 - เพ็ญพิชชา ทองคำ
-                        </p>
-                        <div className="flex text-[14px] samsungA24:text-[18px] items-center gap-3">
-                          <div
-                            className={`${
-                              dataDone[3].category === "อื่นๆ"
-                                ? "bg-contactList-others"
-                                : dataDone[3].category === "ทุนการศึกษา"
-                                ? "bg-contactList-scholarship"
-                                : dataDone[3].category ===
-                                  "ขอคำปรึกษาด้านวิชาการ"
-                                ? "bg-contactList-consultation"
-                                : dataDone[3].category ===
-                                  "แจ้งปัญหาด้านการเรียนการสอน"
-                                ? "bg-contactList-report"
-                                : dataDone[3].category ===
-                                  "ขอจัดกิจกรรมหรือโครงการพิเศษ"
-                                ? "bg-contactList-request"
-                                : dataDone[3].category ===
-                                    "ฝึกงาน-สหกิจศึกษา" &&
-                                  "bg-contactList-internship"
-                            } h-3 w-3 rounded-[100%]`}
-                          ></div>
-                          {dataDone[3].category}
+                  <div className="flex flex-col gap-3 samsungA24:gap-4 w-full">
+                    <div className="px-6 py-5 pt-5 rounded-2xl samsungA24:text-[20px] text-[16px] !w-full flex flex-col bg-table-background">
+                      <div className=" flex items-center justify-start ">
+                        <div className=" text-table-foreground font-medium text-center pr-6 border-r-2 border-table-foreground/15">
+                          <p> คิวถัดไปเลขคิว</p>
+                          <p className="font-semibold text-[28px]">
+                            00{data[0].id}
+                          </p>
+                        </div>
+
+                        <div className="flex flex-col gap-0 ml-6">
+                          <p className=" text-[14px] samsungA24:text-[18px]">
+                            {data[0].studentId} - {data[0].name}
+                          </p>
+                          <div className="flex text-[14px] samsungA24:text-[18px] items-center gap-3">
+                            <div
+                              className={`${
+                                data[0].category === "อื่นๆ"
+                                  ? "bg-contactList-others"
+                                  : data[0].category === "ทุนการศึกษา"
+                                  ? "bg-contactList-scholarship"
+                                  : data[0].category === "ขอคำปรึกษาด้านวิชาการ"
+                                  ? "bg-contactList-consultation"
+                                  : data[0].category ===
+                                    "แจ้งปัญหาด้านการเรียนการสอน"
+                                  ? "bg-contactList-report"
+                                  : data[0].category ===
+                                    "ขอจัดกิจกรรมหรือโครงการพิเศษ"
+                                  ? "bg-contactList-request"
+                                  : data[0].category === "ฝึกงาน-สหกิจศึกษา" &&
+                                    "bg-contactList-internship"
+                              } h-3 w-3 rounded-[100%]`}
+                            ></div>
+                            {data[0].category}
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div className="flex flex-col w-full gap-4">
-                    <Button className="w-full items-center flex samsungA24:h-14 h-12">
-                      <p className="samsungA24:text-[18px]">คิวถัดไป</p>
-                      <Icon IconComponent={IconNext} className="!size-5" />
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="w-full samsungA24:h-14 h-12 text-[14px] samsungA24:text-[18px]"
-                    >
-                      เรียกซ้ำ
-                      <Icon IconComponent={IconRecall} className="!size-5" />
-                    </Button></div>
+                      <Button className="w-full items-center flex samsungA24:h-14 h-12">
+                        <p className="samsungA24:text-[18px]">คิวถัดไป</p>
+                        <Icon IconComponent={IconNext} className="!size-5" />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="w-full samsungA24:h-14 h-12 text-[14px] samsungA24:text-[18px]"
+                      >
+                        เรียกซ้ำ
+                        <Icon IconComponent={IconRecall} className="!size-5" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
