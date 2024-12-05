@@ -32,8 +32,11 @@ export default function Profile() {
     <>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="ghost" className="flex items-center  gap-2">
-            <div className="flex flex-col w-fit  py-2 font-normal text-[13px] text-white items-end">
+          <Button
+            variant="ghost"
+            className="flex items-center translate-x-3  gap-2"
+          >
+            <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end">
               <p>เนตรนภา สาระแปง</p>
               <p>ผู้ดูแลระบบ</p>
             </div>
@@ -51,7 +54,7 @@ export default function Profile() {
             <Button className=" bg-white hover:bg-table-background text-[#333333] justify-start">
               <Icon
                 IconComponent={IconList}
-                className=" !size-[18px]  -translate-x-1 stroke-[#333333]"
+                className=" !size-[18px]  -translate-x-[5px] stroke-[#333333]"
               />
               <p className=" translate-x-[2px]">จัดการหัวข้อการบริการ</p>
             </Button>
