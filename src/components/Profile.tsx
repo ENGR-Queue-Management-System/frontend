@@ -11,6 +11,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import AddAdminModal from "../components/modal/addAdminModal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -40,43 +41,12 @@ export default function Profile() {
         </PopoverTrigger>
         <PopoverContent>
           <div className="flex flex-col gap-1">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button className=" bg-white hover:bg-table-background text-[#333333] justify-start">
-                  {" "}
-                  <Icon
-                    IconComponent={IconAdminMange}
-                    className=" !size-5 -translate-x-1 stroke-[#333333]"
-                  />
-                  <p className=" -translate-x-[1px]">จัดการผู้ดูแลระบบ</p>
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-[50vw]">
-                <DialogHeader>
-                  <DialogTitle>
-                    <div className="font-medium text-default">
-                      {" "}
-                      จัดการผู้ดูแลระบบ
-                    </div>
-                  </DialogTitle>
-                  <DialogDescription>
-                    <div
-                      className="p-6 rounded-lg mt-3 flex flex-col gap-1"
-                      style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
-                    >
-                      เพิ่มผู้ดูแลระบบด้วย CMU account
-                      <div className="flex gap-3">
-                      <Input
-                        type="email"
-                        placeholder="e.g. example@cmu.ac.th"
-                      />
-                      <Button>เพิ่ม</Button></div>
-                    </div>
-                   
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
+            <AddAdminModal
+              triggerText="จัดการผู้ดูแลระบบ"
+              icon={IconAdminMange}
+              title="จัดการผู้ดูแลระบบ"
+            ></AddAdminModal>
+
             <Button className=" bg-white hover:bg-table-background text-[#333333] justify-start">
               <Icon
                 IconComponent={IconList}

@@ -77,7 +77,7 @@ export default {
         sm: "1024px",
         ipad11: "1180px",
         macair133: "1200px",
-        samsungA24: "1500px",
+        samsungA24: "1600px",
       },
       fontFamily: {},
     },
