@@ -370,7 +370,6 @@ export default function AdminIndex() {
                   <TableRow className="sticky text-b2  samsungA24:text-b1 font-bold top-0 z-30">
                     <TableHead>เลขคิว</TableHead>
                     <TableHead>รหัสนักศึกษา</TableHead>
-
                     <TableHead>ชื่อ-นามสกุล</TableHead>
                     <TableHead>รายการติดต่อ</TableHead>
                     <TableHead>เพิ่มเติม</TableHead>
@@ -380,7 +379,7 @@ export default function AdminIndex() {
                   {data.map((item) => (
                     <TableRow key={item.id}>
                       <TableCell className="font-medium py-4">
-                        {item.id < 10 ? "00" : item.id < 100 && "0"}
+                        {item.id < 10 ? "A00" : item.id < 100 && "A0"}
                         {item.id}
                       </TableCell>
                       <TableCell>{item.studentId}</TableCell>
@@ -444,7 +443,7 @@ export default function AdminIndex() {
                       </p>
                     </div>
                     <div className=" samsungA24:mt-3 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] font-medium text-[52px]">
-                      004
+                      A004
                     </div>
                     <div className="text-center items-center justify-center flex flex-col  samsungA24:text-[22px] text-[18px] text-primary">
                       <div className="mt-2">
@@ -479,14 +478,14 @@ export default function AdminIndex() {
                   <div className="flex flex-col gap-3 samsungA24:gap-4 w-full">
                     <div className="px-6 py-5 pt-5 rounded-2xl samsungA24:text-[20px] text-[16px] !w-full flex flex-col bg-table-background">
                       <div className=" flex items-center justify-start ">
-                        <div className=" text-table-foreground font-medium text-center pr-6 border-r-2 border-table-foreground/15">
-                          <p> คิวถัดไปเลขคิว</p>
+                        <div className=" text-table-foreground font-medium text-center pr-6 pl-3 border-r-2 border-table-foreground/15">
+                          <p> คิวถัดไป</p>
                           <p className="font-semibold text-[28px]">
-                            00{data[0].id}
+                            A00{data[0].id}
                           </p>
                         </div>
 
-                        <div className="flex flex-col gap-0 ml-6">
+                        <div className="flex flex-col gap-1 ml-6">
                           <p className=" text-[14px] samsungA24:text-[18px]">
                             {data[0].studentId} - {data[0].name}
                           </p>
