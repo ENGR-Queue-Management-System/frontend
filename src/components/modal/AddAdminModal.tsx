@@ -37,12 +37,12 @@ const AddAdminModal: React.FC<PopupProps> = ({
           <span className="ml-1">{triggerText}</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[45vw]">
+      <DialogContent className="max-w-[45vw] iphone:max-sm:max-w-[95vw]">
         <DialogHeader>
-          <DialogTitle className=" text-table-foreground">{title}</DialogTitle>
+          <DialogTitle className=" text-table-foreground text-start">{title}</DialogTitle>
           <DialogDescription>
             {" "}
-            <div className=" py-6 px-2 border-b-2   flex flex-col gap-1">
+            <div className=" py-6 px-2 border-b-2   text-start flex flex-col gap-1">
               เพิ่มผู้ดูแลระบบด้วย CMU account
               <div className="flex gap-3">
                 <Input type="email" placeholder="e.g. example@cmu.ac.th" />
@@ -56,12 +56,12 @@ const AddAdminModal: React.FC<PopupProps> = ({
               <div className="flex bg-table-background text-table-foreground gap-3 items-center font-medium py-3 px-4 ">
                 <Icon IconComponent={IconUsers} /> รายชื่อผู้ดูแลระบบ
               </div>
-              <div className=" max-h-[400px] overflow-y-auto px-5">
+              <div className=" max-h-[400px] iphone:max-sm:h-[20vh] overflow-y-auto px-5">
                 <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
                   <div className="flex  gap-3 items-center py-2">
                     <Icon IconComponent={IconUser} className="!size-9" />{" "}
                     <div className="flex flex-col">
-                      <p>เนตรนภา สาระแปง</p>
+                      <p className="text-start">เนตรนภา สาระแปง</p>
                       <p className=" font-normal text-b3 text-table-foreground">
                         งานพัฒนาคุณภาพนักศึกษา
                       </p>

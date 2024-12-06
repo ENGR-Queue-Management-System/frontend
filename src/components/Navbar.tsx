@@ -15,12 +15,17 @@ export default function Navbar() {
         <Image className=" z-50 w-[50px]" src={logoEng} alt="loginImage" />
         <div className="flex flex-col w-fit gap-0 font-medium text-[14px] text-white">
           {role === "admin" ? (
-            <p>ระบบจัดการคิว คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
+            <div>
+            <p>ระบบจัดการคิว <span className="iphone:max-sm:hidden"> คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</span></p>
+            
+            </div>
           ) : (
             <p>ระบบรับบัตรคิว คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
           )}
           {role === "admin" ? (
-            <p>Queue Management - Engineering CMU</p>
+            <div>
+            <p className=" iphone:max-sm:hidden">Queue Management - Engineering CMU</p>
+            </div>
           ) : (
             <p>Ticket Queue - Engineering CMU</p>
           )}

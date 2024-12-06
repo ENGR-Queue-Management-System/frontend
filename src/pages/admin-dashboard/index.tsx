@@ -343,73 +343,85 @@ export default function AdminIndex() {
   ];
 
   return (
-    <div className="flex flex-col h-screen w-screen overflow-hidden">
+    <div className="flex flex-col h-screen iphone:max-sm:h-fit w-screen overflow-hidden">
       <Navbar />
-      <div className="px-4 flex flex-col h-full w-full overflow-hidden bg-[#f9f9f9] pt-3 ">
-        <Tabs className="flex flex-col !w-full !h-full" defaultValue="incoming">
+      <div className="px-4 flex iphone:max-sm:h-fit flex-col h-full w-full overflow-hidden bg-[#f9f9f9] pt-3 ">
+        <Tabs className="flex flex-col !w-full h-full iphone:max-sm:h-fit" defaultValue="incoming">
           <TabsList className="!w-full">
             <TabsTrigger value="incoming">
-              รอเรียกคิว ({data.length})
+              <p className=" iphone:max-sm:text-[13px]">
+                {" "}
+                รอเรียกคิว ({data.length})
+              </p>
             </TabsTrigger>
             <TabsTrigger value="called">
-              คิวที่เรียกไปแล้ว ({dataDone.length})
+              <p className=" iphone:max-sm:text-[13px]">
+                {" "}
+                คิวที่เรียกไปแล้ว ({dataDone.length}){" "}
+              </p>
             </TabsTrigger>
           </TabsList>
           <TabsContent
             value="incoming"
-            className="flex  gap-4 max-h-full overflow-hidden"
+            className="flex pb-2 iphone:max-sm:pb-0 iphone:max-sm:flex-col-reverse iphone:max-sm:gap-4  iphone:max-sm:h-fit  mb-2   gap-4 max-h-full overflow-hidden"
           >
             <div
-              className="w-[60%] h-full rounded-lg overflow-clip overflow-y-auto border border-[#E5DDEA] shadow-shadow-table"
               style={{
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
               }}
+              className="w-[60%] iphone:max-sm:!h-fit iphone:max-sm:w-[100%] sm:flex-1 sm:flex rounded-lg border border-[#E5DDEA] shadow-shadow-table"
             >
-              <Table striped={true}>
-                <TableHeader>
-                  <TableRow className="sticky text-b2  samsungA24:text-b1 font-bold top-0 z-30">
-                    <TableHead>เลขคิว</TableHead>
-                    <TableHead>รหัสนักศึกษา</TableHead>
-                    <TableHead>ชื่อ-นามสกุล</TableHead>
-                    <TableHead>รายการติดต่อ</TableHead>
-                    <TableHead>เพิ่มเติม</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody className=" font-normal text-b2 samsungA24:text-b1">
-                  {data.map((item) => (
-                    <TableRow key={item.id}>
-                      <TableCell className="font-medium py-4">
-                        {item.id < 10 ? "A00" : item.id < 100 && "A0"}
-                        {item.id}
-                      </TableCell>
-                      <TableCell>{item.studentId}</TableCell>
-                      <TableCell>{item.name}</TableCell>
-                      <TableCell className="flex gap-2  translate-y-[6px] items-center">
-                        <div
-                          className={`${
-                            item.category === "อื่นๆ"
-                              ? "bg-contactList-others"
-                              : item.category === "ทุนการศึกษา"
-                              ? "bg-contactList-scholarship"
-                              : item.category === "ขอคำปรึกษาด้านวิชาการ"
-                              ? "bg-contactList-consultation"
-                              : item.category === "แจ้งปัญหาด้านการเรียนการสอน"
-                              ? "bg-contactList-report"
-                              : item.category === "ขอจัดกิจกรรมหรือโครงการพิเศษ"
-                              ? "bg-contactList-request"
-                              : item.category === "ฝึกงาน-สหกิจศึกษา" &&
-                                "bg-contactList-internship"
-                          } h-3 w-3 rounded-[100%]`}
-                        ></div>
-                        {item.category}
-                      </TableCell>
-                      <TableCell>-</TableCell>
+              <div className="overflow-y-auto iphone:max-sm:!min-h-fit flex flex-1 ">
+                <Table striped={true}>
+                  <TableHeader>
+                    <TableRow className="sticky text-b2 samsungA24:text-b1 font-bold top-0 z-30 ">
+                      <TableHead>เลขคิว</TableHead>
+                      <TableHead>รหัสนักศึกษา</TableHead>
+                      <TableHead>ชื่อ-นามสกุล</TableHead>
+                      <TableHead>รายการติดต่อ</TableHead>
+                      <TableHead>เพิ่มเติม</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHeader>
+                  <TableBody className=" font-normal text-b2 samsungA24:text-b1">
+                    {data.map((item) => (
+                      <TableRow key={item.id}>
+                        <TableCell className="font-medium py-4">
+                          {item.id < 10 ? "A00" : item.id < 100 && "A0"}
+                          {item.id}
+                        </TableCell>
+                        <TableCell>{item.studentId}</TableCell>
+                        <TableCell>{item.name}</TableCell>
+                        <TableCell className="flex gap-2  translate-y-[6px] items-center">
+                          <div className="flex items-center gap-2">
+                            <div
+                              className={`${
+                                item.category === "อื่นๆ"
+                                  ? "bg-contactList-others"
+                                  : item.category === "ทุนการศึกษา"
+                                  ? "bg-contactList-scholarship"
+                                  : item.category === "ขอคำปรึกษาด้านวิชาการ"
+                                  ? "bg-contactList-consultation"
+                                  : item.category ===
+                                    "แจ้งปัญหาด้านการเรียนการสอน"
+                                  ? "bg-contactList-report"
+                                  : item.category ===
+                                    "ขอจัดกิจกรรมหรือโครงการพิเศษ"
+                                  ? "bg-contactList-request"
+                                  : item.category === "ฝึกงาน-สหกิจศึกษา" &&
+                                    "bg-contactList-internship"
+                              } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
+                            ></div>
+                            {item.category}
+                          </div>
+                        </TableCell>
+                        <TableCell>-</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             </div>
-            <div className="flex flex-col gap-4 max-h-full w-[40%] text-[15px] font-medium">
+            <div className="flex flex-col gap-3 h-full w-[40%]  iphone:max-sm:w-[100%] text-[15px] font-medium">
               <div
                 className="flex bg-white rounded-lg border border-[#E5DDEA] text-[15px] px-6 py-3 justify-between items-center"
                 style={{
@@ -418,7 +430,9 @@ export default function AdminIndex() {
               >
                 <div>
                   <div className="flex-col">
-                    <p className="text-[16px]">รับคิวนักศึกษา</p>
+                    <p className="text-[16px]">
+                      รับคิวนักศึกษา (ปิดรับคิวอัตโนมัติ 16:00)
+                    </p>
                     <p className="text-primary text-[13px] ">
                       ห้องงานพัฒนาคุณภาพนักศึกษา
                     </p>
@@ -427,12 +441,12 @@ export default function AdminIndex() {
                 <Switch />
               </div>
               <div
-                className="flex  flex-col h-full bg-white rounded-lg overflow-auto border border-[#E5DDEA] px-6 py-4  "
+                className="flex iphone:max-sm:overflow-clip flex-col m h-full bg-white rounded-lg  border border-[#E5DDEA] px-6 py-4  "
                 style={{
                   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                <div className="flex flex-col  justify-between items-center h-full ">
+                <div className="flex flex-col  justify-between items-center  h-full ">
                   <div className="flex justify-start flex-col items-center mt-3 samsungA24:mt-7 samsungA24:gap-5 h-full">
                     <div className="text-center ">
                       <p className="text-[20px] samsungA24:text-[23px] font-normal ">
@@ -442,13 +456,18 @@ export default function AdminIndex() {
                         ห้องงานพัฒนาคุณภาพนักศึกษา
                       </p>
                     </div>
-                    <div className=" samsungA24:mt-3 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] font-medium text-[52px]">
+                    <div className=" samsungA24:mt-3 iphone:max-sm:mt-3 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] iphone:max-sm:text-[40px] font-medium text-[52px]">
                       A004
                     </div>
                     <div className="text-center items-center justify-center flex flex-col  samsungA24:text-[22px] text-[18px] text-primary">
                       <div className="mt-2">
                         <p className="font-medium">
-                          {dataDone[3].studentId} - {dataDone[3].name}
+                          {dataDone[3].studentId}
+                          <span className=" iphone:max-sm:block ">
+                            {" "}
+                            <span className="iphone:max-sm:hidden">-</span>{" "}
+                            {dataDone[3].name}
+                          </span>
                         </p>
                       </div>
                       <div className="flex  gap-2 mt-1 samsungA24:text-[18px] text-[16px] items-center text-[#333333]">
@@ -468,7 +487,7 @@ export default function AdminIndex() {
                               ? "bg-contactList-request"
                               : dataDone[3].category === "ฝึกงาน-สหกิจศึกษา" &&
                                 "bg-contactList-internship"
-                          } h-3 w-3 rounded-[100%]`}
+                          } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
                         ></div>
 
                         {dataDone[3].category}
@@ -476,18 +495,23 @@ export default function AdminIndex() {
                     </div>{" "}
                   </div>{" "}
                   <div className="flex flex-col gap-3 samsungA24:gap-4 w-full">
-                    <div className="px-6 py-5 pt-5 rounded-2xl samsungA24:text-[20px] text-[16px] !w-full flex flex-col bg-table-background">
+                    <div className="px-6 py-5 pt-5 rounded-2xl iphone:max-sm:mt-4 samsungA24:text-[20px] text-[16px] !w-full flex flex-col bg-table-background">
                       <div className=" flex items-center justify-start ">
-                        <div className=" text-table-foreground font-medium text-center pr-6 pl-3 border-r-2 border-table-foreground/15">
-                          <p> คิวถัดไป</p>
-                          <p className="font-semibold text-[28px]">
+                        <div className=" text-table-foreground font-medium text-center iphone:max-sm:pl-0 iphone:max-sm:pr-4 pr-6 pl-3  border-r-2 border-table-foreground/15">
+                          <p className="iphone:max-sm:text-[15px]"> คิวถัดไป</p>
+                          <p className="font-semibold text-[28px] iphone:max-sm:text-[22px]">
                             A00{data[0].id}
                           </p>
                         </div>
 
                         <div className="flex flex-col gap-1 ml-6">
                           <p className=" text-[14px] samsungA24:text-[18px]">
-                            {data[0].studentId} - {data[0].name}
+                            {data[0].studentId}{" "}
+                            <span className="iphone:max-sm:hidden">-</span>{" "}
+                            <span className=" iphone:max-sm:block ">
+                              {" "}
+                              {data[0].name}
+                            </span>
                           </p>
                           <div className="flex text-[14px] samsungA24:text-[18px] items-center gap-3">
                             <div
@@ -506,21 +530,22 @@ export default function AdminIndex() {
                                   ? "bg-contactList-request"
                                   : data[0].category === "ฝึกงาน-สหกิจศึกษา" &&
                                     "bg-contactList-internship"
-                              } h-3 w-3 rounded-[100%]`}
+                              } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
                             ></div>
+
                             {data[0].category}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-col w-full gap-4">
+                    <div className="flex flex-col w-full   h-fit gap-4">
                       <Button className="w-full items-center flex samsungA24:h-14 h-12">
                         <p className="samsungA24:text-[18px]">คิวถัดไป</p>
                         <Icon IconComponent={IconNext} className="!size-5" />
                       </Button>
                       <Button
                         variant="outline"
-                        className="w-full samsungA24:h-14 h-12 text-[14px] samsungA24:text-[18px]"
+                        className="w-full samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-[14px] samsungA24:text-[18px]"
                       >
                         เรียกซ้ำ
                         <Icon IconComponent={IconRecall} className="!size-5" />
@@ -575,7 +600,7 @@ export default function AdminIndex() {
                               ? "bg-contactList-request"
                               : item.category === "ฝึกงาน-สหกิจศึกษา" &&
                                 "bg-contactList-internship"
-                          } h-3 w-3 rounded-[100%]`}
+                          } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
                         ></div>
                         {item.category}
                       </TableCell>

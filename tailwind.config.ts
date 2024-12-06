@@ -74,6 +74,7 @@ export default {
         b3: "12px",
       },
       screens: {
+        iphone: "300px",
         sm: "1024px",
         ipad11: "1180px",
         macair133: "1200px",
