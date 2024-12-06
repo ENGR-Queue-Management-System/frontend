@@ -68,18 +68,19 @@ export default function Home() {
                 Faculty of Engineering, Chiang Mai University
               </p>
             </div>
-            <Button
-              variant="default"
-              className="text-sm font-semibold py-[22px] mt-8 w-fit px-10 rounded-[8px] bg-[#ffffff] text-[#605CA4] hover:bg-[#e8e8e8]"
-              onClick={() => router.push(Route.CmuOAuthCallback)}
-            >
-              <Image
-                src={cmuLogoWhite}
-                alt="cmulogo"
-                className=" w-[42px] mr-2 "
-              />
-              Sign in CMU Account
-            </Button>
+            <a href={process.env.NEXT_PUBLIC_CMU_OAUTH_URL}>
+              <Button
+                variant="default"
+                className="text-sm font-semibold py-[22px] mt-8 w-fit px-10 rounded-[8px] bg-[#ffffff] text-[#605CA4] hover:bg-[#e8e8e8]"
+              >
+                <Image
+                  src={cmuLogoWhite}
+                  alt="cmulogo"
+                  className=" w-[42px] mr-2 "
+                />
+                Sign in CMU Account
+              </Button>
+            </a>
           </div>
           <div
             className="flex gap-5 flex-col  h-[70%] w-[40%] bg-white rounded-lg border border-[#E5DDEA] text-[14px] px-6 py-4 pb-8 justify-start items-center"
