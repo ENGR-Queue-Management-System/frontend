@@ -1,6 +1,7 @@
 import { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  reactStrictMode: true,
   webpack(config) {
     config.module.rules.push({
       loader: "@svgr/webpack",
