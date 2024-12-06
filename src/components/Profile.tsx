@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/popover";
 import AddAdminModal from "../components/modal/AddAdminModal";
 import LogQueueModal from "../components/modal/LogQueueModal";
+import ContactTopicManageModal from "../components/modal/ContactTopicManageModal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -50,14 +51,12 @@ export default function Profile() {
               icon={IconAdminMange}
               title="จัดการผู้ดูแลระบบ"
             ></AddAdminModal>
+            <ContactTopicManageModal
+              triggerText="จัดการหัวข้อการบริการ"
+              icon={IconAdminMange}
+              title="จัดการหัวข้อการบริการ"
+            ></ContactTopicManageModal>
 
-            <Button className=" bg-white hover:bg-table-background text-[#333333] justify-start">
-              <Icon
-                IconComponent={IconList}
-                className=" !size-[18px]  -translate-x-[5px] stroke-[#333333]"
-              />
-              <p className=" translate-x-[2px]">จัดการหัวข้อการบริการ</p>
-            </Button>
             <Button className=" bg-white hover:bg-table-background text-[#333333] justify-start">
               <Icon
                 IconComponent={IconChangeLocation}
