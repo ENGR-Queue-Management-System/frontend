@@ -12,6 +12,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import AddAdminModal from "../components/modal/AddAdminModal";
+import LogQueueModal from "../components/modal/LogQueueModal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -64,13 +65,11 @@ export default function Profile() {
               />
               <p className=" translate-x-[2px]">จัดการสถานที่บริการ</p>
             </Button>
-            <Button className=" bg-white hover:bg-table-background text-[#333333] justify-start">
-              <Icon
-                IconComponent={IconHistory}
-                className="  !size-[18px] -translate-x-1 stroke-[#333333]"
-              />
-              <p className=" translate-x-[2px]"> ประวัติการบริการ </p>
-            </Button>
+            <LogQueueModal
+              triggerText="ประวัติการบริการ"
+              icon={IconHistory}
+              title="ประวัติการบริการ"
+            ></LogQueueModal>
             <Button className=" bg-white hover:bg-table-background text-[#333333] justify-start">
               <Icon
                 IconComponent={IconChange}
