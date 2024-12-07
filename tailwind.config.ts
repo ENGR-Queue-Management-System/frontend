@@ -7,6 +7,7 @@ export default {
     extend: {
       colors: {
         default: "#333333",
+        delete: "#ff4747",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
@@ -71,7 +72,8 @@ export default {
         h2: "18px",
         b1: "16px",
         b2: "14px",
-        b3: "12px",
+        b3: "13px",
+        b4: "12px",
       },
       screens: {
         iphone: "300px",
