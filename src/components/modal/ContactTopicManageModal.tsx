@@ -17,17 +17,19 @@ import IconPlus from "../../../public/icons/plus.svg";
 import Icon from "@/components/Icon";
 
 type PopupProps = {
-  triggerText: string;
+  triggerText?: string;
   icon?: React.ComponentType<{ className?: string }>;
   title: string;
 };
-const AddAdminModal: React.FC<PopupProps> = ({
+const ContactTopicMangeModal: React.FC<PopupProps> = ({
   triggerText,
   icon: IconComponent,
   title,
 }) => {
-  const [isAddTopicModal, setIsAddTopicModal] = useState(false);
-  const [isEditTopicModal, setIsEditTopicModal] = useState(false);
+  const [openAddTopicModal, setOpenAddTopicModal] = useState(false);
+  const [openEditTopicModal, setOpenEditTopicModal] = useState(false);
+  const [openDeleteTopicPopup, setOpenDeleteTopicPopup] = useState(false);
+
   const [inputValues, setInputValues] = useState({
     topicTH: "",
     topicEN: "",
@@ -71,8 +73,9 @@ const AddAdminModal: React.FC<PopupProps> = ({
     <Dialog
       onOpenChange={(isOpen) => {
         if (isOpen) {
-          setIsAddTopicModal(false);
-          setIsEditTopicModal(false);
+          setOpenDeleteTopicPopup(false);
+          setOpenAddTopicModal(false);
+          setOpenEditTopicModal(false);
         }
       }}
     >
@@ -89,21 +92,32 @@ const AddAdminModal: React.FC<PopupProps> = ({
       </DialogTrigger>
       <DialogContent
         className={`${
-          isAddTopicModal || isEditTopicModal ? "max-w-[35vw]" : "max-w-[45vw]"
+          openAddTopicModal || openEditTopicModal || openDeleteTopicPopup
+            ? "max-w-[35vw]"
+            : "max-w-[45vw]"
         }`}
       >
         <DialogHeader>
-          <DialogTitle className="text-table-foreground">
-            {isAddTopicModal
+          <DialogTitle
+            className={`text-table-foreground  ${
+              openDeleteTopicPopup && "flex items-center gap-2 text-delete"
+            }`}
+          >
+            {openDeleteTopicPopup && (
+              <Icon IconComponent={IconTrash} className="stroke-delete" />
+            )}
+            {openAddTopicModal
               ? "เพิ่มหัวข้อการบริการ"
-              : isEditTopicModal
+              : openEditTopicModal
               ? "แก้ไขหัวข้อการบริการ"
+              : openDeleteTopicPopup
+              ? "ลบหัวข้อการบริการ ?"
               : title}
           </DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
 
-        {!isAddTopicModal && !isEditTopicModal ? (
+        {!openAddTopicModal && !openEditTopicModal && !openDeleteTopicPopup ? (
           <div className="flex flex-col gap-4">
             <div
               className="p-0 rounded-lg mt-2 flex flex-col gap-1 text-[14px]"
@@ -139,7 +153,7 @@ const AddAdminModal: React.FC<PopupProps> = ({
                       <div className="flex flex-col py-2 text-[14px]">
                         <p>{cat.topicTH}</p>
                         <p>{cat.topicEN}</p>
-                        <p className="font-normal text-b3 text-table-foreground">
+                        <p className="font-normal text-b4 text-table-foreground">
                           {cat.room}
                         </p>
                       </div>
@@ -153,7 +167,7 @@ const AddAdminModal: React.FC<PopupProps> = ({
                             topicEN: cat.topicEN,
                             room: cat.room,
                           });
-                          setIsEditTopicModal(true);
+                          setOpenEditTopicModal(true);
                         }}
                         className="border-[#F39D4E] rounded-full text-[#F39D4E] hover:bg-[#f7b1b13b] hover:text-white"
                       >
@@ -162,13 +176,15 @@ const AddAdminModal: React.FC<PopupProps> = ({
                           className="stroke-[#F39D4E]"
                         />
                       </Button>
+
                       <Button
                         variant="outline"
                         className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
+                        onClick={() => setOpenDeleteTopicPopup(true)}
                       >
                         <Icon
                           IconComponent={IconTrash}
-                          className="stroke-[#ff4747]"
+                          className="stroke-delete"
                         />
                       </Button>
                     </div>
@@ -176,12 +192,12 @@ const AddAdminModal: React.FC<PopupProps> = ({
                 ))}
               </div>
             </div>
-            <Button className="px-5" onClick={() => setIsAddTopicModal(true)}>
+            <Button className="px-5" onClick={() => setOpenAddTopicModal(true)}>
               <Icon IconComponent={IconPlus} />
               เพิ่มหัวข้อการบริการ
             </Button>
           </div>
-        ) : isEditTopicModal ? (
+        ) : openEditTopicModal ? (
           <div>
             <div className="flex flex-col gap-4 pb-4">
               <div className="grid w-full max-w-full items-center gap-1.5">
@@ -200,7 +216,7 @@ const AddAdminModal: React.FC<PopupProps> = ({
                   placeholder="e.g. Academic Consultation"
                 />
               </div>
-              <div className="border-t my-2 mb-1"></div>
+              <div className="border my-2 mb-1"></div>
               <div className="grid w-full max-w-full items-center gap-1.5">
                 <p className="text-[14px] font-medium">
                   เลือกสถานที่ติดต่อสำหรับหัวข้อที่ท่านแก้ไข
@@ -217,19 +233,19 @@ const AddAdminModal: React.FC<PopupProps> = ({
               <Button
                 className="mt-4"
                 variant="ghost"
-                onClick={() => setIsEditTopicModal(false)}
+                onClick={() => setOpenEditTopicModal(false)}
               >
                 ยกเลิก
               </Button>
               <Button
                 className="mt-4"
-                onClick={() => setIsEditTopicModal(false)}
+                onClick={() => setOpenEditTopicModal(false)}
               >
                 แก้ไข
               </Button>
             </div>
           </div>
-        ) : isAddTopicModal ? (
+        ) : openAddTopicModal ? (
           <div>
             <div className="flex flex-col gap-4 pb-4">
               <div className="grid w-full max-w-full items-center gap-1.5">
@@ -240,7 +256,7 @@ const AddAdminModal: React.FC<PopupProps> = ({
                 <p className="text-[14px] font-medium">หัวข้อภาษาอังกฤษ</p>
                 <Input type="text" placeholder="e.g. Academic Consultation" />
               </div>
-              <div className="border-t my-2 mb-1"></div>
+              <div className="border my-2 mb-1"></div>
               <div className="grid w-full max-w-full items-center gap-1.5">
                 <p className="text-[14px] font-medium">
                   เลือกสถานที่ติดต่อสำหรับหัวข้อที่ท่านเพิ่ม
@@ -253,15 +269,38 @@ const AddAdminModal: React.FC<PopupProps> = ({
               <Button
                 className="mt-4"
                 variant="ghost"
-                onClick={() => setIsAddTopicModal(false)}
+                onClick={() => setOpenAddTopicModal(false)}
               >
                 ยกเลิก
               </Button>
               <Button
                 className="mt-4"
-                onClick={() => setIsAddTopicModal(false)}
+                onClick={() => setOpenAddTopicModal(false)}
               >
                 เพิ่ม
+              </Button>
+            </div>
+          </div>
+        ) : openDeleteTopicPopup ? (
+          <div className="flex flex-col gap-1">
+            <p className="text-delete text-b2 text-medium">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+
+            <div className="flex gap-3 justify-end text-default">
+              <Button
+                className="mt-4"
+                variant="ghost"
+                onClick={() => setOpenDeleteTopicPopup(false)}
+              >
+                ยกเลิก
+              </Button>
+              <Button
+                className="mt-4 bg-delete hover:bg-delete/90"
+                onClick={() => setOpenDeleteTopicPopup(false)}
+              >
+                ลบ
               </Button>
             </div>
           </div>
@@ -271,4 +310,4 @@ const AddAdminModal: React.FC<PopupProps> = ({
   );
 };
 
-export default AddAdminModal;
+export default ContactTopicMangeModal;

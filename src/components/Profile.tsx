@@ -13,20 +13,9 @@ import {
 } from "@/components/ui/popover";
 import AddAdminModal from "../components/modal/AddAdminModal";
 import LogQueueModal from "../components/modal/LogQueueModal";
+import RoomManageModal from "../components/modal/RoomManageModal";
 import ContactTopicManageModal from "../components/modal/ContactTopicManageModal";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 export default function Profile() {
   return (
@@ -57,13 +46,12 @@ export default function Profile() {
               title="จัดการหัวข้อการบริการ"
             ></ContactTopicManageModal>
 
-            <Button className=" bg-white hover:bg-table-background text-[#333333] justify-start">
-              <Icon
-                IconComponent={IconChangeLocation}
-                className=" !size-[18px]  -translate-x-1 stroke-[#333333]"
-              />
-              <p className=" translate-x-[2px]">จัดการสถานที่บริการ</p>
-            </Button>
+            <RoomManageModal
+              triggerText="จัดการสถานที่บริการ"
+              icon={IconChangeLocation}
+              title="จัดการสถานที่บริการ"
+            ></RoomManageModal>
+
             <LogQueueModal
               triggerText="ประวัติการบริการ"
               icon={IconHistory}
