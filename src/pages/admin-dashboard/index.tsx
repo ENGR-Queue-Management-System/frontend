@@ -344,9 +344,12 @@ export default function AdminIndex() {
 
   return (
     <div className="flex flex-col h-screen iphone:max-sm:h-fit w-screen overflow-hidden">
-      <Navbar />
+      <Navbar role1="admin" />
       <div className="px-4 flex iphone:max-sm:h-fit flex-col h-full w-full overflow-hidden bg-[#f9f9f9] pt-3 ">
-        <Tabs className="flex flex-col !w-full h-full iphone:max-sm:h-fit" defaultValue="incoming">
+        <Tabs
+          className="flex flex-col !w-full h-full iphone:max-sm:h-fit"
+          defaultValue="incoming"
+        >
           <TabsList className="!w-full">
             <TabsTrigger value="incoming">
               <p className=" iphone:max-sm:text-[13px]">
