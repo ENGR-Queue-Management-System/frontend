@@ -1,3 +1,4 @@
+import { describe } from "node:test";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -7,6 +8,7 @@ export default {
     extend: {
       colors: {
         default: "#333333",
+        describe: "#676767",
         delete: "#ff4747",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
