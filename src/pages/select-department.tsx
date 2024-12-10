@@ -25,7 +25,7 @@ export default function SelectDepartment() {
             className="bg-[rgba(78,78,80,0.30)] rounded-[25px] mb-5 flex flex-col gap-2 p-6 h-fit scroll-smooth"
             style={{ boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)" }}
           >
-            <div className="text-white font-semibold text-[18px] mb-[2px] ">
+            <div className="text-white font-semibold text-h2 mb-[2px] ">
               เลือกสถานที่ทำงานที่คุณสังกัด
             </div>
             <div className="flex flex-1 flex-col overflow-y-auto mt-2 text-white h-fit">

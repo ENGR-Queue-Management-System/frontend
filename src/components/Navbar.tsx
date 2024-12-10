@@ -27,7 +27,9 @@ const Navbar: React.FC<NavbarProps> = ({ role1 }) => {
               Queue Management - Engineering CMU
             </p>
           ) : (
-            <p>Ticket Queue - Engineering CMU</p>
+            <p className="iphone:max-sm:hidden">
+              Ticket Queue - Engineering CMU
+            </p>
           )}
         </div>
       </div>
