@@ -65,29 +65,30 @@ export default function Home() {
   return (
     <div className=" flex items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
       <main className="flex gradient-bg h-screen w-screen justify-center  items-center bg-cover bg-center">
-        <div className="flex h-screen w-screen justify-between items-center inset-0 px-36  bg-gray-100/5">
-          <div className="text-white flex flex-col gap-5">
+        <div className="flex h-screen w-screen justify-center items-center inset-0 px-36  ">
+          <div className="text-white text-center justify-start items-center flex flex-col iphone:max-sm:bg-transparent iphone:max-sm:shadow-none sm:max-samsungA24:px-24 sm:max-samsungA24:py-12 samsungA24:px-28 samsungA24:py-16 gap-5 rounded-[25px] bg-[rgba(85,85,86,0.25)] shadow-[0px_0px_4px_2px_rgba(0,0,0,0.25)]
+">
             <Image
               src={logoEng}
               alt="logoEng"
-              className=" size-44 -translate-x-4"
+              className=" samsungA24:size-44 macair133:max-samsungA24:size-40 iphone:max-sm:size-36 sm:max-macair133:size-[156px]"
             />
             <div>
-              <p className=" text-[34px]">ระบบบัตรคิวอัตโนมัติ</p>
-              <p className=" text-[28px]">Automatic Queuing System</p>
+              <p className=" sm:max-samsungA24:text-[28px] iphone:max-sm:text-[24px] text-[34px]">ระบบบัตรคิวอัตโนมัติ</p>
+              <p className=" sm:max-samsungA24:text-[20px] iphone:max-sm:text-[18px] text-[28px]">Automatic Queuing System</p>
             </div>
             <div className="mt-1">
-              <p className=" text-h2 font-[400]">
+              <p className=" text-h2 sm:max-samsungA24:text-[15px] iphone:max-sm:text-[12px] font-[400]">
                 คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่
               </p>
-              <p className=" text-[16px] font-[400] mt-[2px]">
+              <p className=" text-[16px] sm:max-samsungA24:text-[13px] iphone:max-sm:text-[11px] font-[400] mt-[2px]">
                 Faculty of Engineering, Chiang Mai University
               </p>
             </div>
             <a href={process.env.NEXT_PUBLIC_CMU_OAUTH_URL}>
               <Button
                 variant="default"
-                className="text-sm font-semibold py-[22px] mt-8 w-fit px-10 rounded-[8px] bg-[#ffffff] text-[#605CA4] hover:bg-[#e8e8e8]"
+                className="text-sm font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 mt-8 iphone:max-sm:mt-12 w-fit px-10 rounded-[8px] bg-[#ffffff] text-[#605CA4] hover:bg-[#e8e8e8]"
               >
                 <Image
                   src={cmuLogoWhite}
@@ -97,39 +98,6 @@ export default function Home() {
                 Sign in CMU Account
               </Button>
             </a>
-          </div>
-          <div
-            className="flex gap-5 flex-col  h-[70%] w-[40%] bg-white rounded-lg border border-[#E5DDEA] text-[14px] px-6 py-4 pb-8 justify-start items-center"
-            style={{
-              boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <div className="flex  flex-col flex-1 w-full text-[14px]">
-              <div className="flex justify-between w-full pb-4 border-b">
-                <p>21 พ.ย. 2567</p>
-                <p>16:10:12</p>
-              </div>
-
-              <div className="flex flex-col gap-6 px-6 justify-between items-center h-full text-medium">
-                <div className="flex flex-col gap-8 mt-4 h-full items-center justify-center">
-                  <div className="text-center font-medium">
-                    <p className="text-[24px]">คิวที่กำลังให้บริการ </p>
-                    <p className="text-h1">Current Serving </p>
-                  </div>
-                  <div className="w-40 h-40 border-[3px] border-primary text-primary rounded-[100%] flex items-center justify-center font-semibold text-[40px]">
-                    004
-                  </div>
-                </div>
-
-                <div className="flex justify-between items-center w-full gap-2 text-[] text-primary">
-                  <div className="text-start text-default">
-                    <p>คิวล่าสุด</p>
-                    <p className="font-medium">Latest Queue</p>
-                  </div>
-                  <p className="text-[36px]">022</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </main>

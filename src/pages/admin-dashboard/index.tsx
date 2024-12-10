@@ -449,8 +449,13 @@ export default function AdminIndex() {
                   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
                 }}
               >
+<<<<<<< HEAD
+                <div className="flex flex-col  justify-between items-center h-full ">
+                  <div className="flex justify-start flex-col items-center mt-2  samsungA24:gap-5 h-full">
+=======
                 <div className="flex flex-col  justify-between items-center  h-full ">
                   <div className="flex justify-start flex-col items-center mt-3 samsungA24:mt-7 samsungA24:gap-5 h-full">
+>>>>>>> main
                     <div className="text-center ">
                       <p className="text-h1 samsungA24:text-[23px] font-normal ">
                         คิวที่คุณกำลังให้บริการ{" "}
@@ -459,7 +464,11 @@ export default function AdminIndex() {
                         ห้องงานพัฒนาคุณภาพนักศึกษา
                       </p>
                     </div>
+<<<<<<< HEAD
+                    <div className=" samsungA24:mt-3 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[80px] font-medium text-[52px]">
+=======
                     <div className=" samsungA24:mt-3 iphone:max-sm:mt-3 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] iphone:max-sm:text-[40px] font-medium text-[52px]">
+>>>>>>> main
                       A004
                     </div>
                     <div className="text-center items-center justify-center flex flex-col  samsungA24:text-[22px] text-h2 text-primary">
@@ -508,6 +517,12 @@ export default function AdminIndex() {
                         </div>
 
                         <div className="flex flex-col gap-1 ml-6">
+<<<<<<< HEAD
+                          <p className=" text-[14px] text-default samsungA24:text-[18px]">
+                            {data[0].studentId} - {data[0].name}
+                          </p>
+                          <div className="flex text-[14px] text-default samsungA24:text-[18px] items-center gap-3">
+=======
                           <p className=" text-[14px] samsungA24:text-h2">
                             {data[0].studentId}{" "}
                             <span className="iphone:max-sm:hidden">-</span>{" "}
@@ -517,6 +532,7 @@ export default function AdminIndex() {
                             </span>
                           </p>
                           <div className="flex text-[14px] samsungA24:text-h2 items-center gap-3">
+>>>>>>> main
                             <div
                               className={`${
                                 data[0].category === "อื่นๆ"
