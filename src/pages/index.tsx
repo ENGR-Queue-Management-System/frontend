@@ -76,7 +76,7 @@ export default function Home() {
               <p className=" text-[28px]">Automatic Queuing System</p>
             </div>
             <div className="mt-1">
-              <p className=" text-[18px] font-[400]">
+              <p className=" text-h2 font-[400]">
                 คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่
               </p>
               <p className=" text-[16px] font-[400] mt-[2px]">
@@ -113,14 +113,14 @@ export default function Home() {
                 <div className="flex flex-col gap-8 mt-4 h-full items-center justify-center">
                   <div className="text-center font-medium">
                     <p className="text-[24px]">คิวที่กำลังให้บริการ </p>
-                    <p className="text-[20px]">Current Serving </p>
+                    <p className="text-h1">Current Serving </p>
                   </div>
                   <div className="w-40 h-40 border-[3px] border-primary text-primary rounded-[100%] flex items-center justify-center font-semibold text-[40px]">
                     004
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center w-full gap-2 text-[20px] text-primary">
+                <div className="flex justify-between items-center w-full gap-2 text-[] text-primary">
                   <div className="text-start text-default">
                     <p>คิวล่าสุด</p>
                     <p className="font-medium">Latest Queue</p>

@@ -452,17 +452,17 @@ export default function AdminIndex() {
                 <div className="flex flex-col  justify-between items-center  h-full ">
                   <div className="flex justify-start flex-col items-center mt-3 samsungA24:mt-7 samsungA24:gap-5 h-full">
                     <div className="text-center ">
-                      <p className="text-[20px] samsungA24:text-[23px] font-normal ">
+                      <p className="text-h1 samsungA24:text-[23px] font-normal ">
                         คิวที่คุณกำลังให้บริการ{" "}
                       </p>
-                      <p className="text-primary  text-[16px] samsungA24:text-[20px] ">
+                      <p className="text-primary  text-[16px] samsungA24:text-h1 ">
                         ห้องงานพัฒนาคุณภาพนักศึกษา
                       </p>
                     </div>
                     <div className=" samsungA24:mt-3 iphone:max-sm:mt-3 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] iphone:max-sm:text-[40px] font-medium text-[52px]">
                       A004
                     </div>
-                    <div className="text-center items-center justify-center flex flex-col  samsungA24:text-[22px] text-[18px] text-primary">
+                    <div className="text-center items-center justify-center flex flex-col  samsungA24:text-[22px] text-h2 text-primary">
                       <div className="mt-2">
                         <p className="font-medium">
                           {dataDone[3].studentId}
@@ -473,7 +473,7 @@ export default function AdminIndex() {
                           </span>
                         </p>
                       </div>
-                      <div className="flex  gap-2 mt-1 samsungA24:text-[18px] text-[16px] items-center text-[#333333]">
+                      <div className="flex  gap-2 mt-1 samsungA24:text-h2 text-[16px] items-center text-[#333333]">
                         <div
                           className={`${
                             dataDone[3].category === "อื่นๆ"
@@ -508,7 +508,7 @@ export default function AdminIndex() {
                         </div>
 
                         <div className="flex flex-col gap-1 ml-6">
-                          <p className=" text-[14px] samsungA24:text-[18px]">
+                          <p className=" text-[14px] samsungA24:text-h2">
                             {data[0].studentId}{" "}
                             <span className="iphone:max-sm:hidden">-</span>{" "}
                             <span className=" iphone:max-sm:block ">
@@ -516,7 +516,7 @@ export default function AdminIndex() {
                               {data[0].name}
                             </span>
                           </p>
-                          <div className="flex text-[14px] samsungA24:text-[18px] items-center gap-3">
+                          <div className="flex text-[14px] samsungA24:text-h2 items-center gap-3">
                             <div
                               className={`${
                                 data[0].category === "อื่นๆ"
@@ -543,12 +543,12 @@ export default function AdminIndex() {
                     </div>
                     <div className="flex flex-col w-full   h-fit gap-4">
                       <Button className="w-full items-center flex samsungA24:h-14 h-12">
-                        <p className="samsungA24:text-[18px]">คิวถัดไป</p>
+                        <p className="samsungA24:text-h2">คิวถัดไป</p>
                         <Icon IconComponent={IconNext} className="!size-5" />
                       </Button>
                       <Button
                         variant="outline"
-                        className="w-full samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-[14px] samsungA24:text-[18px]"
+                        className="w-full samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-[14px] samsungA24:text-h2"
                       >
                         เรียกซ้ำ
                         <Icon IconComponent={IconRecall} className="!size-5" />
