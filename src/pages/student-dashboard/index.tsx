@@ -57,13 +57,11 @@ export default function StudentIndex() {
   ];
   const [selectTopic, setSelectTopic] = useState("");
   return (
-    <div className="flex flex-col h-screen iphone:max-sm:h-fit w-screen overflow-hidden text-default">
+    <div className="flex flex-col h-screen  w-screen overflow-hidden text-default">
       <Navbar role1="student" />
       <div className="m-auto flex flex-col gap-7 iphone:max-sm:gap-6 items-center justify-start">
         <div
-          className={` flex flex-col items-center justify-center text-center text-[24px] text-semibold iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px] ${
-            selectTopic === "" ? " iphone:max-sm:mt-[50%]" : "  iphone:mt-[20%]"
-          }`}
+          className={` flex flex-col items-center justify-center text-center text-[24px] text-semibold iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px]`}
         >
           <p>วันนี้เราสามารถช่วยอะไรนศ.ได้บ้าง แจ้งมาได้เลยนะคะ</p>
           <p className="text-bold iphone:max-sm:w-[250px]">
@@ -139,11 +137,11 @@ export default function StudentIndex() {
                   <p className="text-b2 text-primary font-medium">{room}</p>
                   <div className="flex items-center gap-2">
                     <Icon IconComponent={IconUsers} className="!size-5" />
-                    <div className="text-start text-b2">
+                    <div className="text-start text-b2 iphone:max-sm:text-b3">
                       <p className="font-medium">
                         มีคิวก่อนหน้าคุณ{" "}
                         <span className="font-semibold">(Waiting) </span>{" "}
-                        <span className="text-h2 font-semibold text-default">
+                        <span className="text-h2 iphone:max-sm:text-b1 font-semibold text-default">
                           {room === "งานบริการนักศึกษา" ? "11 คิว" : "8 คิว"}
                         </span>
                       </p>

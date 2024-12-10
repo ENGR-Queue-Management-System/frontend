@@ -22,12 +22,12 @@ import { Button } from "@/components/ui/button";
 
 export default function StudentQueue() {
   return (
-    <div className="flex flex-col h-screen iphone:max-sm:h-fit w-screen overflow-hidden text-default">
+    <div className="flex flex-col h-screen  w-screen overflow-hidden text-default">
       <Navbar role1="student" />
 
       <div className="flex justify-center items-center h-full ">
         <div
-          className="flex iphone:max-sm:overflow-clip flex-col h-fit w-[35%] iphone:max-sm:w-[90%]  bg-white rounded-lg border border-[#E5DDEA] overflow-clip"
+          className="flex iphone:max-sm:overflow-clip flex-col h-fit  iphone:w-[90%] sm:w-[35%] bg-white rounded-lg border border-[#E5DDEA] overflow-clip"
           style={{
             boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
           }}
