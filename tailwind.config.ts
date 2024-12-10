@@ -80,7 +80,7 @@ export default {
       screens: {
         iphone: "300px",
         sm: "1024px",
-        ipad11: "1180px",
+        ipad11: "1194px",
         macair133: "1200px",
         samsungA24: "1600px",
       },
