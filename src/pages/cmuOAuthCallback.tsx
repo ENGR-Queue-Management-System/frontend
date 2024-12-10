@@ -20,27 +20,28 @@ export default function CMUOAuthCallback() {
       return;
     }
 
-    const fetchData = async () => {
-      if (code?.length) {
-        const res = await logIn(code);
-        if (res) {
-          localStorage.setItem("token", res.token);
-          if (res.user) {
-            dispatch(setUser(res.user));
-            if (user.roomId) {
-              router.push(Route.AdminIndex);
-            } else {
-              router.push(Route.SelectDepartment);
-            }
-          } else {
-            const decodedToken = jwtDecode(res.token);
-            dispatch(setUser(decodedToken));
-          }
-        }
-      }
-    };
     fetchData();
   }, [code]);
+
+  const fetchData = async () => {
+    if (code?.length) {
+      const res = await logIn(code);
+      if (res) {
+        localStorage.setItem("token", res.token);
+        if (res.user) {
+          dispatch(setUser(res.user));
+          if (!res.user.roomId) {
+            router.push(Route.SelectDepartment);
+          } else {
+            router.push(Route.AdminIndex);
+          }
+        } else {
+          const decodedToken = jwtDecode(res.token);
+          dispatch(setUser(decodedToken));
+        }
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col w-screen h-screen gap-10 -rounded font-extrabold justify-center items-center">
@@ -53,12 +54,6 @@ export default function CMUOAuthCallback() {
         >
           Back
         </Button>
-        {/* <Button
-          className="!text-lg bg-blue-500 hover:bg-blue-600"
-          onClick={() => router.push(Route.SelectDepartment)}
-        >
-          Next
-        </Button> */}
       </div>
     </div>
   );

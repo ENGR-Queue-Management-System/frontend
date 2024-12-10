@@ -1,5 +1,5 @@
 export interface IModelUser {
-  id: number;
+  id?: number;
   studentId?: string;
   firstNameTH: string;
   lastNameTH: string;

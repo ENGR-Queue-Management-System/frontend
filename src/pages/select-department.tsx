@@ -22,10 +22,13 @@ export default function SelectDepartment() {
   }, [user]);
 
   const onClickSelectDep = async () => {
-    const res = await updateUser({ room: parseInt(selectDep) });
-    if (res) {
-      dispatch(setUser(res));
-      router.push(Route.AdminIndex);
+    const room = parseInt(selectDep);
+    if (room) {
+      const res = await updateUser({ room });
+      if (res) {
+        dispatch(setUser(res));
+        router.push(Route.AdminIndex);
+      }
     }
   };
 
