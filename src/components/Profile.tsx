@@ -16,11 +16,14 @@ import LogQueueModal from "../components/modal/LogQueueModal";
 import RoomManageModal from "../components/modal/RoomManageModal";
 import ContactTopicManageModal from "../components/modal/ContactTopicManageModal";
 import { Button } from "@/components/ui/button";
+import { useAppSelector } from "@/store";
+import { getUserName } from "@/helpers/function";
 
 type ProfileProps = {
   role: "admin" | "student";
 };
 const Profile: React.FC<ProfileProps> = ({ role }) => {
+  const user = useAppSelector((state) => state.user);
   return (
     <>
       {role === "admin" ? (
@@ -31,8 +34,8 @@ const Profile: React.FC<ProfileProps> = ({ role }) => {
               className="flex items-center translate-x-3  gap-2"
             >
               <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end">
-                <p>เนตรนภา สาระแปง</p>
-                <p>ผู้ดูแลระบบ</p>{" "}
+                <p>{getUserName(user, 3)}</p>
+                <p>{getUserName(user, 1)}</p>
               </div>
 
               <Icon

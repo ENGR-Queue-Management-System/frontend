@@ -3,11 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Route } from "@/config/Route";
 import { useEffect } from "react";
 import { logIn } from "@/services/authentication/authentication.service";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { setUser } from "@/store/user";
+import { jwtDecode } from "jwt-decode";
 
 export default function CMUOAuthCallback() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
+  const user = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!code && !localStorage.getItem("token")) {
@@ -21,6 +26,15 @@ export default function CMUOAuthCallback() {
         if (res) {
           localStorage.setItem("token", res.token);
           if (res.user) {
+            dispatch(setUser(res.user));
+            if (user.roomId) {
+              router.push(Route.AdminIndex);
+            } else {
+              router.push(Route.SelectDepartment);
+            }
+          } else {
+            const decodedToken = jwtDecode(res.token);
+            dispatch(setUser(decodedToken));
           }
         }
       }
@@ -39,12 +53,12 @@ export default function CMUOAuthCallback() {
         >
           Back
         </Button>
-        <Button
+        {/* <Button
           className="!text-lg bg-blue-500 hover:bg-blue-600"
           onClick={() => router.push(Route.SelectDepartment)}
         >
           Next
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
