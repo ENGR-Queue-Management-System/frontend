@@ -1,9 +1,11 @@
 import { RESPONSE_MESSAGE, STATUS_CODE } from "@/config/response.enum";
 import { Route } from "@/config/Route";
+import { jwtDecode } from "jwt-decode";
 
-export const checkTokenExpired = async (token: string) => {
+export const checkTokenExpired = (token: string): boolean => {
   try {
-    const decode = await JSON.parse(atob(token.split(".")[1]));
+    const decode = jwtDecode(token);
+    if (!decode.exp) return false;
     // check expired
     if (decode.exp * 1000 < new Date().getTime()) {
       return true;

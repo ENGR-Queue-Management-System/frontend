@@ -6,8 +6,23 @@ import logoEng from "../../public/images/logoEng1.png";
 // import IconLocation from "../../public/icons/location.svg?react";
 import cmuLogoWhite from "../../public/images/cmuLogoLogin.png";
 import Icon from "@/components/Icon";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { useEffect } from "react";
+
 export default function Home() {
   const router = useRouter();
+  const user = useAppSelector((state) => state.user);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      if (user.id) {
+        if (user.studentId) {
+          router.push(Route.StudentIndex);
+        } else router.push(Route.AdminIndex);
+      }
+    }
+  }, [user]);
 
   const dataDone = [
     {
