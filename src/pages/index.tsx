@@ -6,8 +6,24 @@ import logoEng from "../../public/images/logoEng1.png";
 // import IconLocation from "../../public/icons/location.svg?react";
 import cmuLogoWhite from "../../public/images/cmuLogoLogin.png";
 import Icon from "@/components/Icon";
+import { useAppSelector } from "@/store";
+import { useEffect } from "react";
+
 export default function Home() {
   const router = useRouter();
+  const user = useAppSelector((state) => state.user);
+
+  useEffect(() => {
+    if (user.email) {
+      if (user.studentId) {
+        router.push(Route.StudentIndex);
+      } else if (!user.roomId) {
+        router.push(Route.SelectDepartment);
+      } else {
+        router.push(Route.AdminIndex);
+      }
+    }
+  }, [user]);
 
   const dataDone = [
     {
@@ -61,25 +77,26 @@ export default function Home() {
               <p className=" text-[28px]">Automatic Queuing System</p>
             </div>
             <div className="mt-1">
-              <p className=" text-[18px] font-[400]">
+              <p className=" text-h2 font-[400]">
                 คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่
               </p>
               <p className=" text-[16px] font-[400] mt-[2px]">
                 Faculty of Engineering, Chiang Mai University
               </p>
             </div>
-            <Button
-              variant="default"
-              className="text-sm font-semibold py-[22px] mt-8 w-fit px-10 rounded-[8px] bg-[#ffffff] text-[#605CA4] hover:bg-[#e8e8e8]"
-              onClick={() => router.push(Route.CmuOAuthCallback)}
-            >
-              <Image
-                src={cmuLogoWhite}
-                alt="cmulogo"
-                className=" w-[42px] mr-2 "
-              />
-              Sign in CMU Account
-            </Button>
+            <a href={process.env.NEXT_PUBLIC_CMU_OAUTH_URL}>
+              <Button
+                variant="default"
+                className="text-sm font-semibold py-[22px] mt-8 w-fit px-10 rounded-[8px] bg-[#ffffff] text-[#605CA4] hover:bg-[#e8e8e8]"
+              >
+                <Image
+                  src={cmuLogoWhite}
+                  alt="cmulogo"
+                  className=" w-[42px] mr-2 "
+                />
+                Sign in CMU Account
+              </Button>
+            </a>
           </div>
           <div
             className="flex gap-5 flex-col  h-[70%] w-[40%] bg-white rounded-lg border border-[#E5DDEA] text-[14px] px-6 py-4 pb-8 justify-start items-center"
@@ -97,14 +114,14 @@ export default function Home() {
                 <div className="flex flex-col gap-8 mt-4 h-full items-center justify-center">
                   <div className="text-center font-medium">
                     <p className="text-[24px]">คิวที่กำลังให้บริการ </p>
-                    <p className="text-[20px]">Current Serving </p>
+                    <p className="text-h1">Current Serving </p>
                   </div>
                   <div className="w-40 h-40 border-[3px] border-primary text-primary rounded-[100%] flex items-center justify-center font-semibold text-[40px]">
                     004
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center w-full gap-2 text-[20px] text-primary">
+                <div className="flex justify-between items-center w-full gap-2 text-[] text-primary">
                   <div className="text-start text-default">
                     <p>คิวล่าสุด</p>
                     <p className="font-medium">Latest Queue</p>

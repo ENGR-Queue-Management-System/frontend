@@ -37,202 +37,180 @@ const AddAdminModal: React.FC<PopupProps> = ({
           <span className="ml-1">{triggerText}</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[45vw]">
+      <DialogContent className="max-w-[45vw] iphone:max-sm:max-w-[95vw]">
         <DialogHeader>
-          <DialogTitle className=" text-table-foreground">{title}</DialogTitle>
-          <DialogDescription>
-            {" "}
-            <div className=" py-6 px-2 border-b-2   flex flex-col gap-1">
-              เพิ่มผู้ดูแลระบบด้วย CMU account
-              <div className="flex gap-3">
-                <Input type="email" placeholder="e.g. example@cmu.ac.th" />
-                <Button className=" px-5">เพิ่ม</Button>
-              </div>
-            </div>
-            <div
-              className="p-0 rounded-lg mt-6 flex flex-col gap-1"
-              style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
-            >
-              <div className="flex bg-table-background text-table-foreground gap-3 items-center font-medium py-3 px-4 ">
-                <Icon IconComponent={IconUsers} /> รายชื่อผู้ดูแลระบบ
-              </div>
-              <div className=" max-h-[400px] overflow-y-auto px-5">
-                <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
-                  <div className="flex  gap-3 items-center py-2">
-                    <Icon IconComponent={IconUser} className="!size-9" />{" "}
-                    <div className="flex flex-col">
-                      <p>เนตรนภา สาระแปง</p>
-                      <p className=" font-normal text-b3 text-table-foreground">
-                        งานพัฒนาคุณภาพนักศึกษา
-                      </p>
-                    </div>
-                  </div>
-                  <p className=" text-table-foreground mr-4">คุณ</p>
-                </div>
-                <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
-                  <div className="flex  gap-3 items-center py-2">
-                    <Icon IconComponent={IconUser} className="!size-9" />{" "}
-                    <div className="flex flex-col">
-                      <p>สวิช จารึกพูนผล</p>
-                      <p className=" font-normal text-b3 text-table-foreground">
-                        งานบริการนักศึกษา
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
-                  >
-                    <Icon
-                      IconComponent={IconTrash}
-                      className="stroke-[#ff4747]"
-                    />
-                  </Button>
-                </div>
-                <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
-                  <div className="flex  gap-3 items-center py-2">
-                    <Icon IconComponent={IconUser} className="!size-9" />{" "}
-                    <div className="flex flex-col">
-                      <p>สวิช จารึกพูนผล</p>
-                      <p className=" font-normal text-b3 text-table-foreground">
-                        งานบริการนักศึกษา
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
-                  >
-                    <Icon
-                      IconComponent={IconTrash}
-                      className="stroke-[#ff4747]"
-                    />
-                  </Button>
-                </div>
-                <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
-                  <div className="flex  gap-3 items-center py-2">
-                    <Icon IconComponent={IconUser} className="!size-9" />{" "}
-                    <div className="flex flex-col">
-                      <p>สวิช จารึกพูนผล</p>
-                      <p className=" font-normal text-b3 text-table-foreground">
-                        งานบริการนักศึกษา
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
-                  >
-                    <Icon
-                      IconComponent={IconTrash}
-                      className="stroke-[#ff4747]"
-                    />
-                  </Button>
-                </div>
-                <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
-                  <div className="flex  gap-3 items-center py-2">
-                    <Icon IconComponent={IconUser} className="!size-9" />{" "}
-                    <div className="flex flex-col">
-                      <p>สวิช จารึกพูนผล</p>
-                      <p className=" font-normal text-b3 text-table-foreground">
-                        งานบริการนักศึกษา
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
-                  >
-                    <Icon
-                      IconComponent={IconTrash}
-                      className="stroke-[#ff4747]"
-                    />
-                  </Button>
-                </div>
-                <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
-                  <div className="flex  gap-3 items-center py-2">
-                    <Icon IconComponent={IconUser} className="!size-9" />{" "}
-                    <div className="flex flex-col">
-                      <p>สวิช จารึกพูนผล</p>
-                      <p className=" font-normal text-b3 text-table-foreground">
-                        งานบริการนักศึกษา
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
-                  >
-                    <Icon
-                      IconComponent={IconTrash}
-                      className="stroke-[#ff4747]"
-                    />
-                  </Button>
-                </div>
-                <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
-                  <div className="flex  gap-3 items-center py-2">
-                    <Icon IconComponent={IconUser} className="!size-9" />{" "}
-                    <div className="flex flex-col">
-                      <p>สวิช จารึกพูนผล</p>
-                      <p className=" font-normal text-b3 text-table-foreground">
-                        งานบริการนักศึกษา
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
-                  >
-                    <Icon
-                      IconComponent={IconTrash}
-                      className="stroke-[#ff4747]"
-                    />
-                  </Button>
-                </div>
-                <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
-                  <div className="flex  gap-3 items-center py-2">
-                    <Icon IconComponent={IconUser} className="!size-9" />{" "}
-                    <div className="flex flex-col">
-                      <p>สวิช จารึกพูนผล</p>
-                      <p className=" font-normal text-b3 text-table-foreground">
-                        งานบริการนักศึกษา
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
-                  >
-                    <Icon
-                      IconComponent={IconTrash}
-                      className="stroke-[#ff4747]"
-                    />
-                  </Button>
-                </div>
-                <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
-                  <div className="flex  gap-3 items-center py-2">
-                    <Icon IconComponent={IconUser} className="!size-9" />{" "}
-                    <div className="flex flex-col">
-                      <p>สวิช จารึกพูนผล</p>
-                      <p className=" font-normal text-b3 text-table-foreground">
-                        งานบริการนักศึกษา
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
-                  >
-                    <Icon
-                      IconComponent={IconTrash}
-                      className="stroke-[#ff4747]"
-                    />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </DialogDescription>
+          <DialogTitle className=" text-table-foreground text-start">
+            {title}
+          </DialogTitle>
         </DialogHeader>
+        <div>
+          {" "}
+          <div className=" py-6 px-2 border-b-2   text-start flex flex-col gap-1">
+            เพิ่มผู้ดูแลระบบด้วย CMU account
+            <div className="flex gap-3">
+              <Input type="email" placeholder="e.g. example@cmu.ac.th" />
+              <Button className=" px-5">เพิ่ม</Button>
+            </div>
+          </div>
+          <div
+            className="p-0 rounded-lg mt-6 flex flex-col gap-1"
+            style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
+          >
+            <div className="flex bg-table-background text-table-foreground gap-3 items-center font-medium py-3 px-4 ">
+              <Icon IconComponent={IconUsers} /> รายชื่อผู้ดูแลระบบ
+            </div>
+            <div className=" max-h-[400px] iphone:max-sm:h-[20vh] overflow-y-auto px-5">
+              <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
+                <div className="flex  gap-3 items-center py-2">
+                  <Icon IconComponent={IconUser} className="!size-9" />{" "}
+                  <div className="flex flex-col">
+                    <p className="text-start">เนตรนภา สาระแปง</p>
+                    <p className=" font-normal text-b4 text-table-foreground">
+                      งานพัฒนาคุณภาพนักศึกษา
+                    </p>
+                  </div>
+                </div>
+                <p className=" text-table-foreground mr-4">คุณ</p>
+              </div>
+              <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
+                <div className="flex  gap-3 items-center py-2">
+                  <Icon IconComponent={IconUser} className="!size-9" />{" "}
+                  <div className="flex flex-col">
+                    <p>สวิช จารึกพูนผล</p>
+                    <p className=" font-normal text-b4 text-table-foreground">
+                      งานบริการนักศึกษา
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
+                >
+                  <Icon IconComponent={IconTrash} className="stroke-delete" />
+                </Button>
+              </div>
+              <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
+                <div className="flex  gap-3 items-center py-2">
+                  <Icon IconComponent={IconUser} className="!size-9" />{" "}
+                  <div className="flex flex-col">
+                    <p>สวิช จารึกพูนผล</p>
+                    <p className=" font-normal text-b4 text-table-foreground">
+                      งานบริการนักศึกษา
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
+                >
+                  <Icon IconComponent={IconTrash} className="stroke-delete" />
+                </Button>
+              </div>
+              <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
+                <div className="flex  gap-3 items-center py-2">
+                  <Icon IconComponent={IconUser} className="!size-9" />{" "}
+                  <div className="flex flex-col">
+                    <p>สวิช จารึกพูนผล</p>
+                    <p className=" font-normal text-b4 text-table-foreground">
+                      งานบริการนักศึกษา
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
+                >
+                  <Icon IconComponent={IconTrash} className="stroke-delete" />
+                </Button>
+              </div>
+              <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
+                <div className="flex  gap-3 items-center py-2">
+                  <Icon IconComponent={IconUser} className="!size-9" />{" "}
+                  <div className="flex flex-col">
+                    <p>สวิช จารึกพูนผล</p>
+                    <p className=" font-normal text-b4 text-table-foreground">
+                      งานบริการนักศึกษา
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
+                >
+                  <Icon IconComponent={IconTrash} className="stroke-delete" />
+                </Button>
+              </div>
+              <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
+                <div className="flex  gap-3 items-center py-2">
+                  <Icon IconComponent={IconUser} className="!size-9" />{" "}
+                  <div className="flex flex-col">
+                    <p>สวิช จารึกพูนผล</p>
+                    <p className=" font-normal text-b4 text-table-foreground">
+                      งานบริการนักศึกษา
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
+                >
+                  <Icon IconComponent={IconTrash} className="stroke-delete" />
+                </Button>
+              </div>
+              <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
+                <div className="flex  gap-3 items-center py-2">
+                  <Icon IconComponent={IconUser} className="!size-9" />{" "}
+                  <div className="flex flex-col">
+                    <p>สวิช จารึกพูนผล</p>
+                    <p className=" font-normal text-b4 text-table-foreground">
+                      งานบริการนักศึกษา
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
+                >
+                  <Icon IconComponent={IconTrash} className="stroke-delete" />
+                </Button>
+              </div>
+              <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
+                <div className="flex  gap-3 items-center py-2">
+                  <Icon IconComponent={IconUser} className="!size-9" />{" "}
+                  <div className="flex flex-col">
+                    <p>สวิช จารึกพูนผล</p>
+                    <p className=" font-normal text-b4 text-table-foreground">
+                      งานบริการนักศึกษา
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
+                >
+                  <Icon IconComponent={IconTrash} className="stroke-delete" />
+                </Button>
+              </div>
+              <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2  ">
+                <div className="flex  gap-3 items-center py-2">
+                  <Icon IconComponent={IconUser} className="!size-9" />{" "}
+                  <div className="flex flex-col">
+                    <p>สวิช จารึกพูนผล</p>
+                    <p className=" font-normal text-b4 text-table-foreground">
+                      งานบริการนักศึกษา
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
+                >
+                  <Icon IconComponent={IconTrash} className="stroke-delete" />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );

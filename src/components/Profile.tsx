@@ -13,77 +13,89 @@ import {
 } from "@/components/ui/popover";
 import AddAdminModal from "../components/modal/AddAdminModal";
 import LogQueueModal from "../components/modal/LogQueueModal";
+import RoomManageModal from "../components/modal/RoomManageModal";
+import ContactTopicManageModal from "../components/modal/ContactTopicManageModal";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useAppSelector } from "@/store";
+import { getUserName } from "@/helpers/function";
 
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-
-export default function Profile() {
+type ProfileProps = {
+  role: "admin" | "student";
+};
+const Profile: React.FC<ProfileProps> = ({ role }) => {
+  const user = useAppSelector((state) => state.user);
   return (
     <>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            variant="ghost"
-            className="flex items-center translate-x-3  gap-2"
-          >
-            <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end">
-              <p>เนตรนภา สาระแปง</p>
-              <p>ผู้ดูแลระบบ</p>
-            </div>
-            <Icon IconComponent={IconUser} className="!size-10 stroke-white" />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent>
-          <div className="flex flex-col gap-1">
-            <AddAdminModal
-              triggerText="จัดการผู้ดูแลระบบ"
-              icon={IconAdminMange}
-              title="จัดการผู้ดูแลระบบ"
-            ></AddAdminModal>
+      {role === "admin" ? (
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant="ghost"
+              className="flex items-center translate-x-3  gap-2"
+            >
+              <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end">
+                <p>{getUserName(user, 3)}</p>
+                <p>{getUserName(user, 1)}</p>
+              </div>
 
-            <Button className=" bg-white hover:bg-table-background text-[#333333] justify-start">
               <Icon
-                IconComponent={IconList}
-                className=" !size-[18px]  -translate-x-[5px] stroke-[#333333]"
+                IconComponent={IconUser}
+                className="!size-10 stroke-white"
               />
-              <p className=" translate-x-[2px]">จัดการหัวข้อการบริการ</p>
             </Button>
-            <Button className=" bg-white hover:bg-table-background text-[#333333] justify-start">
-              <Icon
-                IconComponent={IconChangeLocation}
-                className=" !size-[18px]  -translate-x-1 stroke-[#333333]"
-              />
-              <p className=" translate-x-[2px]">จัดการสถานที่บริการ</p>
-            </Button>
-            <LogQueueModal
-              triggerText="ประวัติการบริการ"
-              icon={IconHistory}
-              title="ประวัติการบริการ"
-            ></LogQueueModal>
-            <Button className=" bg-white hover:bg-table-background text-[#333333] justify-start">
-              <Icon
-                IconComponent={IconChange}
-                className=" stroke-[#333333] !size-5 -translate-x-1"
-              />
-              เปลี่ยนสถานที่ทำงาน
-            </Button>
-            <Button className=" bg-white hover:bg-[#f7b1b13b] text-[#f04a4a] justify-start">
-              <Icon IconComponent={IconLogout} className=" stroke-[#f04a4a]" />
-              <p className=" translate-x-1">ออกจากระบบ</p>
-            </Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <div className="flex flex-col gap-1">
+              <AddAdminModal
+                triggerText="จัดการผู้ดูแลระบบ"
+                icon={IconAdminMange}
+                title="จัดการผู้ดูแลระบบ"
+              ></AddAdminModal>
+              <ContactTopicManageModal
+                triggerText="จัดการหัวข้อการบริการ"
+                icon={IconAdminMange}
+                title="จัดการหัวข้อการบริการ"
+              ></ContactTopicManageModal>
+
+              <RoomManageModal
+                triggerText="จัดการสถานที่บริการ"
+                icon={IconChangeLocation}
+                title="จัดการสถานที่บริการ"
+              ></RoomManageModal>
+
+              <LogQueueModal
+                triggerText="ประวัติการบริการ"
+                icon={IconHistory}
+                title="ประวัติการบริการ"
+              ></LogQueueModal>
+              <Button className=" bg-white hover:bg-table-background text-[#333333] justify-start">
+                <Icon
+                  IconComponent={IconChange}
+                  className=" stroke-[#333333] !size-5 -translate-x-1"
+                />
+                เปลี่ยนสถานที่ทำงาน
+              </Button>
+              <Button className=" bg-white hover:bg-[#f7b1b13b] text-[#f04a4a] justify-start">
+                <Icon
+                  IconComponent={IconLogout}
+                  className=" stroke-[#f04a4a]"
+                />
+                <p className=" translate-x-1">ออกจากระบบ</p>
+              </Button>
+            </div>
+          </PopoverContent>
+        </Popover>
+      ) : (
+        <div className="flex items-center translate-x-3  gap-2">
+          <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end">
+            <p>สวิช จารึกพูนผล</p>
+            <p>640610672</p>{" "}
           </div>
-        </PopoverContent>
-      </Popover>
+          <Icon IconComponent={IconUser} className="!size-10 stroke-white" />
+        </div>
+      )}
     </>
   );
-}
+};
+
+export default Profile;

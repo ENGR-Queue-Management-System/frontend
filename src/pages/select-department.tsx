@@ -1,23 +1,44 @@
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Route } from "@/config/Route";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { getUserName } from "@/helpers/function";
+import { updateUser } from "@/services/user/user.service";
+import { setUser } from "@/store/user";
 
 export default function SelectDepartment() {
   const router = useRouter();
+  const user = useAppSelector((state) => state.user);
   const [selectDep, setSelectDep] = useState<string>("");
-  const [notChange, setNotChange] = useState(true);
-  const department = ["งานบริการการศึกษา", "งานพัฒนาคุณภาพนักศึกษา"];
+  const rooms = useAppSelector((state) => state.room);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (user.roomId) {
+      setSelectDep(user.roomId.toString());
+    }
+  }, [user]);
+
+  const onClickSelectDep = async () => {
+    const room = parseInt(selectDep);
+    if (room) {
+      const res = await updateUser({ room });
+      if (res) {
+        dispatch(setUser(res));
+        router.push(Route.AdminIndex);
+      }
+    }
+  };
 
   return (
     <div className="h-screen w-screen gradient-bg  flex justify-between  items-center">
       <div className="flex h-screen w-screen justify-between items-center px-36 inset-0 bg-gray-100/5">
         <div className="text-white">
           <div className="font-medium -mt-1 gap-2 flex flex-col translate-y-[-4px] text-[22px]">
-            {/* {getUserName(user, 1)} */}
-            <p>เนตรนภา สาระแปง</p>
-            <p>Netnapha Sarapaeng</p>
+            <p>{getUserName(user, 3)}</p>
+            <p>{getUserName(user, 1)}</p>
           </div>
         </div>
         <div className="flex flex-col justify-end">
@@ -25,32 +46,32 @@ export default function SelectDepartment() {
             className="bg-[rgba(78,78,80,0.30)] rounded-[25px] mb-5 flex flex-col gap-2 p-6 h-fit scroll-smooth"
             style={{ boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)" }}
           >
-            <div className="text-white font-semibold text-[18px] mb-[2px] ">
+            <div className="text-white font-semibold text-h2 mb-[2px] ">
               เลือกสถานที่ทำงานที่คุณสังกัด
             </div>
             <div className="flex flex-1 flex-col overflow-y-auto mt-2 text-white h-fit">
               <RadioGroup value={selectDep}>
-                {department.map((item) => (
+                {rooms.map((item) => (
                   <div
-                    key={item}
+                    key={item.id}
                     className={`w-[380px] min-h-[50px] cursor-pointer text-b2 mt-1  font-semibold rounded-[10px] pl-4 scroll-auto items-center flex gap-3 hover:bg-[rgba(221,182,182,0.56)] ${
-                      item == selectDep
+                      item.id == parseInt(selectDep)
                         ? "bg-[rgba(73,148,169,0.75)]"
                         : "bg-[rgba(181,181,181,0.40)]"
                     }`}
-                    onClick={() => setSelectDep(item)}
+                    onClick={() => setSelectDep(item.id.toString())}
                   >
-                    <RadioGroupItem value={item} color="" />
-                    {item}
+                    <RadioGroupItem value={item.id.toString()} color="" />
+                    {item.room}
                   </div>
                 ))}
               </RadioGroup>
             </div>
           </div>
-          {!!selectDep.length && (
+          {!!selectDep.length && user.roomId != parseInt(selectDep) && (
             <Button
               className="!rounded-[15px] !w-full text-[#0077b6] !h-12 !text-[16px] bg-[#ffffff]  hover:bg-opacity-90 hover:bg-[#ffffff] hover:text-[#0077b6]"
-              onClick={() => router.push(Route.AdminIndex)}
+              onClick={onClickSelectDep}
             >
               Get Start
               <svg
