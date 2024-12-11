@@ -350,14 +350,14 @@ export default function AdminIndex() {
           className="flex flex-col !w-full h-full iphone:max-sm:h-fit"
           defaultValue="incoming"
         >
-          <TabsList className="!w-full">
-            <TabsTrigger value="incoming">
+          <TabsList className="!w-full gap-5 justify-center">
+            <TabsTrigger className=" rounded-full" value="incoming">
               <p className=" iphone:max-sm:text-[13px]">
                 {" "}
                 รอเรียกคิว ({data.length})
               </p>
             </TabsTrigger>
-            <TabsTrigger value="called">
+            <TabsTrigger className=" rounded-full" value="called">
               <p className=" iphone:max-sm:text-[13px]">
                 {" "}
                 คิวที่เรียกไปแล้ว ({dataDone.length}){" "}
@@ -561,7 +561,7 @@ export default function AdminIndex() {
           </TabsContent>
           <TabsContent
             value="called"
-            className="flex -mt-[32px]  gap-4 max-h-full overflow-hidden"
+            className="flex -mt-[28px]  gap-4 max-h-full overflow-hidden"
           >
             <div
               className="w-full rounded-lg   overflow-clip overflow-y-auto border border-[#E5DDEA] "

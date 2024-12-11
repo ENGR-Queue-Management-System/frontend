@@ -296,7 +296,7 @@ const LogQueueModal: React.FC<PopupProps> = ({
         <DialogHeader>
           <DialogTitle>
             <div className="flex flex-col gap-2 text-primary">
-              {title} ห้องงานพัฒนาคุณภาพนักศึกษา
+              {title}
               <p className="text-default/60 font-medium text-[14px]">
                 ประวัติการให้บริการย้อนหลัง 30 วัน
               </p>
