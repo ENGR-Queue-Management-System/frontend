@@ -103,7 +103,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
 
               <div className="max-h-[500px] iphone:max-sm:h-[20vh] overflow-y-auto">
                 <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center ">
-                  <div className="flex justify-between items-center pl-6 pr-8 py-3 w-full">
+                  <div className="flex justify-between items-center  px-5 py-3 w-full">
                     <div className="flex items-center gap-4">
                       <p className=" border rounded-full p-2 px-[14px]">A</p>
                       <div className="flex flex-col">
