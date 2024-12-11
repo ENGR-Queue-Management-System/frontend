@@ -86,7 +86,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
             <span className="ml-1">{triggerText}</span>
           </Button>
         </DialogTrigger>
-        <DialogContent className=" max-w-[40vw]">
+        <DialogContent className=" max-w-[50vw]">
           <DialogHeader>
             <DialogTitle className="text-table-foreground ">
               {title}
@@ -100,64 +100,48 @@ const CounterManageModal: React.FC<PopupProps> = ({
               <div className="flex bg-table-background text-table-foreground gap-3 items-center font-medium py-3 px-4">
                 <Icon IconComponent={IconTopic} /> เคาท์เตอร์ที่ให้บริการ
               </div>
-              <DialogClose asChild>
-                <div className="max-h-[500px] iphone:max-sm:h-[20vh] overflow-y-auto">
-                  <div
-                    onClick={() => setOpenOneCounterModal(true)}
-                    className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center "
-                  >
-                    <div className="flex justify-between items-center pl-6 pr-8 py-3 w-full hover:bg-[#fafafa] hover:cursor-pointer">
-                      <div className="flex items-center gap-4">
-                        <p className=" border rounded-full p-2 px-[14px]">A</p>
-                        <div className="flex flex-col">
-                          <p className=" text-b2">เคาท์เตอร์ A</p>
-                          <p className="text-b3 text-primary">
-                            เนตรนภา สาระแปง
-                          </p>
-                        </div>
+
+              <div className="max-h-[500px] iphone:max-sm:h-[20vh] overflow-y-auto">
+                <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center ">
+                  <div className="flex justify-between items-center pl-6 pr-8 py-3 w-full">
+                    <div className="flex items-center gap-4">
+                      <p className=" border rounded-full p-2 px-[14px]">A</p>
+                      <div className="flex flex-col">
+                        <p className=" text-b2">เคาท์เตอร์ A</p>
+                        <p className="text-b3 text-primary">เนตรนภา สาระแปง</p>
                       </div>
-                      <Button
-                        variant="outline"
-                        className=" !border-[#d38d47]  border rounded-full p-2 px-[14px]"
-                      >
-                        <Icon
-                          IconComponent={IconEdit}
-                          className="stroke-[#d38d47]"
-                        />
-                      </Button>
-                      <Icon IconComponent={IconRight} />
                     </div>
-                  </div>
-                  <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center ">
-                    <div className="flex justify-between items-center pl-6 pr-8 py-3 w-full hover:bg-[#fafafa] hover:cursor-pointer">
-                      <div className="flex items-center gap-4">
-                        <p className=" border rounded-full p-2 px-[14px]">A</p>
-                        <div className="flex flex-col">
-                          <p className=" text-b2">เคาท์เตอร์ A</p>
-                          <p className="text-b3 text-primary">
-                            เนตรนภา สาระแปง
-                          </p>
-                        </div>
-                      </div>
-                      <Icon IconComponent={IconRight} />
-                    </div>
-                  </div>
-                  <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center ">
-                    <div className="flex justify-between items-center pl-6 pr-8 py-3 w-full hover:bg-[#fafafa] hover:cursor-pointer">
-                      <div className="flex items-center gap-4">
-                        <p className=" border rounded-full p-2 px-[14px]">A</p>
-                        <div className="flex flex-col">
-                          <p className=" text-b2">เคาท์เตอร์ A</p>
-                          <p className="text-b3 text-primary">
-                            เนตรนภา สาระแปง
-                          </p>
-                        </div>
-                      </div>
-                      <Icon IconComponent={IconRight} />
+                    <div className="flex gap-3 ">
+                      <DialogClose asChild>
+                        <Button
+                          onClick={() => setOpenOneCounterModal(true)}
+                          variant="outline"
+                          className=" !border-orange-500 text-orange-500 rounded-full hover:bg-[#f7cbb13b] hover:text-orange-600"
+                        >
+                          <Icon
+                            IconComponent={IconEdit}
+                            className="stroke-orange-500"
+                          />
+                          แก้ไข
+                        </Button>
+                      </DialogClose>
+                      <DialogClose asChild>
+                        <Button
+                          variant="outline"
+                          className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600"
+                        >
+                          <Icon
+                            IconComponent={IconTrash}
+                            className="stroke-delete"
+                          />
+                          ลบ
+                        </Button>
+                      </DialogClose>
                     </div>
                   </div>
                 </div>
-              </DialogClose>
+              </div>
+
               {/* <div className="max-h-[500px] iphone:max-sm:h-[20vh] overflow-y-auto px-5">
                 {categories.map((cat) => (
                   <div
