@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import userReducer from "./user";
-import roomReducer from "./room";
+import counterReducer from "./counter";
 
 const store = configureStore({
   reducer: {
     user: userReducer,
-    room: roomReducer,
+    counter: counterReducer,
   },
 });
 

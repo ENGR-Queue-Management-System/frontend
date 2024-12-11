@@ -7,8 +7,3 @@ export const getUserInfo = async () => {
   const res = await userService.getUserInfo();
   return isValidResponse(res);
 };
-
-export const updateUser = async (params: any) => {
-  const res = await userService.updateUser(params);
-  return isValidResponse(res);
-};

@@ -6,13 +6,13 @@ type Props = {
   onClick?: () => void;
 };
 
-export default function Icon({
+const Icon: React.FC<Props> = ({
   IconComponent,
   className,
   style,
   outlined,
   onClick,
-}: Props) {
+}) => {
   return (
     <div className="flex justify-center items-center h-fit" onClick={onClick}>
       <IconComponent
@@ -21,4 +21,6 @@ export default function Icon({
       />
     </div>
   );
-}
+};
+
+export default Icon;
