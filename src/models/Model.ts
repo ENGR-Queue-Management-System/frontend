@@ -1,3 +1,14 @@
+import { STATUS } from "@/config/Enum";
+
+export interface IModelCounter {
+  id: number;
+  counter: string;
+  status: boolean;
+  timeClosed: Date;
+  user: IModelUser;
+  topic: IModelTopic[];
+}
+
 export interface IModelUser {
   id?: number;
   studentId?: string;
@@ -6,11 +17,36 @@ export interface IModelUser {
   firstNameEN: string;
   lastNameEN: string;
   email: string;
-  roomId?: number;
-  room?: string;
+  counterId?: number;
+  counter?: IModelCounter;
 }
 
-export interface IModelRoom {
+export interface IModelTopic {
   id: number;
-  room: string;
+  topic: string;
+  counterId?: number;
+  counter?: IModelCounter;
+}
+
+export interface IModelQueue {
+  id: number;
+  no: string;
+  studentId: string;
+  firstname: string;
+  lastname: string;
+  topicId: number;
+  topic: IModelTopic;
+  description: string;
+  status: STATUS;
+  createdAt: Date;
+}
+
+export interface IModelFeedback {
+  id: number;
+  userId: number;
+  user: IModelUser;
+  topicId: number;
+  topic: IModelTopic;
+  feedback: string;
+  createdAt: Date;
 }

@@ -8,8 +8,5 @@ export const userController = (configService: any = {}) => {
     getUserInfo: async () => {
       return service.get(prefix);
     },
-    updateUser: async (params: any) => {
-      return service.put(prefix, { ...params });
-    },
   };
 };

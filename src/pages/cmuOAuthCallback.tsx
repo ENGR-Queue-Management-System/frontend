@@ -30,11 +30,7 @@ export default function CMUOAuthCallback() {
         localStorage.setItem("token", res.token);
         if (res.user) {
           dispatch(setUser(res.user));
-          if (!res.user.roomId) {
-            router.push(Route.SelectDepartment);
-          } else {
-            router.push(Route.AdminIndex);
-          }
+          router.push(Route.AdminIndex);
         } else {
           const decodedToken = jwtDecode(res.token);
           dispatch(setUser(decodedToken));

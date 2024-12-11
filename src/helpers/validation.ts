@@ -2,18 +2,20 @@ import { RESPONSE_MESSAGE, STATUS_CODE } from "@/config/response.enum";
 import { Route } from "@/config/Route";
 import { jwtDecode } from "jwt-decode";
 
-export const checkTokenExpired = (token: string): boolean => {
+export const checkTokenExpired = (token: string) => {
   try {
-    const decode = jwtDecode(token);
-    if (!decode.exp) return false;
+    const decode: any = jwtDecode(token);
     // check expired
-    if (decode.exp * 1000 < new Date().getTime()) {
+    if (
+      (decode.exp && decode.exp * 1000 <= new Date().getTime()) ||
+      !decode.firstname
+    ) {
       return true;
     }
     return false;
   } catch (err) {
     // token invalid
-    return false;
+    return true;
   }
 };
 
@@ -26,11 +28,11 @@ export const isValidResponse = async (res: any) => {
         break;
       case STATUS_CODE.FORBIDDEN:
       case STATUS_CODE.UNAUTHORIZED:
-        const checkToken = await checkTokenExpired(
+        const isExpired = await checkTokenExpired(
           localStorage.getItem("token") || ""
         );
-        if (localStorage.getItem("token") && !checkToken) {
-          localStorage.clear();
+        if (localStorage.getItem("token") && isExpired) {
+          localStorage.removeItem("token");
           window.location.assign(Route.Index);
           return;
         }
