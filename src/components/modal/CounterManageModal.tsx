@@ -33,45 +33,6 @@ const CounterManageModal: React.FC<PopupProps> = ({
   const [addCounterModal, setAddCounterModal] = useState(false);
   const [openOneCounterModal, setOpenOneCounterModal] = useState(false);
 
-  const [inputValues, setInputValues] = useState({
-    topicTH: "",
-    topicEN: "",
-    room: "",
-  });
-
-  const categories = [
-    {
-      topicTH: "ฝึกงาน-สหกิจศึกษา",
-      topicEN: "Internship and Cooperative Education",
-      room: "งานบริการนักศึกษา",
-    },
-    {
-      topicTH: "อื่นๆ",
-      topicEN: "Others",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-    },
-    {
-      topicTH: "ทุนการศึกษา",
-      topicEN: "Scholarships",
-      room: "งานบริการนักศึกษา",
-    },
-    {
-      topicTH: "ขอคำปรึกษาด้านวิชาการ",
-      topicEN: "Academic Consultation",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-    },
-    {
-      topicTH: "แจ้งปัญหาด้านการเรียนการสอน",
-      topicEN: "Report Issues with Teaching and Learning",
-      room: "งานบริการนักศึกษา",
-    },
-    {
-      topicTH: "ขอจัดกิจกรรมหรือโครงการพิเศษ",
-      topicEN: "Request for Special Activities or Projects",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-    },
-  ];
-
   return (
     <>
       <Dialog>
