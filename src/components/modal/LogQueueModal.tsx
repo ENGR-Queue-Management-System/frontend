@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -42,8 +42,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
   icon: IconComponent,
   title,
 }) => {
-  const [date, setDate] = React.useState<Date>();
-  const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
+  const [date, setDate] = useState<Date>();
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const dataDone = [
     {
       id: 1,
