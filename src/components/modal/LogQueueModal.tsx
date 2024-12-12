@@ -27,8 +27,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Checkbox } from "@/components/ui/checkbox";
 import Icon from "@/components/Icon";
 import IconFilter from "../../../public/icons/filter.svg";
+import { th } from "date-fns/locale";
 
 type PopupProps = {
   triggerText: string;
@@ -41,11 +43,12 @@ const LogQueueModal: React.FC<PopupProps> = ({
   title,
 }) => {
   const [date, setDate] = React.useState<Date>();
+  const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
   const dataDone = [
     {
       id: 1,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "650610795",
       name: "เพ็ญพิชชา ทองคำ",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -55,8 +58,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 2,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "660610778",
       name: "พิริยา เนตรค่ายวง",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -65,8 +68,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 3,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "650610795",
       name: "เพ็ญพิชชา ทองคำ",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -76,8 +79,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 4,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "660610778",
       name: "พิริยา เนตรค่ายวง",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -86,8 +89,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 5,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "650610795",
       name: "เพ็ญพิชชา ทองคำ",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -97,8 +100,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 6,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "660610778",
       name: "พิริยา เนตรค่ายวง",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -106,9 +109,9 @@ const LogQueueModal: React.FC<PopupProps> = ({
       description: "This student applied for an internship or co-op program.",
     },
     {
-      id: 7, 
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      id: 7,
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "670610704",
       name: "ธนิดา ศิริรส",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -118,8 +121,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 8,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "670612133",
       name: "สิรวุฒิ ภาคภูมิกมลสิทธิ์",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -129,8 +132,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 9,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "660612140",
       name: "ชนะชัย ขำนายหมอ",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -139,8 +142,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 10,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "640610690",
       name: "ชยธร ปานแปง",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -150,8 +153,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 11,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "660610803",
       name: "สุริโย หลุ่มโสม",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -161,8 +164,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 12,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "630610750",
       name: "ภูมิภัทร ศรีกระจ่าง",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -173,8 +176,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     // Adding 50 more items
     {
       id: 13,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "640610657",
       name: "สมชาย ประเสริฐ",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -183,8 +186,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 14,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "640610658",
       name: "กาญจนา ศรีสวัสดิ์",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -193,8 +196,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 15,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "640610659",
       name: "รวิชญ์ เลิศลักษณ์",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -204,8 +207,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 16,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "640610660",
       name: "สุทธิดา จิตตราภิรมย์",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -215,8 +218,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 17,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "640610661",
       name: "วีรภัทร สวัสดิ์",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -225,8 +228,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 18,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "640610662",
       name: "อนันต์ พิทยากุล",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -236,8 +239,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 19,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "640610663",
       name: "กิตติพงษ์ คุ้มครอง",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -246,8 +249,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 20,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "640610664",
       name: "พรรณี วิรุฬห์",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -257,8 +260,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 21,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "640610665",
       name: "สิริกุล จันทร์วงศ์",
       room: "งานพัฒนาคุณภาพนักศึกษา",
@@ -268,14 +271,48 @@ const LogQueueModal: React.FC<PopupProps> = ({
     },
     {
       id: 22,
-      date: '21 พ.ย. 2567',
-      time: '16:03:32',
+      date: "21 พ.ย. 2567",
+      time: "16:03:32",
       studentId: "640610666",
       name: "ธนัฐพล ศุภรางกูร",
       room: "งานพัฒนาคุณภาพนักศึกษา",
       category: "ขอคำปรึกษาด้านวิชาการ",
       description:
         "This student requested advice on selecting courses for next semester.",
+    },
+  ];
+
+  const categories = [
+    {
+      topicTH: "ฝึกงาน-สหกิจศึกษา",
+      topicEN: "Internship and Cooperative Education",
+      room: "งานบริการนักศึกษา",
+    },
+
+    {
+      topicTH: "ทุนการศึกษา",
+      topicEN: "Scholarships",
+      room: "งานบริการนักศึกษา",
+    },
+    {
+      topicTH: "ขอคำปรึกษาด้านวิชาการ",
+      topicEN: "Academic Consultation",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+    },
+    {
+      topicTH: "แจ้งปัญหาด้านการเรียนการสอน",
+      topicEN: "Report Issues with Teaching and Learning",
+      room: "งานบริการนักศึกษา",
+    },
+    {
+      topicTH: "ขอจัดกิจกรรมหรือโครงการพิเศษ",
+      topicEN: "Request for Special Activities or Projects",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
+    },
+    {
+      topicTH: "อื่นๆ",
+      topicEN: "Others",
+      room: "งานพัฒนาคุณภาพนักศึกษา",
     },
   ];
 
@@ -292,18 +329,22 @@ const LogQueueModal: React.FC<PopupProps> = ({
           <span className="ml-1">{triggerText}</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[100vw] !rounded-none h-[100vh] flex flex-col  pb-4">
+      <DialogContent
+        className="max-w-[100vw] !rounded-none h-[100vh] flex flex-col pb-12"
+        type="log"
+      >
         <DialogHeader>
           <DialogTitle>
-            <div className="flex flex-col gap-2 text-primary">
+            <div className="flex flex-col gap-2 text-primary px-4">
               {title}
               <p className="text-default/60 font-medium text-[14px]">
                 ประวัติการให้บริการย้อนหลัง 30 วัน
               </p>
+              <div className="border-t mt-4"></div>
             </div>
           </DialogTitle>
         </DialogHeader>
-        <div className="pt-3 overflow-hidden h-full flex flex-col gap-4">
+        <div className="overflow-hidden h-full flex flex-col gap-4 px-10">
           <div className="flex justify-between">
             <div className="font-semibold text-default flex flex-col">
               <p>บริการทั้งหมด</p>
@@ -312,47 +353,106 @@ const LogQueueModal: React.FC<PopupProps> = ({
             <div className="flex items-center justify-center gap-4">
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Input
+                  type="search"
                   className="w-[340px]"
                   placeholder="ค้นหา เลขคิว, รหัสนักศึกษา, ชื่อ-นามสกุล"
                 />
               </div>
 
+              <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant={"outlineDefault"}
+                    className={cn(
+                      "min-w-44 justify-start text-left font-normal",
+                      !date && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon />
+                    {date
+                      ? format(date, "d MMMM yyyy", { locale: th }).replace(
+                          /(\d{4})/,
+                          (match) => (parseInt(match) + 543).toString()
+                        )
+                      : "เลือกวันที่"}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="end">
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    onSelect={setDate}
+                    onClear={() => {
+                      setDate(undefined);
+                      setIsPopoverOpen(false);
+                    }}
+                    action={() => {
+                      const today = new Date();
+                      setDate(today);
+                      setIsPopoverOpen(false);
+                    }}
+                    disabled={(date) => {
+                      const today = new Date();
+                      const last30Day = new Date();
+                      last30Day.setDate(today.getDate() - 30);
+
+                      return date > today || date < last30Day;
+                    }}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant={"outlineDefault"}
                     className={cn(
-                      "w-fit justify-start text-left font-normal",
+                      "w-fit justify-start text-left font-norma",
                       !date && "text-muted-foreground"
                     )}
                   >
-                    <CalendarIcon />
-                    {date ? format(date, "PPP") : <span>21 พ.ย. 2567</span>}
+                    <Icon
+                      IconComponent={IconFilter}
+                      className=" !size-[15px] -translate-x-1"
+                    />
+
+                    <span>กรอง</span>
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    initialFocus
-                  />
+                <PopoverContent
+                  className="px-6 py-3 w-auto text-b2 "
+                  align="end"
+                >
+                  <p className="font-medium mb-2 text-primary text-b1">
+                    กรองรายการติดต่อ
+                  </p>
+
+                  {categories.map((cat) => (
+                    <div className="flex items-center space-x-2 py-2">
+                      <Checkbox />
+                      <div className="flex items-center gap-2">
+                        <div
+                          className={`${
+                            cat.topicTH === "อื่นๆ"
+                              ? "bg-contactList-others"
+                              : cat.topicTH === "ทุนการศึกษา"
+                              ? "bg-contactList-scholarship"
+                              : cat.topicTH === "ขอคำปรึกษาด้านวิชาการ"
+                              ? "bg-contactList-consultation"
+                              : cat.topicTH === "แจ้งปัญหาด้านการเรียนการสอน"
+                              ? "bg-contactList-report"
+                              : cat.topicTH === "ขอจัดกิจกรรมหรือโครงการพิเศษ"
+                              ? "bg-contactList-request"
+                              : cat.topicTH === "ฝึกงาน-สหกิจศึกษา" &&
+                                "bg-contactList-internship"
+                          } h-3 w-3 rounded-[100%]`}
+                        ></div>
+                        <p>{cat.topicTH}</p>
+                      </div>
+                    </div>
+                  ))}
                 </PopoverContent>
               </Popover>
-              <Button
-                variant={"outlineDefault"}
-                className={cn(
-                  "w-fit justify-start text-left font-norma",
-                  !date && "text-muted-foreground"
-                )}
-              >
-                <Icon
-                  IconComponent={IconFilter}
-                  className=" !size-[15px] -translate-x-1"
-                />
-
-                <span>กรอง</span>
-              </Button>
             </div>
           </div>
           <div
@@ -366,7 +466,7 @@ const LogQueueModal: React.FC<PopupProps> = ({
                 <TableRow className="sticky text-b2 samsungA24:text-b1 font-bold top-0 z-30 ">
                   <TableHead>วันที่</TableHead>
                   <TableHead>เวลาเข้ารับบริการ</TableHead>
-                  <TableHead >เลขคิว</TableHead>
+                  <TableHead>เลขคิว</TableHead>
                   <TableHead>รหัสนักศึกษา</TableHead>
                   <TableHead>ชื่อ-นามสกุล</TableHead>
                   <TableHead>รายการติดต่อ</TableHead>
@@ -386,23 +486,23 @@ const LogQueueModal: React.FC<PopupProps> = ({
                     <TableCell className="w-[15%]">{item.name}</TableCell>
                     <TableCell className=" w-[25%]   items-center">
                       <div className="flex items-center gap-2">
-                      <div
-                        className={`${
-                          item.category === "อื่นๆ"
-                            ? "bg-contactList-others"
-                            : item.category === "ทุนการศึกษา"
-                            ? "bg-contactList-scholarship"
-                            : item.category === "ขอคำปรึกษาด้านวิชาการ"
-                            ? "bg-contactList-consultation"
-                            : item.category === "แจ้งปัญหาด้านการเรียนการสอน"
-                            ? "bg-contactList-report"
-                            : item.category === "ขอจัดกิจกรรมหรือโครงการพิเศษ"
-                            ? "bg-contactList-request"
-                            : item.category === "ฝึกงาน-สหกิจศึกษา" &&
-                              "bg-contactList-internship"
-                        } h-3 w-3 rounded-[100%]`}
-                      ></div>
-                      {item.category}
+                        <div
+                          className={`${
+                            item.category === "อื่นๆ"
+                              ? "bg-contactList-others"
+                              : item.category === "ทุนการศึกษา"
+                              ? "bg-contactList-scholarship"
+                              : item.category === "ขอคำปรึกษาด้านวิชาการ"
+                              ? "bg-contactList-consultation"
+                              : item.category === "แจ้งปัญหาด้านการเรียนการสอน"
+                              ? "bg-contactList-report"
+                              : item.category === "ขอจัดกิจกรรมหรือโครงการพิเศษ"
+                              ? "bg-contactList-request"
+                              : item.category === "ฝึกงาน-สหกิจศึกษา" &&
+                                "bg-contactList-internship"
+                          } h-3 w-3 rounded-[100%]`}
+                        ></div>
+                        {item.category}
                       </div>
                     </TableCell>
                     <TableCell className="w-[20%]"></TableCell>
