@@ -1,5 +1,11 @@
 import { NextConfig } from "next";
 
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+});
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   webpack(config) {
@@ -24,4 +30,11 @@ const nextConfig: NextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withPWA({
+  ...nextConfig,
+  devServer: {
+    https: true,
+    host: true,
+    port: 3000,
+  },
+});
