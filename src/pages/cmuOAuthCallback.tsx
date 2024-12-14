@@ -34,6 +34,7 @@ export default function CMUOAuthCallback() {
         } else {
           const decodedToken = jwtDecode(res.token);
           dispatch(setUser(decodedToken));
+          router.push(Route.StudentIndex);
         }
       }
     }

@@ -1,12 +1,11 @@
 import Navbar from "@/components/Navbar";
-import * as React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -14,8 +13,46 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import IconUsers from "../../../public/icons/users.svg";
 import Icon from "@/components/Icon";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { subscribeNotification } from "@/services/subscription/subscription.service";
+import { setSubscription } from "@/store/subscription";
+import { useNotification } from "@/notifications/useNotification";
+import { urlBase64ToUint8Array } from "@/lib/utils";
 
 export default function StudentIndex() {
+  const { isGranted, onSubscribe, onError } = useNotification();
+  const user = useAppSelector((state) => state.user);
+  const subscription = useAppSelector((state) => state.subscription);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (isGranted) {
+      if (user.studentId && subscription.studentId != user.studentId) {
+        getSubscription();
+      }
+    }
+  }, [user]);
+
+  const getSubscription = async () => {
+    await navigator.serviceWorker.register("/service-worker.js");
+    navigator.serviceWorker.ready
+      .then((registration: ServiceWorkerRegistration) => {
+        return registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(
+            process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!
+          ),
+        });
+      })
+      .then(async (subscription) => {
+        const res = await subscribeNotification(subscription);
+        if (res) {
+          dispatch(setSubscription(res));
+        }
+        onSubscribe();
+      })
+      .catch((e) => onError(e));
+  };
+
   const categories = [
     {
       id: 1,

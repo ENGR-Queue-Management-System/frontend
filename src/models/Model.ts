@@ -1,5 +1,12 @@
 import { STATUS } from "@/config/Enum";
 
+export interface IModelSubscription {
+  studentId: string;
+  endpoint: string;
+  auth: string;
+  p256dh: string;
+}
+
 export interface IModelCounter {
   id: number;
   counter: string;

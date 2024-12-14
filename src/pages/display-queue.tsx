@@ -77,7 +77,7 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const QueueCallTable = ({ queueData }) => {
+  const QueueCallTable = ({ queueData }: any) => {
     return (
       <Table className="w-full " striped={true}>
         <TableHeader>
@@ -168,7 +168,6 @@ export default function Home() {
                 <p className="text-[3.3vh]">Counter C</p>
                 <p className="text-[7vh] font-semibold">C081</p>
               </div>
-             
             </div>
             <div className="grid grid-cols-3 gap-5">
               <div className="flex rounded-2xl justify-center items-center p-5 text-white bg-[#28A745] flex-col">
@@ -183,7 +182,6 @@ export default function Home() {
                 <p className="text-[3.3vh]">Counter F</p>
                 <p className="text-[7vh] font-semibold">F081</p>
               </div>
-             
             </div>
           </div>
           <div className="text-white">จองคิวได้ที่</div>
