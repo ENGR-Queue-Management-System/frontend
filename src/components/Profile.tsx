@@ -31,14 +31,14 @@ const Profile: React.FC<ProfileProps> = ({ role }) => {
     <>
       {role === "admin" ? (
         <Popover>
-          <PopoverTrigger  asChild>
+          <PopoverTrigger asChild>
             <Button
               variant="ghost"
               className="flex items-center translate-x-3 hover:bg-transparent  gap-2"
             >
               <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end">
                 <p>{getUserName(user, 3)}</p>
-                <p>{getUserName(user, 1)}</p>
+                <p>ผู้ดูแลระบบ</p>
               </div>
               <Icon
                 IconComponent={IconUser}
@@ -46,7 +46,7 @@ const Profile: React.FC<ProfileProps> = ({ role }) => {
               />
             </Button>
           </PopoverTrigger>
-          <PopoverContent>
+          <PopoverContent className="mr-14">
             <div className="flex flex-col gap-1">
               <CounterManageModal
                 triggerText="จัดการเคาท์เตอร์"
