@@ -1,14 +1,25 @@
 export function isNotificationSupported(): boolean {
+  let unsupported = false;
+  if (
+    !("serviceWorker" in navigator) ||
+    !("PushManager" in window) ||
+    !("showNotification" in ServiceWorkerRegistration.prototype)
+  ) {
+    unsupported = true;
+  }
   const isIos = !!(
-    "standalone" in window.navigator && window.navigator.standalone
+    typeof window !== "undefined" &&
+    "standalone" in window.navigator &&
+    window.navigator.standalone
   );
-  const isAndroid = !!window.matchMedia("(display-mode: standalone)").matches;
-  const hasNotificationSupport =
-    "serviceWorker" in navigator &&
-    "PushManager" in window &&
-    "showNotification" in ServiceWorkerRegistration.prototype;
-  const isPwaInstalled = isIos || isAndroid;
-  return hasNotificationSupport && isPwaInstalled;
+  const isAndroid =
+    typeof window !== "undefined" &&
+    window.matchMedia("(display-mode: standalone)").matches;
+  const isDesktop =
+    typeof window !== "undefined" &&
+    (navigator.platform === "Win32" || navigator.platform === "MacIntel");
+
+  return !unsupported && (isIos || isAndroid || isDesktop);
 }
 
 export function isPermissionGranted(): boolean {
