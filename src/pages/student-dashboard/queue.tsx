@@ -85,8 +85,12 @@ export default function StudentQueue() {
             />
           </div>
           <DialogFooter>
-            <Button variant="ghost">ยกเลิก</Button>
-            <Button type="submit">ส่งความคิดเห็น</Button>
+            <Button variant="ghost" onClick={() => setOpenFeedbackModal(false)}>
+              ยกเลิก
+            </Button>
+            <Button type="submit" onClick={() => setOpenFeedbackModal(false)}>
+              ส่งความคิดเห็น
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -30,6 +30,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import Icon from "@/components/Icon";
 import IconFilter from "../../../public/icons/filter.svg";
+import IconSearch from "../../../public/icons/search.svg";
 import { th } from "date-fns/locale";
 
 type PopupProps = {
@@ -351,7 +352,7 @@ const LogQueueModal: React.FC<PopupProps> = ({
               <p className="text-[24px] text-table-foreground">14 คิว</p>
             </div>
             <div className="flex items-center justify-center gap-4">
-              <div className="grid w-full max-w-sm items-center gap-1.5">
+              <div className="flex w-full max-w-sm items-center gap-2">
                 <Input
                   type="search"
                   className="w-[340px]"
@@ -364,8 +365,7 @@ const LogQueueModal: React.FC<PopupProps> = ({
                   <Button
                     variant={"outlineDefault"}
                     className={cn(
-                      "min-w-44 justify-start text-left font-normal",
-                      !date && "text-muted-foreground"
+                      "min-w-44 justify-start text-left font-normal"
                     )}
                   >
                     <CalendarIcon />
@@ -405,11 +405,8 @@ const LogQueueModal: React.FC<PopupProps> = ({
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
-                    variant={"outlineDefault"}
-                    className={cn(
-                      "w-fit justify-start text-left font-norma",
-                      !date && "text-muted-foreground"
-                    )}
+                    variant={"default"}
+                    className={cn("w-fit justify-start text-left font-norma")}
                   >
                     <Icon
                       IconComponent={IconFilter}

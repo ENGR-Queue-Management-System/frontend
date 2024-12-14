@@ -10,18 +10,25 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import IconTrash from "../../../public/icons/trash.svg";
+import IconList from "../../../public/icons/list.svg";
 import Icon from "@/components/Icon";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { TimePickerInput } from "../ui/time-picker-input";
 import { Period } from "../ui/time-picker-utils";
 
 type PopupProps = {
   title: string;
+  type: "add" | "edit";
   opened: boolean;
   onClose: () => void;
 };
 
-const OneCounterManage: React.FC<PopupProps> = ({ title, opened, onClose }) => {
+const OneCounterManage: React.FC<PopupProps> = ({
+  title,
+  type,
+  opened,
+  onClose,
+}) => {
   const [inputValues, setInputValues] = useState({
     topicTH: "",
     topicEN: "",
@@ -63,91 +70,143 @@ const OneCounterManage: React.FC<PopupProps> = ({ title, opened, onClose }) => {
 
   return (
     <Dialog open={opened} onOpenChange={onClose}>
-      <DialogContent className="max-w-[60vw]">
+      <DialogContent className="max-w-[60vw] p-6 mb-1">
         <DialogHeader>
-          <DialogTitle className="text-table-foreground">{title}</DialogTitle>
+          <DialogTitle className="text-table-foreground mb-3">
+            {title}
+          </DialogTitle>
         </DialogHeader>
-        <div className="flex h-fit gap-5">
-          <div className="flex flex-col w-[40%] gap-3">
+        <div className="flex max-h-[500px] gap-5">
+          <div className="flex flex-col w-[40%] gap-4 h-full">
             <div
               style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
-              className="flex rounded-md flex-col w-full p-4 gap-5 justify-end"
+              className="flex rounded-md flex-col w-full p-5 gap-5 justify-end h-full"
             >
               <div className="flex flex-col gap-1">
                 <p className="text-b2">
-                  ชื่อเคาท์เตอร์ (กรอกตัวอักษรภาษาอังกฤษ 1 ตัว)
+                  ชื่อเคาท์เตอร์{" "}
+                  <span className="text-secondary">(ตัวอักษรภาษาอังกฤษ)</span>{" "}
+                  <span className="text-delete">*</span>
                 </p>
                 <Input className="h-8" placeholder="e.g. H"></Input>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-b2">บุคคลประจำเคาท์เตอร์ (CMU Account)</p>
+                <p className="text-b2">
+                  บุคคลประจำเคาท์เตอร์{" "}
+                  <span className="text-secondary font-medium">
+                    (CMU Account)
+                  </span>{" "}
+                  <span className="text-delete">*</span>
+                </p>
                 <Input
                   className="h-8"
                   placeholder="e.g. example@cmu.ac.th"
                 ></Input>
               </div>
-            </div>
-            <div
-              style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
-              className="flex rounded-md flex-col w-full p-4 gap-5 justify-end"
-            >
-              <div className="flex flex-col">
-                <p className="text-b2">หัวข้อบริการภาษาไทยประจำเคาท์เตอร์</p>
-                <Input className="h-8" placeholder="e.g. ทุนการศึกษา"></Input>
-              </div>
-              <div>
-                <p className="text-b2">หัวข้อบริการภาษาอังกฤษประจำเคาท์เตอร์</p>
-                <Input className="h-8" placeholder="e.g. scholarship"></Input>
-              </div>
-              <Button variant="secondary" onClick={onClose}>
-                เพิ่มหัวข้อบริการ
-              </Button>
-            </div>
-            <div
-              style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
-              className="flex rounded-md flex-col w-full p-4 gap-5 justify-end"
-            >
-              <div className="flex flex-col">
-                <p className="text-b2">ปิดรับคิวอัตโนมัติ</p>
-                <TimePickerInput
+
+              <div className="w-full max-w-sm ">
+                <p className="text-b2 mb-1">
+                  ปิดรับคิวอัตโนมัติ <span className="text-delete">*</span>
+                </p>
+                <Input
+                  type="time"
+                  className="w-[40%] py-2 px-4 border rounded-md text-gray-700"
+                />
+                {/* <TimePickerInput
+                  type="time"
                   picker="12hours"
                   period={period}
                   date={date ?? undefined} // Convert `null` to `undefined` if necessary
                   setDate={(newDate) => setDate(newDate ?? null)}
                   ref={hourRef}
                   onRightFocus={() => minuteRef.current?.focus()}
-                />
+                /> */}
               </div>
             </div>
+            <div
+              style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
+              className="flex rounded-md flex-col w-full p-5 gap-5 "
+            >
+              <div className="flex flex-col">
+                <p className="text-b2 mb-1">
+                  หัวข้อบริการประจำเคาท์เตอร์{" "}
+                  <span className="text-secondary">(ภาษาไทย)</span>{" "}
+                  <span className="text-delete">*</span>
+                </p>
+                <Input className="h-8" placeholder="e.g. ทุนการศึกษา"></Input>
+              </div>
+              <div>
+                <p className="text-b2 mb-1">
+                  หัวข้อบริการประจำเคาท์เตอร์{" "}
+                  <span className="text-secondary">(English)</span>{" "}
+                  <span className="text-delete">*</span>
+                </p>
+                <Input className="h-8" placeholder="e.g. scholarship"></Input>
+              </div>
+              <Button variant="secondary">เพิ่มหัวข้อบริการ</Button>
+            </div>
           </div>
+
           <div
             style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
-            className="overflow-y-auto rounded-md flex flex-1 px-5 flex-col max-h-[400px]"
+            className="overflow-y-auto rounded-md flex flex-1 flex-col h-full"
           >
+            <div className="sticky flex top-0 bg-table-background text-table-foreground gap-3 px-5 items-center justify-between font-medium py-3">
+              <div className="flex gap-3">
+                <Icon IconComponent={IconList} />
+                รายการติดต่อ
+              </div>
+
+              <div className="text-b1"> {categories.length} รายการ</div>
+            </div>
+
             {categories.map((cat) => (
               <div
                 key={cat.topicTH}
-                className="flex border-b-[1px] border-[#e1e1e1] px-2 font-medium text-default justify-between gap-3 items-center py-2"
+                className="flex border-b-[1px] mx-5  border-[#e1e1e1] last:border-none px-2 font-medium text-default justify-between gap-3 items-center py-2"
               >
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`${
+                      cat.topicTH === "อื่นๆ"
+                        ? "bg-contactList-others"
+                        : cat.topicTH === "ทุนการศึกษา"
+                        ? "bg-contactList-scholarship"
+                        : cat.topicTH === "ขอคำปรึกษาด้านวิชาการ"
+                        ? "bg-contactList-consultation"
+                        : cat.topicTH === "แจ้งปัญหาด้านการเรียนการสอน"
+                        ? "bg-contactList-report"
+                        : cat.topicTH === "ขอจัดกิจกรรมหรือโครงการพิเศษ"
+                        ? "bg-contactList-request"
+                        : cat.topicTH === "ฝึกงาน-สหกิจศึกษา" &&
+                          "bg-contactList-internship"
+                    } h-3 w-3 rounded-[100%]`}
+                  ></div>
                   <div className="flex flex-col py-2 text-b2">
                     <p>{cat.topicTH}</p>
                     <p>{cat.topicEN}</p>
                   </div>
                 </div>
-                <div className="flex gap-3">
-                  <Button
-                    variant="outline"
-                    className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
-                  >
-                    <Icon IconComponent={IconTrash} className="stroke-delete" />
-                  </Button>
-                </div>
+
+                <Button
+                  variant="outline"
+                  className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
+                >
+                  <Icon IconComponent={IconTrash} className="stroke-delete" />
+                </Button>
               </div>
             ))}
           </div>
         </div>
-        <Button onClick={onClose}>เสร็จสิ้น</Button>
+
+        <div className="flex gap-3 justify-end w-full mt-1">
+          <Button variant={"ghost"} onClick={onClose}>
+            ยกเลิก
+          </Button>
+          <Button onClick={onClose} className="px-4">
+            เสร็จสิ้น
+          </Button>
+        </div>
       </DialogContent>
     </Dialog>
   );
