@@ -18,6 +18,12 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Niramit:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
           rel="stylesheet"
         />
+        
+        {/* Apple meta tags for full-screen mode */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="ENGR Queue Management System" />
+        
       </Head>
       <body>
         <Main />
