@@ -52,18 +52,23 @@ export default function Home() {
             <a href={process.env.NEXT_PUBLIC_CMU_OAUTH_URL}>
               <Button
                 variant="default"
-                className={`text-sm font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 mt-8 iphone:max-sm:mt-12 w-fit px-10 rounded-[8px] ${
-                  isSupported ? "bg-sky-500" : "bg-[#ffffff]"
-                } text-[#605CA4] hover:bg-[#e8e8e8]`}
+                className="text-sm font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 mt-8 iphone:max-sm:mt-16 w-fit px-10 rounded-[8px] bg-[#ffffff] text-[#605CA4] hover:bg-[#e8e8e8] 
+             shadow-md hover:shadow-lg transition-transform transform hover:scale-105 active:translate-y-1"
               >
                 <Image
                   src={cmuLogoWhite}
                   alt="cmulogo"
-                  className=" w-[42px] mr-2 "
+                  className="w-[42px] mr-2"
                 />
-                Sign in CMU Account
+                Sign in CMU account
               </Button>
             </a>
+            <div className="flex   mt-2">
+              <p className=" text-h2 sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]">
+                ท่านไม่มี CMU account?{" "}
+                <span className=" underline font-[600] text"> คลิกที่นี่</span>
+              </p>
+            </div>
           </div>
         </div>
       </main>
