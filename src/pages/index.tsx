@@ -53,7 +53,7 @@ export default function Home() {
               <Button
                 variant="default"
                 className="text-sm font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 mt-8 iphone:max-sm:mt-16 w-fit px-10 rounded-[8px] bg-[#ffffff] text-[#605CA4] hover:bg-[#e8e8e8] 
-             shadow-md hover:shadow-lg transition-transform transform hover:scale-105 active:translate-y-1"
+             shadow-md hover:shadow-lg"
               >
                 <Image
                   src={cmuLogoWhite}
@@ -63,10 +63,10 @@ export default function Home() {
                 Sign in CMU account
               </Button>
             </a>
-            <div className="flex   mt-4">
+            <div className="flex   mt-5">
               <p className="  sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]">
                 ท่านไม่มี CMU account?{" "}
-                <span className=" underline font-[500]"> คลิกที่นี่</span>
+                <span className=" underline font-[600]"> คลิกที่นี่</span>
               </p>
             </div>
           </div>
