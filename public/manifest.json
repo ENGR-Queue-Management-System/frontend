@@ -1,7 +1,7 @@
 {
-  "name": "Queue",
-  "short_name": "Queue",
-  "description": "Queue",
+  "name": "ENGQueue",
+  "short_name": "ENGQueue",
+  "description": "ENGQueue",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
