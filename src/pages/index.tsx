@@ -63,10 +63,10 @@ export default function Home() {
                 Sign in CMU account
               </Button>
             </a>
-            <div className="flex   mt-2">
+            <div className="flex   mt-4">
               <p className="  sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]">
                 ท่านไม่มี CMU account?{" "}
-                <span className=" underline font-[600] text"> คลิกที่นี่</span>
+                <span className=" underline font-[500]"> คลิกที่นี่</span>
               </p>
             </div>
           </div>
