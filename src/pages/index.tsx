@@ -6,8 +6,10 @@ import logoEng from "../../public/images/logoEng1.png";
 import cmuLogoWhite from "../../public/images/cmuLogoLogin.png";
 import { useAppSelector } from "@/store";
 import { useEffect } from "react";
+import { useNotification } from "@/notifications/useNotification";
 
 export default function Home() {
+  const { isSupported } = useNotification();
   const router = useRouter();
   const user = useAppSelector((state) => state.user);
 
@@ -50,7 +52,9 @@ export default function Home() {
             <a href={process.env.NEXT_PUBLIC_CMU_OAUTH_URL}>
               <Button
                 variant="default"
-                className="text-sm font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 mt-8 iphone:max-sm:mt-12 w-fit px-10 rounded-[8px] bg-[#ffffff] text-[#605CA4] hover:bg-[#e8e8e8]"
+                className={`text-sm font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 mt-8 iphone:max-sm:mt-12 w-fit px-10 rounded-[8px] ${
+                  isSupported ? "bg-sky-500" : "bg-[#ffffff]"
+                } text-[#605CA4] hover:bg-[#e8e8e8]`}
               >
                 <Image
                   src={cmuLogoWhite}
