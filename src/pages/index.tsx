@@ -44,10 +44,17 @@ export default function Home() {
                 Automatic Queuing System
               </p>
             </div>
-          
+            <div className="mt-1">
+              <p className=" text-h2 sm:max-samsungA24:text-[15px] iphone:max-sm:text-[12px] font-[400]">
+                คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่
+              </p>
+              <p className=" text-[16px] sm:max-samsungA24:text-[13px] iphone:max-sm:text-[11px] font-[400] mt-[2px]">
+                Faculty of Engineering, Chiang Mai University
+              </p>
+            </div>
             <div className=" border-2 border-white w-full text-white mt-2 py-3 px-5 iphone:max-sm:text-[13px] sm:max-samsungA24:text-[15px]  text-white-500 rounded-md">
               <p>
-                หากท่านพบปัญหาในการใช้งาน <br/> ให้ท่านปัดแอปพลิเคชันทิ้ง
+              เนื่องจากระบบอยู่ในช่วงทดลองใช้งานหากท่านพบปัญหาในการใช้งาน <br/> ให้ท่านปัดแอปพลิเคชันทิ้ง
                 แล้วลองเข้าใหม่อีกครั้ง
                 <p className=" text-white underline  mt-2">
                   รายงานปัญหาได้ที่นี่
@@ -58,7 +65,7 @@ export default function Home() {
             <a href={process.env.NEXT_PUBLIC_CMU_OAUTH_URL}>
               <Button
                 variant="default"
-                className="text-sm font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 mt-8 iphone:max-sm:mt-16 w-fit px-10 rounded-[8px] bg-[#ffffff] text-[#605CA4] hover:bg-[#e8e8e8] 
+                className="text-sm font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 mt-8 iphone:max-sm:mt-10 w-fit px-10 rounded-[8px] bg-[#ffffff] text-[#605CA4] hover:bg-[#e8e8e8] 
              shadow-md hover:shadow-lg"
               >
                 <Image
