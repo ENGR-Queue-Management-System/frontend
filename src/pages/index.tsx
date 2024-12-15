@@ -64,7 +64,7 @@ export default function Home() {
               </Button>
             </a>
             <div className="flex   mt-2">
-              <p className=" text-h2 sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]">
+              <p className="  sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]">
                 ท่านไม่มี CMU account?{" "}
                 <span className=" underline font-[600] text"> คลิกที่นี่</span>
               </p>
