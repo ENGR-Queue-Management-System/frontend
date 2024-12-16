@@ -7,11 +7,9 @@ import cmuLogoWhite from "../../public/images/cmuLogoLogin.png";
 import { useAppSelector } from "@/store";
 import { useEffect } from "react";
 import { useNotification } from "@/notifications/useNotification";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal } from "lucide-react";
 
 export default function Home() {
-  const { isSupported } = useNotification();
+  const { deviceType } = useNotification();
   const router = useRouter();
   const user = useAppSelector((state) => state.user);
 
@@ -23,6 +21,7 @@ export default function Home() {
         router.push(Route.AdminIndex);
       }
     }
+    console.log(user);
   }, [user]);
 
   return (
@@ -30,7 +29,6 @@ export default function Home() {
       <main className="flex gradient-bg h-screen w-screen justify-center  items-center bg-cover bg-center">
         <div className="flex h-screen w-screen justify-center items-center inset-0 px-36  ">
           <div className="text-white text-center justify-start items-center flex flex-col iphone:max-sm:bg-transparent iphone:max-sm:shadow-none sm:max-samsungA24:px-24 sm:max-samsungA24:py-12 samsungA24:px-28 samsungA24:py-16 gap-5 rounded-[25px] bg-[rgba(85,85,86,0.25)] shadow-[0px_0px_4px_2px_rgba(0,0,0,0.25)]">
-
             <Image
               src={logoEng}
               alt="logoEng"
@@ -54,8 +52,8 @@ export default function Home() {
             </div>
             <div className=" border-2 border-white w-full text-white mt-2 py-3 px-5 iphone:max-sm:text-[13px] sm:max-samsungA24:text-[15px]  text-white-500 rounded-md">
               <p>
-              เนื่องจากระบบอยู่ในช่วงทดลองใช้งานหากท่านพบปัญหาในการใช้งาน <br/> ให้ท่านปัดแอปพลิเคชันทิ้ง
-                แล้วลองเข้าใหม่อีกครั้ง
+                เนื่องจากระบบอยู่ในช่วงทดลองใช้งานหากท่านพบปัญหาในการใช้งาน{" "}
+                <br /> ให้ท่านปัดแอปพลิเคชันทิ้ง แล้วลองเข้าใหม่อีกครั้ง
                 <p className=" text-white underline  mt-2">
                   รายงานปัญหาได้ที่นี่
                 </p>
@@ -76,10 +74,10 @@ export default function Home() {
                 Sign in CMU account
               </Button>
             </a>
-            <div className="flex flex-col   mt-5">
-              <p className="  sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]">
+            <div className="flex flex-col mt-5">
+              <p className="sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]">
                 ท่านไม่มี CMU account?{" "}
-                <span className=" underline font-[500]"> คลิกที่นี่</span>
+                <span className="underline font-[500]"> คลิกที่นี่</span>
               </p>
             </div>
           </div>

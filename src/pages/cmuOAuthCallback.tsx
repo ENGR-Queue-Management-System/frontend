@@ -2,7 +2,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Route } from "@/config/Route";
 import { useEffect } from "react";
-import { logIn } from "@/services/authentication/authentication.service";
+import { loginWithAuth } from "@/services/authentication/authentication.service";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { setUser } from "@/store/user";
 import { jwtDecode } from "jwt-decode";
@@ -25,7 +25,7 @@ export default function CMUOAuthCallback() {
 
   const fetchData = async () => {
     if (code?.length) {
-      const res = await logIn(code);
+      const res = await loginWithAuth(code);
       if (res) {
         localStorage.setItem("token", res.token);
         if (res.user) {

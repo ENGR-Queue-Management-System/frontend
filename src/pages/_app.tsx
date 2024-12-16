@@ -28,10 +28,15 @@ function MyApp({ Component, pageProps }: AppProps) {
       const decodedToken: any = checkTokenExpired(token);
       if (!decodedToken) {
         if (!user.email) {
-          if (decodedToken.studentId) {
-            dispatch(setUser(decodedToken));
-          } else {
+          if (decodedToken.email) {
             fetchUser();
+          } else {
+            dispatch(
+              setUser({
+                firstNameTH: decodedToken.firstName,
+                lastNameTH: decodedToken.lastName,
+              })
+            );
           }
         }
         if (!counters.length) {

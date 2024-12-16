@@ -1,12 +1,15 @@
 import apiService from "@/services/apiService";
-import { AuthLoginRequestDTO } from "./dto/authentication.dto";
+import { AuthLoginRequestDTO, LoginRequestDTO } from "./dto/authentication.dto";
 
 export const authenticationController = (configService: any = {}) => {
   const service = apiService(configService);
 
   return {
-    login: async (params: AuthLoginRequestDTO) => {
+    loginWithAuth: async (params: AuthLoginRequestDTO) => {
       return service.post(`/authentication`, { ...params });
+    },
+    login: async (params: LoginRequestDTO) => {
+      return service.post(`/login`, { ...params });
     },
   };
 };

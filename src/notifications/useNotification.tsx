@@ -1,5 +1,6 @@
 import { IModelSubscription } from "@/models/Model";
 import {
+  checkDeviceType,
   isNotificationSupported,
   isPermissionDenied,
   isPermissionGranted,
@@ -15,6 +16,7 @@ import React, {
 import { useAppSelector } from "@/store";
 
 interface NotificationContextType {
+  deviceType: string | null;
   isSupported: boolean;
   isGranted: boolean;
   isDenied: boolean;
@@ -31,6 +33,7 @@ const NotificationContext = createContext<NotificationContextType | undefined>(
 export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const [deviceType, setDeviceType] = useState<string | null>(null);
   const [isSupported, setIsSupported] = useState<boolean>(false);
   const [isGranted, setIsGranted] = useState<boolean>(false);
   const [isDenied, setIsDenied] = useState<boolean>(false);
@@ -39,6 +42,8 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
 
   useEffect(() => {
     if (isNotificationSupported()) {
+      const type = checkDeviceType();
+      setDeviceType(type);
       setIsSupported(true);
       const granted = isPermissionGranted();
       setIsGranted(granted);
@@ -60,6 +65,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
 
   const contextValue = useMemo(
     () => ({
+      deviceType,
       isSupported,
       isGranted,
       isDenied,
@@ -69,6 +75,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
       onError,
     }),
     [
+      deviceType,
       isSupported,
       isGranted,
       isDenied,

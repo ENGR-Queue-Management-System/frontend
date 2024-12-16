@@ -2,7 +2,10 @@ import { RESPONSE_MESSAGE, STATUS_CODE } from "@/config/response.enum";
 import { Route } from "@/config/Route";
 import { jwtDecode } from "jwt-decode";
 
-export const checkTokenExpired = (token: string) => {
+export const checkTokenExpired = (
+  token: string,
+  decodeData: boolean = false
+) => {
   try {
     const decode: any = jwtDecode(token);
     // check expired
@@ -10,6 +13,7 @@ export const checkTokenExpired = (token: string) => {
       (decode.exp && decode.exp * 1000 <= new Date().getTime()) ||
       !decode.firstname
     ) {
+      if (decodeData) return decode;
       return true;
     }
     return false;

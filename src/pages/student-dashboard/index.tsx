@@ -18,18 +18,30 @@ import { subscribeNotification } from "@/services/subscription/subscription.serv
 import { setSubscription } from "@/store/subscription";
 import { useNotification } from "@/notifications/useNotification";
 import { urlBase64ToUint8Array } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { Route } from "@/config/Route";
+import { DEVICE_TYPE } from "@/config/Enum";
 
 export default function StudentIndex() {
-  const { isGranted, onSubscribe, onError } = useNotification();
+  const { deviceType, isGranted, onSubscribe, onError } = useNotification();
   const user = useAppSelector((state) => state.user);
   const subscription = useAppSelector((state) => state.subscription);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const [selectTopic, setSelectTopic] = useState("");
+
   useEffect(() => {
-    if (isGranted) {
+    if (deviceType == DEVICE_TYPE.DESKTOP || isGranted) {
       if (user.studentId && subscription.studentId != user.studentId) {
         getSubscription();
       }
+      if (user.email) {
+        router.push(Route.AdminIndex);
+      } else if (user.firstNameTH) {
+        router.push(Route.StudentIndex);
+      }
     }
+    console.log(user);
   }, [user]);
 
   const getSubscription = async () => {
@@ -92,7 +104,7 @@ export default function StudentIndex() {
       room: "งานพัฒนาคุณภาพนักศึกษา",
     },
   ];
-  const [selectTopic, setSelectTopic] = useState("");
+
   return (
     <div className="flex flex-col h-screen  w-screen overflow-hidden text-default">
       <Navbar role1="student" />
@@ -102,7 +114,6 @@ export default function StudentIndex() {
         >
           <p>วันนี้เราสามารถช่วยอะไรนศ.ได้บ้าง แจ้งมาได้เลยนะคะ</p>
           <p className="text-bold iphone:max-sm:w-[250px]">
-            {" "}
             What can we help you with today? Let us know to get started
           </p>
         </div>
@@ -142,7 +153,6 @@ export default function StudentIndex() {
                         {item.topicTH} (
                         <span className="font-medium">{item.topicEN}</span>)
                       </p>
-                      <p></p>
                       <p className="text-b3 text-primary">{item.room}</p>
                     </div>
                   </div>
@@ -177,7 +187,7 @@ export default function StudentIndex() {
                     <div className="text-start text-b2 iphone:max-sm:text-b3">
                       <p className="font-medium">
                         มีคิวก่อนหน้าคุณ{" "}
-                        <span className="font-semibold">(Waiting) </span>{" "}
+                        <span className="font-semibold">(Waiting) </span>
                         <span className="text-h2 iphone:max-sm:text-b1 font-semibold text-default">
                           {room === "งานบริการนักศึกษา" ? "11 คิว" : "8 คิว"}
                         </span>
