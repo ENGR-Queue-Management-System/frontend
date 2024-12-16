@@ -1,12 +1,6 @@
-export function isNotificationSupported(): boolean {
-  let unsupported = false;
-  if (
-    !("serviceWorker" in navigator) ||
-    !("PushManager" in window) ||
-    !("showNotification" in ServiceWorkerRegistration.prototype)
-  ) {
-    unsupported = true;
-  }
+import { DEVICE_TYPE } from "@/config/Enum";
+
+export const checkDeviceType = () => {
   const isIos = !!(
     typeof window !== "undefined" &&
     "standalone" in window.navigator &&
@@ -17,15 +11,35 @@ export function isNotificationSupported(): boolean {
     window.matchMedia("(display-mode: standalone)").matches;
   const isDesktop =
     typeof window !== "undefined" &&
-    (navigator.platform === "Win32" || navigator.platform === "MacIntel");
+    (navigator.userAgent.includes("Win") ||
+      navigator.userAgent.includes("Mac"));
+  if (isDesktop) {
+    return DEVICE_TYPE.DESKTOP;
+  } else if (isIos) {
+    return DEVICE_TYPE.IOS;
+  } else if (isAndroid) {
+    return DEVICE_TYPE.ANDROID;
+  }
+  return null;
+};
 
-  return !unsupported && (isIos || isAndroid || isDesktop);
-}
+export const isNotificationSupported = (): boolean => {
+  let unsupported = false;
+  if (
+    !("serviceWorker" in navigator) ||
+    !("PushManager" in window) ||
+    !("showNotification" in ServiceWorkerRegistration.prototype)
+  ) {
+    unsupported = true;
+  }
+  const check = checkDeviceType();
+  return !unsupported && check != null;
+};
 
-export function isPermissionGranted(): boolean {
+export const isPermissionGranted = (): boolean => {
   return Notification.permission === "granted";
-}
+};
 
-export function isPermissionDenied(): boolean {
+export const isPermissionDenied = (): boolean => {
   return Notification.permission === "denied";
-}
+};
