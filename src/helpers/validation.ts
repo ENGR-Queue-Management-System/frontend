@@ -9,13 +9,10 @@ export const checkTokenExpired = (
   try {
     const decode: any = jwtDecode(token);
     // check expired
-    if (
-      (decode.exp && decode.exp * 1000 <= new Date().getTime()) ||
-      !decode.firstname
-    ) {
-      if (decodeData) return decode;
+    if (decode.exp && decode.exp * 1000 <= new Date().getTime()) {
       return true;
     }
+    if (decodeData) return decode;
     return false;
   } catch (err) {
     // token invalid

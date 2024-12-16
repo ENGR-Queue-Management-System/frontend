@@ -41,7 +41,6 @@ export default function StudentIndex() {
         router.push(Route.StudentIndex);
       }
     }
-    console.log(user);
   }, [user]);
 
   const getSubscription = async () => {

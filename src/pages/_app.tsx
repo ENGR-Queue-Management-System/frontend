@@ -6,27 +6,36 @@ import { setCounters } from "@/store/counter";
 import { setUser } from "@/store/user";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import {
   NotificationProvider,
   useNotification,
 } from "@/notifications/useNotification";
 import UnsupportedNotification from "@/components/UnsupportedNotification";
+import { Route } from "@/config/Route";
+import Loading from "@/components/Loading";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { isSupported } = useNotification();
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const location = usePathname();
   const user = useAppSelector((state) => state.user);
   const counters = useAppSelector((state) => state.counter);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      const decodedToken: any = checkTokenExpired(token);
-      if (!decodedToken) {
+      const decodedToken: any = checkTokenExpired(token, true);
+      if (decodedToken) {
         if (!user.email) {
           if (decodedToken.email) {
             fetchUser();
@@ -42,7 +51,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         if (!counters.length) {
           fetchCounters();
         }
+      } else if (location != Route.Index) {
+        router.replace(Route.Index);
       }
+    } else if (location != Route.Index) {
+      router.replace(Route.Index);
     }
   }, [dispatch, router, user.email]);
 
@@ -60,7 +73,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   };
 
-  return !isSupported ? (
+  return loading ? (
+    <div className="h-screen w-screen">
+      <Loading />
+    </div>
+  ) : !isSupported ? (
     <UnsupportedNotification />
   ) : (
     <Component {...pageProps} />
