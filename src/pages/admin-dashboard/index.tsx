@@ -8,7 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -353,14 +352,12 @@ export default function AdminIndex() {
           <TabsList className="!w-full gap-5 justify-center">
             <TabsTrigger className=" rounded-full" value="incoming">
               <p className=" iphone:max-sm:text-[13px]">
-                {" "}
                 รอเรียกคิว ({data.length})
               </p>
             </TabsTrigger>
             <TabsTrigger className=" rounded-full" value="called">
               <p className=" iphone:max-sm:text-[13px]">
-                {" "}
-                คิวที่เรียกไปแล้ว ({dataDone.length}){" "}
+                คิวที่เรียกไปแล้ว ({dataDone.length})
               </p>
             </TabsTrigger>
           </TabsList>

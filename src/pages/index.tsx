@@ -21,8 +21,9 @@ export default function Home() {
         router.push(Route.AdminIndex);
       }
     }
-    console.log(user);
   }, [user]);
+
+  const onClickLogin = () => {};
 
   return (
     <div className=" flex items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
@@ -77,7 +78,12 @@ export default function Home() {
             <div className="flex flex-col mt-5">
               <p className="sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]">
                 ท่านไม่มี CMU account?{" "}
-                <span className="underline font-[500]"> คลิกที่นี่</span>
+                <span
+                  className="underline font-[500] cursor-pointer"
+                  onClick={onClickLogin}
+                >
+                  คลิกที่นี่
+                </span>
               </p>
             </div>
           </div>
