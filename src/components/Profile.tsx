@@ -33,17 +33,20 @@ const Profile: React.FC = () => {
             variant="ghost"
             className="flex items-center translate-x-3 hover:bg-transparent  gap-2"
           >
-            <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end">
+            <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end acerSwift:max-macair133:text-b4">
               <p>{getUserName(user, 3)}</p>
               {user.studentId ? (
                 <p>{user.studentId}</p>
               ) : user.email ? (
-                <p>ผู้ดูแลระบบ</p>
+                <p className=" acerSwift:max-macair133:-mt-1">ผู้ดูแลระบบ</p>
               ) : (
                 <></>
               )}
             </div>
-            <Icon IconComponent={IconUser} className="!size-10 stroke-white" />
+            <Icon
+              IconComponent={IconUser}
+              className="!size-10 stroke-white  acerSwift:max-macair133:!size-9"
+            />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="mr-14">
