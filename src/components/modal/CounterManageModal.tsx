@@ -39,10 +39,10 @@ const CounterManageModal: React.FC<PopupProps> = ({
         <DialogTrigger asChild>
           <Button
             variant="ghost"
-            className="bg-white hover:bg-table-background text-[#333333] justify-start"
+            className="bg-white hover:bg-table-background text-[#333333] justify-start acerSwift:max-macair133:text-b3"
           >
             {IconComponent && (
-              <IconComponent className="h-5 w-5 -translate-x-1 stroke-[#333333]" />
+              <IconComponent className="h-5 w-5 -translate-x-1 stroke-[#333333] acerSwift:max-macair133:w-4 acerSwift:max-macair133:h-4" />
             )}
             <span className="ml-1">{triggerText}</span>
           </Button>

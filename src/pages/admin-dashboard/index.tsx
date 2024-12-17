@@ -213,132 +213,6 @@ export default function AdminIndex() {
       description:
         "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
     },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
-    // {
-    //   id: 4,
-    //   studentId: "630612184",
-    //   name: "พีระ อรุณรัตน์",
-    //   room: "งานพัฒนาคุณภาพนักศึกษา",
-    //   category: "แจ้งปัญหาด้านการเรียนการสอน",
-    //   description:
-    //     "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    // },
   ];
 
   return (
@@ -351,12 +225,12 @@ export default function AdminIndex() {
         >
           <TabsList className="!w-full gap-5 justify-center">
             <TabsTrigger className=" rounded-full" value="incoming">
-              <p className=" iphone:max-sm:text-[13px]">
+              <p className="iphone:max-macair133:text-b3">
                 รอเรียกคิว ({data.length})
               </p>
             </TabsTrigger>
             <TabsTrigger className=" rounded-full" value="called">
-              <p className=" iphone:max-sm:text-[13px]">
+              <p className=" iphone:max-macair133:text-b3">
                 คิวที่เรียกไปแล้ว ({dataDone.length})
               </p>
             </TabsTrigger>
@@ -374,7 +248,7 @@ export default function AdminIndex() {
               <div className="overflow-y-auto iphone:max-sm:!min-h-fit flex flex-1 ">
                 <Table striped={true}>
                   <TableHeader>
-                    <TableRow className="sticky text-b2 samsungA24:text-b1 font-bold top-0 z-30 ">
+                    <TableRow className="sticky text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1 font-bold top-0 z-30 ">
                       <TableHead>เลขคิว</TableHead>
                       <TableHead>รหัสนักศึกษา</TableHead>
                       <TableHead>ชื่อ-นามสกุล</TableHead>
@@ -382,7 +256,7 @@ export default function AdminIndex() {
                       <TableHead>เพิ่มเติม</TableHead>
                     </TableRow>
                   </TableHeader>
-                  <TableBody className=" font-normal text-b2 samsungA24:text-b1">
+                  <TableBody className=" font-normal text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1">
                     {data.map((item) => (
                       <TableRow key={item.id}>
                         <TableCell className="font-medium py-4">
@@ -430,10 +304,10 @@ export default function AdminIndex() {
               >
                 <div>
                   <div className="flex-col">
-                    <p className="text-[16px]">
+                    <p className="acerSwift:max-macair133:text-b3 text-b1">
                       รับคิวนักศึกษา (ปิดรับคิวอัตโนมัติ 16:00)
                     </p>
-                    <p className="text-primary text-[13px] ">
+                    <p className="text-primary text-b3 acerSwift:max-macair133:text-b4 ">
                       ห้องงานพัฒนาคุณภาพนักศึกษา
                     </p>
                   </div>
@@ -447,19 +321,19 @@ export default function AdminIndex() {
                 }}
               >
                 <div className="flex flex-col  justify-between items-center  h-full ">
-                  <div className="flex justify-start flex-col items-center mt-3 samsungA24:mt-7 samsungA24:gap-5 h-full">
+                  <div className="flex justify-start flex-col items-center mt-3 samsungA24:mt-7 acerSwift:max-macair133:mt-2 samsungA24:gap-5 h-full">
                     <div className="text-center ">
-                      <p className="text-h1 samsungA24:text-[23px] font-normal ">
+                      <p className="text-h1 acerSwift:max-macair133:text-h2 samsungA24:text-[23px] font-normal ">
                         คิวที่คุณกำลังให้บริการ{" "}
                       </p>
-                      <p className="text-primary  text-[16px] samsungA24:text-h1 ">
+                      <p className="text-primary  text-b1 acerSwift:max-macair133:text-b2 samsungA24:text-h1 ">
                         ห้องงานพัฒนาคุณภาพนักศึกษา
                       </p>
                     </div>
-                    <div className=" samsungA24:mt-3 iphone:max-sm:mt-3 ipad11:max-samsungA24:mt-2 mb-1 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] iphone:max-sm:text-[40px] font-medium text-[52px]">
+                    <div className=" samsungA24:mt-3 iphone:max-sm:mt-3 acerSwift:max-macair133:mt-2 acerSwift:max-macair133:mt-1 ipad11:max-samsungA24:mt-2 mb-1 acerSwift:max-macair133:mb-0 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] iphone:max-sm:text-[40px] font-medium text-[52px]">
                       A004
                     </div>
-                    <div className="text-center items-center justify-center flex flex-col  samsungA24:text-[22px] text-h2 text-primary">
+                    <div className="text-center items-center justify-center flex flex-col samsungA24:text-[22px] acerSwift:max-macair133:text-b1 text-h2 text-primary">
                       <div className="mt-2">
                         <p className="font-medium">
                           {dataDone[3].studentId}
@@ -470,7 +344,7 @@ export default function AdminIndex() {
                           </span>
                         </p>
                       </div>
-                      <div className="flex  gap-2 mt-1 samsungA24:text-h2 text-[16px] items-center text-[#333333]">
+                      <div className="flex  gap-2 mt-1 acerSwift:max-macair133:mt-0.5 samsungA24:text-h2 acerSwift:max-macair133:text-b2 text-b1 items-center text-[#333333]">
                         <div
                           className={`${
                             dataDone[3].category === "อื่นๆ"
@@ -487,7 +361,7 @@ export default function AdminIndex() {
                               ? "bg-contactList-request"
                               : dataDone[3].category === "ฝึกงาน-สหกิจศึกษา" &&
                                 "bg-contactList-internship"
-                          } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
+                          } h-3 w-3 acerSwift:max-macair133:h-2.5 acerSwift:max-macair133:w-2.5 rounded-[100%] iphone:max-sm:hidden`}
                         ></div>
 
                         {dataDone[3].category}
@@ -495,17 +369,20 @@ export default function AdminIndex() {
                     </div>{" "}
                   </div>{" "}
                   <div className="flex flex-col gap-3 samsungA24:gap-4 w-full">
-                    <div className="px-6 py-5 pt-5 rounded-2xl iphone:max-sm:mt-4 samsungA24:text-[20px] text-[16px] !w-full flex flex-col bg-table-background">
-                      <div className=" flex items-center justify-start ">
+                    <div className="px-6 py-5 acerSwift:max-macair133:py-2.5 rounded-2xl iphone:max-sm:mt-4 samsungA24:text-h1 text-b1  acerSwift:max-macair133:text-b2 !w-full flex flex-col bg-table-background">
+                      <div className=" flex items-center justify-start">
                         <div className=" text-table-foreground font-medium text-center iphone:max-sm:pl-0 iphone:max-sm:pr-4 pr-6 pl-3  border-r-2 border-table-foreground/15">
-                          <p className="iphone:max-sm:text-[15px]"> คิวถัดไป</p>
-                          <p className="font-semibold text-[28px] iphone:max-sm:text-[22px]">
+                          <p className="iphone:max-sm:text-[15px] acerSwift:max-macair133:text-b4">
+                            {" "}
+                            คิวถัดไป
+                          </p>
+                          <p className="font-semibold text-[28px] iphone:max-macair133:text-h1">
                             A00{data[0].id}
                           </p>
                         </div>
 
-                        <div className="flex flex-col gap-1 ml-6">
-                          <p className=" text-[14px] samsungA24:text-h2">
+                        <div className="flex flex-col gap-1 ml-6 ">
+                          <p className=" text-b2 samsungA24:text-h2 acerSwift:max-macair133:text-b4">
                             {data[0].studentId}{" "}
                             <span className="iphone:max-sm:hidden">-</span>{" "}
                             <span className=" iphone:max-sm:block ">
@@ -513,7 +390,7 @@ export default function AdminIndex() {
                               {data[0].name}
                             </span>
                           </p>
-                          <div className="flex text-[14px] samsungA24:text-h2 items-center gap-3">
+                          <div className="flex text-b2  acerSwift:max-macair133:text-b4 samsungA24:text-h2 items-center gap-3">
                             <div
                               className={`${
                                 data[0].category === "อื่นๆ"
@@ -530,7 +407,7 @@ export default function AdminIndex() {
                                   ? "bg-contactList-request"
                                   : data[0].category === "ฝึกงาน-สหกิจศึกษา" &&
                                     "bg-contactList-internship"
-                              } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
+                              } h-3 w-3  acerSwift:max-macair133:h-2  acerSwift:max-macair133:w-2 rounded-[100%] iphone:max-sm:hidden`}
                             ></div>
 
                             {data[0].category}
@@ -538,17 +415,25 @@ export default function AdminIndex() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-col w-full   h-fit gap-4">
-                      <Button className="w-full items-center flex samsungA24:h-14 h-12">
-                        <p className="samsungA24:text-h2">คิวถัดไป</p>
-                        <Icon IconComponent={IconNext} className="!size-5" />
+                    <div className="flex macair133:flex-col iphone:max-acerSwift:flex-col  acerSwift:max-macair133:flex-row-reverse w-full h-fit gap-4">
+                      <Button className="w-full items-center flex samsungA24:h-14 h-12 acerSwift:max-macair133:h-[42px]">
+                        <p className="samsungA24:text-h2  acerSwift:max-macair133:text-b3">
+                          คิวถัดไป
+                        </p>
+                        <Icon
+                          IconComponent={IconNext}
+                          className="!size-5 acerSwift:max-macair133:!size-4"
+                        />
                       </Button>
                       <Button
                         variant="outline"
-                        className="w-full samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-[14px] samsungA24:text-h2"
+                        className="w-full samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-b2 text-primary acerSwift:max-macair133:text-b3 samsungA24:text-h2 acerSwift:max-macair133:h-[42px]"
                       >
                         เรียกซ้ำ
-                        <Icon IconComponent={IconRecall} className="!size-5" />
+                        <Icon
+                          IconComponent={IconRecall}
+                          className="!size-5 acerSwift:max-macair133:!size-4"
+                        />
                       </Button>
                     </div>
                   </div>
@@ -568,7 +453,7 @@ export default function AdminIndex() {
             >
               <Table striped={true}>
                 <TableHeader>
-                  <TableRow className="sticky text-b2 samsungA24:text-b1 font-bold top-0 z-30">
+                  <TableRow className="sticky text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b2 font-bold top-0 z-30">
                     <TableHead className="w-[100px]">เลขคิว</TableHead>
                     <TableHead>รหัสนักศึกษา</TableHead>
                     <TableHead>ชื่อ-นามสกุล</TableHead>
@@ -576,11 +461,11 @@ export default function AdminIndex() {
                     <TableHead className="w-[50%]">เพิ่มเติม</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody className=" font-normal text-b2 samsungA24:text-b1">
+                <TableBody className=" font-normal text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b2">
                   {dataDone.map((item) => (
                     <TableRow key={item.id}>
                       <TableCell className="font-medium py-4 ">
-                        {item.id < 10 ? "00" : item.id < 100 && "0"}
+                        A{item.id < 10 ? "00" : item.id < 100 && "0"}
                         {item.id}
                       </TableCell>
                       <TableCell>{item.studentId}</TableCell>
