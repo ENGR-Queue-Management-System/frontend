@@ -12,9 +12,3 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
-    networks:
-      - project_queue_network
-
-networks:
-  project_queue_network:
-    driver: bridge
