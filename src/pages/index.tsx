@@ -8,6 +8,7 @@ import cmuLogoWhite from "../../public/images/cmuLogoLogin.png";
 import { useAppSelector } from "@/store";
 import { useEffect } from "react";
 import { useNotification } from "@/notifications/useNotification";
+import { DEVICE_TYPE } from "@/config/Enum";
 
 export default function Home() {
   const { deviceType } = useNotification();
@@ -28,13 +29,17 @@ export default function Home() {
 
   return (
     <div className=" flex items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
-      <main className="flex gradient-bg h-screen w-screen justify-center  items-center bg-cover bg-center">
+     <main
+      className={`flex  h-screen w-screen justify-center items-center bg-cover bg-center ${
+        deviceType === DEVICE_TYPE.IOS ? "bg-black" : "gradient-bg"
+      }`}
+    >
         <div className="flex h-screen w-screen justify-center items-center inset-0 px-36  ">
           <div className="text-white text-center justify-start items-center flex flex-col iphone:max-sm:bg-transparent iphone:max-sm:shadow-none sm:max-samsungA24:px-24 sm:max-samsungA24:py-12 samsungA24:px-28 samsungA24:py-16 gap-5 rounded-[25px] bg-[rgba(85,85,86,0.25)] shadow-[0px_0px_4px_2px_rgba(0,0,0,0.25)]">
             <Image
               src={logoEng}
               alt="logoEng"
-              className=" samsungA24:w-[10vw] mb-3 macair133:max-samsungA24:w-[35vw] iphone:max-sm:w-[32vw] sm:max-macair133:size-[156px]"
+              className=" samsungA24:w-[10vw] mb-3 mt-5 macair133:max-samsungA24:w-[35vw] iphone:max-sm:w-[45vw] sm:max-macair133:w-[30vw]"
             />
             <div>
               <p className=" sm:max-samsungA24:text-[28px] iphone:max-sm:text-[24px] text-[34px]">
@@ -78,7 +83,7 @@ export default function Home() {
                 Admin dashboard
               </Button>
             </Link>
-            
+
             <div className="flex flex-col mt-5">
               <p className="sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]">
                 ท่านไม่มี CMU account?{" "}
