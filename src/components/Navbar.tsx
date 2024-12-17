@@ -1,12 +1,15 @@
 import Profile from "./Profile";
 import Image from "next/image";
 import logoSDWhite from "../../public/images/logoSDMinimalWhite.png";
+import { useNotification } from "@/notifications/useNotification";
 
 type NavbarProps = {
   role1: "admin" | "student";
 };
 
 const Navbar: React.FC<NavbarProps> = ({ role1 }) => {
+
+    const { deviceType } = useNotification();
   return (
     <div
       className="min-h-[66px] bg-gradient-to-r from-[#009999] to-[#006666] border-b border-[#e0e0e0] text-secondary px-6 inline-flex w-full justify-between items-center z-50 border-none"
