@@ -13,12 +13,12 @@ export const checkDeviceType = () => {
     typeof window !== "undefined" &&
     (navigator.userAgent.includes("Win") ||
       navigator.userAgent.includes("Mac"));
-  if (isDesktop) {
-    return DEVICE_TYPE.DESKTOP;
+  if (isAndroid) {
+    return DEVICE_TYPE.ANDROID;
   } else if (isIos) {
     return DEVICE_TYPE.IOS;
-  } else if (isAndroid) {
-    return DEVICE_TYPE.ANDROID;
+  } else if (isDesktop) {
+    return DEVICE_TYPE.DESKTOP;
   }
   return null;
 };
