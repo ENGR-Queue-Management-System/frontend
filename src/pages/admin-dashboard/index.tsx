@@ -453,7 +453,7 @@ export default function AdminIndex() {
             >
               <Table striped={true}>
                 <TableHeader>
-                  <TableRow className="sticky text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b2 font-bold top-0 z-30">
+                  <TableRow className="sticky text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b4 font-bold top-0 z-30">
                     <TableHead className="w-[100px]">เลขคิว</TableHead>
                     <TableHead>รหัสนักศึกษา</TableHead>
                     <TableHead>ชื่อ-นามสกุล</TableHead>
@@ -461,7 +461,7 @@ export default function AdminIndex() {
                     <TableHead className="w-[50%]">เพิ่มเติม</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody className=" font-normal text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b2">
+                <TableBody className=" font-normal text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b4">
                   {dataDone.map((item) => (
                     <TableRow key={item.id}>
                       <TableCell className="font-medium py-4 ">
