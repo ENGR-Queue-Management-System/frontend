@@ -52,10 +52,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           fetchCounters();
         }
       } else if (location != Route.Index) {
-        router.replace(Route.Index);
+        // router.replace(Route.Index);
       }
     } else if (![Route.Index, Route.CmuOAuthCallback].includes(location)) {
-      router.replace(Route.Index);
+      // router.replace(Route.Index);
     }
   }, [dispatch, router, user.email]);
 

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import { Route } from "@/config/Route";
 import { useRouter } from "next/navigation";
 import logoEng from "../../public/images/logoSDWhite.png";
@@ -33,7 +34,7 @@ export default function Home() {
             <Image
               src={logoEng}
               alt="logoEng"
-              className=" samsungA24:w-[10vw] mb-3 macair133:max-samsungA24:size-40 iphone:max-sm:size-36 sm:max-macair133:size-[156px]"
+              className=" samsungA24:w-[10vw] mb-3 macair133:max-samsungA24:w-[35vw] iphone:max-sm:w-[32vw] sm:max-macair133:size-[156px]"
             />
             <div>
               <p className=" sm:max-samsungA24:text-[28px] iphone:max-sm:text-[24px] text-[34px]">
@@ -43,7 +44,7 @@ export default function Home() {
                 Automatic Queuing System
               </p>
             </div>
-            
+
             <div className=" border-2 border-white w-full text-white mt-2 py-3 px-5 iphone:max-sm:text-[13px] sm:max-samsungA24:text-[15px]  text-white-500 rounded-md">
               <p>
                 เนื่องจากระบบอยู่ในช่วงทดลองใช้งาน หากท่านพบปัญหาในการใช้งาน{" "}
@@ -68,6 +69,16 @@ export default function Home() {
                 Sign in CMU account
               </Button>
             </a>
+            <Link href="/admin-dashboard">
+              <Button
+                variant="default"
+                className="text-sm font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14   w-fit px-10 rounded-[8px] bg-[#ffffff] text-[#605CA4] hover:bg-[#e8e8e8] 
+             shadow-md hover:shadow-lg"
+              >
+                Admin dashboard
+              </Button>
+            </Link>
+            
             <div className="flex flex-col mt-5">
               <p className="sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]">
                 ท่านไม่มี CMU account?{" "}

@@ -20,63 +20,61 @@ import { useAppSelector } from "@/store";
 import { getUserName } from "@/helpers/function";
 import { useState } from "react";
 import AddCounterModal from "./modal/AddCounterModal";
+import Link from "next/link";
 
-type ProfileProps = {
-  role: "admin" | "student";
-};
-const Profile: React.FC<ProfileProps> = ({ role }) => {
+const Profile: React.FC = () => {
   const user = useAppSelector((state) => state.user);
 
   return (
     <>
-      {role === "admin" ? (
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant="ghost"
-              className="flex items-center translate-x-3 hover:bg-transparent  gap-2"
-            >
-              <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end">
-                <p>{getUserName(user, 3)}</p>
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button
+            variant="ghost"
+            className="flex items-center translate-x-3 hover:bg-transparent  gap-2"
+          >
+            <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end">
+              <p>{getUserName(user, 3)}</p>
+              {user.studentId ? (
+                <p>{user.studentId}</p>
+              ) : user.email ? (
                 <p>ผู้ดูแลระบบ</p>
-              </div>
-              <Icon
-                IconComponent={IconUser}
-                className="!size-10 stroke-white"
-              />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="mr-14">
-            <div className="flex flex-col gap-1">
-              <CounterManageModal
-                triggerText="จัดการเคาท์เตอร์"
-                icon={IconAdminMange}
-                title="จัดการเคาท์เตอร์"
-              ></CounterManageModal>
-              <LogQueueModal
-                triggerText="ประวัติการบริการ"
-                icon={IconHistory}
-                title="ประวัติการบริการ"
-              ></LogQueueModal>
-              <Button className=" bg-white hover:bg-[#f7b1b13b] text-[#f04a4a] justify-start">
-                <Icon
-                  IconComponent={IconLogout}
-                  className=" stroke-[#f04a4a]"
-                />
-                <p className=" translate-x-1">ออกจากระบบ</p>
-              </Button>
+              ) : (
+                <></>
+              )}
             </div>
-          </PopoverContent>
-        </Popover>
-      ) : (
-        <div className="flex items-center translate-x-3  gap-2">
-          <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end">
-            <p>สวิช จารึกพูนผล</p>
-            <p>640610672</p>{" "}
+            <Icon IconComponent={IconUser} className="!size-10 stroke-white" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="mr-14">
+          <div className="flex flex-col gap-1">
+            {/* {!user.student && user.email && (
+              <> */}
+            <CounterManageModal
+              triggerText="จัดการเคาท์เตอร์"
+              icon={IconAdminMange}
+              title="จัดการเคาท์เตอร์"
+            ></CounterManageModal>
+            <LogQueueModal
+              triggerText="ประวัติการบริการ"
+              icon={IconHistory}
+              title="ประวัติการบริการ"
+            ></LogQueueModal>
+            {/* </>
+            )} */}
+            <Link href="/student-dashboard">
+              <Button variant="ghost">Student dashboard</Button>
+            </Link>
+            <Link href="/admin-dashboard">
+              <Button variant="ghost">Admin dashboard</Button>
+            </Link>
+            <Button className=" bg-white hover:bg-[#f7b1b13b] text-[#f04a4a] justify-start">
+              <Icon IconComponent={IconLogout} className=" stroke-[#f04a4a]" />
+              <p className=" translate-x-1">ออกจากระบบ</p>
+            </Button>
           </div>
-          <Icon IconComponent={IconUser} className="!size-10 stroke-white" />
-        </div>
-      )}
+        </PopoverContent>
+      </Popover>
     </>
   );
 };
