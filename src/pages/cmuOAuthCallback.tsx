@@ -19,7 +19,6 @@ export default function CMUOAuthCallback() {
       router.replace(Route.Index);
       return;
     }
-
     fetchData();
   }, [code]);
 
