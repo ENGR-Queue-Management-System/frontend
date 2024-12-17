@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Route } from "@/config/Route";
 import { useRouter } from "next/navigation";
-import logoEng from "../../public/images/logoEng1.png";
+import logoEng from "../../public/images/logoSDWhite.png";
 import cmuLogoWhite from "../../public/images/cmuLogoLogin.png";
 import { useAppSelector } from "@/store";
 import { useEffect } from "react";
@@ -33,7 +33,7 @@ export default function Home() {
             <Image
               src={logoEng}
               alt="logoEng"
-              className=" samsungA24:size-44 macair133:max-samsungA24:size-40 iphone:max-sm:size-36 sm:max-macair133:size-[156px]"
+              className=" samsungA24:w-[10vw] mb-3 macair133:max-samsungA24:size-40 iphone:max-sm:size-36 sm:max-macair133:size-[156px]"
             />
             <div>
               <p className=" sm:max-samsungA24:text-[28px] iphone:max-sm:text-[24px] text-[34px]">
@@ -43,17 +43,10 @@ export default function Home() {
                 Automatic Queuing System
               </p>
             </div>
-            <div className="mt-1">
-              <p className=" text-h2 sm:max-samsungA24:text-[15px] iphone:max-sm:text-[12px] font-[400]">
-                คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่
-              </p>
-              <p className=" text-[16px] sm:max-samsungA24:text-[13px] iphone:max-sm:text-[11px] font-[400] mt-[2px]">
-                Faculty of Engineering, Chiang Mai University
-              </p>
-            </div>
+            
             <div className=" border-2 border-white w-full text-white mt-2 py-3 px-5 iphone:max-sm:text-[13px] sm:max-samsungA24:text-[15px]  text-white-500 rounded-md">
               <p>
-                เนื่องจากระบบอยู่ในช่วงทดลองใช้งานหากท่านพบปัญหาในการใช้งาน{" "}
+                เนื่องจากระบบอยู่ในช่วงทดลองใช้งาน หากท่านพบปัญหาในการใช้งาน{" "}
                 <br /> ให้ท่านปัดแอปพลิเคชันทิ้ง แล้วลองเข้าใหม่อีกครั้ง
                 <p className=" text-white underline  mt-2">
                   รายงานปัญหาได้ที่นี่
