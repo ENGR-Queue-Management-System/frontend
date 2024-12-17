@@ -32,9 +32,4 @@ const nextConfig: NextConfig = {
 
 module.exports = withPWA({
   ...nextConfig,
-  devServer: {
-    https: true,
-    host: true,
-    port: 3000,
-  },
 });
