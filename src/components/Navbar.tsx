@@ -1,6 +1,6 @@
 import Profile from "./Profile";
 import Image from "next/image";
-import logoEng from "../../public/images/logoEng2.png";
+import logoSDWhite from "../../public/images/logoSDMinimalWhite.png";
 
 type NavbarProps = {
   role1: "admin" | "student";
@@ -13,9 +13,9 @@ const Navbar: React.FC<NavbarProps> = ({ role1 }) => {
       style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
     >
       <div className="flex items-center gap-2 -ml-1">
-        <Image className="z-50 w-[50px]" src={logoEng} alt="loginImage" />
+        <Image className="z-50 w-[120px] -ml-8" src={logoSDWhite} alt="loginImage" />
         <div className="flex flex-col w-fit gap-0 font-medium text-[14px] text-white">
-          <p>
+          <p className="-ml-8">
             {role1 === "admin" ? "ระบบจัดการคิว" : "ระบบรับบัตรคิว"}
             <span className="iphone:max-sm:hidden">
               {" "}
@@ -23,11 +23,11 @@ const Navbar: React.FC<NavbarProps> = ({ role1 }) => {
             </span>
           </p>
           {role1 === "admin" ? (
-            <p className="iphone:max-sm:hidden">
+            <p className="iphone:max-sm:hidden -ml-8">
               Queue Management - Engineering CMU
             </p>
           ) : (
-            <p className="iphone:max-sm:hidden">
+            <p className="iphone:max-sm:hidden -ml-8">
               Ticket Queue - Engineering CMU
             </p>
           )}

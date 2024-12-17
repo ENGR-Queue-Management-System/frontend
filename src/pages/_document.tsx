@@ -6,8 +6,8 @@ export default function Document() {
       <Head>
         <meta name="description" content="ENGR Queue Management System" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icon-web.png" />
-        <link rel="icon" href="/icon-web.png" />
+        <link rel="apple-touch-icon" type="image" href="/icon-sd.png" />
+        <link rel="icon" type="image" href="/icon-sd.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
