@@ -12,7 +12,8 @@ export const getUserName = (
     case 2:
       return `${user.firstNameEN?.toLowerCase()} ${user.lastNameEN?.toLowerCase()}`; // john doe
     case 3:
-      return `${user.firstNameTH} ${user.lastNameTH}`; // กข คง
+      if (user.firstNameTH) return `${user.firstNameTH} ${user.lastNameTH}`; // กข คง
+      return "";
     default:
       return `${user.firstNameEN} ${user.lastNameEN?.slice(0, 1)}.`; // John D.
   }

@@ -33,7 +33,7 @@ const Navbar: React.FC<NavbarProps> = ({ role1 }) => {
           )}
         </div>
       </div>
-      <Profile role={role1} />
+      <Profile  />
     </div>
   );
 };
