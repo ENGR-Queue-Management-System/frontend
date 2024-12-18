@@ -16,6 +16,7 @@ import {
 import UnsupportedNotification from "@/components/UnsupportedNotification";
 import { Route } from "@/config/Route";
 import Loading from "@/components/Loading";
+import Navbar from "@/components/Navbar";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { isSupported } = useNotification();
@@ -80,7 +81,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   ) : !isSupported ? (
     <UnsupportedNotification />
   ) : (
-    <Component {...pageProps} />
+    <div className="flex overflow-hidden h-screen w-screen flex-col">
+     {![Route.Index, Route.CmuOAuthCallback].includes(location) && <Navbar /> }
+      <Component {...pageProps} />
+    </div>
   );
   // return <Component {...pageProps} />
 }
