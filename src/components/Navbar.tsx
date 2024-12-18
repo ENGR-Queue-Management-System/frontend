@@ -26,18 +26,18 @@ const Navbar: React.FC = () => {
         />
         <div className="flex flex-col  w-fit gap-0 font-medium  text-b2 acerSwift:max-macair133:text-b4 text-white">
           <p className="-ml-8">
-            {user.email && !user.studentId ? "ระบบจัดการคิว" : "ระบบรับบัตรคิว"}
+            {user.email && !user.studentId ? "ระบบจัดการคิว " : "ระบบรับบัตรคิว "}
             <span className="iphone:max-sm:hidden">
               คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่
             </span>
           </p>
           {user.email && !user.studentId ? (
-            <p className="iphone:max-sm:hidden -ml-8">
-              Queue Management - Engineering CMU
+            <p className=" -ml-8">
+              Queue Management
             </p>
           ) : (
-            <p className="iphone:max-sm:hidden -ml-8">
-              Ticket Queue - Engineering CMU
+            <p className=" -ml-8">
+              Ticket Queue
             </p>
           )}
         </div>
