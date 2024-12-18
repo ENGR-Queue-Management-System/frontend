@@ -12,9 +12,9 @@ const Navbar: React.FC = () => {
     const user = useAppSelector((state) => state.user);
   return (
     <div
-    className={`min-h-[66px] ${
-      deviceType === DEVICE_TYPE.IOS ? "pt-14" : ""
-    } acerSwift:max-macair133:min-h-[58px]  bg-gradient-to-r from-[#009999] to-[#006666] border-b border-[#e0e0e0] text-secondary px-6 inline-flex w-full justify-between items-center z-50 border-none top-0`}
+    className={`min-h-fit ${
+      deviceType === DEVICE_TYPE.IOS || true ? " pt-14" : ""
+    } acerSwift:max-macair133:min-h-[58px]  bg-gradient-to-r  from-[#009999] to-[#006666] border-b border-[#e0e0e0] text-secondary px-6 inline-flex w-full justify-between items-center z-50 border-none top-0`}
     style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
   >
   
