@@ -73,15 +73,16 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   };
 
-  return loading ? (
-    <div className="h-screen w-screen">
-      <Loading />
-    </div>
-  ) : !isSupported ? (
-    <UnsupportedNotification />
-  ) : (
-    <Component {...pageProps} />
-  );
+  // return loading ? (
+  //   <div className="h-screen w-screen">
+  //     <Loading />
+  //   </div>
+  // ) : !isSupported ? (
+  //   <UnsupportedNotification />
+  // ) : (
+  //   <Component {...pageProps} />
+  // );
+  return <Component {...pageProps} />
 }
 
 export default function App(props: AppProps) {

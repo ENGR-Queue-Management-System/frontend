@@ -1,7 +1,7 @@
 {
-  "name": "ENGQueue",
-  "short_name": "ENGQueue",
-  "description": "ENGQueue",
+  "name": "SDQueue",
+  "short_name": "SDQueue",
+  "description": "SDQueue",
   "start_url": "/",
   "display": "fullscreen",
   "background_color": "#ffffff",
