@@ -82,7 +82,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <UnsupportedNotification />
   ) : (
     <div className="flex overflow-hidden h-screen w-screen flex-col">
-     {![Route.Index, Route.CmuOAuthCallback].includes(location) && <Navbar /> }
+     {![Route.Index, Route.DisplayQueue, Route.CmuOAuthCallback].includes(location) && <Navbar /> }
       <Component {...pageProps} />
     </div>
   );

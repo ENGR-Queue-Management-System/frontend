@@ -216,7 +216,7 @@ export default function AdminIndex() {
   ];
 
   return (
-    <div className="px-4 flex iphone:max-sm:h-fit flex-col h-full w-full overflow-y-auto bg-[#f9f9f9] pt-3 ">
+    <div className="px-2 flex iphone:max-sm:h-fit flex-col h-full w-full overflow-y-auto bg-[#f9f9f9] pt-3 ">
       <Tabs
         className="flex flex-col !w-full h-full iphone:max-sm:h-fit"
         defaultValue="incoming"

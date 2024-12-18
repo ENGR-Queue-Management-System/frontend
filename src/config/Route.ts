@@ -3,4 +3,5 @@ export const Route = {
   CmuOAuthCallback: "/cmuOAuthCallback",
   AdminIndex: "/admin-dashboard",
   StudentIndex: "/student-dashboard",
+  DisplayQueue: "/display-queue",
 };
