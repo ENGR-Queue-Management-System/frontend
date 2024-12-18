@@ -5,6 +5,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+      cache_from:
+        - frontend:cache
     container_name: frontend
     restart: always
     ports:
