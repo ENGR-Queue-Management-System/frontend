@@ -2,6 +2,7 @@ import Profile from "./Profile";
 import Image from "next/image";
 import logoSDWhite from "../../public/images/logoSDMinimalWhite.png";
 import { useNotification } from "@/notifications/useNotification";
+import { DEVICE_TYPE } from "@/config/Enum";
 
 type NavbarProps = {
   role1: "admin" | "student";
@@ -11,7 +12,9 @@ const Navbar: React.FC<NavbarProps> = ({ role1 }) => {
   const { deviceType } = useNotification();
   return (
     <div
-      className="min-h-[66px] acerSwift:max-macair133:min-h-[58px] bg-gradient-to-r from-[#009999] to-[#006666] border-b border-[#e0e0e0] text-secondary px-6 inline-flex w-full justify-between items-center z-50 border-none"
+      className={`min-h-[66px] ${
+        deviceType === DEVICE_TYPE.IOS ? "pt-10" : ""
+      } acerSwift:max-macair133:min-h-[58px] bg-gradient-to-r  from-[#009999] to-[#006666] border-b border-[#e0e0e0] text-secondary px-6 inline-flex w-full justify-between items-center z-50 border-none`}
       style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
     >
       <div className="flex items-center gap-2 -ml-1">
