@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Route } from "@/config/Route";
 import { useRouter } from "next/navigation";
-import logoEng from "../../public/images/logoSDWhite.png";
+import logoEng from "../../public/images/logoSDShadow.png";
 import logoEngColor from "../../public/images/logoSDColor.png";
 import cmuLogoWhite from "../../public/images/cmuLogoLogin.png";
 import cmuLogoColor from "../../public/images/cmuLogoLoginWhite.png";
@@ -33,7 +33,7 @@ export default function Home() {
     <div className=" flex items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
       <main
         className={`flex  h-screen w-screen justify-center items-center bg-cover bg-center ${
-          deviceType === DEVICE_TYPE.IOS || true ? "bg-white" : "gradient-bg"
+          deviceType === DEVICE_TYPE.IOS ? "bg-white" : "gradient-bg"
         }`}
       >
         <div className="flex h-screen w-screen justify-center items-center inset-0 px-36  ">
@@ -63,7 +63,7 @@ export default function Home() {
 
             <div
               className={`  ${
-                deviceType === DEVICE_TYPE.IOS || true
+                deviceType === DEVICE_TYPE.IOS 
                   ? "text-[#000000] bg-[#e09d4bb2] font-[500] "
                   : "text-white"
               } border-2 border-white w-full text-white mt-2 py-3 px-5 iphone:max-sm:text-[13px] sm:max-samsungA24:text-[15px]  text-white-500 rounded-md`}
