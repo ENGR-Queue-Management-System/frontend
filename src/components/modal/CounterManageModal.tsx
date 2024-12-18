@@ -49,7 +49,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
         </DialogTrigger>
         <DialogContent className=" max-w-[50vw]">
           <DialogHeader>
-            <DialogTitle className="text-table-foreground ">
+            <DialogTitle className="text-table-foreground acerSwift:max-macair133:text-b1">
               {title}
             </DialogTitle>
           </DialogHeader>
@@ -58,57 +58,27 @@ const CounterManageModal: React.FC<PopupProps> = ({
               className="p-0 rounded-lg mt-2 flex flex-col text-[14px]"
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
             >
-              <div className="flex bg-table-background text-table-foreground gap-3 items-center font-medium py-3 px-4">
-                <Icon IconComponent={IconTopic} /> เคาท์เตอร์ที่ให้บริการ
+              <div className="flex bg-table-background text-table-foreground acerSwift:max-macair133:text-b2 gap-3 items-center font-medium py-3 px-4">
+                <Icon
+                  IconComponent={IconTopic}
+                  className="acerSwift:max-macair133:size-6"
+                />{" "}
+                เคาท์เตอร์ที่ให้บริการ
               </div>
 
               <div className="max-h-[500px] iphone:max-sm:h-[20vh] overflow-y-auto">
                 <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center ">
                   <div className="flex justify-between items-center  px-5 py-4 w-full">
                     <div className="flex items-center gap-4">
-                      <p className=" border rounded-full p-2 px-[14px]">A</p>
+                      <p className=" border rounded-full p-2 px-[14px] acerSwift:max-macair133:text-b3">
+                        A
+                      </p>
                       <div className="flex flex-col">
-                        <p className=" text-b2">เคาท์เตอร์ A</p>
-                        <p className="text-b3 text-primary">เนตรนภา สาระแปง</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-3 ">
-                      <DialogClose asChild>
-                        <Button
-                          onClick={() => setOpenOneCounterModal(true)}
-                          variant="outline"
-                          className=" !border-orange-500 text-orange-500 rounded-full hover:bg-[#f7cbb13b] hover:text-orange-600"
-                        >
-                          <Icon
-                            IconComponent={IconEdit}
-                            className="stroke-orange-500"
-                          />
-                          แก้ไข
-                        </Button>
-                      </DialogClose>
-                      <DialogClose asChild>
-                        <Button
-                          variant="outline"
-                          className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600"
-                        >
-                          <Icon
-                            IconComponent={IconTrash}
-                            className="stroke-delete"
-                          />
-                          ลบ
-                        </Button>
-                      </DialogClose>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center ">
-                  <div className="flex justify-between items-center  px-5 py-4 w-full">
-                    <div className="flex items-center gap-4">
-                      <p className=" border rounded-full p-2 px-[14px]">B</p>
-                      <div className="flex flex-col">
-                        <p className=" text-b2">เคาท์เตอร์ B</p>
-                        <p className="text-b3 text-primary">
-                          จิตตราภิรมย์ รื่นรมณ์ฤดี
+                        <p className=" text-b2 acerSwift:max-macair133:text-b3">
+                          เคาท์เตอร์ A
+                        </p>
+                        <p className="text-b3 acerSwift:max-macair133:text-b4 text-primary">
+                          เนตรนภา สาระแปง
                         </p>
                       </div>
                     </div>
@@ -117,11 +87,11 @@ const CounterManageModal: React.FC<PopupProps> = ({
                         <Button
                           onClick={() => setOpenOneCounterModal(true)}
                           variant="outline"
-                          className=" !border-orange-500 text-orange-500 rounded-full hover:bg-[#f7cbb13b] hover:text-orange-600"
+                          className=" !border-orange-500 text-orange-500 rounded-full hover:bg-[#f7cbb13b] hover:text-orange-600 acerSwift:max-macair133:text-b3"
                         >
                           <Icon
                             IconComponent={IconEdit}
-                            className="stroke-orange-500"
+                            className="stroke-orange-500 acerSwift:max-macair133:!size-4"
                           />
                           แก้ไข
                         </Button>
@@ -129,11 +99,11 @@ const CounterManageModal: React.FC<PopupProps> = ({
                       <DialogClose asChild>
                         <Button
                           variant="outline"
-                          className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600"
+                          className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600 acerSwift:max-macair133:text-b3"
                         >
                           <Icon
                             IconComponent={IconTrash}
-                            className="stroke-delete"
+                            className="stroke-delete acerSwift:max-macair133:!size-4"
                           />
                           ลบ
                         </Button>
@@ -149,7 +119,10 @@ const CounterManageModal: React.FC<PopupProps> = ({
                 className="w-full mt-1"
               >
                 <Icon IconComponent={IconPlus} />
-                <span className="ml-1"> เพิ่มเคาท์เตอร์ที่ให้บริการ</span>
+                <span className="ml-1 acerSwift:max-macair133:text-b3">
+                  {" "}
+                  เพิ่มเคาท์เตอร์ที่ให้บริการ
+                </span>
               </Button>
             </DialogClose>{" "}
           </div>{" "}
