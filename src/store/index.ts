@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
+import loadingReducer from "./loading";
 import userReducer from "./user";
 import subscriptionReducer from "./subscription";
 import counterReducer from "./counter";
 
 const store = configureStore({
   reducer: {
+    loading: loadingReducer,
     user: userReducer,
     subscription: subscriptionReducer,
     counter: counterReducer,

@@ -56,14 +56,12 @@
   width: 100%;
   background: linear-gradient(
     to right,
-    #054545, /* Dark teal start */
-    #0a5050, /* Slightly lighter dark teal */
-    #0f5b5b, /* Medium dark teal */
-    #136666  /* Dark teal end */
+    #054545,
+    /* Dark teal start */ #0a5050,
+    /* Slightly lighter dark teal */ #0f5b5b,
+    /* Medium dark teal */ #136666 /* Dark teal end */
   );
 }
-
-
 
 ::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
@@ -74,7 +72,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: "Manrope", "NotoSansThai", Arial, Helvetica, sans-serif;
+  font-family: "NotoSansThai", "Manrope", Arial, Helvetica, sans-serif;
 }
 
 @layer base {

@@ -40,6 +40,7 @@ export default {
         shadow: {
           table: "0px 0px 10px 0px rgba(0, 0, 0, 0.10)",
         },
+        error: "#fa5252",
         // card: {
         //   DEFAULT: "hsl(var(--card))",
         //   foreground: "hsl(var(--card-foreground))",

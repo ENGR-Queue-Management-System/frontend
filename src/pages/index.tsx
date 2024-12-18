@@ -27,15 +27,13 @@ export default function Home() {
     }
   }, [user]);
 
-  const onClickLogin = () => {};
-
   return (
     <div className=" flex items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
-      <main
-        className={`flex  h-screen w-screen justify-center items-center bg-cover bg-center ${
-          deviceType === DEVICE_TYPE.IOS ? "bg-white" : "gradient-bg"
-        }`}
-      >
+       <main
+          className={`flex  h-screen w-screen justify-center items-center bg-cover bg-center ${
+            deviceType === DEVICE_TYPE.IOS ? "bg-white" : "gradient-bg"
+          }`}
+        >
         <div className="flex h-screen w-screen justify-center items-center inset-0 px-36  ">
           <div
             className={`text-center justify-start items-center flex flex-col 
@@ -122,7 +120,7 @@ export default function Home() {
                       ? "text-[#5868d5]"
                       : "text-white"
                   } `}
-                  onClick={onClickLogin}
+                  onClick={() => router.push(Route.Login)}
                 >
                   คลิกที่นี่
                 </span>
