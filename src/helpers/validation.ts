@@ -63,12 +63,16 @@ export const validateTextInput = (
   }
 };
 
-export const validateEmail = (email: string) => {
-  return /^\S+@cmu\.ac\.th$/i.test(email);
+export const validateEmail = () => {
+  return /^\S+@cmu\.ac\.th$/i;
 };
 
-export const validateThaiLanguage = (value: string) => {
-  return /[\u0E00-\u0E7F]/.test(value);
+export const validateEngThai = () => {
+  return /^[a-zA-Zก-๙\s]+$/;
+};
+
+export const validateThaiLanguage = () => {
+  return /[\u0E00-\u0E7F]/;
 };
 
 export const ellipsisText = (text: string, limit: number = 10) => {

@@ -17,10 +17,13 @@ import UnsupportedNotification from "@/components/UnsupportedNotification";
 import { Route } from "@/config/Route";
 import Loading from "@/components/Loading";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/toaster";
+import { setLoading } from "@/store/loading";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { isSupported } = useNotification();
-  const [loading, setLoading] = useState(true);
+  const loading = useAppSelector((state) => state.loading);
   const router = useRouter();
   const location = usePathname();
   const user = useAppSelector((state) => state.user);
@@ -28,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const timeout = setTimeout(() => setLoading(false), 2000);
+    const timeout = setTimeout(() => dispatch(setLoading(false), 2000));
     return () => clearTimeout(timeout);
   }, []);
 
@@ -74,12 +77,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   };
 
-  return loading ? (
+  return loading.loading ? (
     <div className="h-screen w-screen">
       <Loading />
     </div>
   ) : !isSupported ? (
     <UnsupportedNotification />
+  ) : loading.loadingOverlay ? (
+    <LoadingOverlay />
   ) : (
     <div className="flex overflow-hidden h-screen w-screen flex-col">
      {![Route.Index, Route.DisplayQueue, Route.CmuOAuthCallback].includes(location) && <Navbar /> }
@@ -94,6 +99,7 @@ export default function App(props: AppProps) {
     <Provider store={store}>
       <NotificationProvider>
         <MyApp {...props} />
+        <Toaster />
       </NotificationProvider>
     </Provider>
   );
