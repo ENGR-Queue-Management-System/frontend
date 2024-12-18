@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Route } from "@/config/Route";
 import { useRouter } from "next/navigation";
-import logoEng from "../../public/images/logoSDWhite.png";
+import logoEng from "../../public/images/logoSDShadow.png";
 import instIOS from "../../public/images/instIOS.png";
 import { useAppSelector } from "@/store";
 import { useEffect } from "react";
@@ -12,7 +12,7 @@ import { useNotification } from "@/notifications/useNotification";
 export default function UnsupportedNotification() {
   const { deviceType } = useNotification();
   return (
-    <div className="flex flex-col gradient-bg h-full w-full  bg-cover bg-center">
+    <div className="flex flex-col gradient-bg h-full w-full font-[500]  bg-cover bg-center">
       <div className="flex  justify-center     ">
         <div className="text-white text-center py-5 w-full h-full justify-start items-center flex flex-col gap-5  bg-[rgba(85,85,86,0.25)] ">
           <Image
@@ -28,14 +28,7 @@ export default function UnsupportedNotification() {
               Automatic Queuing System
             </p>
           </div>
-          <div className="mt-1">
-            <p className=" text-h2 sm:max-samsungA24:text-[15px] iphone:max-sm:text-[12px] font-[400]">
-              คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่
-            </p>
-            <p className=" text-[16px] sm:max-samsungA24:text-[13px] iphone:max-sm:text-[11px] font-[400] mt-[2px]">
-              Faculty of Engineering, Chiang Mai University
-            </p>
-          </div>
+          
 
           <div className="mt-12 flex flex-col">
             <div className="flex flex-col text-b2 gap-1 mb-16">
@@ -46,7 +39,7 @@ export default function UnsupportedNotification() {
                 Please follow the steps below to login the system
               </p>
             </div>
-            <p className=" font-semibold text-[20px]">iOS & iPadOS</p>
+            <p className=" font-medium text-[20px]">iOS & iPadOS</p>
           </div>
           <Image src={instIOS} alt="logoEng" className=" w-[95vw]" />
         </div>
@@ -54,7 +47,7 @@ export default function UnsupportedNotification() {
       <div className="flex  w-screen justify-center   ">
         <div className="text-white text-center py-5 w-full h-full justify-start items-center flex flex-col     gap-5  bg-[rgba(85,85,86,0.25)]  ">
           <div className="mt- flex flex-col">
-            <p className=" font-semibold text-[20px] mt-5">Android</p>
+            <p className="font-medium text-[20px] mt-5">Android</p>
           </div>
           <Image src={instIOS} alt="logoEng" className=" w-[95vw]" />
         </div>

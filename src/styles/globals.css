@@ -72,7 +72,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: "NotoSansThai", "Manrope", Arial, Helvetica, sans-serif;
+  font-family:"Manrope", "NotoSansThai",  Arial, Helvetica, sans-serif;
 }
 
 @layer base {
