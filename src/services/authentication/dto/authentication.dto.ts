@@ -4,6 +4,7 @@ export class AuthLoginRequestDTO {
 }
 
 export class LoginRequestDTO {
+  topic: string = "";
   firstName: string = "";
   lastName: string = "";
 }
