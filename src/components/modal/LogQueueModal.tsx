@@ -331,31 +331,33 @@ const LogQueueModal: React.FC<PopupProps> = ({
         </Button>
       </DialogTrigger>
       <DialogContent
-        className="max-w-[100vw] !rounded-none h-[100vh] flex flex-col pb-12"
+        className="max-w-[100vw] !rounded-none h-[100vh] flex flex-col pb-12 acerSwift:max-macair133:pb-9 acerSwift:max-macair133:py-5"
         type="log"
       >
         <DialogHeader>
           <DialogTitle>
-            <div className="flex flex-col gap-2 text-primary px-4">
+            <div className="flex flex-col gap-2  text-primary px-4 acerSwift:max-macair133:text-b1">
               {title}
-              <p className="text-default/60 font-medium text-[14px]">
+              <p className="text-default/60 font-medium text-b2 acerSwift:max-macair133:text-b3">
                 ประวัติการให้บริการย้อนหลัง 30 วัน
               </p>
-              <div className="border-t mt-4"></div>
+              <div className="border-t mt-4 acerSwift:max-macair133:mt-3"></div>
             </div>
           </DialogTitle>
         </DialogHeader>
         <div className="overflow-hidden h-full flex flex-col gap-4 px-10">
           <div className="flex justify-between">
-            <div className="font-semibold text-default flex flex-col">
+            <div className="font-semibold text-default flex flex-col acerSwift:max-macair133:text-b3">
               <p>บริการทั้งหมด</p>
-              <p className="text-[24px] text-table-foreground">14 คิว</p>
+              <p className="text-[24px] acerSwift:max-macair133:text-h1 text-table-foreground">
+                14 คิว
+              </p>
             </div>
             <div className="flex items-center justify-center gap-4">
               <div className="flex w-full max-w-sm items-center gap-2">
                 <Input
                   type="search"
-                  className="w-[340px]"
+                  className="w-[340px] acerSwift:max-macair133:text-b4 acerSwift:max-macair133:!h-8"
                   placeholder="ค้นหา เลขคิว, รหัสนักศึกษา, ชื่อ-นามสกุล"
                 />
               </div>
@@ -365,7 +367,7 @@ const LogQueueModal: React.FC<PopupProps> = ({
                   <Button
                     variant={"outlineDefault"}
                     className={cn(
-                      "min-w-44 justify-start text-left font-normal"
+                      "min-w-44 justify-start text-left font-normal acerSwift:max-macair133:text-b4 acerSwift:max-macair133:!h-8"
                     )}
                   >
                     <CalendarIcon />
@@ -406,28 +408,32 @@ const LogQueueModal: React.FC<PopupProps> = ({
                 <PopoverTrigger asChild>
                   <Button
                     variant={"default"}
-                    className={cn("w-fit justify-start text-left font-norma")}
+                    className={cn(
+                      "w-fit justify-start text-left font-normal acerSwift:max-macair133:!h-8"
+                    )}
                   >
                     <Icon
                       IconComponent={IconFilter}
-                      className=" !size-[15px] -translate-x-1"
+                      className=" !size-[15px] -translate-x-1 acerSwift:max-macair133:-translate-x-0 acerSwift:max-macair133:!size-3.5 "
                     />
 
-                    <span>กรอง</span>
+                    <span className="acerSwift:max-macair133:text-b3 ">
+                      กรอง
+                    </span>
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent
                   className="px-6 py-3 w-auto text-b2 "
                   align="end"
                 >
-                  <p className="font-medium mb-2 text-primary text-b1">
+                  <p className="font-medium mb-2 text-primary text-b1 acerSwift:max-macair133:text-b3">
                     กรองรายการติดต่อ
                   </p>
 
                   {categories.map((cat) => (
                     <div className="flex items-center space-x-2 py-2">
                       <Checkbox />
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 acerSwift:max-macair133:text-b4">
                         <div
                           className={`${
                             cat.topicTH === "อื่นๆ"
@@ -456,11 +462,11 @@ const LogQueueModal: React.FC<PopupProps> = ({
             style={{
               boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
             }}
-            className=" max-h-full rounded-lg overflow-hidden  shadow-shadow-table flex w-full border border-[#E5DDEA]"
+            className="max-h-full rounded-lg overflow-hidden  shadow-shadow-table flex w-full border border-[#E5DDEA]"
           >
             <Table striped={true}>
-              <TableHeader>
-                <TableRow className="sticky text-b2 samsungA24:text-b1 font-bold top-0 z-30 ">
+              <TableHeader className="acerSwift:max-macair133:!h-12 ">
+                <TableRow className="sticky text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b4  font-bold top-0 z-30 ">
                   <TableHead>วันที่</TableHead>
                   <TableHead>เวลาเข้ารับบริการ</TableHead>
                   <TableHead>เลขคิว</TableHead>
@@ -470,7 +476,7 @@ const LogQueueModal: React.FC<PopupProps> = ({
                   <TableHead className="w-[50%]">เพิ่มเติม</TableHead>
                 </TableRow>
               </TableHeader>
-              <TableBody className="font-normal text-b2 samsungA24:text-b1">
+              <TableBody className="font-normal text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b4 ">
                 {dataDone.map((item) => (
                   <TableRow key={item.id}>
                     <TableCell className="w-[10%]">{item.date}</TableCell>

@@ -33,7 +33,7 @@ export default function Home() {
     <div className=" flex items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
       <main
         className={`flex  h-screen w-screen justify-center items-center bg-cover bg-center ${
-          deviceType === DEVICE_TYPE.IOS  ? "bg-white" : "gradient-bg"
+          deviceType === DEVICE_TYPE.IOS ? "bg-white" : "gradient-bg"
         }`}
       >
         <div className="flex h-screen w-screen justify-center items-center inset-0 px-10  ">
@@ -41,36 +41,32 @@ export default function Home() {
             className={`text-center justify-start items-center flex flex-col 
     iphone:max-sm:bg-transparent iphone:max-sm:shadow-none 
     sm:max-samsungA24:px-24 sm:max-samsungA24:py-12 
-    samsungA24:px-28 samsungA24:py-16 
-    gap-5 rounded-[25px] 
+    samsungA24:px-28 samsungA24:py-16   acerSwift:max-macair133:py-4
+    gap-5  acerSwift:max-macair133:gap-4 rounded-[25px] 
     bg-[rgba(85,85,86,0.25)] shadow-[0px_0px_4px_2px_rgba(0,0,0,0.25)] 
-    ${
-      deviceType === DEVICE_TYPE.IOS  ? "text-[#3d3d3d]" : "text-white"
-    }`}
+    ${deviceType === DEVICE_TYPE.IOS ? "text-[#3d3d3d]" : "text-white"}`}
           >
             <Image
-              src={
-                deviceType === DEVICE_TYPE.IOS  ? logoEngColor : logoEng
-              }
+              src={deviceType === DEVICE_TYPE.IOS ? logoEngColor : logoEng}
               alt="logoEng"
-              className="samsungA24:w-[10vw] cursor-not-allowed mb-3 mt-5 macair133:max-samsungA24:w-[15vw] iphone:max-sm:w-[45vw] sm:max-macair133:w-[20vw]"
+              className="samsungA24:w-[10vw] acerSwift:max-macair133:w-[12vw] cursor-not-allowed mb-3 mt-5 macair133:max-samsungA24:w-[15vw] iphone:max-sm:w-[45vw] sm:max-macair133:w-[20vw]"
             />
 
             <div>
-              <p className=" sm:max-samsungA24:text-[28px] font-[400] iphone:max-sm:text-[24px] text-[34px]">
+              <p className=" sm:max-samsungA24:text-[28px] acerSwift:max-macair133:text-h1 font-[400] iphone:max-sm:text-[24px] text-[34px]">
                 ระบบบัตรคิวอัตโนมัติ
               </p>
-              <p className=" sm:max-samsungA24:text-[20px] font-[500] iphone:max-sm:text-[18px] text-[28px]">
+              <p className=" sm:max-samsungA24:text-[20px] acerSwift:max-macair133:text-b1 font-[500] iphone:max-sm:text-[18px] text-[28px]">
                 Automatic Queuing System
               </p>
             </div>
 
             <div
               className={`  ${
-                deviceType === DEVICE_TYPE.IOS 
+                deviceType === DEVICE_TYPE.IOS
                   ? " bg-[#F99B25] font-[500] "
                   : "text-white  font-[400]"
-              }  w-full text-white mt-2 py-3 px-5 iphone:max-sm:text-[13px] sm:max-samsungA24:text-[15px] rounded-md`}
+              }  w-full text-white mt-2 py-3 px-5 iphone:max-sm:text-[13px] sm:max-samsungA24:text-[15px] acerSwift:max-macair133:text-b4 rounded-md`}
             >
               <p>
                 เนื่องจากระบบอยู่ในช่วงทดลองใช้งาน <br />{" "}
@@ -85,8 +81,8 @@ export default function Home() {
                   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.45)",
                 }}
                 variant="default"
-                className={`text-sm font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 mt-4 iphone:max-sm:mt-5 w-fit px-10 rounded-[8px] ${
-                  deviceType === DEVICE_TYPE.IOS 
+                className={`text-sm  acerSwift:max-macair133:text-b4  acerSwift:max-macair133:!py-5 acerSwift:max-macair133:px-6 font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 mt-4 iphone:max-sm:mt-5 w-fit px-10 rounded-[8px] ${
+                  deviceType === DEVICE_TYPE.IOS
                     ? "text-[#ffffff] bg-[#605CA4] hover:bg-[#4d498a]"
                     : "text-[#605CA4] bg-white hover:bg-[#eaeaea]"
                 }
@@ -94,23 +90,21 @@ export default function Home() {
               >
                 <Image
                   src={
-                    deviceType === DEVICE_TYPE.IOS 
-                      ? cmuLogoColor
-                      : cmuLogoWhite
+                    deviceType === DEVICE_TYPE.IOS ? cmuLogoColor : cmuLogoWhite
                   }
                   alt="cmulogo"
-                  className="w-[42px] mr-2"
+                  className="w-[42px] mr-2 acerSwift:max-macair133:w-[35px]"
                 />
                 Sign in CMU account
               </Button>
             </a>
 
             <div className="flex flex-col mt-2">
-              <p className="sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]">
+              <p className="sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
                 <span className="font-[500]"> ท่านไม่มี</span> CMU account?{" "}
                 <span
                   className={`underline font-[500] cursor-pointer ${
-                    deviceType === DEVICE_TYPE.IOS 
+                    deviceType === DEVICE_TYPE.IOS
                       ? "text-[#5868d5]"
                       : "text-white hover:text-[#eaeaea]"
                   } `}
@@ -123,8 +117,8 @@ export default function Home() {
 
             <Button
               variant="link"
-              className={`text-sm font-[500]   underline  ${
-                deviceType === DEVICE_TYPE.IOS 
+              className={`text-sm font-[500]   acerSwift:max-macair133:text-b4 underline  ${
+                deviceType === DEVICE_TYPE.IOS
                   ? "text-[#e18f2b] hover:text-[#cb8a3a]"
                   : "text-[#ffffff] hover:text-[#eaeaea]"
               }

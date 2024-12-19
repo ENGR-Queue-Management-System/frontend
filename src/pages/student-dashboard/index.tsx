@@ -111,9 +111,9 @@ export default function StudentIndex() {
   ];
 
   return (
-    <div className="m-auto overflow-y-auto flex flex-col gap-7 iphone:max-sm:gap-6 items-center justify-start">
+    <div className="m-auto overflow-y-auto flex flex-col gap-7 acerSwift:max-macair133:gap-6 iphone:max-sm:gap-6 items-center justify-start">
       <div
-        className={` flex flex-col items-center justify-center text-center text-[24px] text-semibold iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px]`}
+        className={` flex flex-col items-center justify-center text-center text-[24px] acerSwift:max-macair133:!text-h1 text-semibold iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px]`}
       >
         <p>วันนี้เราสามารถช่วยอะไรนศ.ได้บ้าง แจ้งมาได้เลยนะคะ</p>
         <p className="text-bold iphone:max-sm:w-[250px]">
@@ -134,7 +134,7 @@ export default function StudentIndex() {
           <SelectGroup>
             {categories.map((item) => (
               <SelectItem value={item.topicTH} key={item.id}>
-                <div className="flex items-center gap-4 py-1">
+                <div className="flex items-center gap-4 py-1 acerSwift:max-macair133:gap-4">
                   <div
                     className={`${
                       item.topicTH === "อื่นๆ"
@@ -149,14 +149,16 @@ export default function StudentIndex() {
                         ? "bg-contactList-request"
                         : item.topicTH === "ฝึกงาน-สหกิจศึกษา" &&
                           "bg-contactList-internship"
-                    } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
+                    } h-3 w-3 acerSwift:max-macair133:h-2.5 acerSwift:max-macair133:w-2.5 rounded-[100%] iphone:max-sm:hidden`}
                   ></div>
-                  <div className="flex flex-col text-start text-b2">
+                  <div className="flex flex-col text-start text-b2 acerSwift:max-macair133:text-b3">
                     <p>
                       {item.topicTH} (
-                      <span className="font-medium">{item.topicEN}</span>)
+                      <span className="font-medium ">{item.topicEN}</span>)
                     </p>
-                    <p className="text-b3 text-primary">{item.room}</p>
+                    <p className="text-b3 acerSwift:max-macair133:text-b4 text-primary">
+                      {item.room}
+                    </p>
                   </div>
                 </div>
               </SelectItem>
@@ -172,9 +174,10 @@ export default function StudentIndex() {
 
           return (
             <>
-              <div className="flex flex-col justify-end items-end gap-1">
+              <div className="flex flex-col justify-end items-end gap-1 mx-1">
                 <Textarea
                   maxLength={70}
+                  className="acerSwift:max-macair133:text-b4"
                   placeholder={`ข้อความเพิ่มเติมถึง${room} (Message to ${
                     room === "งานบริการนักศึกษา"
                       ? "Engineering Student Services Unit"
@@ -184,14 +187,19 @@ export default function StudentIndex() {
               </div>
 
               <div className="flex flex-col  items-center justify-center w-full px-6">
-                <p className="text-b2 text-primary font-medium">{room}</p>
+                <p className="text-b2 acerSwift:max-macair133:text-b3 text-primary font-medium">
+                  {room}
+                </p>
                 <div className="flex items-center gap-2">
-                  <Icon IconComponent={IconUsers} className="!size-5" />
-                  <div className="text-start text-b2 iphone:max-sm:text-b3">
+                  <Icon
+                    IconComponent={IconUsers}
+                    className="!size-5 iphone:max-macair133:!size-4"
+                  />
+                  <div className="text-start text-b2 iphone:max-macair133:text-b3 ">
                     <p className="font-medium">
                       มีคิวก่อนหน้าคุณ{" "}
                       <span className="font-semibold">(Waiting) </span>
-                      <span className="text-h2 iphone:max-sm:text-b1 font-semibold text-default">
+                      <span className="text-h2 iphone:max-sm:text-b1 iphone:max-macair133:text-b2 font-semibold text-default">
                         {room === "งานบริการนักศึกษา" ? "11 คิว" : "8 คิว"}
                       </span>
                     </p>
@@ -203,7 +211,7 @@ export default function StudentIndex() {
         })()}
 
       <Button
-        className="flex flex-col items-centern gap-0 p-8 py-7 rounded-xl"
+        className="flex flex-col items-centern gap-0 p-8 py-7 rounded-xl acerSwift:max-macair133:text-b3"
         disabled={selectTopic === ""}
       >
         <p>รับบัตรคิว</p>

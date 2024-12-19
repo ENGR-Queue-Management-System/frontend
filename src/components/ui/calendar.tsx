@@ -31,7 +31,8 @@ function Calendar({
             "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 font-semibold",
           month: "space-y-4",
           caption: "flex justify-center pt-1 relative items-center",
-          caption_label: "text-sm font-medium",
+          caption_label:
+            "text-sm acerSwift:max-macair133:text-b3 acerSwift:max-macair133: font-medium",
           nav: "space-x-1 flex items-center",
           nav_button: cn(
             buttonVariants({ variant: "outline" }),
@@ -51,7 +52,7 @@ function Calendar({
           ),
           day: cn(
             buttonVariants({ variant: "ghost" }),
-            "h-8 w-8 p-0 font-normal aria-selected:opacity-100 text-black"
+            "h-8 w-8 p-0 font-normal aria-selected:opacity-100 text-black acerSwift:max-macair133:text-b4 "
           ),
           day_range_start: "day-range-start",
           day_range_end: "day-range-end",
@@ -86,14 +87,14 @@ function Calendar({
           className="mt-4 text-primary hover:bg-primary/10"
           onClick={action}
         >
-          Today
+          วันนี้
         </Button>
         <Button
           variant="ghost"
-          className="mt-4 text-primary hover:bg-primary/10"
+          className="mt-4 text-primary hover:bg-primary/10 acerSwift:max-macair133:text-b3"
           onClick={onClear}
         >
-          Clear
+          ล้าง
         </Button>
       </div>
     </>
