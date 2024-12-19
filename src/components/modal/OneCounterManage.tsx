@@ -70,20 +70,20 @@ const OneCounterManage: React.FC<PopupProps> = ({
 
   return (
     <Dialog open={opened} onOpenChange={onClose}>
-      <DialogContent className="max-w-[60vw] p-6 mb-1 acerSwift:max-macair133:p-4.5 ">
+      <DialogContent className="max-w-[60vw] p-6 mb-1 acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4 ">
         <DialogHeader>
-          <DialogTitle className="text-table-foreground mb-3 acerSwift:max-macair133:text-h2">
+          <DialogTitle className="text-table-foreground mb-3 acerSwift:max-macair133:text-b1 acerSwift:max-macair133:mb-1">
             {title}
           </DialogTitle>
         </DialogHeader>
-        <div className="flex max-h-[500px] acerSwift:max-macair133:max-h-[400px] gap-5">
-          <div className="flex flex-col w-[40%] gap-4 h-full ">
+        <div className="flex max-h-[500px] acerSwift:max-macair133:max-h-[435px] gap-5 acerSwift:max-macair133:gap-3">
+          <div className="flex flex-col w-[40%] gap-4 h-full acerSwift:max-macair133:gap-2.5">
             <div
               style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
               className="flex rounded-md flex-col w-full p-5 gap-5 acerSwift:max-macair133:p-4 acerSwift:max-macair133:gap-3 justify-end h-full"
             >
-              <div className="flex flex-col gap-1 ">
-                <p className="text-b2 acerSwift:max-macair133:text-b3">
+              <div className="flex flex-col gap-1">
+                <p className="text-b2 acerSwift:max-macair133:text-b4">
                   ชื่อเคาท์เตอร์{" "}
                   <span className="text-secondary">(ตัวอักษรภาษาอังกฤษ)</span>{" "}
                   <span className="text-delete">*</span>
@@ -91,7 +91,7 @@ const OneCounterManage: React.FC<PopupProps> = ({
                 <Input className="h-8 " placeholder="e.g. H"></Input>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-b2 acerSwift:max-macair133:text-b3 ">
+                <p className="text-b2 acerSwift:max-macair133:text-b4 ">
                   บุคคลประจำเคาท์เตอร์{" "}
                   <span className="text-secondary font-medium">
                     (CMU Account)
@@ -105,12 +105,12 @@ const OneCounterManage: React.FC<PopupProps> = ({
               </div>
 
               <div className="w-full max-w-sm ">
-                <p className="text-b2 acerSwift:max-macair133:text-b3 mb-1">
+                <p className="text-b2 acerSwift:max-macair133:text-b4 mb-1">
                   ปิดรับคิวอัตโนมัติ <span className="text-delete">*</span>
                 </p>
                 <Input
                   type="time"
-                  className="w-[40%] acerSwift:max-macair133:w-[42%]  py-2 px-4 border rounded-md text-gray-700"
+                  className="w-[40%] acerSwift:max-macair133:w-[42%] py-2 px-4 border rounded-md text-gray-700"
                 />
                 {/* <TimePickerInput
                   type="time"
@@ -128,7 +128,7 @@ const OneCounterManage: React.FC<PopupProps> = ({
               className="flex rounded-md flex-col w-full p-5 gap-5 acerSwift:max-macair133:gap-3 acerSwift:max-macair133:p-4"
             >
               <div className="flex flex-col">
-                <p className="text-b2 mb-1 acerSwift:max-macair133:text-b3">
+                <p className="text-b2 mb-1 acerSwift:max-macair133:text-b4">
                   หัวข้อบริการประจำเคาท์เตอร์{" "}
                   <span className="text-secondary">(ภาษาไทย)</span>{" "}
                   <span className="text-delete">*</span>
@@ -136,17 +136,14 @@ const OneCounterManage: React.FC<PopupProps> = ({
                 <Input className="h-8" placeholder="e.g. ทุนการศึกษา"></Input>
               </div>
               <div>
-                <p className="text-b2 mb-1 acerSwift:max-macair133:text-b3">
+                <p className="text-b2 mb-1 acerSwift:max-macair133:text-b4">
                   หัวข้อบริการประจำเคาท์เตอร์{" "}
                   <span className="text-secondary">(English)</span>{" "}
                   <span className="text-delete">*</span>
                 </p>
                 <Input className="h-8" placeholder="e.g. scholarship"></Input>
               </div>
-              <Button
-                variant="secondary"
-                className="acerSwift:max-macair133:hidden"
-              >
+              <Button variant="secondary" className="">
                 เพิ่มหัวข้อบริการ
               </Button>
             </div>
@@ -174,7 +171,7 @@ const OneCounterManage: React.FC<PopupProps> = ({
             {categories.map((cat) => (
               <div
                 key={cat.topicTH}
-                className="flex border-b-[1px] mx-5  border-[#e1e1e1] last:border-none px-2 font-medium text-default justify-between gap-3 items-center py-2"
+                className="flex border-b-[1px] mx-5 border-[#e1e1e1] last:border-none px-2 font-medium text-default justify-between gap-3 items-center py-2 acerSwift:max-macair133:py-1.5"
               >
                 <div className="flex items-center gap-3 ">
                   <div
@@ -201,7 +198,7 @@ const OneCounterManage: React.FC<PopupProps> = ({
 
                 <Button
                   variant="outline"
-                  className="border-red-500 rounded-full acerSwift:max-macair133:!p-4  text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
+                  className="border-red-500 rounded-full acerSwift:max-macair133:!p-3.5  text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
                 >
                   <Icon
                     IconComponent={IconTrash}
@@ -213,15 +210,9 @@ const OneCounterManage: React.FC<PopupProps> = ({
           </div>
         </div>
 
-        <div className="flex gap-3 justify-end w-full mt-1">
+        <div className="flex gap-3 justify-end w-full mt-1 acerSwift:max-macair133:mt-0">
           <Button variant={"ghost"} onClick={onClose}>
             ยกเลิก
-          </Button>
-          <Button
-            variant={"ghost"}
-            className="acerSwift:max-macair133:text-1 acerSwift:max-macair133:text-b3"
-          >
-            เพิ่มหัวข้อบริการ
           </Button>
           <Button onClick={onClose} className="px-4">
             เสร็จสิ้น

@@ -17,7 +17,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "iphone:max-sm:w-[85vw] iphone:max-sm:text-sm sm:max-macair133:w-[50vw] text-wrap font-medium flex h-fit w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-0 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 ",
+      "iphone:max-sm:w-[85vw] iphone:max-sm:text-sm iphone:max-macair133:text-sm sm:max-macair133:w-[50vw] text-wrap font-medium flex h-fit w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-0 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 ",
       className
     )}
     style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 0px 2px" }}
@@ -76,7 +76,7 @@ const SelectContent = React.forwardRef<
       className={cn(
         "relative z-50 max-h-80 min-w-[8rem] overflow-y-auto rounded-md border bg-white text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
         position === "popper" &&
-          "iphone:max-sm:w-[85vw] iphone:max-sm:h-72 iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
+          "iphone:max-sm:w-[85vw] iphone:max-sm:h-72 acerSwift:max-macair133:h-[270px] iphone:max-sm:text-sm acerSWift:max-macair133:text-b3 sm:max-macair133:w-[50vw] macair133:w-[40vw] data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
         className
       )}
       position={position}

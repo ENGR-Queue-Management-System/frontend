@@ -10,18 +10,19 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground !text-start  hover:bg-primary/90",
+          "bg-primary text-primary-foreground !text-start  hover:bg-primary/90 acerSwift:max-macair133:text-b4 acerSwift:max-macair133:h-8",
         destructive:
-          "bg-[#023e8a]/10 text-primary shadow-sm hover:bg-destructive/90",
+          "bg-[#023e8a]/10 text-primary shadow-sm hover:bg-destructive/90 acerSwift:max-macair133:text-b4 acerSwift:max-macair133:h-8",
 
         outline:
-          "border border-primary bg-background shadow-sm text-primary hover:bg-[#009999]/10 hover:text-primary",
+          "border border-primary bg-background shadow-sm text-primary hover:bg-[#009999]/10 hover:text-primary acerSwift:max-macair133:text-b4 acerSwift:max-macair133:h-8",
         outlineDefault:
-          "border border-[#CED4DA] bg-background shadow-sm text-[#7F757D]  hover:bg-[#023e8a]/10 hover:text-default",
+          "border border-[#CED4DA] bg-background shadow-sm text-[#7F757D] hover:bg-[#023e8a]/10 hover:text-default acerSwift:max-macair133:text-b4 acerSwift:max-macair133:h-8",
         secondary:
-          "bg-[#009999]/15 text-primary shadow-sm hover:bg-[#009999]/20 ",
-        ghost: "text-[#606060] hover:bg-[#EBEBEB]",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-[#009999]/15 text-primary shadow-sm hover:bg-[#009999]/20 acerSwift:max-macair133:text-b4 acerSwift:max-macair133:h-8",
+        ghost:
+          "text-[#606060] hover:bg-[#EBEBEB] acerSwift:max-macair133:text-b4 acerSwift:max-macair133:h-8",
+        link: "text-primary underline-offset-4 hover:underline acerSwift:max-macair133:text-b4 acerSwift:max-macair133:h-8",
       },
       size: {
         default: "h-9 px-4 py-2",
