@@ -86,9 +86,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   ) : loading.loadingOverlay ? (
     <LoadingOverlay />
   ) : (
-    <div className="flex overflow-hidden h-screen w-screen flex-col">
-     {![Route.Index, Route.DisplayQueue, Route.CmuOAuthCallback].includes(location) && <Navbar /> }
-      <Component {...pageProps} />
+    <div className="flex flex-col h-screen w-screen overflow-hidden">
+      {![Route.Index, Route.DisplayQueue, Route.CmuOAuthCallback].includes(
+        location
+      ) && <Navbar />}
+      <div className="flex flex-col h-full w-full overflow-hidden">
+        <Component {...pageProps} />
+      </div>
     </div>
   );
   // return <Component {...pageProps} />
