@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Route } from "@/config/Route";
 import { useRouter } from "next/navigation";
 import logoSD from "../../public/images/logoSD.png";
-import cmuLogoWhite from "../../public/images/cmuLogoLogin.png";
+import qrCode from "../../public/images/qrCode.png";
 import Icon from "@/components/Icon";
 import { useAppSelector } from "@/store";
 import { useEffect, useState } from "react";
@@ -153,9 +153,9 @@ export default function Home() {
         </div>
 
         {/* Footer Section */}
-        <div className="flex flex-grow bg-slate-800 p-3 pl-3 w-full">
-          <div className="flex flex-col gap-5 w-[70%]">
-            <div className="grid grid-cols-3 gap-5">
+        <div className="flex flex-grow bg-slate-800 px-12 py-3 gap-4  w-full">
+          <div className="flex flex-col gap-4 w-[69%]">
+            <div className="grid grid-cols-3 gap-4">
               <div className="flex rounded-2xl justify-center items-center p-5 text-white bg-[#FF5733] flex-col">
                 <p className="text-[3.3vh]">Counter A</p>
                 <p className="text-[7vh] font-semibold">A081</p>
@@ -169,7 +169,7 @@ export default function Home() {
                 <p className="text-[7vh] font-semibold">C081</p>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid grid-cols-3 gap-4">
               <div className="flex rounded-2xl justify-center items-center p-5 text-white bg-[#28A745] flex-col">
                 <p className="text-[3.3vh]">Counter D</p>
                 <p className="text-[7vh] font-semibold">D081</p>
@@ -184,7 +184,11 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="text-white">จองคิวได้ที่</div>
+          <div className="text-white w-[31%] flex flex-col h-full text-center items-center justify-center">
+            <p className="text-[3.3vh]">จองคิวได้ที่</p>
+            <p className="text-[3.3vh]">q.eng.cmu.ac.th</p>
+            <Image src={qrCode} style={{ borderRadius: '20px'}} alt="qrcode" className="w-[18vw] mr-2" />
+          </div>
         </div>
       </div>
     </div>
