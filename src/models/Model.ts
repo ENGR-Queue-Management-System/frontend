@@ -1,7 +1,8 @@
 import { STATUS } from "@/config/Enum";
 
 export interface IModelSubscription {
-  studentId: string;
+  firstName: string;
+  lastName: string;
   endpoint: string;
   auth: string;
   p256dh: string;
@@ -21,18 +22,18 @@ export interface IModelUser {
   studentId?: string;
   firstNameTH: string;
   lastNameTH: string;
-  firstNameEN: string;
-  lastNameEN: string;
-  email: string;
+  firstNameEN?: string;
+  lastNameEN?: string;
+  email?: string;
   counterId?: number;
   counter?: IModelCounter;
 }
 
 export interface IModelTopic {
   id: number;
-  topic: string;
-  counterId?: number;
-  counter?: IModelCounter;
+  topicTH: string;
+  topicEN: string;
+  code: string;
 }
 
 export interface IModelQueue {
@@ -43,7 +44,7 @@ export interface IModelQueue {
   lastname: string;
   topicId: number;
   topic: IModelTopic;
-  description: string;
+  note: string;
   status: STATUS;
   createdAt: Date;
 }

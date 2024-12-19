@@ -4,6 +4,7 @@ import loadingReducer from "./loading";
 import userReducer from "./user";
 import subscriptionReducer from "./subscription";
 import counterReducer from "./counter";
+import topicReducer from "./topic";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     user: userReducer,
     subscription: subscriptionReducer,
     counter: counterReducer,
+    topic: topicReducer,
   },
 });
 

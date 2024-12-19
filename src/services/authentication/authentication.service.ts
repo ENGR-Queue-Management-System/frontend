@@ -1,6 +1,6 @@
 import { isValidResponse } from "@/helpers/validation";
 import { authenticationController } from "./authentication.repository";
-import { LoginRequestDTO } from "./dto/authentication.dto";
+import { ReserveRequestDTO } from "./dto/authentication.dto";
 
 const authService = authenticationController();
 
@@ -12,7 +12,7 @@ export const loginWithAuth = async (code: string) => {
   return isValidResponse(res);
 };
 
-export const login = async (params: LoginRequestDTO) => {
-  const res = await authService.login(params);
+export const reserveNotLogin = async (params: ReserveRequestDTO) => {
+  const res = await authService.reserveNotLogin(params);
   return isValidResponse(res);
 };

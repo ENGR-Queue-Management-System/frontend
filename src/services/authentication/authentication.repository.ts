@@ -1,5 +1,8 @@
 import apiService from "@/services/apiService";
-import { AuthLoginRequestDTO, LoginRequestDTO } from "./dto/authentication.dto";
+import {
+  AuthLoginRequestDTO,
+  ReserveRequestDTO,
+} from "./dto/authentication.dto";
 
 export const authenticationController = (configService: any = {}) => {
   const service = apiService(configService);
@@ -8,8 +11,8 @@ export const authenticationController = (configService: any = {}) => {
     loginWithAuth: async (params: AuthLoginRequestDTO) => {
       return service.post(`/authentication`, { ...params });
     },
-    login: async (params: LoginRequestDTO) => {
-      return service.post(`/login`, { ...params });
+    reserveNotLogin: async (params: ReserveRequestDTO) => {
+      return service.post(`/reserve`, { ...params });
     },
   };
 };
