@@ -84,7 +84,7 @@ export default function Login() {
 
   return (
     <div className="flex flex-col h-full w-full overflow-y-auto gap-10 justify-center items-center">
-      <div className="flex flex-col h-fit items-center text-[#262626] justify-center text-center text-[24px] font-semibold iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px]">
+      <div className="flex flex-col h-fit items-center text-[#262626] justify-center text-center text-[24px] font-medium iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px]">
         <p>วันนี้เราสามารถช่วยอะไรคุณได้บ้าง</p>
         <p>
           What can we help you with today? <br /> Let us know to get started
