@@ -69,7 +69,7 @@ export default function Home() {
               className={`  ${
                 deviceType === DEVICE_TYPE.IOS 
                   ? " bg-[#F99B25] font-[500] "
-                  : "text-white font-[400]"
+                  : "text-white  font-[400]"
               }  w-full text-white mt-2 py-3 px-5 iphone:max-sm:text-[13px] sm:max-samsungA24:text-[15px] rounded-md`}
             >
               <p>
