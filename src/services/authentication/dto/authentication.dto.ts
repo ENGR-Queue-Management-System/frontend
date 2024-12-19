@@ -3,8 +3,8 @@ export class AuthLoginRequestDTO {
   redirectUri: string = "";
 }
 
-export class LoginRequestDTO {
-  topic: string = "";
+export class ReserveRequestDTO {
+  topic: number = 0;
   firstName: string = "";
   lastName: string = "";
 }

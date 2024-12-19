@@ -32,13 +32,19 @@ export default function StudentIndex() {
 
   useEffect(() => {
     if (deviceType == DEVICE_TYPE.DESKTOP || isGranted) {
-      if (user.studentId && subscription.studentId != user.studentId) {
+      if (
+        user.studentId &&
+        subscription.firstName != user.firstNameTH &&
+        subscription.lastName != user.lastNameTH
+      ) {
         getSubscription();
       }
-      if (user.email) {
+      if (user.email && !user.studentId) {
         router.push(Route.AdminIndex);
-      } else if (user.firstNameTH) {
+      } else if (user.email && user.studentId) {
         router.push(Route.StudentIndex);
+      } else if (user.firstNameTH) {
+        router.push(`${Route.StudentQueue}`);
       }
     }
   }, [user]);

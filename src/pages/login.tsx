@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { useNotification } from "@/notifications/useNotification";
 import { useForm } from "react-hook-form";
-import { login } from "@/services/authentication/authentication.service";
+import { reserveNotLogin } from "@/services/authentication/authentication.service";
 import { Input } from "@/components/ui/input";
 import Loading from "@/components/Loading";
 import { checkTokenExpired, validateEngThai } from "@/helpers/validation";
@@ -18,7 +18,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { LoginRequestDTO } from "@/services/authentication/dto/authentication.dto";
+import { ReserveRequestDTO } from "@/services/authentication/dto/authentication.dto";
 import { useToast } from "@/hooks/use-toast";
 import { setLoadingOverlay } from "@/store/loading";
 import { DEVICE_TYPE } from "@/config/Enum";
@@ -33,24 +33,41 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import Icon from "@/components/Icon";
 import { Label } from "@/components/ui/label";
+import { useEffect } from "react";
+import { getTopics } from "@/services/topic/topic.service";
+import { setTopics } from "@/store/topic";
 
 export default function Login() {
   const { deviceType } = useNotification();
   const loading = useAppSelector((state) => state.loading.loadingOverlay);
+  const topics = useAppSelector((state) => state.topic);
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { toast } = useToast();
   const form = useForm({
-    defaultValues: new LoginRequestDTO(),
+    defaultValues: new ReserveRequestDTO(),
   });
+
+  useEffect(() => {
+    const fetchTopics = async () => {
+      const res = await getTopics();
+      if (res) {
+        dispatch(setTopics(res));
+      }
+    };
+
+    if (!topics.length) {
+      fetchTopics();
+    }
+  }, []);
 
   const onBlurHandler = async (fieldName: any) => {
     await form.trigger(fieldName);
   };
 
-  const onClickLogin = async (data: LoginRequestDTO) => {
+  const onClickLogin = async (data: ReserveRequestDTO) => {
     dispatch(setLoadingOverlay(true));
-    const res = await login(data);
+    const res = await reserveNotLogin(data);
     if (res) {
       localStorage.setItem("token", res.token);
       const decodeToken = await checkTokenExpired(res.token, true);
@@ -64,46 +81,6 @@ export default function Login() {
     }
     dispatch(setLoadingOverlay(false));
   };
-
-  const categories = [
-    {
-      id: 1,
-      topicTH: "ฝึกงาน-สหกิจศึกษา",
-      topicEN: "Internship and Cooperative",
-      room: "Counter A",
-    },
-
-    {
-      id: 2,
-      topicTH: "ทุนการศึกษา",
-      topicEN: "Scholarships",
-      room: "Counter A",
-    },
-    {
-      id: 3,
-      topicTH: "ขอคำปรึกษาด้านวิชาการ",
-      topicEN: "Academic Consultation",
-      room: "Counter B",
-    },
-    {
-      id: 4,
-      topicTH: "แจ้งปัญหาด้านการเรียนการสอน",
-      topicEN: "Report Issues with Teaching and Learning",
-      room: "Counter B",
-    },
-    {
-      id: 5,
-      topicTH: "ขอจัดกิจกรรมหรือโครงการพิเศษ",
-      topicEN: "Request for Special Activities or Projects",
-      room: "Counter C",
-    },
-    {
-      id: 6,
-      topicTH: "อื่นๆ",
-      topicEN: "Others",
-      room: "Counter A",
-    },
-  ];
 
   return (
     <div className="flex flex-col h-full w-full overflow-y-auto gap-10 justify-center items-center">
@@ -135,9 +112,6 @@ export default function Login() {
                 <FormControl>
                   <Input
                     className="w-full"
-                    // className={` ${
-                    //   deviceType === DEVICE_TYPE.IOS ? "w-[90vw]" : "w-[40vw]"
-                    // }`}
                     placeholder="e.g. สมหมาย"
                     {...field}
                     onBlur={() => onBlurHandler("firstName")}
@@ -164,9 +138,6 @@ export default function Login() {
                 <FormControl>
                   <Input
                     className="w-full"
-                    // className={` ${
-                    //   deviceType === DEVICE_TYPE.IOS ? "w-[90vw]" : "w-[40vw]"
-                    // }`}
                     placeholder="e.g. เรียนดี"
                     {...field}
                     onBlur={() => onBlurHandler("lastName")}
@@ -181,7 +152,7 @@ export default function Login() {
             {...form.register("topic", {
               required: true,
               pattern: {
-                value: /.+/,
+                value: /^(?!0$)\d+$/,
                 message: "invalid topic",
               },
             })}
@@ -192,22 +163,26 @@ export default function Login() {
                 </Label>
                 <FormControl>
                   <Select
-                    {...field}
-                    onValueChange={(value) => form.setValue("topic", value)}
+                    name="topic"
+                    onValueChange={(value) =>
+                      form.setValue("topic", parseInt(value))
+                    }
                   >
                     <SelectTrigger
+                      {...field}
                       className={`iphone:max-sm:w-[85vw] iphone:max-sm:h-32 iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] px-6 ${
-                        form.getValues().topic === ""
+                        form.getValues().topic === 0
                           ? "py-3 text-primary iphone:max-sm:h-12"
                           : "py-2 iphone:max-sm:h-18"
                       }`}
+                      onBlur={() => onBlurHandler("topic")}
                     >
                       <SelectValue placeholder="เลือกเรื่องที่ต้องการจะให้เราช่วยเหลือ" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        {categories.map((item) => (
-                          <SelectItem value={item.topicTH} key={item.id}>
+                        {topics.map((item) => (
+                          <SelectItem value={item.id.toString()} key={item.id}>
                             <div className="flex items-center gap-4 py-1">
                               <div
                                 className={`${
@@ -235,9 +210,6 @@ export default function Login() {
                                   </span>
                                   )
                                 </p>
-                                <p className="text-b3 text-primary">
-                                  {item.room}
-                                </p>
                               </div>
                             </div>
                           </SelectItem>
@@ -246,48 +218,31 @@ export default function Login() {
                     </SelectContent>
                   </Select>
                 </FormControl>
-                {form.getValues().topic !== "" &&
-                  (() => {
-                    const room = categories.find(
-                      (item) => item.topicTH === form.getValues().topic
-                    )?.room;
+                {form.getValues().topic !== 0 && (
+                  <>
+                    <div className="flex flex-col justify-end items-end gap-1">
+                      <Textarea
+                        maxLength={70}
+                        placeholder={`ข้อความเพิ่มเติม (Message)`}
+                      />
+                    </div>
 
-                    return (
-                      <>
-                        <div className="flex flex-col justify-end items-end gap-1">
-                          <Textarea
-                            maxLength={70}
-                            placeholder={`ข้อความเพิ่มเติมถึง ${room} (Message to ${room})`}
-                          />
-                        </div>
-
-                        <div className="flex flex-col  items-center justify-center w-full px-6">
-                          <p className="text-b2 text-primary font-medium">
-                            {room}
+                    <div className="flex flex-col  items-center justify-center w-full px-6">
+                      <div className="flex items-center gap-2">
+                        <Icon IconComponent={IconUsers} className="!size-5" />
+                        <div className="text-start text-b2 iphone:max-sm:text-b3">
+                          <p className="font-medium">
+                            มีคิวก่อนหน้าคุณ
+                            <span className="font-semibold"> (Waiting) </span>
+                            <span className="text-h2 iphone:max-sm:text-b1 font-semibold text-default">
+                              11 คิว
+                            </span>
                           </p>
-                          <div className="flex items-center gap-2">
-                            <Icon
-                              IconComponent={IconUsers}
-                              className="!size-5"
-                            />
-                            <div className="text-start text-b2 iphone:max-sm:text-b3">
-                              <p className="font-medium">
-                                มีคิวก่อนหน้าคุณ{" "}
-                                <span className="font-semibold">
-                                  (Waiting){" "}
-                                </span>
-                                <span className="text-h2 iphone:max-sm:text-b1 font-semibold text-default">
-                                  {room === "งานบริการนักศึกษา"
-                                    ? "11 คิว"
-                                    : "8 คิว"}
-                                </span>
-                              </p>
-                            </div>
-                          </div>
                         </div>
-                      </>
-                    );
-                  })()}
+                      </div>
+                    </div>
+                  </>
+                )}
               </FormItem>
             )}
           />
