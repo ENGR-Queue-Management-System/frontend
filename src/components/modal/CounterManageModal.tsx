@@ -63,7 +63,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
                   IconComponent={IconTopic}
                   className="acerSwift:max-macair133:size-6"
                 />{" "}
-                เคาท์เตอร์ที่ให้บริการ
+                เคาน์เตอร์ที่ให้บริการ
               </div>
 
               <div className="max-h-[500px] iphone:max-sm:h-[20vh] overflow-y-auto">
@@ -75,7 +75,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
                       </p>
                       <div className="flex flex-col">
                         <p className=" text-b2 acerSwift:max-macair133:text-b3">
-                          เคาท์เตอร์ A
+                          เคาน์เตอร์ A
                         </p>
                         <p className="text-b3 acerSwift:max-macair133:text-b4 text-primary">
                           เนตรนภา สาระแปง
@@ -121,7 +121,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
                 <Icon IconComponent={IconPlus} />
                 <span className="ml-1 acerSwift:max-macair133:text-b3">
                   {" "}
-                  เพิ่มเคาท์เตอร์ที่ให้บริการ
+                  เพิ่มเคาน์เตอร์ที่ให้บริการ
                 </span>
               </Button>
             </DialogClose>{" "}
@@ -129,7 +129,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
         </DialogContent>
         {openOneCounterModal && (
           <OneCounterModal
-            title="เพิ่มเคาท์เตอร์ที่ให้บริการ"
+            title="เพิ่มเคาน์เตอร์ที่ให้บริการ"
             type="add"
             opened={openOneCounterModal}
             onClose={() => {
@@ -140,7 +140,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
         )}
         {openOneCounterModal && (
           <OneCounterManage
-            title="แก้ไขเคาท์เตอร์ A"
+            title="แก้ไขเคาน์เตอร์ A"
             type="edit"
             opened={openOneCounterModal}
             onClose={() => {

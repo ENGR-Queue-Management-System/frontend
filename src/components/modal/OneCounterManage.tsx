@@ -12,6 +12,8 @@ import { Input } from "@/components/ui/input";
 import IconTrash from "../../../public/icons/trash.svg";
 import IconList from "../../../public/icons/list.svg";
 import Icon from "@/components/Icon";
+import { Checkbox } from "@/components/ui/checkbox"
+
 
 import { TimePickerInput } from "../ui/time-picker-input";
 import { Period } from "../ui/time-picker-utils";
@@ -70,29 +72,29 @@ const OneCounterManage: React.FC<PopupProps> = ({
 
   return (
     <Dialog open={opened} onOpenChange={onClose}>
-      <DialogContent className="max-w-[60vw] p-6 mb-1 acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4 ">
+      <DialogContent className="max-w-[40vw] p-6 mb-1 acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4 ">
         <DialogHeader>
           <DialogTitle className="text-table-foreground mb-3 acerSwift:max-macair133:text-b1 acerSwift:max-macair133:mb-1">
             {title}
           </DialogTitle>
         </DialogHeader>
-        <div className="flex max-h-[500px] acerSwift:max-macair133:max-h-[435px] gap-5 acerSwift:max-macair133:gap-3">
-          <div className="flex flex-col w-[40%] gap-4 h-full acerSwift:max-macair133:gap-2.5">
+        <div className="flex flex-col max-h-[65vh] acerSwift:max-macair133:max-h-[435px] gap-5 acerSwift:max-macair133:gap-3">
+          <div className="flex flex-col w-full gap-4 h-full acerSwift:max-macair133:gap-2.5">
             <div
               style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
               className="flex rounded-md flex-col w-full p-5 gap-5 acerSwift:max-macair133:p-4 acerSwift:max-macair133:gap-3 justify-end h-full"
             >
               <div className="flex flex-col gap-1">
                 <p className="text-b2 acerSwift:max-macair133:text-b4">
-                  ชื่อเคาท์เตอร์{" "}
-                  <span className="text-secondary">(ตัวอักษรภาษาอังกฤษ)</span>{" "}
+                  เลขเคาน์เตอร์{" "}
+                  <span className="text-secondary">(กรอกเลขระหว่าง 1 ถึง 6)</span>{" "}
                   <span className="text-delete">*</span>
                 </p>
-                <Input className="h-8 " placeholder="e.g. H"></Input>
+                <Input className="h-8 " placeholder="e.g. 5"></Input>
               </div>
               <div className="flex flex-col gap-1">
                 <p className="text-b2 acerSwift:max-macair133:text-b4 ">
-                  บุคคลประจำเคาท์เตอร์{" "}
+                  บุคคลประจำเคาน์เตอร์{" "}
                   <span className="text-secondary font-medium">
                     (CMU Account)
                   </span>{" "}
@@ -123,48 +125,24 @@ const OneCounterManage: React.FC<PopupProps> = ({
                 /> */}
               </div>
             </div>
-            <div
-              style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
-              className="flex rounded-md flex-col w-full p-5 gap-5 acerSwift:max-macair133:gap-3 acerSwift:max-macair133:p-4"
-            >
-              <div className="flex flex-col">
-                <p className="text-b2 mb-1 acerSwift:max-macair133:text-b4">
-                  หัวข้อบริการประจำเคาท์เตอร์{" "}
-                  <span className="text-secondary">(ภาษาไทย)</span>{" "}
-                  <span className="text-delete">*</span>
-                </p>
-                <Input className="h-8" placeholder="e.g. ทุนการศึกษา"></Input>
-              </div>
-              <div>
-                <p className="text-b2 mb-1 acerSwift:max-macair133:text-b4">
-                  หัวข้อบริการประจำเคาท์เตอร์{" "}
-                  <span className="text-secondary">(English)</span>{" "}
-                  <span className="text-delete">*</span>
-                </p>
-                <Input className="h-8" placeholder="e.g. scholarship"></Input>
-              </div>
-              <Button variant="secondary" className="">
-                เพิ่มหัวข้อบริการ
-              </Button>
-            </div>
+            
           </div>
 
           <div
             style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
             className="overflow-y-auto rounded-md flex flex-1 flex-col h-full"
           >
-            <div className="sticky flex top-0 bg-table-background text-table-foreground gap-3 px-5 items-center justify-between font-medium py-3">
-              <div className="flex gap-3 items-center acerSwift:max-macair133:text-b2">
+            <div className="sticky flex top-0  bg-table-background text-table-foreground gap-3 px-5 items-center justify-between font-medium py-3">
+              <div className="flex gap-3 text-b2 items-center acerSwift:max-macair133:text-b2">
                 <Icon
                   IconComponent={IconList}
-                  className="acerSwift:max-macair133:!size-5"
+                  className="acerSwift:max-macair133:!size-4 size-5"
                 />
-                รายการติดต่อ
+                หัวข้อบริการ
               </div>
 
-              <div className="text-b1 acerSwift:max-macair133:text-b2">
-                {" "}
-                {categories.length} รายการ
+              <div className="text-b2 text-red-500 acerSwift:max-macair133:text-b2">
+                เลือกอย่างน้อย 1 รายการ
               </div>
             </div>
 
@@ -173,30 +151,15 @@ const OneCounterManage: React.FC<PopupProps> = ({
                 key={cat.topicTH}
                 className="flex border-b-[1px] mx-5 border-[#e1e1e1] last:border-none px-2 font-medium text-default justify-between gap-3 items-center py-2 acerSwift:max-macair133:py-1.5"
               >
-                <div className="flex items-center gap-3 ">
-                  <div
-                    className={`${
-                      cat.topicTH === "อื่นๆ"
-                        ? "bg-contactList-others"
-                        : cat.topicTH === "ทุนการศึกษา"
-                        ? "bg-contactList-scholarship"
-                        : cat.topicTH === "ขอคำปรึกษาด้านวิชาการ"
-                        ? "bg-contactList-consultation"
-                        : cat.topicTH === "แจ้งปัญหาด้านการเรียนการสอน"
-                        ? "bg-contactList-report"
-                        : cat.topicTH === "ขอจัดกิจกรรมหรือโครงการพิเศษ"
-                        ? "bg-contactList-request"
-                        : cat.topicTH === "ฝึกงาน-สหกิจศึกษา" &&
-                          "bg-contactList-internship"
-                    } h-3 w-3 acerSwift:max-macair133:h-2.5 acerSwift:max-macair133:w-2.5 rounded-[100%]`}
-                  ></div>
+                <div className="flex items-center gap-5 ">
+                <Checkbox id="terms1" />
                   <div className="flex flex-col py-2 text-b2 acerSwift:max-macair133:text-b4">
                     <p>{cat.topicTH}</p>
                     <p>{cat.topicEN}</p>
                   </div>
                 </div>
 
-                <Button
+                {/* <Button
                   variant="outline"
                   className="border-red-500 rounded-full acerSwift:max-macair133:!p-3.5  text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
                 >
@@ -204,7 +167,7 @@ const OneCounterManage: React.FC<PopupProps> = ({
                     IconComponent={IconTrash}
                     className="stroke-delete acerSwift:max-macair133:!size-3.5"
                   />
-                </Button>
+                </Button> */}
               </div>
             ))}
           </div>

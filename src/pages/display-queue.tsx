@@ -86,7 +86,7 @@ export default function Home() {
               หมายเลขคิวที่เรียก <br /> Called Queue
             </TableHead>
             <TableHead className=" bg-[#001F3F] rounded-tr-2xl border-b-[2px] border-[#8ff5a7]  text-[3vh] text-center text-[#ffffff] p-3">
-              เคาท์เตอร์ <br /> (Counter)
+              เคาน์เตอร์ <br /> (Counter)
             </TableHead>
           </TableRow>
         </TableHeader>

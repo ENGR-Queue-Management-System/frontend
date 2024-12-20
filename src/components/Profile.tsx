@@ -21,6 +21,7 @@ import { getUserName } from "@/helpers/function";
 import { useState } from "react";
 import AddCounterModal from "./modal/AddCounterModal";
 import Link from "next/link";
+import ContactTopicManageModal from "./modal/ContactTopicManageModal";
 
 const Profile: React.FC = () => {
   const user = useAppSelector((state) => state.user);
@@ -53,10 +54,15 @@ const Profile: React.FC = () => {
           <div className="flex flex-col gap-1">
             {/* {!user.student && user.email && (
               <> */}
+                  <ContactTopicManageModal
+                triggerText="จัดการหัวข้อการบริการ"
+                icon={IconAdminMange}
+                title="จัดการหัวข้อการบริการ"
+              ></ContactTopicManageModal>
             <CounterManageModal
-              triggerText="จัดการเคาท์เตอร์"
+              triggerText="จัดการเคาน์เตอร์"
               icon={IconAdminMange}
-              title="จัดการเคาท์เตอร์"
+              title="จัดการเคาน์เตอร์"
             ></CounterManageModal>
             <LogQueueModal
               triggerText="ประวัติการบริการ"
