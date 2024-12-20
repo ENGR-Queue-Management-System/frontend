@@ -36,6 +36,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   useEffect(() => {
+    if (!counters.length) {
+      fetchCounters();
+    }
     const token = localStorage.getItem("token");
     if (token) {
       const decodedToken: any = checkTokenExpired(token, true);
@@ -51,9 +54,6 @@ function MyApp({ Component, pageProps }: AppProps) {
               })
             );
           }
-        }
-        if (!counters.length) {
-          fetchCounters();
         }
       } else if (location != Route.Index) {
         // router.replace(Route.Index);

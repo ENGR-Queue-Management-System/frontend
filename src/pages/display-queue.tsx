@@ -1,7 +1,7 @@
+import Router from "next/router";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Route } from "@/config/Route";
-import { useRouter } from "next/navigation";
 import logoSD from "../../public/images/logoSD.png";
 import qrCode from "../../public/images/qrCode.png";
 import Icon from "@/components/Icon";
@@ -20,15 +20,14 @@ import {
 } from "@/components/ui/table";
 
 export default function Home() {
-  const router = useRouter();
   const user = useAppSelector((state) => state.user);
 
   useEffect(() => {
     if (user.email) {
       if (user.studentId) {
-        router.push(Route.StudentIndex);
+        Router.push(Route.StudentIndex);
       } else {
-        router.push(Route.AdminIndex);
+        Router.push(Route.AdminIndex);
       }
     }
   }, [user]);
@@ -187,7 +186,12 @@ export default function Home() {
           <div className="text-white w-[31%] flex flex-col h-full text-center items-center justify-center">
             <p className="text-[3.3vh]">จองคิวได้ที่</p>
             <p className="text-[3.3vh]">q.eng.cmu.ac.th</p>
-            <Image src={qrCode} style={{ borderRadius: '20px'}} alt="qrcode" className="w-[18vw] mr-2" />
+            <Image
+              src={qrCode}
+              style={{ borderRadius: "20px" }}
+              alt="qrcode"
+              className="w-[18vw] mr-2"
+            />
           </div>
         </div>
       </div>

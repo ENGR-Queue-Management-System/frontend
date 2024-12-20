@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import Router from "next/router";
 import { Route } from "@/config/Route";
-import { useRouter } from "next/navigation";
 import logoEng from "../../public/images/logoSDShadow.png";
 import logoEngColor from "../../public/images/logoSDColor.png";
 import cmuLogoWhite from "../../public/images/cmuLogoLogin.png";
@@ -16,15 +16,14 @@ import iconFlag from "../../public/icons/flag.svg";
 
 export default function Home() {
   const { deviceType } = useNotification();
-  const router = useRouter();
   const user = useAppSelector((state) => state.user);
 
   useEffect(() => {
     if (user.email) {
       if (user.studentId) {
-        router.push(Route.StudentIndex);
+        Router.push(Route.StudentIndex);
       } else {
-        router.push(Route.AdminIndex);
+        Router.push(Route.AdminIndex);
       }
     }
   }, [user]);
@@ -108,7 +107,7 @@ export default function Home() {
                       ? "text-[#5868d5]"
                       : "text-white hover:text-[#eaeaea]"
                   } `}
-                  onClick={() => router.push(Route.Login)}
+                  onClick={() => Router.push(Route.Login)}
                 >
                   คลิกที่นี่
                 </span>

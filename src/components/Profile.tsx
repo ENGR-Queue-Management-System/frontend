@@ -22,6 +22,7 @@ import { useState } from "react";
 import AddCounterModal from "./modal/AddCounterModal";
 import Link from "next/link";
 import ContactTopicManageModal from "./modal/ContactTopicManageModal";
+import { logout } from "@/services/user/user.service";
 
 const Profile: React.FC = () => {
   const user = useAppSelector((state) => state.user);
@@ -77,7 +78,10 @@ const Profile: React.FC = () => {
             <Link href="/admin-dashboard">
               <Button variant="ghost">Admin dashboard</Button>
             </Link>
-            <Button className=" bg-white hover:bg-[#f7b1b13b] text-[#f04a4a] justify-start">
+            <Button
+              className=" bg-white hover:bg-[#f7b1b13b] text-[#f04a4a] justify-start"
+              onClick={logout}
+            >
               <Icon IconComponent={IconLogout} className=" stroke-[#f04a4a]" />
               <p className=" translate-x-1">ออกจากระบบ</p>
             </Button>

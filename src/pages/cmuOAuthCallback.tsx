@@ -1,4 +1,5 @@
-import { useRouter, useSearchParams } from "next/navigation";
+import Router from "next/router";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Route } from "@/config/Route";
 import { useEffect } from "react";
@@ -8,7 +9,6 @@ import { setUser } from "@/store/user";
 import { jwtDecode } from "jwt-decode";
 
 export default function CMUOAuthCallback() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
   const user = useAppSelector((state) => state.user);
@@ -16,7 +16,7 @@ export default function CMUOAuthCallback() {
 
   useEffect(() => {
     if (!code && !localStorage.getItem("token")) {
-      router.replace(Route.Index);
+      Router.replace(Route.Index);
       return;
     }
     fetchData();
@@ -29,11 +29,11 @@ export default function CMUOAuthCallback() {
         localStorage.setItem("token", res.token);
         if (res.user) {
           dispatch(setUser(res.user));
-          router.push(Route.AdminIndex);
+          Router.push(Route.AdminIndex);
         } else {
           const decodedToken = jwtDecode(res.token);
           dispatch(setUser(decodedToken));
-          router.push(Route.StudentIndex);
+          Router.push(Route.StudentIndex);
         }
       }
     }
@@ -46,7 +46,7 @@ export default function CMUOAuthCallback() {
         <Button
           variant="destructive"
           className="!text-lg"
-          onClick={() => router.back()}
+          onClick={() => Router.back()}
         >
           Back
         </Button>

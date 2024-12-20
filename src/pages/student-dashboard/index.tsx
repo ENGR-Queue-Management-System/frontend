@@ -18,7 +18,7 @@ import { subscribeNotification } from "@/services/subscription/subscription.serv
 import { setSubscription } from "@/store/subscription";
 import { useNotification } from "@/notifications/useNotification";
 import { urlBase64ToUint8Array } from "@/lib/utils";
-import { useRouter } from "next/navigation";
+import Router from "next/router";
 import { Route } from "@/config/Route";
 import { DEVICE_TYPE } from "@/config/Enum";
 
@@ -28,7 +28,6 @@ export default function StudentIndex() {
   const user = useAppSelector((state) => state.user);
   const subscription = useAppSelector((state) => state.subscription);
   const dispatch = useAppDispatch();
-  const router = useRouter();
   const [selectTopic, setSelectTopic] = useState(0);
 
   useEffect(() => {
@@ -41,11 +40,11 @@ export default function StudentIndex() {
         getSubscription();
       }
       if (user.email && !user.studentId) {
-        router.push(Route.AdminIndex);
+        Router.push(Route.AdminIndex);
       } else if (user.email && user.studentId) {
-        router.push(Route.StudentIndex);
+        Router.push(Route.StudentIndex);
       } else if (user.firstNameTH) {
-        router.push(`${Route.StudentQueue}`);
+        Router.push(`${Route.StudentQueue}`);
       }
     }
   }, [user]);

@@ -1,16 +1,9 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { Route } from "@/config/Route";
-import { useRouter } from "next/navigation";
 import logoEng from "../../public/images/logoSDShadow.png";
 import instIOS from "../../public/images/instIOS.png";
-import { useAppSelector } from "@/store";
-import { useEffect } from "react";
-import { useNotification } from "@/notifications/useNotification";
 
 export default function UnsupportedNotification() {
-  const { deviceType } = useNotification();
   return (
     <div className="flex flex-col gradient-bg h-full w-full font-[500]  bg-cover bg-center">
       <div className="flex  justify-center     ">
@@ -28,7 +21,6 @@ export default function UnsupportedNotification() {
               Automatic Queuing System
             </p>
           </div>
-          
 
           <div className="mt-12 flex flex-col">
             <div className="flex flex-col text-b2 gap-1 mb-16">
