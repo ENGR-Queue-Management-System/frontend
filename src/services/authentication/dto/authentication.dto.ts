@@ -4,7 +4,8 @@ export class AuthLoginRequestDTO {
 }
 
 export class ReserveRequestDTO {
-  topic: number = 0;
   firstName: string = "";
   lastName: string = "";
+  topic: number = 0;
+  note?: string;
 }

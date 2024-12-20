@@ -21,9 +21,11 @@ export const getUserName = (
 
 export const dateFormatter = (
   date: string | Date | undefined,
+  timeOnly: boolean = false,
   format?: number
 ) => {
   if (!date) return;
+  if (timeOnly) return moment(`1970-01-01T${date}`).format("HH:mm"); // 16:00
   switch (format) {
     case 1:
       return moment(date).format("DD/MM/YYYY"); // 25/09/2024

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
+import Router from "next/router";
 import { Route } from "@/config/Route";
-import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { useNotification } from "@/notifications/useNotification";
 import { useForm } from "react-hook-form";
@@ -19,7 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { ReserveRequestDTO } from "@/services/authentication/dto/authentication.dto";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
 import { setLoadingOverlay } from "@/store/loading";
 import { DEVICE_TYPE } from "@/config/Enum";
 import {
@@ -40,10 +40,14 @@ import { setTopics } from "@/store/topic";
 export default function Login() {
   const { deviceType } = useNotification();
   const loading = useAppSelector((state) => state.loading.loadingOverlay);
-  const topics = useAppSelector((state) => state.topic);
-  const router = useRouter();
+  const counters = useAppSelector((state) =>
+    state.counter.filter(({ status }) => status == true)
+  );
+  const topicIds = counters.flatMap(({ topic }) => topic.map((t) => t.id));
+  const topics = useAppSelector((state) =>
+    state.topic.filter(({ id }) => topicIds.includes(id))
+  );
   const dispatch = useAppDispatch();
-  const { toast } = useToast();
   const form = useForm({
     defaultValues: new ReserveRequestDTO(),
   });
@@ -73,11 +77,11 @@ export default function Login() {
       const decodeToken = await checkTokenExpired(res.token, true);
       dispatch(setUser(decodeToken));
       toast({
-        title: "Login Successfully",
+        title: "Reserve Successfully",
         // description: "",
         duration: 3,
       });
-      router.push(Route.StudentIndex);
+      Router.push(Route.StudentQueue);
     }
     dispatch(setLoadingOverlay(false));
   };
@@ -218,36 +222,44 @@ export default function Login() {
                     </SelectContent>
                   </Select>
                 </FormControl>
-                {form.getValues().topic !== 0 && (
-                  <>
-                    <div className="flex flex-col justify-end items-end gap-1">
-                      <Textarea
-                        maxLength={70}
-                        placeholder={`ข้อความเพิ่มเติม (Message)`}
-                      />
-                    </div>
-
-                    <div className="flex flex-col  items-center justify-center w-full px-6">
-                      <div className="flex items-center gap-2">
-                        <Icon IconComponent={IconUsers} className="!size-5" />
-                        <div className="text-start text-b2 iphone:max-sm:text-b3">
-                          <p className="font-medium">
-                            มีคิวก่อนหน้าคุณ
-                            <span className="font-semibold"> (Waiting) </span>
-                            <span className="text-h2 iphone:max-sm:text-b1 font-semibold text-default">
-                              11 คิว
-                            </span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )}
               </FormItem>
             )}
           />
+          {form.getValues().topic !== 0 && (
+            <FormField
+              control={form.control}
+              name="note"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="flex flex-col justify-end items-end gap-1">
+                    <FormControl>
+                      <Textarea
+                        {...field}
+                        maxLength={70}
+                        placeholder={`ข้อความเพิ่มเติม (Message)`}
+                      />
+                    </FormControl>
+                  </div>
+                  <div className="flex flex-col  items-center justify-center w-full px-6">
+                    <div className="flex items-center gap-2">
+                      <Icon IconComponent={IconUsers} className="!size-5" />
+                      <div className="text-start text-b2 iphone:max-sm:text-b3">
+                        <p className="font-medium">
+                          มีคิวก่อนหน้าคุณ
+                          <span className="font-semibold"> (Waiting) </span>
+                          <span className="text-h2 iphone:max-sm:text-b1 font-semibold text-default">
+                            11 คิว
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </FormItem>
+              )}
+            />
+          )}
           <div className="flex justify-center gap-10 mt-10">
-            <Button variant="secondary" onClick={() => router.back()}>
+            <Button variant="secondary" onClick={() => Router.back()}>
               Back
             </Button>
             <Button type="submit" disabled={loading} variant="default">

@@ -18,17 +18,17 @@ import { subscribeNotification } from "@/services/subscription/subscription.serv
 import { setSubscription } from "@/store/subscription";
 import { useNotification } from "@/notifications/useNotification";
 import { urlBase64ToUint8Array } from "@/lib/utils";
-import { useRouter } from "next/navigation";
+import Router from "next/router";
 import { Route } from "@/config/Route";
 import { DEVICE_TYPE } from "@/config/Enum";
 
 export default function StudentIndex() {
   const { deviceType, isGranted, onSubscribe, onError } = useNotification();
+  const topics = useAppSelector((state) => state.topic);
   const user = useAppSelector((state) => state.user);
   const subscription = useAppSelector((state) => state.subscription);
   const dispatch = useAppDispatch();
-  const router = useRouter();
-  const [selectTopic, setSelectTopic] = useState("");
+  const [selectTopic, setSelectTopic] = useState(0);
 
   useEffect(() => {
     if (deviceType == DEVICE_TYPE.DESKTOP || isGranted) {
@@ -40,11 +40,11 @@ export default function StudentIndex() {
         getSubscription();
       }
       if (user.email && !user.studentId) {
-        router.push(Route.AdminIndex);
+        Router.push(Route.AdminIndex);
       } else if (user.email && user.studentId) {
-        router.push(Route.StudentIndex);
+        Router.push(Route.StudentIndex);
       } else if (user.firstNameTH) {
-        router.push(`${Route.StudentQueue}`);
+        Router.push(`${Route.StudentQueue}`);
       }
     }
   }, [user]);
@@ -70,46 +70,6 @@ export default function StudentIndex() {
       .catch((e) => onError(e));
   };
 
-  const categories = [
-    {
-      id: 1,
-      topicTH: "ฝึกงาน-สหกิจศึกษา",
-      topicEN: "Internship and Cooperative",
-      room: "งานบริการนักศึกษา",
-    },
-
-    {
-      id: 2,
-      topicTH: "ทุนการศึกษา",
-      topicEN: "Scholarships",
-      room: "งานบริการนักศึกษา",
-    },
-    {
-      id: 3,
-      topicTH: "ขอคำปรึกษาด้านวิชาการ",
-      topicEN: "Academic Consultation",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-    },
-    {
-      id: 4,
-      topicTH: "แจ้งปัญหาด้านการเรียนการสอน",
-      topicEN: "Report Issues with Teaching and Learning",
-      room: "งานบริการนักศึกษา",
-    },
-    {
-      id: 5,
-      topicTH: "ขอจัดกิจกรรมหรือโครงการพิเศษ",
-      topicEN: "Request for Special Activities or Projects",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-    },
-    {
-      id: 6,
-      topicTH: "อื่นๆ",
-      topicEN: "Others",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-    },
-  ];
-
   return (
     <div className="m-auto overflow-y-auto flex flex-col gap-7 acerSwift:max-macair133:gap-6 iphone:max-sm:gap-6 items-center justify-start">
       <div
@@ -120,10 +80,10 @@ export default function StudentIndex() {
           What can we help you with today? Let us know to get started
         </p>
       </div>
-      <Select onValueChange={(value) => setSelectTopic(value)}>
+      <Select onValueChange={(value) => setSelectTopic(parseInt(value))}>
         <SelectTrigger
           className={`iphone:max-sm:w-[85vw] iphone:max-sm:h-32 iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] px-6 ${
-            selectTopic === ""
+            selectTopic === 0
               ? "py-3 text-primary iphone:max-sm:h-12"
               : "py-2 iphone:max-sm:h-18"
           }`}
@@ -132,8 +92,8 @@ export default function StudentIndex() {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {categories.map((item) => (
-              <SelectItem value={item.topicTH} key={item.id}>
+            {topics.map((item) => (
+              <SelectItem value={item.id.toString()} key={item.id}>
                 <div className="flex items-center gap-4 py-1 acerSwift:max-macair133:gap-4">
                   <div
                     className={`${
@@ -156,9 +116,6 @@ export default function StudentIndex() {
                       {item.topicTH} (
                       <span className="font-medium ">{item.topicEN}</span>)
                     </p>
-                    <p className="text-b3 acerSwift:max-macair133:text-b4 text-primary">
-                      {item.room}
-                    </p>
                   </div>
                 </div>
               </SelectItem>
@@ -166,30 +123,19 @@ export default function StudentIndex() {
           </SelectGroup>
         </SelectContent>
       </Select>
-      {selectTopic !== "" &&
+      {selectTopic !== 0 &&
         (() => {
-          const room = categories.find(
-            (item) => item.topicTH === selectTopic
-          )?.room;
-
           return (
             <>
               <div className="flex flex-col justify-end items-end gap-1 mx-1">
                 <Textarea
                   maxLength={70}
                   className="acerSwift:max-macair133:text-b4"
-                  placeholder={`ข้อความเพิ่มเติมถึง${room} (Message to ${
-                    room === "งานบริการนักศึกษา"
-                      ? "Engineering Student Services Unit"
-                      : "Engineering Student Development Unit"
-                  })`}
+                  placeholder={`ข้อความเพิ่มเติม (Message)`}
                 />
               </div>
 
               <div className="flex flex-col  items-center justify-center w-full px-6">
-                <p className="text-b2 acerSwift:max-macair133:text-b3 text-primary font-medium">
-                  {room}
-                </p>
                 <div className="flex items-center gap-2">
                   <Icon
                     IconComponent={IconUsers}
@@ -200,7 +146,7 @@ export default function StudentIndex() {
                       มีคิวก่อนหน้าคุณ{" "}
                       <span className="font-semibold">(Waiting) </span>
                       <span className="text-h2 iphone:max-sm:text-b1 iphone:max-macair133:text-b2 font-semibold text-default">
-                        {room === "งานบริการนักศึกษา" ? "11 คิว" : "8 คิว"}
+                        8 คิว
                       </span>
                     </p>
                   </div>
@@ -212,7 +158,7 @@ export default function StudentIndex() {
 
       <Button
         className="flex flex-col items-centern gap-0 p-8 py-7 rounded-xl acerSwift:max-macair133:text-b3"
-        disabled={selectTopic === ""}
+        disabled={selectTopic === 0}
       >
         <p>รับบัตรคิว</p>
         <p>Take a number</p>

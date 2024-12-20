@@ -1,5 +1,5 @@
 import apiService from "@/services/apiService";
-import { CounterRequestDTO } from "./dto/counter.dto";
+import { CounterRequestDTO, CounterUpdateRequestDTO } from "./dto/counter.dto";
 
 export const roomController = (configService: any = {}) => {
   const service = apiService(configService);
@@ -12,7 +12,10 @@ export const roomController = (configService: any = {}) => {
     createCounter: async (params: CounterRequestDTO) => {
       return service.post(prefix, { ...params });
     },
-    deleteCounter: async (id: string) => {
+    updateCounter: async (id: number, params: CounterUpdateRequestDTO) => {
+      return service.put(`${prefix}/${id}`, { ...params });
+    },
+    deleteCounter: async (id: number) => {
       return service.get(`${prefix}/${id}`);
     },
   };

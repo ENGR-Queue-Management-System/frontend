@@ -7,3 +7,7 @@ export const getUserInfo = async () => {
   const res = await userService.getUserInfo();
   return isValidResponse(res);
 };
+
+export const logout = () => {
+  userService.logout();
+};
