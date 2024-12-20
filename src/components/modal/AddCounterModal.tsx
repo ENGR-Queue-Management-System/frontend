@@ -57,12 +57,12 @@ const AddCounterModal: React.FC<PopupProps> = ({ title, opened, onClose }) => {
             >
               <div className="flex flex-col gap-1">
                 <p className="text-b2">
-                  ชื่อเคาท์เตอร์ (กรอกตัวอักษรภาษาอังกฤษ 1 ตัว)
+                  เลขเคาน์เตอร์ (กรอกเลขระหว่าง 1 ถึง 6)
                 </p>
-                <Input className="h-8" placeholder="e.g. H"></Input>
+                <Input className="h-8" placeholder="e.g. 5"></Input>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-b2">บุคคลประจำเคาท์เตอร์ (CMU Account)</p>
+                <p className="text-b2">บุคคลประจำเคาน์เตอร์ (CMU Account)</p>
                 <Input
                   className="h-8"
                   placeholder="e.g. example@cmu.ac.th"
@@ -74,11 +74,11 @@ const AddCounterModal: React.FC<PopupProps> = ({ title, opened, onClose }) => {
               className="flex rounded-md flex-col w-full  p-4 gap-5 justify-end"
             >
               <div className="flex flex-col">
-                <p className="text-b2">หัวข้อบริการภาษาไทยประจำเคาท์เตอร์</p>
+                <p className="text-b2">หัวข้อบริการภาษาไทยประจำเคาน์เตอร์</p>
                 <Input className="h-8" placeholder="e.g. ทุนการศึกษา"></Input>
               </div>
               <div>
-                <p className="text-b2">หัวข้อบริการภาษาอังกฤษประจำเคาท์เตอร์</p>
+                <p className="text-b2">หัวข้อบริการภาษาอังกฤษประจำเคาน์เตอร์</p>
                 <Input className="h-8" placeholder="e.g. scholarship"></Input>
               </div>
               <Button variant="secondary" onClick={onClose}>
