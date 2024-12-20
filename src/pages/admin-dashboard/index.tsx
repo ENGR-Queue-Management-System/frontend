@@ -15,8 +15,19 @@ import {
 } from "@/components/ui/table";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { dateFormatter } from "@/helpers/function";
+import { updateCounter } from "@/services/counter/counter.service";
+import { IModelCounter } from "@/models/Model";
+import { toast } from "@/hooks/use-toast";
+import { updateCounterData } from "@/store/counter";
 
 export default function AdminIndex() {
+  const user = useAppSelector((state) => state.user);
+  const counter = useAppSelector((state) =>
+    state.counter.find((c) => c.user.id == user.id)
+  );
+  const dispatch = useAppDispatch();
   const data = [
     {
       id: 5,
@@ -215,6 +226,20 @@ export default function AdminIndex() {
     },
   ];
 
+  const onChangeStatusCounter = async () => {
+    const res: IModelCounter = await updateCounter(counter?.id!, {
+      status: !counter?.status,
+    });
+    if (res) {
+      dispatch(updateCounterData(res));
+      toast({
+        title: res.status ? "เปิดรับคิว" : "ปิดรับคิว",
+        className: "bg-black text-white w-fit",
+        duration: 3000,
+      });
+    }
+  };
+
   return (
     <div className="px-2 flex iphone:max-sm:h-fit flex-col h-full w-full overflow-y-auto bg-[#f9f9f9] pt-3 ">
       <Tabs
@@ -303,14 +328,18 @@ export default function AdminIndex() {
               <div>
                 <div className="flex-col">
                   <p className="acerSwift:max-macair133:text-b3 text-b1">
-                    รับคิวนักศึกษา (ปิดรับคิวอัตโนมัติ 16:00)
+                    รับคิวนักศึกษา (ปิดรับคิวอัตโนมัติ
+                    {dateFormatter(counter?.timeClosed, true)})
                   </p>
                   <p className="text-primary text-b3 acerSwift:max-macair133:text-b4 ">
-                    ห้องงานพัฒนาคุณภาพนักศึกษา
+                    Counter {counter?.counter}
                   </p>
                 </div>
               </div>
-              <Switch />
+              <Switch
+                checked={counter?.status}
+                onClick={onChangeStatusCounter}
+              />
             </div>
             <div
               className="flex iphone:max-sm:overflow-clip flex-col m h-full bg-white rounded-lg  border border-[#E5DDEA] px-6 py-4  "
@@ -322,7 +351,7 @@ export default function AdminIndex() {
                 <div className="flex justify-start flex-col items-center mt-3 samsungA24:mt-7 acerSwift:max-macair133:mt-2 samsungA24:gap-5 h-full">
                   <div className="text-center ">
                     <p className="text-h1 acerSwift:max-macair133:text-h2 samsungA24:text-[23px] font-normal ">
-                      คิวที่คุณกำลังให้บริการ{" "}
+                      คิวที่คุณกำลังให้บริการ
                     </p>
                     <p className="text-primary  text-b1 acerSwift:max-macair133:text-b2 samsungA24:text-h1 ">
                       ห้องงานพัฒนาคุณภาพนักศึกษา
@@ -336,8 +365,7 @@ export default function AdminIndex() {
                       <p className="font-medium">
                         {dataDone[3].studentId}
                         <span className=" iphone:max-sm:block ">
-                          {" "}
-                          <span className="iphone:max-sm:hidden">-</span>{" "}
+                          <span className="iphone:max-sm:hidden">-</span>
                           {dataDone[3].name}
                         </span>
                       </p>
@@ -364,14 +392,13 @@ export default function AdminIndex() {
 
                       {dataDone[3].category}
                     </div>
-                  </div>{" "}
-                </div>{" "}
+                  </div>
+                </div>
                 <div className="flex flex-col gap-3 samsungA24:gap-4 w-full">
                   <div className="px-6 py-5 acerSwift:max-macair133:py-2.5 rounded-2xl iphone:max-sm:mt-4 samsungA24:text-h1 text-b1  acerSwift:max-macair133:text-b2 !w-full flex flex-col bg-table-background">
                     <div className=" flex items-center justify-start">
                       <div className=" text-table-foreground font-medium text-center iphone:max-sm:pl-0 iphone:max-sm:pr-4 pr-6 pl-3  border-r-2 border-table-foreground/15">
                         <p className="iphone:max-sm:text-[15px] acerSwift:max-macair133:text-b4">
-                          {" "}
                           คิวถัดไป
                         </p>
                         <p className="font-semibold text-[28px] iphone:max-macair133:text-h1">
@@ -381,10 +408,9 @@ export default function AdminIndex() {
 
                       <div className="flex flex-col gap-1 ml-6 ">
                         <p className=" text-b2 samsungA24:text-h2 acerSwift:max-macair133:text-b4">
-                          {data[0].studentId}{" "}
-                          <span className="iphone:max-sm:hidden">-</span>{" "}
+                          {data[0].studentId}
+                          <span className="iphone:max-sm:hidden">-</span>
                           <span className=" iphone:max-sm:block ">
-                            {" "}
                             {data[0].name}
                           </span>
                         </p>

@@ -19,7 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { ReserveRequestDTO } from "@/services/authentication/dto/authentication.dto";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
 import { setLoadingOverlay } from "@/store/loading";
 import { DEVICE_TYPE } from "@/config/Enum";
 import {
@@ -43,7 +43,6 @@ export default function Login() {
   const topics = useAppSelector((state) => state.topic);
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { toast } = useToast();
   const form = useForm({
     defaultValues: new ReserveRequestDTO(),
   });

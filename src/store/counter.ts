@@ -8,9 +8,16 @@ export const counterSlice = createSlice({
     setCounters: (state, action) => {
       return [...action.payload];
     },
+    updateCounterData: (state, action) => {
+      return state.map((counter) =>
+        counter.id == action.payload.id
+          ? { ...counter, ...action.payload }
+          : counter
+      );
+    },
   },
 });
 
-export const { setCounters } = counterSlice.actions;
+export const { setCounters, updateCounterData } = counterSlice.actions;
 
 export default counterSlice.reducer;
