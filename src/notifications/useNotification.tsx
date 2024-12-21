@@ -4,7 +4,6 @@ import {
   isPermissionDenied,
   isPermissionGranted,
   registerAndSubscribe,
-  Unsubscribe,
 } from "./NotificationPush";
 import React, {
   createContext,
@@ -24,7 +23,6 @@ interface NotificationContextType {
   pushSubscription: PushSubscription | null;
   errorMessage: string | null;
   handleSubscribe: () => void;
-  handleUnsubscribe: () => void;
 }
 
 const NotificationContext = createContext<NotificationContextType | undefined>(
@@ -73,23 +71,6 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
     registerAndSubscribe(onSubscribe, onError);
   };
 
-  const handleUnsubscribe = () => {
-    const onSubscribe = (subscription: PushSubscription | null) => {
-      if (!subscription) {
-        setPushSubscription(null);
-      }
-      setIsGranted(isPermissionGranted());
-      setIsDenied(isPermissionDenied());
-    };
-    const onError = (e: Error) => {
-      console.error("Failed to unsubscribe due to: ", e);
-      setIsGranted(isPermissionGranted());
-      setIsDenied(isPermissionDenied());
-      setErrorMessage(e?.message);
-    };
-    Unsubscribe(onSubscribe, onError);
-  };
-
   const contextValue = useMemo(
     () => ({
       deviceType,
@@ -99,7 +80,6 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
       pushSubscription,
       errorMessage,
       handleSubscribe,
-      handleUnsubscribe,
     }),
     [
       deviceType,
@@ -108,6 +88,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
       isDenied,
       pushSubscription,
       errorMessage,
+      handleSubscribe,
     ]
   );
 

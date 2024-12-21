@@ -28,8 +28,7 @@ import {
 import { toast } from "@/hooks/use-toast";
 
 export default function Home() {
-  const { deviceType, isGranted, handleSubscribe, handleUnsubscribe } =
-    useNotification();
+  const { deviceType } = useNotification();
   const user = useAppSelector((state) => state.user);
   const [testSendNotiList, setTestSendNotiList] = useState<any[]>([]);
   const [selectTest, setSelectTest] = useState("");
@@ -187,9 +186,6 @@ export default function Home() {
                 Admin
               </Button>
             </Link>
-            <Button onClick={isGranted ? handleUnsubscribe : handleSubscribe}>
-              {isGranted ? "Unsubscribe" : "Subscribe"}
-            </Button>
             <div className="flex gap-2">
               <Select onValueChange={(value) => setSelectTest(value)}>
                 <SelectTrigger className="!w-[50vw] py-2">
