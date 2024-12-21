@@ -63,19 +63,19 @@ const CounterManageModal: React.FC<PopupProps> = ({
         </DialogTrigger>
         <DialogContent
           classNameClose={`${
-            [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+            [DEVICE_TYPE.IOS].includes(deviceType!)
               ? "pt-12"
               : ""
           }`}
           className={`  ${
-            [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+            [DEVICE_TYPE.IOS].includes(deviceType!)
               ? "w-[100vw] h-full"
               : "max-w-[50vw]"
           }`}
         >
           <DialogHeader
             className={`  ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              [DEVICE_TYPE.IOS,].includes(deviceType!)
                 ? "pt-12"
                 : ""
             }`}
