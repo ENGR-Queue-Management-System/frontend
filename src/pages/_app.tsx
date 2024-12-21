@@ -23,7 +23,7 @@ import { setLoading } from "@/store/loading";
 import LoadingOverlay from "@/components/LoadingOverlay";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { isSupported } = useNotification();
+  const { isSupported, handleSubscribe } = useNotification();
   const loading = useAppSelector((state) => state.loading);
   const router = useRouter();
   const location = usePathname();
@@ -32,6 +32,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    if (isSupported) {
+      handleSubscribe();
+    }
     const timeout = setTimeout(() => dispatch(setLoading(false), 2000));
     return () => clearTimeout(timeout);
   }, []);
@@ -107,16 +110,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   </div>
   // );
   return (
-
-      <div className="flex flex-col h-screen w-screen overflow-hidden">
-        {![Route.Index, Route.DisplayQueue, Route.CmuOAuthCallback].includes(
-          location
-        ) && <Navbar />}
-        <div className="flex flex-col h-full w-full overflow-hidden">
-          <Component {...pageProps} />
-        </div>
+    <div className="flex flex-col h-screen w-screen overflow-hidden">
+      {![Route.Index, Route.DisplayQueue, Route.CmuOAuthCallback].includes(
+        location
+      ) && <Navbar />}
+      <div className="flex flex-col h-full w-full overflow-hidden">
+        <Component {...pageProps} />
       </div>
-
+    </div>
   );
 }
 
