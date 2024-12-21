@@ -23,7 +23,7 @@ import { setLoading } from "@/store/loading";
 import LoadingOverlay from "@/components/LoadingOverlay";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { isSupported } = useNotification();
+  const { isSupported, isGranted, handleSubscribe } = useNotification();
   const loading = useAppSelector((state) => state.loading);
   const router = useRouter();
   const location = usePathname();
@@ -35,6 +35,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     const timeout = setTimeout(() => dispatch(setLoading(false), 2000));
     return () => clearTimeout(timeout);
   }, []);
+
+  useEffect(() => {
+    if (isSupported && !isGranted) {
+      handleSubscribe();
+    }
+  }, [isSupported]);
 
   useEffect(() => {
     if (!counters.length) {
