@@ -23,7 +23,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import IconStar from "../../../public/icons/star.svg";
 import IconStarFull from "../../../public/icons/starFull.svg";
+import { useAppSelector } from "@/store";
+import { dateFormatter } from "@/helpers/function";
 export default function StudentQueue() {
+  const queue = useAppSelector((state) => state.queue);
   const [openFeedbackModal, setOpenFeedbackModal] = useState(true);
   const [rateFeedback, setRateFeedback] = useState(0);
   return (
@@ -98,14 +101,14 @@ export default function StudentQueue() {
               </div>
 
               <div className="flex flex-col items-center samsungA24:mt-3 iphone:max-sm:mt-3 ipad11:max-samsungA24:mt-0 text-primary samsungA24:text-[100px] iphone:max-macair133:text-[50px] font-medium text-[65px] ">
-                A016
+                {queue.no}
                 <div className="flex items-center justify-center gap-3 top-6">
                   <div
                     className={`bg-contactList-scholarship 
                       h-3 w-3 rounded-[100%] iphone:max-sm:hidden mt-1`}
                   ></div>
                   <p className="text-b1 acerSwift:max-macair133:text-b2 text-default">
-                    ทุนการศึกษา (scholarship)
+                    {queue.topic?.topicTH} ({queue.topic?.topicEN})
                   </p>
                 </div>
               </div>
@@ -126,7 +129,7 @@ export default function StudentQueue() {
                   </div>
                 </div>
                 <p className="text-h2 iphone:max-macair133:text-b2 font-semibold text-default">
-                  11 คิว
+                  {queue.waiting || 0} คิว
                 </p>
               </div>
               <div className="border-t-2 border-dashed w-full"></div>
@@ -137,7 +140,9 @@ export default function StudentQueue() {
                     className="!size-5 acerSwift:max-macair133:!size-4"
                   />
 
-                  <p className="font-medium">21 พ.ย. 2567</p>
+                  <p className="font-medium">
+                    {dateFormatter(queue.createdAt)}
+                  </p>
                 </div>
                 <div className="flex items-center gap-3">
                   <Icon
@@ -145,7 +150,9 @@ export default function StudentQueue() {
                     className="!size-5 acerSwift:max-macair133:!size-4"
                   />
 
-                  <p className="font-medium">16:08:58</p>
+                  <p className="font-medium">
+                    {dateFormatter(queue.createdAt, true)}
+                  </p>
                 </div>
               </div>
             </div>

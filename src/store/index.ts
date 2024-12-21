@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import loadingReducer from "./loading";
 import userReducer from "./user";
+import queueReducer from "./queue";
 import subscriptionReducer from "./subscription";
 import counterReducer from "./counter";
 import topicReducer from "./topic";
@@ -11,6 +12,7 @@ const store = configureStore({
     loading: loadingReducer,
     user: userReducer,
     subscription: subscriptionReducer,
+    queue: queueReducer,
     counter: counterReducer,
     topic: topicReducer,
   },

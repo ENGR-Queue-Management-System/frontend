@@ -1,5 +1,8 @@
 import { IModelUser } from "@/models/Model";
 import moment from "moment";
+import "moment/locale/th";
+
+moment.locale("th");
 
 export const getUserName = (
   user: Partial<IModelUser> | undefined,
@@ -12,10 +15,10 @@ export const getUserName = (
     case 2:
       return `${user.firstNameEN?.toLowerCase()} ${user.lastNameEN?.toLowerCase()}`; // john doe
     case 3:
+      return `${user.firstNameEN} ${user.lastNameEN?.slice(0, 1)}.`; // John D.
+    default:
       if (user.firstNameTH) return `${user.firstNameTH} ${user.lastNameTH}`; // กข คง
       return "";
-    default:
-      return `${user.firstNameEN} ${user.lastNameEN?.slice(0, 1)}.`; // John D.
   }
 };
 
@@ -25,16 +28,16 @@ export const dateFormatter = (
   format?: number
 ) => {
   if (!date) return;
-  if (timeOnly) return moment(`1970-01-01T${date}`).format("HH:mm"); // 16:00
+  if (timeOnly) {
+    if (!(date as string).includes("T"))
+      return moment(`1970-01-01T${date}`).format("LT"); // 16:00
+    else return moment(date).format("LTS"); // 16:05:25
+  }
   switch (format) {
     case 1:
-      return moment(date).format("DD/MM/YYYY"); // 25/09/2024
-    case 2:
-      return moment(date).format("MMMM DD, YYYY HH:mm"); // September 25, 2024 14:17
-    case 3:
-      return moment(date).format("DD MMM YYYY"); // 8 Dec 2023
+      return moment(date).add(543, "years").format("LL"); // 21 ธันวาคม 2567
     default:
-      return moment(date).format("MMM DD, YYYY HH:mm"); // Sep 25, 2024 14:42
+      return moment(date).add(543, "years").format("ll"); // 21 ธ.ค. 2567
   }
 };
 

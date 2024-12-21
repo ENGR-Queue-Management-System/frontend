@@ -234,7 +234,7 @@ export default function AdminIndex() {
       dispatch(updateCounterData(res));
       toast({
         title: res.status ? "เปิดรับคิว" : "ปิดรับคิว",
-        className: "bg-black text-white w-fit",
+        variant: "default",
         duration: 3000,
       });
     }

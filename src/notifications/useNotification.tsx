@@ -13,8 +13,11 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { useAppSelector } from "@/store";
+import { useAppDispatch, useAppSelector } from "@/store";
 import { DEVICE_TYPE } from "@/config/Enum";
+import { urlBase64ToUint8Array } from "@/lib/utils";
+import { subscribeNotification } from "@/services/subscription/subscription.service";
+import { setSubscription } from "@/store/subscription";
 
 interface NotificationContextType {
   deviceType: DEVICE_TYPE | null;
@@ -25,6 +28,7 @@ interface NotificationContextType {
   errorMessage: string | null;
   onSubscribe: () => void;
   onError: (e: Error) => void;
+  getSubscription: () => void;
 }
 
 const NotificationContext = createContext<NotificationContextType | undefined>(
@@ -40,6 +44,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
   const [isDenied, setIsDenied] = useState<boolean>(false);
   const subscription = useAppSelector((state) => state.subscription);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (isNotificationSupported()) {
@@ -64,6 +69,27 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
     setErrorMessage(e?.message);
   };
 
+  const getSubscription = async (): Promise<void> => {
+    await navigator.serviceWorker.register("/service-worker.js");
+    navigator.serviceWorker.ready
+      .then((registration: ServiceWorkerRegistration) => {
+        return registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(
+            process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!
+          ),
+        });
+      })
+      .then(async (subscription) => {
+        const res = await subscribeNotification(subscription);
+        if (res) {
+          dispatch(setSubscription(res));
+        }
+        onSubscribe();
+      })
+      .catch((e) => onError(e));
+  };
+
   const contextValue = useMemo(
     () => ({
       deviceType,
@@ -74,6 +100,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
       errorMessage,
       onSubscribe,
       onError,
+      getSubscription,
     }),
     [
       deviceType,
@@ -84,6 +111,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
       errorMessage,
       onSubscribe,
       onError,
+      getSubscription,
     ]
   );
 

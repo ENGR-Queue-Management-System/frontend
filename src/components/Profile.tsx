@@ -31,7 +31,7 @@ const Profile: React.FC = () => {
             className="flex items-center translate-x-3 hover:bg-transparent  gap-2"
           >
             <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end acerSwift:max-macair133:text-b4">
-              <p>{getUserName(user, 3)}</p>
+              <p>{getUserName(user)}</p>
               {user.studentId ? (
                 <p>{user.studentId}</p>
               ) : user.email ? (
