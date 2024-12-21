@@ -17,9 +17,11 @@ import { useNotification } from "@/notifications/useNotification";
 import Router from "next/router";
 import { Route } from "@/config/Route";
 import { DEVICE_TYPE } from "@/config/Enum";
+import { subscribeNotification } from "@/services/subscription/subscription.service";
+import { setSubscription } from "@/store/subscription";
 
 export default function StudentIndex() {
-  const { deviceType, isGranted, getSubscription } = useNotification();
+  const { deviceType, isGranted, pushSubscription } = useNotification();
   const topics = useAppSelector((state) => state.topic);
   const user = useAppSelector((state) => state.user);
   const subscription = useAppSelector((state) => state.subscription);
@@ -33,7 +35,7 @@ export default function StudentIndex() {
         subscription.firstName != user.firstNameTH &&
         subscription.lastName != user.lastNameTH
       ) {
-        getSubscription();
+        getSubsrciption();
       }
       if (user.email && !user.studentId) {
         Router.push(Route.AdminIndex);
@@ -44,6 +46,13 @@ export default function StudentIndex() {
       }
     }
   }, [user]);
+
+  const getSubsrciption = async () => {
+    const res = await subscribeNotification(pushSubscription!);
+    if (res) {
+      dispatch(setSubscription(res));
+    }
+  };
 
   return (
     <div className="m-auto overflow-y-auto flex flex-col gap-7 acerSwift:max-macair133:gap-6 iphone:max-sm:gap-6 items-center justify-start">

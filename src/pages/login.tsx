@@ -37,9 +37,11 @@ import { useEffect } from "react";
 import { getTopics } from "@/services/topic/topic.service";
 import { setTopics } from "@/store/topic";
 import { setQueue } from "@/store/queue";
+import { subscribeNotification } from "@/services/subscription/subscription.service";
+import { setSubscription } from "@/store/subscription";
 
 export default function Login() {
-  const { deviceType, getSubscription } = useNotification();
+  const { deviceType, pushSubscription } = useNotification();
   const loading = useAppSelector((state) => state.loading.loadingOverlay);
   const counters = useAppSelector((state) =>
     state.counter.filter(({ status }) => status == true)
@@ -87,7 +89,10 @@ export default function Login() {
         })
       );
       dispatch(setQueue({ ...res.queue, waiting: res.waiting }));
-      await getSubscription();
+      const resSub = await subscribeNotification(pushSubscription!);
+      if (resSub) {
+        dispatch(setSubscription(res));
+      }
       Router.push(Route.StudentQueue);
     }
     dispatch(setLoadingOverlay(false));

@@ -8,15 +8,46 @@ import logoEngColor from "../../public/images/logoSDColor.png";
 import cmuLogoWhite from "../../public/images/cmuLogoLogin.png";
 import cmuLogoColor from "../../public/images/cmuLogoLoginWhite.png";
 import { useAppSelector } from "@/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE } from "@/config/Enum";
 import Icon from "@/components/Icon";
 import iconFlag from "../../public/icons/flag.svg";
+import webpush, { PushSubscription } from "web-push";
+import {
+  sendQueueNotification,
+  testSendNoti,
+} from "@/services/subscription/subscription.service";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { toast } from "@/hooks/use-toast";
 
 export default function Home() {
-  const { deviceType } = useNotification();
+  const { deviceType, pushSubscription, handleSubscribe } = useNotification();
   const user = useAppSelector((state) => state.user);
+  const [testSendNotiList, setTestSendNotiList] = useState<any[]>([]);
+  const [selectTest, setSelectTest] = useState("");
+
+  useEffect(() => {
+    if (!pushSubscription) {
+      handleSubscribe();
+    }
+    if (!testSendNotiList.length) {
+      const test = async () => {
+        const res = await testSendNoti();
+        if (res) {
+          setTestSendNotiList(res);
+        }
+      };
+      test();
+    }
+  }, []);
 
   useEffect(() => {
     if (user.email) {
@@ -27,6 +58,24 @@ export default function Home() {
       }
     }
   }, [user]);
+
+  const sendPushNotification = async () => {
+    const payload = {
+      ...testSendNotiList[parseInt(selectTest)],
+      message: JSON.stringify({
+        title: "Test Notification",
+        body: "this is test notification.",
+      }),
+    };
+    const res = await sendQueueNotification(payload);
+    if (res) {
+      toast({
+        title: res.status,
+        variant: "success",
+        duration: 3000,
+      });
+    }
+  };
 
   return (
     <div className=" flex items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
@@ -60,7 +109,6 @@ export default function Home() {
               alt="logoEng"
               className="samsungA24:w-[10vw] acerSwift:max-macair133:w-[12vw] cursor-not-allowed mb-3 mt-5 macair133:max-samsungA24:w-[15vw] iphone:max-sm:w-[45vw] sm:max-macair133:w-[20vw]"
             />
-
             <div>
               <p className=" sm:max-samsungA24:text-[28px] acerSwift:max-macair133:text-h1 font-[400] iphone:max-sm:text-[24px] text-[34px]">
                 ระบบบัตรคิวอัตโนมัติ
@@ -69,7 +117,6 @@ export default function Home() {
                 Automatic Queuing System
               </p>
             </div>
-
             <div
               className={`  ${
                 [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
@@ -83,7 +130,6 @@ export default function Home() {
                 แล้วลองเข้าใหม่อีกครั้ง
               </p>
             </div>
-
             <a href={process.env.NEXT_PUBLIC_CMU_OAUTH_URL}>
               <Button
                 style={{
@@ -109,7 +155,6 @@ export default function Home() {
                 Sign in CMU account
               </Button>
             </a>
-
             <div className="flex flex-col mt-2">
               <p className="sm:max-samsungA24:text-[15px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
                 <span className="font-[500]"> ท่านไม่มี</span> CMU account?{" "}
@@ -125,7 +170,6 @@ export default function Home() {
                 </span>
               </p>
             </div>
-
             <Button
               variant="link"
               className={`text-sm font-[500]   acerSwift:max-macair133:text-b4 underline  ${
@@ -138,16 +182,33 @@ export default function Home() {
               <Icon IconComponent={iconFlag} />
               รายงานปัญหา
             </Button>
-
             <Link href="/admin-dashboard">
               <Button
                 variant="link"
-                className={`text-sm font-[500]   underline text-[#000000]
-            `}
+                className={`text-sm font-[500] underline text-[#000000]`}
               >
                 Admin
               </Button>
             </Link>
+            <div className="flex gap-2">
+              <Select onValueChange={(value) => setSelectTest(value)}>
+                <SelectTrigger className="!w-[50vw] py-2">
+                  <SelectValue placeholder="Select Test Notification" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {testSendNotiList.map((item, index) => (
+                      <SelectItem value={index.toString()} key={index}>
+                        <div className="flex items-center py-1">
+                          {item.firstName} {item.lastName}
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+              <Button onClick={sendPushNotification}>Test Notification</Button>
+            </div>
           </div>
         </div>
       </main>
