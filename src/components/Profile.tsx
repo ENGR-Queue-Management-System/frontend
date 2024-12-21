@@ -10,7 +10,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import LogQueueModal from "../components/modal/LogQueueModal";
-import RoomManageModal from "../components/modal/RoomManageModal";
 import CounterManageModal from "../components/modal/CounterManageModal";
 import { Button } from "@/components/ui/button";
 import { useAppSelector } from "@/store";
