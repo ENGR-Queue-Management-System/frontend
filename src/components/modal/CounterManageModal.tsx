@@ -19,6 +19,8 @@ import OneCounterModal from "../modal/OneCounterManage";
 
 import Icon from "@/components/Icon";
 import OneCounterManage from "./OneCounterManage";
+import { useNotification } from "@/notifications/useNotification";
+import { DEVICE_TYPE } from "@/config/Enum";
 
 type PopupProps = {
   triggerText?: string;
@@ -33,6 +35,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
   const [opendCounterModal, setOpenCounterModal] = useState(false);
   const [openEditOneCounterModal, setOpenEditOneCounterModal] = useState(false);
   const [openAddOneCounterModal, setOpenAddOneCounterModal] = useState(false);
+    const { deviceType, getSubscription } = useNotification();
 
   const counters = [
     { id: 1, char: "A", name: "เคาน์เตอร์ A", person: "เนตรนภา สาระแปง" },
@@ -58,13 +61,13 @@ const CounterManageModal: React.FC<PopupProps> = ({
             <span className="ml-1">{triggerText}</span>
           </Button>
         </DialogTrigger>
-        <DialogContent className=" max-w-[50vw]">
+        <DialogContent className={`  ${ [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ? 'w-[100vw] h-full' : 'max-w-[50vw]'}`}>
           <DialogHeader>
-            <DialogTitle className="text-table-foreground acerSwift:max-macair133:text-b1">
+            <DialogTitle className="text-table-foreground font-[500] acerSwift:max-macair133:text-b1">
               {title}
             </DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col gap-4">
+          <div className={`flex flex-col  gap-4  `}>
             <div
               className="p-0 rounded-lg mt-2 flex flex-col text-[14px]"
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
@@ -77,7 +80,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
                 เคาน์เตอร์ที่ให้บริการ
               </div>
 
-              <div className="max-h-[500px] acerSwift:max-macair133:max-h-[325px] iphone:max-sm:h-[20vh] overflow-y-auto">
+              <div className={`max-h-[500px] acerSwift:max-macair133:max-h-[325px]  overflow-y-auto ${ [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ? ' h-full ':''}`}>
                 <div className="flex flex-col border-b-[1px] border-[#e1e1e1] acerSwift:max-macair133:mt-2 font-medium text-default gap-3 acerSwift:max-macair133:gap-0 items-center ">
                   {counters.map((counter) => (
                     <div
@@ -85,14 +88,14 @@ const CounterManageModal: React.FC<PopupProps> = ({
                       className="flex justify-between items-center px-5 py-4 acerSwift:max-macair133:py-3 w-full"
                     >
                       <div className="flex items-center gap-4">
-                        <p className="border rounded-full p-2 px-[14px] acerSwift:max-macair133:text-b3">
+                        <p className={`border rounded-full p-2 px-[14px] acerSwift:max-macair133:text-b3 ${[DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ? 'hidden':''}`}>
                           {counter.char}
                         </p>
                         <div className="flex flex-col">
-                          <p className="text-b2 acerSwift:max-macair133:text-b3">
+                          <p className={`text-b2 acerSwift:max-macair133:text-b3 ${[DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ? 'text-b3':''}`}>
                             {counter.name}
                           </p>
-                          <p className="text-b3 acerSwift:max-macair133:text-b4 text-primary">
+                          <p className={`text-b3 acerSwift:max-macair133:text-b4 text-primary ${[DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ? 'text-b3':''}`}>
                             {counter.person}
                           </p>
                         </div>
@@ -111,7 +114,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
                               IconComponent={IconEdit}
                               className="stroke-orange-500 acerSwift:max-macair133:!size-4"
                             />
-                            แก้ไข
+                            { [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ? '  ':'แก้ไข'}
                           </Button>
                         </DialogClose>
                         <DialogClose asChild>
@@ -126,7 +129,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
                               IconComponent={IconTrash}
                               className="stroke-delete acerSwift:max-macair133:!size-4"
                             />
-                            ลบ
+                              { [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ? ' ':'ลบ'}
                           </Button>
                         </DialogClose>
                       </div>
