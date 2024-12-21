@@ -84,6 +84,7 @@ export default {
         iphone: "300px",
         sm: "1024px",
         ipad11: "1194px",
+        ipadmini: "760px",
         acerSwift: "1200px",
         macair133: "1280px",
         samsungA24: "1600px",

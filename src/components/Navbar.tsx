@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
     <div
       className={`${
         [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-16 bg-[#006666] " : "bg-gradient-to-r  from-[#009999] to-[#006666]"
-      } min-h-fit acerSwift:max-macair133:min-h-[58px]  border-b border-[#e0e0e0] text-secondary px-6 inline-flex w-full justify-between items-center z-50 border-none top-0`}
+      } min-h-fit ipadmini:max-samsungA24:pt-0 acerSwift:max-macair133:min-h-[58px]  border-b border-[#e0e0e0] text-secondary px-6 inline-flex w-full justify-between items-center z-50 border-none top-0`}
       style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
     >
       <div className="flex items-center gap-2 -ml-1">
