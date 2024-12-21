@@ -68,3 +68,28 @@ export async function registerAndSubscribe(
     onError(e);
   }
 }
+
+export async function Unsubscribe(
+  onSubscribe: (subs: PushSubscription | null) => void,
+  onError: (e: Error) => void
+): Promise<void> {
+  try {
+    navigator.serviceWorker.ready.then(function (registration) {
+      registration.pushManager.getSubscription().then(function (subscription) {
+        if (subscription) {
+          subscription
+            .unsubscribe()
+            .then(function () {
+              console.log("User unsubscribed");
+              onSubscribe(null);
+            })
+            .catch((e) => {
+              onError(e);
+            });
+        }
+      });
+    });
+  } catch (e: any) {
+    onError(e);
+  }
+}
