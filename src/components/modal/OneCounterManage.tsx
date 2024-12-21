@@ -16,6 +16,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import { TimePickerInput } from "../ui/time-picker-input";
 import { Period } from "../ui/time-picker-utils";
+import { useNotification } from "@/notifications/useNotification";
+import { DEVICE_TYPE } from "@/config/Enum";
 
 type PopupProps = {
   title: string;
@@ -35,6 +37,7 @@ const OneCounterManage: React.FC<PopupProps> = ({
     topicEN: "",
     room: "",
   });
+  const { deviceType } = useNotification();
 
   const categories = [
     {
@@ -71,17 +74,35 @@ const OneCounterManage: React.FC<PopupProps> = ({
 
   return (
     <Dialog open={opened} onOpenChange={onClose}>
-      <DialogContent className="max-w-[40vw] p-6 mb-1 acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4 ">
-        <DialogHeader>
+      <DialogContent  classNameClose={`${
+                  [DEVICE_TYPE.IOS].includes(deviceType!) 
+                    ? "pt-12"
+                    : ""
+                }`}
+        className={` ${
+          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) || true
+            ? " w-full h-full "
+            : "max-w-[40vw"
+        } p-6 mb-1 acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4`}
+      >
+        <DialogHeader  className={`${
+                    [DEVICE_TYPE.IOS].includes(deviceType!) || true
+                      ? "pt-12"
+                      : ""
+                  }`}>
           <DialogTitle className="text-table-foreground mb-3 acerSwift:max-macair133:text-b1 acerSwift:max-macair133:mb-1">
             {title}
           </DialogTitle>
         </DialogHeader>
-        <div className="flex flex-col max-h-[65vh] acerSwift:max-macair133:max-h-[435px] gap-5 acerSwift:max-macair133:gap-3">
-          <div className="flex flex-col w-full gap-4 h-full acerSwift:max-macair133:gap-2.5">
+        <div className={`flex flex-col  max-h-[65vh] acerSwift:max-macair133:max-h-[435px] gap-5 acerSwift:max-macair133:gap-3`}>
+          <div className={`flex flex-col w-full gap-4 h-full acerSwift:max-macair133:gap-2.5`}>
             <div
               style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
-              className="flex rounded-md flex-col w-full p-5 gap-5 acerSwift:max-macair133:p-4 acerSwift:max-macair133:gap-3 justify-end h-full"
+              className={`flex ${
+                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) || true
+                  ? " h-fit "
+                  : ""
+              } rounded-md flex-col w-full p-5 gap-5 acerSwift:max-macair133:p-4 acerSwift:max-macair133:gap-3 justify-start `}
             >
               <div className="flex flex-col gap-1">
                 <p className="text-b2 acerSwift:max-macair133:text-b4">
@@ -113,7 +134,7 @@ const OneCounterManage: React.FC<PopupProps> = ({
                 </p>
                 <Input
                   type="time"
-                  className="w-[40%] acerSwift:max-macair133:w-fit py-2 px-4 border rounded-md text-gray-700"
+                  className="w-[50%] acerSwift:max-macair133:w-fit py-2 px-4 border rounded-md text-gray-700"
                 />
                 {/* <TimePickerInput
                   type="time"
