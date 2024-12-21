@@ -2,6 +2,7 @@ import { NextConfig } from "next";
 
 const withPWA = require("next-pwa")({
   dest: "public",
+  sw: "sw.js",
   register: true,
   skipWaiting: true,
 });
@@ -32,4 +33,5 @@ const nextConfig: NextConfig = {
 
 module.exports = withPWA({
   ...nextConfig,
+  output: "standalone",
 });

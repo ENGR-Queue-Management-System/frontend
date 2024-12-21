@@ -7,8 +7,12 @@ const sendDeliveryReportAction = () => {
 };
 
 self.addEventListener("push", function (event) {
-  const payload = event.data ? event.data.json() : {};
-  const { body, icon, url, title } = payload;
+  if (!event.data) {
+    return;
+  }
+
+  const payload = event.data.json();
+  const { body, icon, badge, url, title } = payload;
   const notificationTitle = title ?? "New Notifications";
   const notificationOptions = {
     body,
@@ -16,6 +20,7 @@ self.addEventListener("push", function (event) {
     data: {
       url,
     },
+    badge,
   };
 
   event.waitUntil(
@@ -34,13 +39,17 @@ self.addEventListener("notificationclick", function (event) {
       .matchAll({ type: "window", includeUncontrolled: true })
       .then((clientList) => {
         const url = event.notification.data.url;
+
         if (!url) return;
+
         for (const client of clientList) {
           if (client.url === url && "focus" in client) {
             return client.focus();
           }
         }
+
         if (clients.openWindow) {
+          console.log("Opening window.");
           return clients.openWindow(url || "/");
         }
       })

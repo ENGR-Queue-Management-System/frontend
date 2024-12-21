@@ -49,7 +49,7 @@ export async function registerAndSubscribe(
   onError: (e: Error) => void
 ): Promise<void> {
   try {
-    await navigator.serviceWorker.register("/service-worker.js");
+    await navigator.serviceWorker.register("./service-worker.js");
     navigator.serviceWorker.ready
       .then((registration: ServiceWorkerRegistration) => {
         return registration.pushManager.subscribe({

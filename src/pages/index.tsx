@@ -13,7 +13,6 @@ import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE } from "@/config/Enum";
 import Icon from "@/components/Icon";
 import iconFlag from "../../public/icons/flag.svg";
-import webpush, { PushSubscription } from "web-push";
 import {
   sendQueueNotification,
   testSendNoti,

@@ -52,7 +52,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
         handleSubscribe();
       }
     }
-  }, []);
+  }, [isSupported]);
 
   const handleSubscribe = () => {
     const onSubscribe = (subscription: PushSubscription | null) => {

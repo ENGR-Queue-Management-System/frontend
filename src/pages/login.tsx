@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { reserveNotLogin } from "@/services/authentication/authentication.service";
 import { Input } from "@/components/ui/input";
 import Loading from "@/components/Loading";
-import { checkTokenExpired, validateEngThai } from "@/helpers/validation";
+import { validateEngThai } from "@/helpers/validation";
 import { setUser } from "@/store/user";
 import IconUsers from "../../public/icons/users.svg";
 import {
@@ -32,7 +32,6 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import Icon from "@/components/Icon";
-import { Label } from "@/components/ui/label";
 import { useEffect } from "react";
 import { getTopics } from "@/services/topic/topic.service";
 import { setTopics } from "@/store/topic";
@@ -73,29 +72,34 @@ export default function Login() {
   };
 
   const onClickLogin = async (data: ReserveRequestDTO) => {
-    dispatch(setLoadingOverlay(true));
-    const res = await reserveNotLogin(data);
-    if (res) {
-      localStorage.setItem("token", res.token);
-      toast({
-        title: "Reserve Successfully",
-        variant: "success",
-        duration: 3000,
+    if (pushSubscription) {
+      dispatch(setLoadingOverlay(true));
+      const res = await reserveNotLogin({
+        ...data,
+        topic: parseInt(data.topic as any),
       });
-      dispatch(
-        setUser({
-          firstNameTH: res.queue.firstName,
-          lastNameTH: res.queue.lastName,
-        })
-      );
-      dispatch(setQueue({ ...res.queue, waiting: res.waiting }));
-      const resSub = await subscribeNotification(pushSubscription!);
-      if (resSub) {
-        dispatch(setSubscription(res));
+      if (res) {
+        localStorage.setItem("token", res.token);
+        toast({
+          title: "Reserve Successfully",
+          variant: "success",
+          duration: 3000,
+        });
+        dispatch(
+          setUser({
+            firstNameTH: res.queue.firstName,
+            lastNameTH: res.queue.lastName,
+          })
+        );
+        dispatch(setQueue({ ...res.queue, waiting: res.waiting }));
+        const resSub = await subscribeNotification(pushSubscription);
+        if (resSub) {
+          dispatch(setSubscription(res));
+        }
+        Router.push(Route.StudentQueue);
       }
-      Router.push(Route.StudentQueue);
+      dispatch(setLoadingOverlay(false));
     }
-    dispatch(setLoadingOverlay(false));
   };
 
   return (
@@ -114,7 +118,7 @@ export default function Login() {
           <FormField
             control={form.control}
             {...form.register("firstName", {
-              required: true,
+              required: "first name is required",
               pattern: {
                 value: validateEngThai(),
                 message: "invalid first name",
@@ -140,7 +144,7 @@ export default function Login() {
           <FormField
             control={form.control}
             {...form.register("lastName", {
-              required: true,
+              required: "last name is required",
               pattern: {
                 value: validateEngThai(),
                 message: "invalid last name",
@@ -167,25 +171,19 @@ export default function Login() {
             control={form.control}
             {...form.register("topic", {
               required: true,
-              pattern: {
-                value: /^(?!0$)\d+$/,
-                message: "invalid topic",
-              },
+              validate: (value) => Number(value) > 0 || "invalid topic",
             })}
             render={({ field }) => (
               <FormItem>
-                <Label className="flex">
+                <FormLabel className="flex">
                   หัวข้อ (Topic) <p className="text-red-600">*</p>
-                </Label>
-                <FormControl>
-                  <Select
-                    name="topic"
-                    onValueChange={(value) =>
-                      form.setValue("topic", parseInt(value))
-                    }
-                  >
+                </FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  value={field.value ? field.value.toString() : undefined}
+                >
+                  <FormControl>
                     <SelectTrigger
-                      {...field}
                       className={`iphone:max-sm:w-[85vw] iphone:max-sm:h-32 iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] px-6 ${
                         form.getValues().topic === 0
                           ? "py-3 text-primary iphone:max-sm:h-12"
@@ -195,45 +193,45 @@ export default function Login() {
                     >
                       <SelectValue placeholder="เลือกเรื่องที่ต้องการจะให้เราช่วยเหลือ" />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        {topics.map((item) => (
-                          <SelectItem value={item.id.toString()} key={item.id}>
-                            <div className="flex items-center gap-4 py-1">
-                              <div
-                                className={`${
-                                  item.topicTH === "อื่นๆ"
-                                    ? "bg-contactList-others"
-                                    : item.topicTH === "ทุนการศึกษา"
-                                    ? "bg-contactList-scholarship"
-                                    : item.topicTH === "ขอคำปรึกษาด้านวิชาการ"
-                                    ? "bg-contactList-consultation"
-                                    : item.topicTH ===
-                                      "แจ้งปัญหาด้านการเรียนการสอน"
-                                    ? "bg-contactList-report"
-                                    : item.topicTH ===
-                                      "ขอจัดกิจกรรมหรือโครงการพิเศษ"
-                                    ? "bg-contactList-request"
-                                    : item.topicTH === "ฝึกงาน-สหกิจศึกษา" &&
-                                      "bg-contactList-internship"
-                                } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
-                              ></div>
-                              <div className="flex flex-col text-start text-b2">
-                                <p>
-                                  {item.topicTH} (
-                                  <span className="font-medium">
-                                    {item.topicEN}
-                                  </span>
-                                  )
-                                </p>
-                              </div>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectGroup>
+                      {topics.map((item) => (
+                        <SelectItem value={item.id.toString()} key={item.id}>
+                          <div className="flex items-center gap-4 py-1">
+                            <div
+                              className={`${
+                                item.topicTH === "อื่นๆ"
+                                  ? "bg-contactList-others"
+                                  : item.topicTH === "ทุนการศึกษา"
+                                  ? "bg-contactList-scholarship"
+                                  : item.topicTH === "ขอคำปรึกษาด้านวิชาการ"
+                                  ? "bg-contactList-consultation"
+                                  : item.topicTH ===
+                                    "แจ้งปัญหาด้านการเรียนการสอน"
+                                  ? "bg-contactList-report"
+                                  : item.topicTH ===
+                                    "ขอจัดกิจกรรมหรือโครงการพิเศษ"
+                                  ? "bg-contactList-request"
+                                  : item.topicTH === "ฝึกงาน-สหกิจศึกษา" &&
+                                    "bg-contactList-internship"
+                              } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
+                            ></div>
+                            <div className="flex flex-col text-start text-b2">
+                              <p>
+                                {item.topicTH} (
+                                <span className="font-medium">
+                                  {item.topicEN}
+                                </span>
+                                )
+                              </p>
                             </div>
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </FormItem>
             )}
           />
