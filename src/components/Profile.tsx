@@ -3,10 +3,7 @@ import IconUser from "../../public/icons/user.svg";
 import IconAdminMange from "../../public/icons/adminManage.svg";
 import IconHistory from "../../public/icons/history.svg";
 import IconLogout from "../../public/icons/logout.svg";
-import IconChange from "../../public/icons/changeDepart.svg";
-import IconList from "../../public/icons/list.svg";
-import IconPlus from "../../public/icons/plus.svg";
-import IconChangeLocation from "../../public/icons/location.svg";
+import IconTopic from "../../public/icons/topic.svg";
 import {
   Popover,
   PopoverContent,
@@ -18,8 +15,6 @@ import CounterManageModal from "../components/modal/CounterManageModal";
 import { Button } from "@/components/ui/button";
 import { useAppSelector } from "@/store";
 import { getUserName } from "@/helpers/function";
-import { useState } from "react";
-import AddCounterModal from "./modal/AddCounterModal";
 import Link from "next/link";
 import ContactTopicManageModal from "./modal/ContactTopicManageModal";
 import { logout } from "@/services/user/user.service";
@@ -55,11 +50,11 @@ const Profile: React.FC = () => {
           <div className="flex flex-col gap-1">
             {/* {!user.student && user.email && (
               <> */}
-                  <ContactTopicManageModal
-                triggerText="จัดการหัวข้อการบริการ"
-                icon={IconAdminMange}
-                title="จัดการหัวข้อการบริการ"
-              ></ContactTopicManageModal>
+            <ContactTopicManageModal
+              triggerText="จัดการหัวข้อการบริการ"
+              icon={IconTopic}
+              title="จัดการหัวข้อการบริการ"
+            ></ContactTopicManageModal>
             <CounterManageModal
               triggerText="จัดการเคาน์เตอร์"
               icon={IconAdminMange}

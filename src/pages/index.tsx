@@ -32,7 +32,9 @@ export default function Home() {
     <div className=" flex items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
       <main
         className={`flex  h-screen w-screen justify-center items-center bg-cover bg-center ${
-          deviceType === DEVICE_TYPE.IOS ? "bg-white" : "gradient-bg"
+          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+            ? "bg-white"
+            : "gradient-bg"
         }`}
       >
         <div className="flex h-screen w-screen justify-center items-center inset-0 px-10  ">
@@ -43,10 +45,18 @@ export default function Home() {
     samsungA24:px-28 samsungA24:py-16   acerSwift:max-macair133:py-4
     gap-5  acerSwift:max-macair133:gap-4 rounded-[25px] 
     bg-[rgba(85,85,86,0.25)] shadow-[0px_0px_4px_2px_rgba(0,0,0,0.25)] 
-    ${deviceType === DEVICE_TYPE.IOS ? "text-[#3d3d3d]" : "text-white"}`}
+    ${
+      [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+        ? "text-[#3d3d3d]"
+        : "text-white"
+    }`}
           >
             <Image
-              src={deviceType === DEVICE_TYPE.IOS ? logoEngColor : logoEng}
+              src={
+                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                  ? logoEngColor
+                  : logoEng
+              }
               alt="logoEng"
               className="samsungA24:w-[10vw] acerSwift:max-macair133:w-[12vw] cursor-not-allowed mb-3 mt-5 macair133:max-samsungA24:w-[15vw] iphone:max-sm:w-[45vw] sm:max-macair133:w-[20vw]"
             />
@@ -62,7 +72,7 @@ export default function Home() {
 
             <div
               className={`  ${
-                deviceType === DEVICE_TYPE.IOS
+                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                   ? " bg-[#F99B25] font-[500] "
                   : "text-white  font-[400]"
               }  w-full text-white mt-2 py-3 px-5 iphone:max-sm:text-[13px] sm:max-samsungA24:text-[15px] acerSwift:max-macair133:text-b4 rounded-md`}
@@ -81,7 +91,7 @@ export default function Home() {
                 }}
                 variant="default"
                 className={`text-sm  acerSwift:max-macair133:text-b4  acerSwift:max-macair133:!py-5 acerSwift:max-macair133:px-6 font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 mt-4 iphone:max-sm:mt-5 w-fit px-10 rounded-[8px] ${
-                  deviceType === DEVICE_TYPE.IOS
+                  [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                     ? "text-[#ffffff] bg-[#605CA4] hover:bg-[#4d498a]"
                     : "text-[#605CA4] bg-white hover:bg-[#eaeaea]"
                 }
@@ -89,7 +99,9 @@ export default function Home() {
               >
                 <Image
                   src={
-                    deviceType === DEVICE_TYPE.IOS ? cmuLogoColor : cmuLogoWhite
+                    [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                      ? cmuLogoColor
+                      : cmuLogoWhite
                   }
                   alt="cmulogo"
                   className="w-[42px] mr-2 acerSwift:max-macair133:w-[35px]"
@@ -103,7 +115,7 @@ export default function Home() {
                 <span className="font-[500]"> ท่านไม่มี</span> CMU account?{" "}
                 <span
                   className={`underline font-[500] cursor-pointer ${
-                    deviceType === DEVICE_TYPE.IOS
+                    [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                       ? "text-[#5868d5]"
                       : "text-white hover:text-[#eaeaea]"
                   } `}
@@ -117,7 +129,7 @@ export default function Home() {
             <Button
               variant="link"
               className={`text-sm font-[500]   acerSwift:max-macair133:text-b4 underline  ${
-                deviceType === DEVICE_TYPE.IOS
+                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                   ? "text-[#e18f2b] hover:text-[#cb8a3a]"
                   : "text-[#ffffff] hover:text-[#eaeaea]"
               }
