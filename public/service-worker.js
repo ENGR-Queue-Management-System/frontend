@@ -15,7 +15,7 @@ self.addEventListener("push", function (event) {
   const notificationTitle = title ?? "New Notifications";
   const notificationOptions = {
     body,
-    icon,
+    icon: icon ?? "/icon-sd.png",
     data: {
       url,
     },

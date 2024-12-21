@@ -18,3 +18,13 @@ export const subscribeNotification = async (subscription: PushSubscription) => {
   const res = await subscriptionService.subscribeNotification(subscriptionData);
   return isValidResponse(res);
 };
+
+export const sendQueueNotification = async (params: any) => {
+  const res = await subscriptionService.sendQueueNotification(params);
+  return isValidResponse(res);
+};
+
+export const testSendNoti = async () => {
+  const res = await subscriptionService.testSendNoti();
+  return isValidResponse(res);
+};

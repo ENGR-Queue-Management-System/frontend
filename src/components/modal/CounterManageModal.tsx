@@ -35,7 +35,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
   const [opendCounterModal, setOpenCounterModal] = useState(false);
   const [openEditOneCounterModal, setOpenEditOneCounterModal] = useState(false);
   const [openAddOneCounterModal, setOpenAddOneCounterModal] = useState(false);
-  const { deviceType, getSubscription } = useNotification();
+  const { deviceType } = useNotification();
 
   const counters = [
     { id: 1, char: "A", name: "เคาน์เตอร์ A", person: "เนตรนภา สาระแปง" },
