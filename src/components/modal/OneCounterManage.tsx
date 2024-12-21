@@ -12,8 +12,7 @@ import { Input } from "@/components/ui/input";
 import IconTrash from "../../../public/icons/trash.svg";
 import IconList from "../../../public/icons/list.svg";
 import Icon from "@/components/Icon";
-import { Checkbox } from "@/components/ui/checkbox"
-
+import { Checkbox } from "@/components/ui/checkbox";
 
 import { TimePickerInput } from "../ui/time-picker-input";
 import { Period } from "../ui/time-picker-utils";
@@ -87,13 +86,15 @@ const OneCounterManage: React.FC<PopupProps> = ({
               <div className="flex flex-col gap-1">
                 <p className="text-b2 acerSwift:max-macair133:text-b4">
                   เลขเคาน์เตอร์{" "}
-                  <span className="text-secondary">(กรอกเลขระหว่าง 1 ถึง 6)</span>{" "}
+                  <span className="text-secondary">
+                    (กรอกเลขระหว่าง 1 ถึง 6)
+                  </span>{" "}
                   <span className="text-delete">*</span>
                 </p>
                 <Input className="h-8 " placeholder="e.g. 5"></Input>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-b2 acerSwift:max-macair133:text-b4 ">
+                <p className="text-b2 acerSwift:max-macair133:text-b4">
                   บุคคลประจำเคาน์เตอร์{" "}
                   <span className="text-secondary font-medium">
                     (CMU Account)
@@ -112,7 +113,7 @@ const OneCounterManage: React.FC<PopupProps> = ({
                 </p>
                 <Input
                   type="time"
-                  className="w-[40%] acerSwift:max-macair133:w-[42%] py-2 px-4 border rounded-md text-gray-700"
+                  className="w-[40%] acerSwift:max-macair133:w-fit py-2 px-4 border rounded-md text-gray-700"
                 />
                 {/* <TimePickerInput
                   type="time"
@@ -125,7 +126,6 @@ const OneCounterManage: React.FC<PopupProps> = ({
                 /> */}
               </div>
             </div>
-            
           </div>
 
           <div
@@ -133,7 +133,7 @@ const OneCounterManage: React.FC<PopupProps> = ({
             className="overflow-y-auto rounded-md flex flex-1 flex-col h-full"
           >
             <div className="sticky flex top-0  bg-table-background text-table-foreground gap-3 px-5 items-center justify-between font-medium py-3">
-              <div className="flex gap-3 text-b2 items-center acerSwift:max-macair133:text-b2">
+              <div className="flex gap-3 text-b2 items-center acerSwift:max-macair133:text-b3">
                 <Icon
                   IconComponent={IconList}
                   className="acerSwift:max-macair133:!size-4 size-5"
@@ -141,7 +141,7 @@ const OneCounterManage: React.FC<PopupProps> = ({
                 หัวข้อบริการ
               </div>
 
-              <div className="text-b2 text-red-500 acerSwift:max-macair133:text-b2">
+              <div className="text-b2 text-red-500 acerSwift:max-macair133:text-b4">
                 เลือกอย่างน้อย 1 รายการ
               </div>
             </div>
@@ -152,7 +152,7 @@ const OneCounterManage: React.FC<PopupProps> = ({
                 className="flex border-b-[1px] mx-5 border-[#e1e1e1] last:border-none px-2 font-medium text-default justify-between gap-3 items-center py-2 acerSwift:max-macair133:py-1.5"
               >
                 <div className="flex items-center gap-5 ">
-                <Checkbox id="terms1" />
+                  <Checkbox id="terms1" />
                   <div className="flex flex-col py-2 text-b2 acerSwift:max-macair133:text-b4">
                     <p>{cat.topicTH}</p>
                     <p>{cat.topicEN}</p>

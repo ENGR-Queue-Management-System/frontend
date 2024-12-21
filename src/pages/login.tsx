@@ -78,7 +78,6 @@ export default function Login() {
       dispatch(setUser(decodeToken));
       toast({
         title: "Reserve Successfully",
-        // description: "",
         duration: 3,
       });
       Router.push(Route.StudentQueue);

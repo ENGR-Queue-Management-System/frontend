@@ -14,9 +14,10 @@ import React, {
   useState,
 } from "react";
 import { useAppSelector } from "@/store";
+import { DEVICE_TYPE } from "@/config/Enum";
 
 interface NotificationContextType {
-  deviceType: string | null;
+  deviceType: DEVICE_TYPE | null;
   isSupported: boolean;
   isGranted: boolean;
   isDenied: boolean;
@@ -33,7 +34,7 @@ const NotificationContext = createContext<NotificationContextType | undefined>(
 export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [deviceType, setDeviceType] = useState<string | null>(null);
+  const [deviceType, setDeviceType] = useState<DEVICE_TYPE | null>(null);
   const [isSupported, setIsSupported] = useState<boolean>(false);
   const [isGranted, setIsGranted] = useState<boolean>(false);
   const [isDenied, setIsDenied] = useState<boolean>(false);

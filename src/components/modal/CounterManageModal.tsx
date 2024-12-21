@@ -31,7 +31,18 @@ const CounterManageModal: React.FC<PopupProps> = ({
   title,
 }) => {
   const [opendCounterModal, setOpenCounterModal] = useState(false);
-  const [openOneCounterModal, setOpenOneCounterModal] = useState(false);
+  const [openEditOneCounterModal, setOpenEditOneCounterModal] = useState(false);
+  const [openAddOneCounterModal, setOpenAddOneCounterModal] = useState(false);
+
+  const counters = [
+    { id: 1, char: "A", name: "เคาน์เตอร์ A", person: "เนตรนภา สาระแปง" },
+    { id: 2, char: "B", name: "เคาน์เตอร์ B", person: "สมชาย แก้วจันทร์" },
+    { id: 3, char: "C", name: "เคาน์เตอร์ C", person: "วิไลวรรณ ทองดี" },
+    { id: 4, char: "D", name: "เคาน์เตอร์ D", person: "ชาญชัย วิทยา" },
+    { id: 5, char: "E", name: "เคาน์เตอร์ E", person: "พิมพ์ใจ รุ่งเรือง" },
+    { id: 6, char: "F", name: "เคาน์เตอร์ F", person: "ศิริพร ใจงาม" },
+    { id: 7, char: "G", name: "เคาน์เตอร์ G", person: "ก้องเกียรติ ชาญวิทย์" },
+  ];
 
   return (
     <>
@@ -39,7 +50,7 @@ const CounterManageModal: React.FC<PopupProps> = ({
         <DialogTrigger asChild>
           <Button
             variant="ghost"
-            className="bg-white hover:bg-table-background text-[#333333] justify-start acerSwift:max-macair133:text-b3"
+            className="bg-white hover:bg-table-background text-[#333333] justify-start acerSwift:max-macair133:text-b4"
           >
             {IconComponent && (
               <IconComponent className="h-5 w-5 -translate-x-1 stroke-[#333333] acerSwift:max-macair133:w-4 acerSwift:max-macair133:h-4" />
@@ -58,68 +69,82 @@ const CounterManageModal: React.FC<PopupProps> = ({
               className="p-0 rounded-lg mt-2 flex flex-col text-[14px]"
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
             >
-              <div className="flex bg-table-background text-table-foreground acerSwift:max-macair133:text-b2 gap-3 items-center font-medium py-3 px-4">
+              <div className="flex bg-table-background text-table-foreground acerSwift:max-macair133:text-b3 gap-3 items-center font-medium py-3 px-4">
                 <Icon
                   IconComponent={IconTopic}
-                  className="acerSwift:max-macair133:size-6"
+                  className="acerSwift:max-macair133:size-5"
                 />{" "}
                 เคาน์เตอร์ที่ให้บริการ
               </div>
 
-              <div className="max-h-[500px] iphone:max-sm:h-[20vh] overflow-y-auto">
-                <div className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center ">
-                  <div className="flex justify-between items-center  px-5 py-4 w-full">
-                    <div className="flex items-center gap-4">
-                      <p className=" border rounded-full p-2 px-[14px] acerSwift:max-macair133:text-b3">
-                        A
-                      </p>
-                      <div className="flex flex-col">
-                        <p className=" text-b2 acerSwift:max-macair133:text-b3">
-                          เคาน์เตอร์ A
+              <div className="max-h-[500px] acerSwift:max-macair133:max-h-[325px] iphone:max-sm:h-[20vh] overflow-y-auto">
+                <div className="flex flex-col border-b-[1px] border-[#e1e1e1] acerSwift:max-macair133:mt-2 font-medium text-default gap-3 acerSwift:max-macair133:gap-0 items-center ">
+                  {counters.map((counter) => (
+                    <div
+                      key={counter.id}
+                      className="flex justify-between items-center px-5 py-4 acerSwift:max-macair133:py-3 w-full"
+                    >
+                      <div className="flex items-center gap-4">
+                        <p className="border rounded-full p-2 px-[14px] acerSwift:max-macair133:text-b3">
+                          {counter.char}
                         </p>
-                        <p className="text-b3 acerSwift:max-macair133:text-b4 text-primary">
-                          เนตรนภา สาระแปง
-                        </p>
+                        <div className="flex flex-col">
+                          <p className="text-b2 acerSwift:max-macair133:text-b3">
+                            {counter.name}
+                          </p>
+                          <p className="text-b3 acerSwift:max-macair133:text-b4 text-primary">
+                            {counter.person}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex gap-3">
+                        <DialogClose asChild>
+                          <Button
+                            onClick={() => {
+                              console.log(`Editing ${counter.name}`);
+                              setOpenEditOneCounterModal(true);
+                            }}
+                            variant="outline"
+                            className="!border-orange-500 text-orange-500 rounded-full hover:bg-[#f7cbb13b] hover:text-orange-600 acerSwift:max-macair133:text-b4"
+                          >
+                            <Icon
+                              IconComponent={IconEdit}
+                              className="stroke-orange-500 acerSwift:max-macair133:!size-4"
+                            />
+                            แก้ไข
+                          </Button>
+                        </DialogClose>
+                        <DialogClose asChild>
+                          <Button
+                            onClick={() =>
+                              console.log(`Deleting ${counter.name}`)
+                            }
+                            variant="outline"
+                            className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600 acerSwift:max-macair133:text-b4"
+                          >
+                            <Icon
+                              IconComponent={IconTrash}
+                              className="stroke-delete acerSwift:max-macair133:!size-4"
+                            />
+                            ลบ
+                          </Button>
+                        </DialogClose>
                       </div>
                     </div>
-                    <div className="flex gap-3 ">
-                      <DialogClose asChild>
-                        <Button
-                          onClick={() => setOpenOneCounterModal(true)}
-                          variant="outline"
-                          className=" !border-orange-500 text-orange-500 rounded-full hover:bg-[#f7cbb13b] hover:text-orange-600 acerSwift:max-macair133:text-b3"
-                        >
-                          <Icon
-                            IconComponent={IconEdit}
-                            className="stroke-orange-500 acerSwift:max-macair133:!size-4"
-                          />
-                          แก้ไข
-                        </Button>
-                      </DialogClose>
-                      <DialogClose asChild>
-                        <Button
-                          variant="outline"
-                          className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600 acerSwift:max-macair133:text-b3"
-                        >
-                          <Icon
-                            IconComponent={IconTrash}
-                            className="stroke-delete acerSwift:max-macair133:!size-4"
-                          />
-                          ลบ
-                        </Button>
-                      </DialogClose>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
             <DialogClose>
               <Button
-                onClick={() => setOpenOneCounterModal(true)}
+                onClick={() => setOpenAddOneCounterModal(true)}
                 className="w-full mt-1"
               >
-                <Icon IconComponent={IconPlus} />
-                <span className="ml-1 acerSwift:max-macair133:text-b3">
+                <Icon
+                  IconComponent={IconPlus}
+                  className="acerSwift:max-macair133:size-4"
+                />
+                <span className="ml-1 acerSwift:max-macair133:text-bภ">
                   {" "}
                   เพิ่มเคาน์เตอร์ที่ให้บริการ
                 </span>
@@ -127,24 +152,24 @@ const CounterManageModal: React.FC<PopupProps> = ({
             </DialogClose>{" "}
           </div>{" "}
         </DialogContent>
-        {openOneCounterModal && (
+        {openAddOneCounterModal && (
           <OneCounterModal
             title="เพิ่มเคาน์เตอร์ที่ให้บริการ"
             type="add"
-            opened={openOneCounterModal}
+            opened={openAddOneCounterModal}
             onClose={() => {
-              setOpenOneCounterModal(false);
+              setOpenAddOneCounterModal(false);
               setOpenCounterModal(true);
             }}
           />
         )}
-        {openOneCounterModal && (
+        {openEditOneCounterModal && (
           <OneCounterManage
             title="แก้ไขเคาน์เตอร์ A"
             type="edit"
-            opened={openOneCounterModal}
+            opened={openEditOneCounterModal}
             onClose={() => {
-              setOpenOneCounterModal(false);
+              setOpenEditOneCounterModal(false);
               setTimeout(() => {
                 setOpenCounterModal(true);
               }, 40);
