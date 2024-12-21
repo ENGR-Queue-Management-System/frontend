@@ -62,16 +62,27 @@ const CounterManageModal: React.FC<PopupProps> = ({
           </Button>
         </DialogTrigger>
         <DialogContent
+          classNameClose={`${
+            [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              ? "pt-12"
+              : ""
+          }`}
           className={`  ${
             [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
               ? "w-[100vw] h-full"
               : "max-w-[50vw]"
           }`}
         >
-          <DialogHeader>
-            <DialogTitle className="text-table-foreground font-[500] acerSwift:max-macair133:text-b1">
+          <DialogHeader
+            className={`  ${
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                ? "pt-12"
+                : ""
+            }`}
+          >
+            <DialogTitle className="text-table-foreground font-[500]  acerSwift:max-macair133:text-b1">
               {title}
-            </DialogTitle>
+            </DialogTitle>{" "}
           </DialogHeader>
           <div className={`flex flex-col  gap-4  `}>
             <div
