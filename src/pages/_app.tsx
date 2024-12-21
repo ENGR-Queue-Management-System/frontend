@@ -7,7 +7,7 @@ import { setUser } from "@/store/user";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Provider } from "react-redux";
 import {
   NotificationProvider,
@@ -95,7 +95,16 @@ function MyApp({ Component, pageProps }: AppProps) {
       </div>
     </div>
   );
-  // return <Component {...pageProps} />
+  // return (
+  //   <div className="flex flex-col h-screen w-screen overflow-hidden">
+  //     {![Route.Index, Route.DisplayQueue, Route.CmuOAuthCallback].includes(
+  //       location
+  //     ) && <Navbar />}
+  //     <div className="flex flex-col h-full w-full overflow-hidden">
+  //       <Component {...pageProps} />
+  //     </div>
+  //   </div>
+  // );
 }
 
 export default function App(props: AppProps) {

@@ -46,7 +46,7 @@ const axiosSuccess = (res: any, configService?: any) => {
 };
 
 const axiosError = (error: any, configService?: any) => {
-  return error.response.data;
+  return error.response?.data || "Cannot connect api server.";
 };
 
 const axiosService = (

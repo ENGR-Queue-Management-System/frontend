@@ -36,9 +36,10 @@ import { Label } from "@/components/ui/label";
 import { useEffect } from "react";
 import { getTopics } from "@/services/topic/topic.service";
 import { setTopics } from "@/store/topic";
+import { setQueue } from "@/store/queue";
 
 export default function Login() {
-  const { deviceType } = useNotification();
+  const { deviceType, getSubscription } = useNotification();
   const loading = useAppSelector((state) => state.loading.loadingOverlay);
   const counters = useAppSelector((state) =>
     state.counter.filter(({ status }) => status == true)
@@ -74,12 +75,19 @@ export default function Login() {
     const res = await reserveNotLogin(data);
     if (res) {
       localStorage.setItem("token", res.token);
-      const decodeToken = await checkTokenExpired(res.token, true);
-      dispatch(setUser(decodeToken));
       toast({
         title: "Reserve Successfully",
-        duration: 3,
+        variant: "success",
+        duration: 3000,
       });
+      dispatch(
+        setUser({
+          firstNameTH: res.queue.firstName,
+          lastNameTH: res.queue.lastName,
+        })
+      );
+      dispatch(setQueue({ ...res.queue, waiting: res.waiting }));
+      await getSubscription();
       Router.push(Route.StudentQueue);
     }
     dispatch(setLoadingOverlay(false));
@@ -224,7 +232,7 @@ export default function Login() {
               </FormItem>
             )}
           />
-          {form.getValues().topic !== 0 && (
+          {form.watch().topic !== 0 && (
             <FormField
               control={form.control}
               name="note"

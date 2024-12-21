@@ -47,6 +47,7 @@ export interface IModelQueue {
   note: string;
   status: STATUS;
   createdAt: Date;
+  waiting?: number;
 }
 
 export interface IModelFeedback {

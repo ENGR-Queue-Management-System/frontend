@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import {
@@ -14,16 +13,13 @@ import { Button } from "@/components/ui/button";
 import IconUsers from "../../../public/icons/users.svg";
 import Icon from "@/components/Icon";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { subscribeNotification } from "@/services/subscription/subscription.service";
-import { setSubscription } from "@/store/subscription";
 import { useNotification } from "@/notifications/useNotification";
-import { urlBase64ToUint8Array } from "@/lib/utils";
 import Router from "next/router";
 import { Route } from "@/config/Route";
 import { DEVICE_TYPE } from "@/config/Enum";
 
 export default function StudentIndex() {
-  const { deviceType, isGranted, onSubscribe, onError } = useNotification();
+  const { deviceType, isGranted, getSubscription } = useNotification();
   const topics = useAppSelector((state) => state.topic);
   const user = useAppSelector((state) => state.user);
   const subscription = useAppSelector((state) => state.subscription);
@@ -48,27 +44,6 @@ export default function StudentIndex() {
       }
     }
   }, [user]);
-
-  const getSubscription = async () => {
-    await navigator.serviceWorker.register("/service-worker.js");
-    navigator.serviceWorker.ready
-      .then((registration: ServiceWorkerRegistration) => {
-        return registration.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: urlBase64ToUint8Array(
-            process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!
-          ),
-        });
-      })
-      .then(async (subscription) => {
-        const res = await subscribeNotification(subscription);
-        if (res) {
-          dispatch(setSubscription(res));
-        }
-        onSubscribe();
-      })
-      .catch((e) => onError(e));
-  };
 
   return (
     <div className="m-auto overflow-y-auto flex flex-col gap-7 acerSwift:max-macair133:gap-6 iphone:max-sm:gap-6 items-center justify-start">
@@ -114,7 +89,7 @@ export default function StudentIndex() {
                   <div className="flex flex-col text-start text-b2 acerSwift:max-macair133:text-b3">
                     <p>
                       {item.topicTH} (
-                      <span className="font-medium ">{item.topicEN}</span>)
+                      <span className="font-medium">{item.topicEN}</span>)
                     </p>
                   </div>
                 </div>
