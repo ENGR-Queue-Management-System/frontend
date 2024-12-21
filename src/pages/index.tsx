@@ -29,15 +29,12 @@ import {
 import { toast } from "@/hooks/use-toast";
 
 export default function Home() {
-  const { deviceType, pushSubscription, handleSubscribe } = useNotification();
+  const { deviceType } = useNotification();
   const user = useAppSelector((state) => state.user);
   const [testSendNotiList, setTestSendNotiList] = useState<any[]>([]);
   const [selectTest, setSelectTest] = useState("");
 
   useEffect(() => {
-    if (!pushSubscription) {
-      handleSubscribe();
-    }
     if (!testSendNotiList.length) {
       const test = async () => {
         const res = await testSendNoti();
