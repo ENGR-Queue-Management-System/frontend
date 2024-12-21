@@ -43,3 +43,28 @@ export const isPermissionGranted = (): boolean => {
 export const isPermissionDenied = (): boolean => {
   return Notification.permission === "denied";
 };
+
+export async function registerAndSubscribe(
+  onSubscribe: (subs: PushSubscription | null) => void,
+  onError: (e: Error) => void
+): Promise<void> {
+  try {
+    await navigator.serviceWorker.register("/service-worker.js");
+    navigator.serviceWorker.ready
+      .then((registration: ServiceWorkerRegistration) => {
+        return registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+        });
+      })
+      .then((subscription: PushSubscription) => {
+        console.info("Created subscription Object: ", subscription.toJSON());
+        onSubscribe(subscription);
+      })
+      .catch((e) => {
+        onError(e);
+      });
+  } catch (e: any) {
+    onError(e);
+  }
+}
