@@ -332,7 +332,7 @@ export default function AdminIndex() {
                     {dateFormatter(counter?.timeClosed, true)})
                   </p>
                   <p className="text-primary text-b3 acerSwift:max-macair133:text-b4 ">
-                    Counter {counter?.counter}
+                    เคาน์เตอร์ {counter?.counter}
                   </p>
                 </div>
               </div>

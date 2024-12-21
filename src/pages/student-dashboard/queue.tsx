@@ -23,6 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import IconStar from "../../../public/icons/star.svg";
 import IconStarFull from "../../../public/icons/starFull.svg";
+import IconExclaimation from "../../../public/icons/exclaimation.svg";
 import { useAppSelector } from "@/store";
 import { dateFormatter } from "@/helpers/function";
 export default function StudentQueue() {
@@ -32,7 +33,7 @@ export default function StudentQueue() {
   return (
     <>
       <Dialog open={openFeedbackModal} onOpenChange={setOpenFeedbackModal}>
-        <DialogContent className="sm:max-w-fit gap-5 acerSwift:max-macair133:p-6">
+        <DialogContent className="sm:max-w-fit gap-5 acerSwift:max-macair133:p-6 acerSwift:max-macair133:w-fit">
           <DialogHeader>
             <DialogTitle className="acerSwift:max-macair133:text-b2">
               แชร์ความคิดเห็นของท่านกับเรา
@@ -41,26 +42,33 @@ export default function StudentQueue() {
               ท่านพอใจกับบริการของเราแค่ไหน เลือกระดับความพึงพอใจได้เลย
             </DialogDescription>
           </DialogHeader>
-          <div className="flex justify-between gap-0 py-4 px-20">
+          <div className="flex gap-3 items-center justify-center w-full acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#1F93EF]/10">
+            <Icon IconComponent={IconExclaimation} className="text-[#1F93EF]" />
+            <p className="text-b2 acerSwift:max-macair133:text-b3 text-[#1F93EF] w-full font-medium">
+              ความคิดเห็นของคุณจะถูกแสดงในรูปแบบที่ไม่ระบุตัวตน{" "}
+              <span className="font-semibold">(anonymous)</span>
+            </p>
+          </div>
+          <div className="flex justify-between gap-0 py-4 px-16 acerSwift:max-macair133:w-[40vw]">
             {[...Array(5)].map((_, index) => (
               <Icon
                 key={index}
                 IconComponent={rateFeedback > index ? IconStarFull : IconStar}
-                className="size-12 stroke-[1.5px] hover:cursor-pointer text-[#ffba08]"
+                className={`size-10 stroke-[1.5px] hover:cursor-pointer hover:text-[#FBA21C] text-[#ffba08]`}
                 onClick={() => {
                   setRateFeedback(index + 1);
                 }}
               />
             ))}
           </div>
-          <div className="flex flex-col gap-2 items-start text-b2 w-full font-medium acerSwift:max-macair133:text-b3">
+          <div className="flex flex-col gap-2 items-start text-b2 w-full font-medium acerSwift:max-macair133:text-b3 text-default acerSwift:max-macair133:w-[40vw]">
             <p>
               มีข้อเสนอแนะเพิ่มเติมไหม? เราชื่นชอบที่จะได้ยินความคิดเห็นของท่าน!
               (ไม่บังคับ)
             </p>
             <Textarea
               maxLength={150}
-              className="font-normal acerSwift:max-macair133:text-b4 acerSwift:max-macair133:px-5 acerSwift:max-macair133:py-3"
+              className="font-normal acerSwift:max-macair133:text-b4 acerSwift:max-macair133:w-[40vw] acerSwift:max-macair133:px-5 acerSwift:max-macair133:h-20 acerSwift:max-macair133:py-3"
               placeholder="กรอกข้อเสนอแนะของท่านที่นี่"
             />
           </div>
