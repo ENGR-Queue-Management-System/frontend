@@ -7,10 +7,7 @@ const sendDeliveryReportAction = () => {
 };
 
 self.addEventListener("push", function (event) {
-  if (!event.data) {
-    return;
-  }
-  const payload = event.data.json();
+  const payload = event.data ? event.data.json() : {};
   const { body, icon, url, title } = payload;
   const notificationTitle = title ?? "New Notifications";
   const notificationOptions = {
@@ -44,7 +41,7 @@ self.addEventListener("notificationclick", function (event) {
           }
         }
         if (clients.openWindow) {
-          return clients.openWindow(url);
+          return clients.openWindow(url || "/");
         }
       })
   );
