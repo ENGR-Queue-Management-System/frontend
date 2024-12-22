@@ -85,7 +85,7 @@ export default function Home() {
       <div
         className={`  ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-            ? " w-full h-[50%]  !justify-center  !items-center !text-center"
+            ? " w-full h-[35%]  !justify-center  !items-center !text-center"
             : "gradient-bg rounded-tr-xl !w-[40%] rounded-br-xl items-center inset-0 px-10 flex h-screen"
         }    `}
       >
@@ -108,8 +108,8 @@ export default function Home() {
             className={`samsungA24:w-[10vw] ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                 ? " mt-[50px] "
-                : "-ml-3"
-            } acerSwift:max-macair133:w-[12vw] cursor-not-allowed mb-3 mt-5 macair133:max-samsungA24:w-[15vw] iphone:max-sm:w-[40vw] sm:max-macair133:w-[20vw]`}
+                : "-ml-3 mt-5 mb-3"
+            } acerSwift:max-macair133:w-[12vw] cursor-not-allowed  macair133:max-samsungA24:w-[15vw] iphone:max-sm:w-[40vw] sm:max-macair133:w-[20vw]`}
           />
           <div>
             <p className=" mt-3 sm:max-samsungA24:text-[28px] acerSwift:max-macair133:text-h1 font-[400] iphone:max-sm:text-[24px] text-[34px]">
@@ -129,7 +129,7 @@ export default function Home() {
       </div>
       <div className={` ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-            ? " w-full h-[50%]"
+            ? " w-full h-[65%]"
             : "w-[60%]"
         } flex flex-col bg-white justify-center text-center items-center`}>
         {" "}
