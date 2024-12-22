@@ -93,7 +93,7 @@ export default function Home() {
           className={`
     ${
       [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-        ? "text-[#3d3d3d] flex flex-col !justify-center !items-center !text-center"
+        ? "text-[#3d3d3d] flex flex-col mt-12 !justify-center !items-center !text-center"
         : "text-start text-white pl-12 justify-start items-start flex flex-col "
     }`}
         >
