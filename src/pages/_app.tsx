@@ -21,6 +21,8 @@ import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
 import { setLoading } from "@/store/loading";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import { toast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { isSupported, isGranted, handleSubscribe } = useNotification();
@@ -34,18 +36,24 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const timeout = setTimeout(() => {
       dispatch(setLoading(false));
-      if (isSupported) {
-        handleSubscribe();
-      }
     }, 2000);
     return () => clearTimeout(timeout);
   }, []);
 
-  // useEffect(() => {
-  //   if (isSupported && !isGranted) {
-  //     handleSubscribe();
-  //   }
-  // }, [isSupported]);
+  useEffect(() => {
+    if (isSupported && !isGranted) {
+      toast({
+        title: "Subscribe Notifications!",
+        variant: "default",
+        className: "mt-16",
+        action: (
+          <ToastAction altText="subscribe" onClick={handleSubscribe}>
+            Subscribe
+          </ToastAction>
+        ),
+      });
+    }
+  }, [isSupported]);
 
   useEffect(() => {
     if (!counters.length) {

@@ -1,5 +1,6 @@
-self.addEventListener("install", () => {
+self.addEventListener("install", (event) => {
   console.info("service worker installed.");
+  event.waitUntil(self.skipWaiting());
 });
 
 const sendDeliveryReportAction = () => {
