@@ -85,7 +85,7 @@ export default function Home() {
       <div
         className={`  ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-            ? " w-full h-[35%]  !justify-center  !items-center !text-center"
+            ? " w-full h-[35%] flex  !justify-center  !items-center !text-center"
             : "gradient-bg rounded-tr-xl !w-[40%] rounded-br-xl items-center inset-0 px-10 flex h-screen"
         }    `}
       >
@@ -93,7 +93,7 @@ export default function Home() {
           className={`
     ${
       [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-        ? "text-[#3d3d3d] flex flex-col mt-12 !justify-center !items-center !text-center"
+        ? "text-[#3d3d3d] flex flex-col  !justify-center !items-center !text-center"
         : "text-start text-white pl-12 justify-start items-start flex flex-col "
     }`}
         >
