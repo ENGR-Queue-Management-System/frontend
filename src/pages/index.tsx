@@ -85,7 +85,7 @@ export default function Home() {
       <div
         className={`  ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-            ? " w-full h-[35%] flex  !justify-center  !items-center !text-center"
+            ? " w-full h-[40%] flex  !justify-center  !items-center !text-center"
             : "gradient-bg rounded-tr-xl !w-[40%] rounded-br-xl items-center inset-0 px-10 flex h-screen"
         }    `}
       >
@@ -93,7 +93,7 @@ export default function Home() {
           className={`
     ${
       [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-        ? "text-[#3d3d3d] flex flex-col  !justify-center !items-center !text-center"
+        ? "text-[#3d3d3d] flex flex-col mt-12 !justify-center !items-center !text-center"
         : "text-start text-white pl-12 justify-start items-start flex flex-col "
     }`}
         >
@@ -129,13 +129,13 @@ export default function Home() {
       </div>
       <div className={` ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-            ? " w-full h-[65%]"
+            ? " w-full h-[60%]"
             : "w-[60%]"
         } flex flex-col bg-white justify-center text-center items-center`}>
         {" "}
         <div className={`flex gap-3  items-center justify-center w-[65%] ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-            ? " w-[90%] mt-5"
+            ? " w-[90%] mt-2"
             : "w-[65%]"
         } acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/40`}>
           <Icon IconComponent={iconEx} className="text-[#856404]" />
