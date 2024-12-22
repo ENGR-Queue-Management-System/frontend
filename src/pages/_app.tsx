@@ -32,15 +32,20 @@ function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const timeout = setTimeout(() => dispatch(setLoading(false), 2000));
+    const timeout = setTimeout(() => {
+      dispatch(setLoading(false));
+      if (isSupported) {
+        handleSubscribe();
+      }
+    }, 2000);
     return () => clearTimeout(timeout);
   }, []);
 
-  useEffect(() => {
-    if (isSupported && !isGranted) {
-      handleSubscribe();
-    }
-  }, [isSupported]);
+  // useEffect(() => {
+  //   if (isSupported && !isGranted) {
+  //     handleSubscribe();
+  //   }
+  // }, [isSupported]);
 
   useEffect(() => {
     if (!counters.length) {
