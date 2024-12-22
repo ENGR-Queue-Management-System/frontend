@@ -77,22 +77,22 @@ export default function Home() {
   return (
     <div
       className={` flex flex-row ${
-        [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
+        [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
           ? "flex-col "
           : ""
       } h-full w-full`}
     >
       <div
         className={`  ${
-          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
-            ? " w-full  !justify-center  !items-center !text-center"
+          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+            ? " w-full h-[50%]  !justify-center  !items-center !text-center"
             : "gradient-bg rounded-tr-xl !w-[40%] rounded-br-xl items-center inset-0 px-10 flex h-screen"
         }    `}
       >
         <div
           className={`
     ${
-      [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
+      [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
         ? "text-[#3d3d3d] flex flex-col !justify-center !items-center !text-center"
         : "text-start text-white pl-12 justify-start items-start flex flex-col "
     }`}
@@ -106,8 +106,8 @@ export default function Home() {
             }
             alt="logoEng"
             className={`samsungA24:w-[10vw] ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
-                ? "mt-8 "
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                ? " mt-[50px] "
                 : "-ml-3"
             } acerSwift:max-macair133:w-[12vw] cursor-not-allowed mb-3 mt-5 macair133:max-samsungA24:w-[15vw] iphone:max-sm:w-[40vw] sm:max-macair133:w-[20vw]`}
           />
@@ -128,13 +128,13 @@ export default function Home() {
         </div>
       </div>
       <div className={` ${
-          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
-            ? " w-full  !"
+          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+            ? " w-full h-[50%]"
             : "w-[60%]"
         } flex flex-col bg-white justify-center text-center items-center`}>
         {" "}
         <div className={`flex gap-3  items-center justify-center w-[65%] ${
-          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
+          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
             ? " w-[90%] mt-5"
             : "w-[65%]"
         } acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/40`}>
@@ -154,8 +154,7 @@ export default function Home() {
             }}
             variant="default"
             className={`text-sm   acerSwift:max-macair133:text-b4  acerSwift:max-macair133:!py-5 acerSwift:max-macair133:px-6 font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 mt-10 iphone:max-sm:mt-5 w-fit px-10 rounded-[8px] ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ||
-              true
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                 ? "text-[#ffffff] bg-[#5868d5] hover:bg-[#5868d5]"
                 : "text-[#ffffff] bg-[#5868d5] hover:bg-[#5868d5]"
             }
@@ -163,8 +162,7 @@ export default function Home() {
           >
             <Image
               src={
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ||
-                true
+                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                   ? cmuLogoColor
                   : cmuLogoColor
               }
@@ -180,7 +178,7 @@ export default function Home() {
             account?{" "}
             <span
               className={`underline font-[500] cursor-pointer ${
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ||
+                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)||
                 true
                   ? "text-[#5868d5] hover:text-[#303d91]"
                   : "text-[#5868d5] hover:text-[#303d91]"
@@ -193,8 +191,8 @@ export default function Home() {
           <Button
             variant="link"
             className={`text-sm font-[600]   acerSwift:max-macair133:text-b4 underline  ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ||
-              true
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              
                 ? "text-[#856404] hover:text-[#856404] mt-4"
                 : "text-[#856404] hover:text-[#856404] mt-10 "
             }
