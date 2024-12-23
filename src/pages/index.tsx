@@ -147,7 +147,7 @@ export default function Home() {
             </p>
           </p>
         </div>
-        <a href={process.env.NEXT_PUBLIC_CMU_OAUTH_URL}>
+        <a href={process.env.NEXT_PUBLIC_CMU_ENTRAID_URL}>
           <Button
             style={{
               boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.45)",

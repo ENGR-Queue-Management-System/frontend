@@ -7,7 +7,7 @@ const authService = authenticationController();
 export const loginWithAuth = async (code: string) => {
   const res = await authService.loginWithAuth({
     code,
-    redirectUri: process.env.NEXT_PUBLIC_CMU_OAUTH_REDIRECT_URL || "",
+    redirectUri: process.env.NEXT_PUBLIC_CMU_ENTRAID_REDIRECT_URL!,
   });
   return isValidResponse(res);
 };
