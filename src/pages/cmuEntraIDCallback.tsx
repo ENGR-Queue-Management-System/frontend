@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "@/store";
 import { setUser } from "@/store/user";
 import { jwtDecode } from "jwt-decode";
 
-export default function CMUOAuthCallback() {
+export default function CmuEntraIDCallback() {
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
   const user = useAppSelector((state) => state.user);
