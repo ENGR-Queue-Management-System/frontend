@@ -72,15 +72,9 @@
 }
 
 .gradient-bg-navbar {
-  height: 100vh;
+
   width: 100%;
-  background: linear-gradient(
-    to right,
-    #054545,
-    /* Dark teal start */ #0a5050,
-    /* Slightly lighter dark teal */ #0f5b5b,
-    /* Medium dark teal */ #136666 /* Dark teal end */
-  );
+  background: linear-gradient(to right, #c3d9ff, #a3c9ff, #8fd6f7, #b1f0ff);
 }
 
 ::-webkit-scrollbar-thumb {
