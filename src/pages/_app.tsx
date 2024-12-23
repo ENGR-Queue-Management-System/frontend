@@ -106,7 +106,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div
         className={`${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
-            ? " iphone:max-sm:hidden"
+            ? "hidden"
             : "gradient-bg text-[1.8vw] font-medium text-white flex flex-col h-screen w-[55%] text-start justify-center  pl-[4vw]"
         }`}
       >
@@ -154,9 +154,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                 : ""
             }
             alt="logoEng"
-            className={`samsungA24:w-[10vw] ${
+            className={` ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
-                ? " mt-[30px] fixed top-2 left-0 -ml-9  w-[42vw] "
+                ? " mt-[40px] fixed top-2 left-0 -ml-9  w-[42vw] "
                 : "hidden"
             } `}
           />
