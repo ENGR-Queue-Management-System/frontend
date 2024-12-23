@@ -105,7 +105,7 @@ export default function Login() {
 
   return (
     <div className="flex bg-[#fafafa] flex-col h-full w-full overflow-y-auto gap-16 justify-center items-center">
-      <div className="flex flex-col h-fit items-center  justify-center text-center text-[24px] font-medium iphone:max-sm:w-[85vw] iphone:max-sm:text-[20px] sm:max-macair133:text-[20px] macair133:text-[32px]">
+      <div className="flex flex-col h-fit items-center  justify-center text-center text-[24px] font-medium iphone:max-sm:w-[85vw] iphone:max-sm:text-[24px] sm:max-macair133:text-[26px] macair133:text-[32px]">
         <p className=" font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-[#4285f4] via-[#ec407a] via-[#a06ee1] to-[#fb8c00] bg-clip-text text-transparent">
           What can we help you with today?
         </p>
@@ -236,12 +236,12 @@ export default function Login() {
                     </FormControl>
                   </div>
                   <div className="flex flex-col  items-center justify-center w-full px-6">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center mt-2 gap-2">
                       <Icon IconComponent={IconUsers} className="!size-5" />
-                      <div className="text-start text-default mt-1 text-b2 iphone:max-sm:text-b3">
+                      <div className="text-start text-default text-b2 iphone:max-sm:text-b3">
                         <p className="font-medium">
                           <span className="font-semibold"> Waiting </span>
-                          <span className="text-h2 iphone:max-sm:text-b1 font-semibold text-default">
+                          <span className="text-b2 iphone:max-sm:text-b3 font-medium text-primary">
                             11 Queues
                           </span>
                         </p>
