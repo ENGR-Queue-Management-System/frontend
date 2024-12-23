@@ -46,6 +46,7 @@ export interface IModelQueue {
   topic: IModelTopic;
   note: string;
   status: STATUS;
+  counterId?: number;
   createdAt: Date;
   waiting?: number;
 }

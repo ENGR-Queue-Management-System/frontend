@@ -357,7 +357,7 @@ export default function AdminIndex() {
                       ห้องงานพัฒนาคุณภาพนักศึกษา
                     </p>
                   </div>
-                  <div className=" samsungA24:mt-3 iphone:max-sm:mt-3 acerSwift:max-macair133:mt-2 acerSwift:max-macair133:mt-1 ipad11:max-samsungA24:mt-2 mb-1 acerSwift:max-macair133:mb-0 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] iphone:max-sm:text-[40px] font-medium text-[52px]">
+                  <div className=" samsungA24:mt-3 iphone:max-sm:mt-3 acerSwift:max-macair133:mt-2 ipad11:max-samsungA24:mt-2 mb-1 acerSwift:max-macair133:mb-0 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] iphone:max-sm:text-[40px] font-medium text-[52px]">
                     A004
                   </div>
                   <div className="text-center items-center justify-center flex flex-col samsungA24:text-[22px] acerSwift:max-macair133:text-b1 text-h2 text-primary">
