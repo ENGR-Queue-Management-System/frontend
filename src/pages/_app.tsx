@@ -136,7 +136,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div
         className={` ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
-            ? " !w-full !h-screen  !justify-end !items-start pb-16 !text-start bg-gradient-to-b from-[#22a0a0]/30 to-white"
+            ? " !w-full !h-screen  !justify-end !items-start pb-16 !text-start bg-gradient-to-b from-[#22a0a0]/40 to-white"
             : "w-[45%]"
         } flex flex-col  justify-center text-center items-center`}
       >
@@ -156,7 +156,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             alt="logoEng"
             className={` ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
-                ? " mt-[40px] fixed top-2 left-0 -ml-9  w-[42vw] "
+                ? " mt-[40px] fixed top-3 left-0 -ml-9  w-[42vw] "
                 : "hidden"
             } `}
           />
