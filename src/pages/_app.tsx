@@ -7,6 +7,7 @@ import { setUser } from "@/store/user";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { usePathname, useRouter } from "next/navigation";
+import logoSDMinimal from "../../public/images/logoSDMinimalColor.png";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
 import Image from "next/image";
@@ -106,7 +107,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         className={`${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
             ? " iphone:max-sm:hidden"
-            : "gradient-bg text-[1.8vw] font-semibold text-white flex flex-col h-screen w-[55%] text-start justify-center  pl-[4vw]"
+            : "gradient-bg text-[1.8vw] font-medium text-white flex flex-col h-screen w-[55%] text-start justify-center  pl-[4vw]"
         }`}
       >
         <Image
@@ -135,31 +136,52 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div
         className={` ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
-            ? " !w-full !h-screen  !justify-end !items-start pb-16 !text-start bg-gradient-to-b from-[#22a0a0]/20 to-white"
+            ? " !w-full !h-screen  !justify-end !items-start pb-16 !text-start bg-gradient-to-b from-[#22a0a0]/30 to-white"
             : "w-[45%]"
         } flex flex-col  justify-center text-center items-center`}
       >
         <div
           className={`flex flex-col ${
-            [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
-              ? "w-[100%] px-6 justify-start items-start text-start"
-              : "w-[80%] justify-center items-center text-center"
+            [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              ? "w-[100%]  h-full px-8 justify-end items-start text-start"
+              : "w-[80%] justify-center  text-start"
           } `}
         >
-          {" "}
-          <Icon
-            IconComponent={iconBell}
-            className={`text-[#22a0a0] size-20 stroke-[1.4px] mb-3 ${
+          <Image
+            src={
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                ? logoSDMinimal
+                : ""
+            }
+            alt="logoEng"
+            className={`samsungA24:w-[10vw] ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
-                ? "-ml-2"
+                ? " mt-[30px] fixed top-2 left-0 -ml-9  w-[42vw] "
+                : "hidden"
+            } `}
+          />
+          {" "}
+          <div
+            className={` ${
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                ? ""
                 : ""
             }`}
+          >
+          <Icon
+            IconComponent={iconBell}
+            className={`text-[#22a0a0] size-20 stroke-[1.2px] mb-3 ${
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
+                ? "-ml-2"
+                : " "
+            }`}
           />
+          </div>
           <p
             className={`${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                 ? "text-[#22a0a0] text-start font-semibold text-[3vh]  "
-                : "text-[#22a0a0] font-semibold text-[1.2vw]"
+                : "text-[#22a0a0] font-medium text-center text-[1.4vw]"
             } `}
           >
             {" "}
@@ -175,19 +197,23 @@ function MyApp({ Component, pageProps }: AppProps) {
             {" "}
             Automatic Queuing System
           </p>
-          <p className="my-4 text-[15px] text-default font-medium">
+          <p className={`my-4  ${
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
+                ? "text-[13px] "
+                : "text-[16px] text-center"
+            } text-default font-medium`}>
             Don’t miss your queue! Allow notifications, and we’ll send you a
             friendly alert as soon as your queue arrives.
           </p>
           <div
-            className={`flex gap-3  items-center justify-center w-[65%] ${
+            className={`flex gap-3  items-center justify-center  ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? " w-[90%] mt-2"
+                ? " w-[100%] mt-2"
                 : "w-[100%] mt-8"
             } acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#f73b3b]/15`}
           >
             <Icon IconComponent={iconEx} className="text-[#f73b3b]" />
-            <p className="iphone:max-sm:text-[14px] text-[14px] acerSwift:max-macair133:text-b3 text-[#f73b3b] font-bold text-start w-full ">
+            <p className="iphone:max-sm:text-[13px] text-[14px] acerSwift:max-macair133:text-b3 text-[#f73b3b] font-bold text-start w-full ">
               Notifications Required <br />
               <p className="font-medium mt-[2px]">
                 If you do not allow notifications, you won’t be able to access
@@ -195,12 +221,20 @@ function MyApp({ Component, pageProps }: AppProps) {
               </p>
             </p>
           </div>
+          <div
+            className={`${
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                ? " w-[100%] mt-2"
+                : "flex flex-col !text-center !items-center !justify-center w-[100%] mt-6"
+            }`}
+          >
           <Button className={`mt-5 ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
-                ? " w-[100%] mt-5 h-12 text-[15px] font-semibold"
-                : ""}`} onClick={handleSubscribe}>
+                ? " w-[100%] rounded-full mt-5 h-12 text-[15px] font-semibold"
+                : "py-6 px-12 text-[15px] font-semibold"}`} onClick={handleSubscribe}>
             Allow Notification
           </Button>
+          </div>
         </div>{" "}
       </div>
     </div>
