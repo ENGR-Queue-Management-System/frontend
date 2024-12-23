@@ -23,7 +23,7 @@ import { setSubscription } from "@/store/subscription";
 export default function StudentIndex() {
   const { deviceType, isGranted, pushSubscription } = useNotification();
   const topics = useAppSelector((state) => state.topic);
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
   const subscription = useAppSelector((state) => state.subscription);
   const dispatch = useAppDispatch();
   const [selectTopic, setSelectTopic] = useState(0);

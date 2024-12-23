@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/table";
 
 export default function Home() {
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
 
   useEffect(() => {
     if (user.email) {
