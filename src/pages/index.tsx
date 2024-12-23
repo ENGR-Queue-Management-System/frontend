@@ -157,7 +157,7 @@ export default function Home() {
                 : ""
             }
             alt="logoEng"
-            className={`samsungA24:w-[10vw] ${
+            className={` ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                 ? " mt-[30px] fixed top-2 left-0 -ml-9  w-[42vw] "
                 : "hidden"
