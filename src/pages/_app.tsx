@@ -7,7 +7,7 @@ import { setUser } from "@/store/user";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { usePathname, useRouter } from "next/navigation";
-import logoSDMinimal from "../../public/images/logoSDMinimalColor.png";
+import logoSDMinimal from "../../public/images/logoSDMiColor.png";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
 import Image from "next/image";
