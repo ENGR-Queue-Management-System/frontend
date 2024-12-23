@@ -274,21 +274,21 @@ export default function Home() {
                   Click here
                 </span>
               </p>
-              {/* <Button
-              variant="link"
-              className={`text-sm font-[600]   acerSwift:max-macair133:text-b4 underline  ${
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                  ? "text-[#856404] hover:text-[#856404] mt-4"
-                  : "text-[#856404] hover:text-[#856404] mt-10 "
-              }
+              <Button
+                variant="link"
+                className={`text-sm font-[600]   acerSwift:max-macair133:text-b4 underline  ${
+                  [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                    ? "text-[#856404] hover:text-[#856404] mt-4"
+                    : "text-[#856404] hover:text-[#856404] mt-10 "
+                }
             `}
-            >
-              <Icon IconComponent={iconFlag} />
-              Issue Report
-            </Button> */}
+              >
+                <Icon IconComponent={iconFlag} />
+                Issue Report
+              </Button>
             </div>
           </div>
-          {/* <Link href="/admin-dashboard">
+          <Link href="/admin-dashboard">
             <Button
               variant="link"
               className={`text-sm font-[500] mt-5 underline text-[#000000]`}
@@ -296,7 +296,7 @@ export default function Home() {
               Admin
             </Button>
           </Link>
-          <div className="flex gap-2">
+          {/* <div className="flex gap-2">
             <Select onValueChange={(value) => setSelectTest(value)}>
               <SelectTrigger className="!w-[30vw] py-2">
                 <SelectValue placeholder="Select Test Notification" />
