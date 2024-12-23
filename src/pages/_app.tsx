@@ -9,7 +9,6 @@ import type { AppProps } from "next/app";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
-
 import {
   NotificationProvider,
   useNotification,
@@ -21,8 +20,6 @@ import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
 import { setLoading } from "@/store/loading";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import { toast } from "@/hooks/use-toast";
-import { ToastAction } from "@/components/ui/toast";
 import { Button } from "@/components/ui/button";
 
 function MyApp({ Component, pageProps }: AppProps) {
