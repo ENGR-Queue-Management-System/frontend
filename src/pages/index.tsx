@@ -30,7 +30,7 @@ import { toast } from "@/hooks/use-toast";
 
 export default function Home() {
   const { deviceType } = useNotification();
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
   const [testSendNotiList, setTestSendNotiList] = useState<any[]>([]);
   const [selectTest, setSelectTest] = useState("");
 
@@ -100,7 +100,6 @@ export default function Home() {
           <Image
             src={
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-           
                 ? logoEngColor
                 : logoEng
             }
@@ -127,17 +126,21 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className={` ${
+      <div
+        className={` ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
             ? " w-full h-[60%]"
             : "w-[60%]"
-        } flex flex-col bg-white justify-center text-center items-center`}>
+        } flex flex-col bg-white justify-center text-center items-center`}
+      >
         {" "}
-        <div className={`flex gap-3  items-center justify-center w-[65%] ${
-          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-            ? " w-[90%] mt-2"
-            : "w-[65%]"
-        } acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/40`}>
+        <div
+          className={`flex gap-3  items-center justify-center w-[65%] ${
+            [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              ? " w-[90%] mt-2"
+              : "w-[65%]"
+          } acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/40`}
+        >
           <Icon IconComponent={iconEx} className="text-[#856404]" />
           <p className="iphone:max-sm:text-[12px] text-[14px] acerSwift:max-macair133:text-b3 text-[#856404] font-bold text-start w-full ">
             The system is currently in testing. <br />
@@ -178,7 +181,7 @@ export default function Home() {
             account?{" "}
             <span
               className={`underline font-[500] cursor-pointer ${
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)||
+                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ||
                 true
                   ? "text-[#5868d5] hover:text-[#303d91]"
                   : "text-[#5868d5] hover:text-[#303d91]"
@@ -192,7 +195,6 @@ export default function Home() {
             variant="link"
             className={`text-sm font-[600]   acerSwift:max-macair133:text-b4 underline  ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-              
                 ? "text-[#856404] hover:text-[#856404] mt-4"
                 : "text-[#856404] hover:text-[#856404] mt-10 "
             }

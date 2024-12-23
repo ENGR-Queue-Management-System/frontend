@@ -1,10 +1,6 @@
-import Navbar from "@/components/Navbar";
 import Icon from "@/components/Icon";
 import IconNext from "../../../public/icons/next.svg";
 import IconRecall from "../../../public/icons/repeat.svg";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import IconSpeech from "../../../public/icons/speechBubble.svg";
-// import IconLocation from "../../public/icons/location.svg";
 import {
   Table,
   TableBody,
@@ -21,210 +17,37 @@ import { updateCounter } from "@/services/counter/counter.service";
 import { IModelCounter } from "@/models/Model";
 import { toast } from "@/hooks/use-toast";
 import { updateCounterData } from "@/store/counter";
+import { useEffect } from "react";
+import { getQueues } from "@/services/queue/queue.service";
+import { setLoadingOverlay } from "@/store/loading";
+import { setCurrentQueue, setQueueList } from "@/store/queue";
 
 export default function AdminIndex() {
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
   const counter = useAppSelector((state) =>
     state.counter.find((c) => c.user.id == user.id)
   );
+  const queues = useAppSelector((state) => state.queue.queues);
+  const currentQueue = useAppSelector((state) => state.queue.current);
   const dispatch = useAppDispatch();
-  const data = [
-    {
-      id: 5,
-      studentId: "650610795",
-      name: "เพ็ญพิชชา ทองคำ",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ขอจัดกิจกรรมหรือโครงการพิเศษ",
-      description:
-        "This student requested to organize a special project or activity.",
-    },
-    {
-      id: 6,
-      studentId: "660610778",
-      name: "พิริยา เนตรค่ายวง",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ฝึกงาน-สหกิจศึกษา",
-      description: "This student applied for an internship or co-op program.",
-    },
-    {
-      id: 7,
-      studentId: "670610704",
-      name: "ธนิดา ศิริรส",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ฝึกงาน-สหกิจศึกษา",
-      description:
-        "This student participated in an internship or co-op program.",
-    },
-    {
-      id: 8,
-      studentId: "670612133",
-      name: "สิรวุฒิ ภาคภูมิกมลสิทธิ์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ทุนการศึกษา",
-      description:
-        "This student applied for financial aid through a scholarship.",
-    },
-    {
-      id: 9,
-      studentId: "660612140",
-      name: "ชนะชัย ขำนายหมอ",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ฝึกงาน-สหกิจศึกษา",
-      description: "This student requested guidance on an internship program.",
-    },
-    {
-      id: 10,
-      studentId: "640610690",
-      name: "ชยธร ปานแปง",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ฝึกงาน-สหกิจศึกษา",
-      description:
-        "This student sought approval for an internship opportunity.",
-    },
-    {
-      id: 11,
-      studentId: "660610803",
-      name: "สุริโย หลุ่มโสม",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ทุนการศึกษา",
-      description:
-        "This student requested assistance for a scholarship application.",
-    },
-    {
-      id: 12,
-      studentId: "630610750",
-      name: "ภูมิภัทร ศรีกระจ่าง",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ขอคำปรึกษาด้านวิชาการ",
-      description:
-        "This student asked for advice regarding their academic performance.",
-    },
-    // Adding 50 more items
-    {
-      id: 13,
-      studentId: "640610657",
-      name: "สมชาย ประเสริฐ",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ขอคำปรึกษาด้านวิชาการ",
-      description: "This student asked for advice on improving study habits.",
-    },
-    {
-      id: 14,
-      studentId: "640610658",
-      name: "กาญจนา ศรีสวัสดิ์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ฝึกงาน-สหกิจศึกษา",
-      description: "This student is applying for a summer internship program.",
-    },
-    {
-      id: 15,
-      studentId: "640610659",
-      name: "รวิชญ์ เลิศลักษณ์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ทุนการศึกษา",
-      description:
-        "This student requested financial assistance for tuition fees.",
-    },
-    {
-      id: 16,
-      studentId: "640610660",
-      name: "สุทธิดา จิตตราภิรมย์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ขอคำปรึกษาด้านวิชาการ",
-      description:
-        "This student requested academic guidance for a thesis project.",
-    },
-    {
-      id: 17,
-      studentId: "640610661",
-      name: "วีรภัทร สวัสดิ์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ทุนการศึกษา",
-      description: "This student applied for a scholarship to study abroad.",
-    },
-    {
-      id: 18,
-      studentId: "640610662",
-      name: "อนันต์ พิทยากุล",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ฝึกงาน-สหกิจศึกษา",
-      description:
-        "This student sought advice on finding internship opportunities.",
-    },
-    {
-      id: 19,
-      studentId: "640610663",
-      name: "กิตติพงษ์ คุ้มครอง",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description: "This student reported a problem with the course schedule.",
-    },
-    {
-      id: 20,
-      studentId: "640610664",
-      name: "พรรณี วิรุฬห์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ขอจัดกิจกรรมหรือโครงการพิเศษ",
-      description:
-        "This student proposed an idea for a community outreach project.",
-    },
-    {
-      id: 21,
-      studentId: "640610665",
-      name: "สิริกุล จันทร์วงศ์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ทุนการศึกษา",
-      description:
-        "This student requested a scholarship for academic excellence.",
-    },
-    {
-      id: 22,
-      studentId: "640610666",
-      name: "ธนัฐพล ศุภรางกูร",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ขอคำปรึกษาด้านวิชาการ",
-      description:
-        "This student requested advice on selecting courses for next semester.",
-    },
-  ];
 
-  const dataDone = [
-    {
-      id: 1,
-      studentId: "640610656",
-      name: "ภัทรกณ ตาคำ",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "อื่นๆ",
-      description:
-        "ขอคำปรึกษาเรื่องทั่วไปครับ เพราะมีหลายเรื่องที่อยากรู้เพิ่มเติม",
-    },
-    {
-      id: 2,
-      studentId: "640610652",
-      name: "พันธุ์ธัช หมื่นปราบ",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ทุนการศึกษา",
-      description:
-        "ยื่นขอทุนการศึกษาครับ อยากได้รับการสนับสนุนเพื่อการเรียนต่อ",
-    },
-    {
-      id: 3,
-      studentId: "640610627",
-      name: "ฐิตายุ ฟุ้งธรรม",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "ขอคำปรึกษาด้านวิชาการ",
-      description: "ต้องการคำปรึกษาเกี่ยวกับการ path เรียน ME ครับ",
-    },
-    {
-      id: 4,
-      studentId: "630612184",
-      name: "พีระ อรุณรัตน์",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-      category: "แจ้งปัญหาด้านการเรียนการสอน",
-      description:
-        "มีปัญหาบางอย่างเกี่ยวกับการเรียนการสอนที่อยากแจ้งครับ เพื่อให้ปรับปรุง",
-    },
-  ];
+  useEffect(() => {
+    if (!queues.length) {
+      fetchQueues();
+    }
+  }, [counter]);
+
+  const fetchQueues = async () => {
+    if (counter && counter.id) {
+      dispatch(setLoadingOverlay(true));
+      const res = await getQueues({ counter: counter.id });
+      if (res) {
+        dispatch(setQueueList(res.queues));
+        dispatch(setCurrentQueue(res.current));
+      }
+      dispatch(setLoadingOverlay(false));
+    }
+  };
 
   const onChangeStatusCounter = async () => {
     const res: IModelCounter = await updateCounter(counter?.id!, {
@@ -241,35 +64,20 @@ export default function AdminIndex() {
   };
 
   return (
-    <div className="px-2 flex iphone:max-sm:h-fit flex-col h-full w-full overflow-y-auto bg-[#f9f9f9] pt-3 ">
-      <Tabs
-        className="flex flex-col !w-full h-full iphone:max-sm:h-fit"
-        defaultValue="incoming"
-      >
-        <TabsList className="!w-full gap-5 justify-center">
-          <TabsTrigger className=" rounded-full" value="incoming">
-            <p className="iphone:max-macair133:text-b3">
-              รอเรียกคิว ({data.length})
-            </p>
-          </TabsTrigger>
-          <TabsTrigger className=" rounded-full" value="called">
-            <p className=" iphone:max-macair133:text-b3">
-              คิวที่เรียกไปแล้ว ({dataDone.length})
-            </p>
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent
-          value="incoming"
-          className="flex pb-2 iphone:max-sm:pb-0 iphone:max-sm:flex-col-reverse iphone:max-sm:gap-4  iphone:max-sm:h-fit  mb-2   gap-4 max-h-full overflow-hidden"
-        >
+    <div className="flex px-2 flex-col min-h-full max-h-full w-full overflow-y-auto bg-[#f9f9f9] pt-3 iphone:max-sm:h-fit">
+      <div className="flex flex-col !w-full h-full iphone:max-sm:h-fit">
+        <div className="flex h-full overflow-hidden pb-2 mb-2 gap-4 iphone:max-sm:pb-0 iphone:max-sm:flex-col-reverse iphone:max-sm:gap-4 iphone:max-sm:h-fit">
           <div
             style={{
               boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
             }}
             className="w-[60%] iphone:max-sm:!h-fit iphone:max-sm:w-[100%] sm:flex-1 sm:flex rounded-lg border border-[#E5DDEA] shadow-shadow-table"
           >
-            <div className="overflow-y-auto iphone:max-sm:!min-h-fit flex flex-1 ">
-              <Table striped={true}>
+            <div className="overflow-y-auto iphone:max-sm:!min-h-fit flex flex-1">
+              <Table
+                striped={true}
+                className={`${!queues.length ? "h-full w-full" : ""}`}
+              >
                 <TableHeader>
                   <TableRow className="sticky text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1 font-bold top-0 z-30 ">
                     <TableHead>เลขคิว</TableHead>
@@ -279,46 +87,56 @@ export default function AdminIndex() {
                     <TableHead>เพิ่มเติม</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody className=" font-normal text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1">
-                  {data.map((item) => (
-                    <TableRow key={item.id}>
-                      <TableCell className="font-medium py-4">
-                        {item.id < 10 ? "A00" : item.id < 100 && "A0"}
-                        {item.id}
+                <TableBody className="font-normal text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1">
+                  {queues.length ? (
+                    queues.map((item) => (
+                      <TableRow key={item.id}>
+                        <TableCell className="font-medium py-4">
+                          {item.no}
+                        </TableCell>
+                        <TableCell>{item.studentId || "-"}</TableCell>
+                        <TableCell>
+                          {item.firstName} {item.lastName}
+                        </TableCell>
+                        <TableCell className="flex gap-2  translate-y-[6px] items-center">
+                          <div className="flex items-center gap-2">
+                            <div
+                              className={`${
+                                item.topicId === 6
+                                  ? "bg-contactList-others"
+                                  : item.topicId === 2
+                                  ? "bg-contactList-scholarship"
+                                  : item.topicId === 3
+                                  ? "bg-contactList-consultation"
+                                  : item.topicId === 4
+                                  ? "bg-contactList-report"
+                                  : item.topicId === 5
+                                  ? "bg-contactList-request"
+                                  : item.topicId === 1 &&
+                                    "bg-contactList-internship"
+                              } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
+                            ></div>
+                            {item.topic.topicTH}
+                          </div>
+                        </TableCell>
+                        <TableCell>{item.note || "-"}</TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell
+                        colSpan={5}
+                        className="text-center font-medium"
+                      >
+                        ไม่มีคิวที่รอเรียก
                       </TableCell>
-                      <TableCell>{item.studentId}</TableCell>
-                      <TableCell>{item.name}</TableCell>
-                      <TableCell className="flex gap-2  translate-y-[6px] items-center">
-                        <div className="flex items-center gap-2">
-                          <div
-                            className={`${
-                              item.category === "อื่นๆ"
-                                ? "bg-contactList-others"
-                                : item.category === "ทุนการศึกษา"
-                                ? "bg-contactList-scholarship"
-                                : item.category === "ขอคำปรึกษาด้านวิชาการ"
-                                ? "bg-contactList-consultation"
-                                : item.category ===
-                                  "แจ้งปัญหาด้านการเรียนการสอน"
-                                ? "bg-contactList-report"
-                                : item.category ===
-                                  "ขอจัดกิจกรรมหรือโครงการพิเศษ"
-                                ? "bg-contactList-request"
-                                : item.category === "ฝึกงาน-สหกิจศึกษา" &&
-                                  "bg-contactList-internship"
-                            } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
-                          ></div>
-                          {item.category}
-                        </div>
-                      </TableCell>
-                      <TableCell>-</TableCell>
                     </TableRow>
-                  ))}
+                  )}
                 </TableBody>
               </Table>
             </div>
           </div>
-          <div className="flex flex-col gap-3 h-full w-[40%]  iphone:max-sm:w-[100%] text-[15px] font-medium">
+          <div className="flex flex-col gap-3 h-full w-[40%] iphone:max-sm:w-[100%] text-[15px] font-medium">
             <div
               className="flex bg-white rounded-lg border border-[#E5DDEA] text-[15px] px-6 py-3 justify-between items-center"
               style={{
@@ -349,50 +167,57 @@ export default function AdminIndex() {
             >
               <div className="flex flex-col  justify-between items-center  h-full ">
                 <div className="flex justify-start flex-col items-center mt-3 samsungA24:mt-7 acerSwift:max-macair133:mt-2 samsungA24:gap-5 h-full">
-                  <div className="text-center ">
-                    <p className="text-h1 acerSwift:max-macair133:text-h2 samsungA24:text-[23px] font-normal ">
-                      คิวที่คุณกำลังให้บริการ
-                    </p>
-                    <p className="text-primary  text-b1 acerSwift:max-macair133:text-b2 samsungA24:text-h1 ">
-                      ห้องงานพัฒนาคุณภาพนักศึกษา
-                    </p>
-                  </div>
-                  <div className=" samsungA24:mt-3 iphone:max-sm:mt-3 acerSwift:max-macair133:mt-2 ipad11:max-samsungA24:mt-2 mb-1 acerSwift:max-macair133:mb-0 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] iphone:max-sm:text-[40px] font-medium text-[52px]">
-                    A004
-                  </div>
-                  <div className="text-center items-center justify-center flex flex-col samsungA24:text-[22px] acerSwift:max-macair133:text-b1 text-h2 text-primary">
-                    <div className="mt-2">
-                      <p className="font-medium">
-                        {dataDone[3].studentId}
-                        <span className=" iphone:max-sm:block ">
-                          <span className="iphone:max-sm:hidden">-</span>
-                          {dataDone[3].name}
-                        </span>
-                      </p>
-                    </div>
-                    <div className="flex  gap-2 mt-1 acerSwift:max-macair133:mt-0.5 samsungA24:text-h2 acerSwift:max-macair133:text-b2 text-b1 items-center text-[#333333]">
-                      <div
-                        className={`${
-                          dataDone[3].category === "อื่นๆ"
-                            ? "bg-contactList-others"
-                            : dataDone[3].category === "ทุนการศึกษา"
-                            ? "bg-contactList-scholarship"
-                            : dataDone[3].category === "ขอคำปรึกษาด้านวิชาการ"
-                            ? "bg-contactList-consultation"
-                            : dataDone[3].category ===
-                              "แจ้งปัญหาด้านการเรียนการสอน"
-                            ? "bg-contactList-report"
-                            : dataDone[3].category ===
-                              "ขอจัดกิจกรรมหรือโครงการพิเศษ"
-                            ? "bg-contactList-request"
-                            : dataDone[3].category === "ฝึกงาน-สหกิจศึกษา" &&
-                              "bg-contactList-internship"
-                        } h-3 w-3 acerSwift:max-macair133:h-2.5 acerSwift:max-macair133:w-2.5 rounded-[100%] iphone:max-sm:hidden`}
-                      ></div>
+                  {
+                    <>
+                      <div className="text-center">
+                        <p className="text-h1 acerSwift:max-macair133:text-h2 samsungA24:text-[23px] font-normal ">
+                          คิวที่คุณกำลังให้บริการ
+                        </p>
+                        <p className="text-primary  text-b1 acerSwift:max-macair133:text-b2 samsungA24:text-h1 ">
+                          Counter {counter?.counter}
+                        </p>
+                      </div>
+                      <div className=" samsungA24:mt-3 iphone:max-sm:mt-3 acerSwift:max-macair133:mt-2 ipad11:max-samsungA24:mt-2 mb-1 acerSwift:max-macair133:mb-0 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] iphone:max-sm:text-[40px] font-medium text-[52px]">
+                        {currentQueue.no || "-"}
+                      </div>
+                      <div className="text-center items-center justify-center flex flex-col samsungA24:text-[22px] acerSwift:max-macair133:text-b1 text-h2 text-primary">
+                        <div className="mt-2">
+                          <p className="font-medium">
+                            {currentQueue.studentId}
+                            <span className=" iphone:max-sm:block ">
+                              {currentQueue.studentId && (
+                                <span className="iphone:max-sm:hidden">
+                                  {" "}
+                                  -{" "}
+                                </span>
+                              )}
+                              {currentQueue.firstName} {currentQueue.lastName}
+                            </span>
+                          </p>
+                        </div>
+                        <div className="flex  gap-2 mt-1 acerSwift:max-macair133:mt-0.5 samsungA24:text-h2 acerSwift:max-macair133:text-b2 text-b1 items-center text-[#333333]">
+                          <div
+                            className={`${
+                              currentQueue.topicId === 6
+                                ? "bg-contactList-others"
+                                : currentQueue.topicId === 2
+                                ? "bg-contactList-scholarship"
+                                : currentQueue.topicId === 3
+                                ? "bg-contactList-consultation"
+                                : currentQueue.topicId === 4
+                                ? "bg-contactList-report"
+                                : currentQueue.topicId === 5
+                                ? "bg-contactList-request"
+                                : currentQueue.topicId === 1 &&
+                                  "bg-contactList-internship"
+                            } h-3 w-3 acerSwift:max-macair133:h-2.5 acerSwift:max-macair133:w-2.5 rounded-[100%] iphone:max-sm:hidden`}
+                          ></div>
 
-                      {dataDone[3].category}
-                    </div>
-                  </div>
+                          {currentQueue.topic?.topicTH}
+                        </div>
+                      </div>
+                    </>
+                  }
                 </div>
                 <div className="flex flex-col gap-3 samsungA24:gap-4 w-full">
                   <div className="px-6 py-5 acerSwift:max-macair133:py-2.5 rounded-2xl iphone:max-sm:mt-4 samsungA24:text-h1 text-b1  acerSwift:max-macair133:text-b2 !w-full flex flex-col bg-table-background">
@@ -402,45 +227,47 @@ export default function AdminIndex() {
                           คิวถัดไป
                         </p>
                         <p className="font-semibold text-[28px] iphone:max-macair133:text-h1">
-                          A00{data[0].id}
+                          {queues[0]?.no || "-"}
                         </p>
                       </div>
 
                       <div className="flex flex-col gap-1 ml-6 ">
                         <p className=" text-b2 samsungA24:text-h2 acerSwift:max-macair133:text-b4">
-                          {data[0].studentId}
-                          <span className="iphone:max-sm:hidden">-</span>
-                          <span className=" iphone:max-sm:block ">
-                            {data[0].name}
+                          {queues[0]?.studentId}
+                          {queues[0]?.studentId && (
+                            <span className="iphone:max-sm:hidden"> - </span>
+                          )}
+                          <span className="iphone:max-sm:block">
+                            {queues[0]?.firstName} {queues[0]?.lastName}
                           </span>
                         </p>
                         <div className="flex text-b2  acerSwift:max-macair133:text-b4 samsungA24:text-h2 items-center gap-3">
                           <div
                             className={`${
-                              data[0].category === "อื่นๆ"
+                              queues[0]?.topicId === 6
                                 ? "bg-contactList-others"
-                                : data[0].category === "ทุนการศึกษา"
+                                : queues[0]?.topicId === 2
                                 ? "bg-contactList-scholarship"
-                                : data[0].category === "ขอคำปรึกษาด้านวิชาการ"
+                                : queues[0]?.topicId === 3
                                 ? "bg-contactList-consultation"
-                                : data[0].category ===
-                                  "แจ้งปัญหาด้านการเรียนการสอน"
+                                : queues[0]?.topicId === 4
                                 ? "bg-contactList-report"
-                                : data[0].category ===
-                                  "ขอจัดกิจกรรมหรือโครงการพิเศษ"
+                                : queues[0]?.topicId === 5
                                 ? "bg-contactList-request"
-                                : data[0].category === "ฝึกงาน-สหกิจศึกษา" &&
+                                : queues[0]?.topicId === 1 &&
                                   "bg-contactList-internship"
                             } h-3 w-3  acerSwift:max-macair133:h-2  acerSwift:max-macair133:w-2 rounded-[100%] iphone:max-sm:hidden`}
                           ></div>
-
-                          {data[0].category}
+                          {queues[0]?.topic.topicTH}
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="flex macair133:flex-col iphone:max-acerSwift:flex-col  acerSwift:max-macair133:flex-row-reverse w-full h-fit gap-4">
-                    <Button className="w-full items-center flex samsungA24:h-14 h-12 acerSwift:max-macair133:h-[42px]">
+                    <Button
+                      className="w-full items-center flex samsungA24:h-14 h-12 acerSwift:max-macair133:h-[42px]"
+                      disabled={!queues[0]}
+                    >
                       <p className="samsungA24:text-h2  acerSwift:max-macair133:text-b3">
                         คิวถัดไป
                       </p>
@@ -452,6 +279,7 @@ export default function AdminIndex() {
                     <Button
                       variant="outline"
                       className="w-full samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-b2 text-primary acerSwift:max-macair133:text-b3 samsungA24:text-h2 acerSwift:max-macair133:h-[42px]"
+                      disabled={!currentQueue.no}
                     >
                       เรียกซ้ำ
                       <Icon
@@ -464,63 +292,8 @@ export default function AdminIndex() {
               </div>
             </div>
           </div>
-        </TabsContent>
-        <TabsContent
-          value="called"
-          className="flex -mt-[28px]  gap-4 max-h-full overflow-hidden"
-        >
-          <div
-            className="w-full rounded-lg   overflow-clip overflow-y-auto border border-[#E5DDEA] "
-            style={{
-              boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <Table striped={true}>
-              <TableHeader>
-                <TableRow className="sticky text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b4 font-bold top-0 z-30">
-                  <TableHead className="w-[100px]">เลขคิว</TableHead>
-                  <TableHead>รหัสนักศึกษา</TableHead>
-                  <TableHead>ชื่อ-นามสกุล</TableHead>
-                  <TableHead>รายการติดต่อ</TableHead>
-                  <TableHead className="w-[50%]">เพิ่มเติม</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className=" font-normal text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b4">
-                {dataDone.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell className="font-medium py-4 ">
-                      A{item.id < 10 ? "00" : item.id < 100 && "0"}
-                      {item.id}
-                    </TableCell>
-                    <TableCell>{item.studentId}</TableCell>
-                    <TableCell>{item.name}</TableCell>
-                    <TableCell className="flex gap-2 items-center">
-                      <div
-                        className={`${
-                          item.category === "อื่นๆ"
-                            ? "bg-contactList-others"
-                            : item.category === "ทุนการศึกษา"
-                            ? "bg-contactList-scholarship"
-                            : item.category === "ขอคำปรึกษาด้านวิชาการ"
-                            ? "bg-contactList-consultation"
-                            : item.category === "แจ้งปัญหาด้านการเรียนการสอน"
-                            ? "bg-contactList-report"
-                            : item.category === "ขอจัดกิจกรรมหรือโครงการพิเศษ"
-                            ? "bg-contactList-request"
-                            : item.category === "ฝึกงาน-สหกิจศึกษา" &&
-                              "bg-contactList-internship"
-                        } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
-                      ></div>
-                      {item.category}
-                    </TableCell>
-                    <TableCell></TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        </TabsContent>
-      </Tabs>
+        </div>
+      </div>
     </div>
   );
 }

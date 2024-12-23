@@ -11,7 +11,6 @@ import { jwtDecode } from "jwt-decode";
 export default function CmuEntraIDCallback() {
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
-  const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

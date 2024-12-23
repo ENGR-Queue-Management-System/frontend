@@ -14,7 +14,7 @@ const Textarea = React.forwardRef<
   };
 
   return (
-    <div className="flex flex-col relative">
+    <div className="flex flex-col max-w-full relative">
       <textarea
         className={cn(
           `relative flex h-[100px] iphone:max-sm:w-[85vw] iphone:max-sm:h-32 iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] ipad11:max-samsungA24:min-w bg-[#F6F6F6] resize-none rounded-md border   px-5 py-4 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm`,

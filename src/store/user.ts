@@ -1,16 +1,19 @@
-import { IModelUser } from "@/models/Model";
+import { IModelQueue, IModelUser } from "@/models/Model";
 import { createSlice } from "@reduxjs/toolkit";
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: {} as IModelUser,
+  initialState: { user: {} as IModelUser, queue: {} as IModelQueue },
   reducers: {
     setUser: (state, action) => {
-      return { ...action.payload };
+      return { user: { ...action.payload }, queue: {} as IModelQueue };
+    },
+    setQueue: (state, action) => {
+      return { ...state, queue: { ...action.payload } };
     },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setQueue } = userSlice.actions;
 
 export default userSlice.reducer;

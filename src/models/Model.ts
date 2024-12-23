@@ -40,8 +40,8 @@ export interface IModelQueue {
   id: number;
   no: string;
   studentId: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   topicId: number;
   topic: IModelTopic;
   note: string;

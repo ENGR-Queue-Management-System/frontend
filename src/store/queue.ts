@@ -2,15 +2,18 @@ import { IModelQueue } from "@/models/Model";
 import { createSlice } from "@reduxjs/toolkit";
 
 export const queueSlice = createSlice({
-  name: "queue",
-  initialState: {} as IModelQueue,
+  name: "queues",
+  initialState: { queues: [] as IModelQueue[], current: {} as IModelQueue },
   reducers: {
-    setQueue: (state, action) => {
-      return { ...action.payload };
+    setQueueList: (state, action) => {
+      return { ...state, queues: [...action.payload] };
+    },
+    setCurrentQueue: (state, action) => {
+      return { ...state, current: { ...action.payload } };
     },
   },
 });
 
-export const { setQueue } = queueSlice.actions;
+export const { setQueueList, setCurrentQueue } = queueSlice.actions;
 
 export default queueSlice.reducer;

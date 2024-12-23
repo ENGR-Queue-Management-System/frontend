@@ -35,7 +35,7 @@ import Icon from "@/components/Icon";
 import { useEffect } from "react";
 import { getTopics } from "@/services/topic/topic.service";
 import { setTopics } from "@/store/topic";
-import { setQueue } from "@/store/queue";
+import { setQueue } from "@/store/user";
 import { subscribeNotification } from "@/services/subscription/subscription.service";
 import { setSubscription } from "@/store/subscription";
 
