@@ -6,9 +6,7 @@ import { cn } from "@/lib/utils";
 const Switch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
   React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>
->(({ className, ...props }, ref) => {
-  const [isChecked, setIsChecked] = React.useState(false);
-
+>(({ className, checked, onCheckedChange, ...props }, ref) => {
   return (
     <SwitchPrimitives.Root
       className={cn(
@@ -18,10 +16,10 @@ const Switch = React.forwardRef<
       )}
       {...props}
       ref={ref}
-      checked={isChecked}
-      onCheckedChange={(checked) => setIsChecked(checked)}
+      checked={checked}
+      onCheckedChange={onCheckedChange}
     >
-      {isChecked && (
+      {checked && (
         <span
           className={cn(
             "absolute left-3 text-white text-sm font-medium transition-opacity duration-200 acerSwift:max-macair133:text-b3"
@@ -31,7 +29,7 @@ const Switch = React.forwardRef<
         </span>
       )}
 
-      {!isChecked && (
+      {!checked && (
         <span
           className={cn(
             "absolute right-4 acerSwift:max-macair133:right-4 text-gray-500 text-sm font-medium transition-opacity duration-200 acerSwift:max-macair133:text-b3 "

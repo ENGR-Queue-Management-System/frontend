@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 const Navbar: React.FC = () => {
   const { deviceType } = useNotification();
   const location = usePathname();
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
   return (
     <div
       className={`${

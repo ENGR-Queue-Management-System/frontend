@@ -36,14 +36,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   const loading = useAppSelector((state) => state.loading);
   const router = useRouter();
   const location = usePathname();
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
   const counters = useAppSelector((state) => state.counter);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      dispatch(setLoading(false));
-    }, 2000);
+    const timeout = setTimeout(() => dispatch(setLoading(false)), 2000);
     return () => clearTimeout(timeout);
   }, []);
 

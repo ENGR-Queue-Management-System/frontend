@@ -19,7 +19,7 @@ import ContactTopicManageModal from "./modal/ContactTopicManageModal";
 import { logout } from "@/services/user/user.service";
 
 const Profile: React.FC = () => {
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
 
   return (
     <>

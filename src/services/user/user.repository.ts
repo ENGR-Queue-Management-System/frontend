@@ -1,5 +1,4 @@
 import Router from "next/router";
-import { Route } from "@/config/Route";
 import apiService from "@/services/apiService";
 import store from "@/store";
 import { setUser } from "@/store/user";
@@ -15,7 +14,7 @@ export const userController = (configService: any = {}) => {
     logout: () => {
       localStorage.removeItem("token");
       store.dispatch(setUser({}));
-      Router.push(Route.Index);
+      Router.push(process.env.NEXT_PUBLIC_LOGOUT_URL!);
     },
   };
 };

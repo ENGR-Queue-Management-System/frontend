@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
 import Icon from "@/components/Icon";
 import IconNext from "../../../public/icons/next.svg";
 import IconRecall from "../../../public/icons/repeat.svg";
@@ -27,13 +26,13 @@ import IconExclaimation from "../../../public/icons/exclaimation.svg";
 import { useAppSelector } from "@/store";
 import { dateFormatter } from "@/helpers/function";
 export default function StudentQueue() {
-  const queue = useAppSelector((state) => state.queue);
+  const queue = useAppSelector((state) => state.user.queue);
   const [openFeedbackModal, setOpenFeedbackModal] = useState(true);
   const [rateFeedback, setRateFeedback] = useState(0);
   return (
     <>
       <Dialog open={openFeedbackModal} onOpenChange={setOpenFeedbackModal}>
-        <DialogContent className="sm:max-w-fit gap-5 acerSwift:max-macair133:p-6 acerSwift:max-macair133:w-fit">
+        <DialogContent className="flex flex-col sm:max-w-fit gap-5 acerSwift:max-macair133:p-6 acerSwift:max-macair133:w-fit">
           <DialogHeader>
             <DialogTitle className="acerSwift:max-macair133:text-b2">
               แชร์ความคิดเห็นของท่านกับเรา
@@ -42,14 +41,14 @@ export default function StudentQueue() {
               ท่านพอใจกับบริการของเราแค่ไหน เลือกระดับความพึงพอใจได้เลย
             </DialogDescription>
           </DialogHeader>
-          <div className="flex gap-3 items-center justify-center w-full acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#1F93EF]/10">
+          <div className="flex w-full gap-3 items-center justify-center acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#1F93EF]/10">
             <Icon IconComponent={IconExclaimation} className="text-[#1F93EF]" />
             <p className="text-b2 acerSwift:max-macair133:text-b3 text-[#1F93EF] w-full font-medium">
               ความคิดเห็นของคุณจะถูกแสดงในรูปแบบที่ไม่ระบุตัวตน{" "}
               <span className="font-semibold">(anonymous)</span>
             </p>
           </div>
-          <div className="flex justify-between gap-0 py-4 px-16 acerSwift:max-macair133:w-[40vw]">
+          <div className="flex max-w-full justify-between gap-0 py-4 px-16 acerSwift:max-macair133:w-[40vw]">
             {[...Array(5)].map((_, index) => (
               <Icon
                 key={index}
@@ -61,18 +60,18 @@ export default function StudentQueue() {
               />
             ))}
           </div>
-          <div className="flex flex-col gap-2 items-start text-b2 w-full font-medium acerSwift:max-macair133:text-b3 text-default acerSwift:max-macair133:w-[40vw]">
+          <div className="flex flex-col max-w-full gap-2 items-start text-b2 font-medium acerSwift:max-macair133:text-b3 text-default acerSwift:max-macair133:w-[40vw]">
             <p>
               มีข้อเสนอแนะเพิ่มเติมไหม? เราชื่นชอบที่จะได้ยินความคิดเห็นของท่าน!
               (ไม่บังคับ)
             </p>
             <Textarea
               maxLength={150}
-              className="font-normal acerSwift:max-macair133:text-b4 acerSwift:max-macair133:w-[40vw] acerSwift:max-macair133:px-5 acerSwift:max-macair133:h-20 acerSwift:max-macair133:py-3"
+              className="max-w-full font-normal acerSwift:max-macair133:text-b4 acerSwift:max-macair133:w-[40vw] acerSwift:max-macair133:px-5 acerSwift:max-macair133:h-20 acerSwift:max-macair133:py-3"
               placeholder="กรอกข้อเสนอแนะของท่านที่นี่"
             />
           </div>
-          <DialogFooter>
+          <DialogFooter className="gap-2">
             <Button variant="ghost" onClick={() => setOpenFeedbackModal(false)}>
               ยกเลิก
             </Button>
@@ -101,7 +100,7 @@ export default function StudentQueue() {
             <div className="flex justify-start flex-col gap-5 items-center samsungA24:mt-7 samsungA24:gap-5 acerSwift:max-macair133:gap-3">
               <div className="text-center">
                 <p className="text-h1 samsungA24:text-[23px] acerSwift:max-macair133:text-h2 iphone:max-sm:text-h2 font-normal">
-                  หมายเลขคิวของคุณ{" "}
+                  หมายเลขคิวของคุณ
                 </p>
                 <p className="text-h2 samsungA24:text-[23px] acerSwift:max-macair133:text-b1 iphone:max-sm:text-h2 font-medium ">
                   Your queue number
