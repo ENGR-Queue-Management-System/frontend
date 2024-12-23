@@ -5,7 +5,7 @@ import Router, { useRouter } from "next/router";
 import { Route } from "@/config/Route";
 import logoEng from "../../public/images/logoSDShadow.png";
 import logoEngColor from "../../public/images/logoSDColor.png";
-import logoSDMinimal from "../../public/images/logoSDMinimalColor.png";
+import logoSDMinimal from "../../public/images/logoSDMiColor.png";
 import cmuLogoColor from "../../public/images/cmuLogoLoginWhite.png";
 import { useAppSelector } from "@/store";
 import { useEffect, useState } from "react";
