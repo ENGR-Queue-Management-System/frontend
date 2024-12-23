@@ -139,7 +139,7 @@ export default function Home() {
       <div
         className={` ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-            ? "!w-full !h-screen  !justify-end !items-start pb-16 !text-start bg-gradient-to-b from-[#22a0a0]/30 to-white"
+            ? "!w-full !h-screen  !justify-end !items-start pb-16 !text-start bg-gradient-to-b from-[#22a0a0]/40 to-white"
             : "w-[45%] flex flex-col  justify-center text-start items-center "
         } `}
       >
@@ -159,7 +159,7 @@ export default function Home() {
             alt="logoEng"
             className={` ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? " mt-[30px] fixed top-2 left-0 -ml-9  w-[42vw] "
+                ? " mt-[40px] fixed top-3 left-0 -ml-9  w-[42vw] "
                 : "hidden"
             } `}
           />
@@ -216,7 +216,7 @@ export default function Home() {
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                 ? " w-[100%] mt-2"
                 : "w-[100%] mt-8"
-            }} acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/30`}
+            }} acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/20`}
           >
             <Icon IconComponent={iconEx} className="text-[#856404]" />
             <p className="iphone:max-sm:text-[13px] text-[14px] acerSwift:max-macair133:text-b3 text-[#856404] font-bold text-start w-full ">
