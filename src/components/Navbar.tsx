@@ -1,11 +1,14 @@
 import Profile from "./Profile";
 import Image from "next/image";
-import logoSDWhite from "../../public/images/logoSDMinimalWhite.png";
+import logoSDColor from "../../public/images/logoSDMiColor.png";
 import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE } from "@/config/Enum";
 import { useAppSelector } from "@/store";
 import { Route } from "@/config/Route";
 import { usePathname } from "next/navigation";
+import Router from "next/router";
+import Icon from "./Icon";
+import { IconLeft } from "react-day-picker";
 
 const Navbar: React.FC = () => {
   const { deviceType } = useNotification();
@@ -14,31 +17,29 @@ const Navbar: React.FC = () => {
   return (
     <div
       className={`${
-        [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-16 bg-[#006666] " : "bg-gradient-to-r  from-[#009999] to-[#006666]"
-      } min-h-fit ipadmini:max-samsungA24:pt-0 acerSwift:max-macair133:min-h-[58px]  border-b border-[#e0e0e0] text-secondary px-6 inline-flex w-full justify-between items-center z-50 border-none top-0`}
-      style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
+        [DEVICE_TYPE.IOS].includes(deviceType!)
+          ? "pt-12 gradient-bg-navbar "
+          : "gradient-bg-navbar"
+      } min-h-fit ipadmini:max-acerSwift:pt-2 acerSwift:max-macair133:min-h-[58px]  border-b border-[#e0e0e0] text-secondary px-5 inline-flex w-full justify-between items-center z-50 border-none top-0`}
+      style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.3)" }}
     >
       <div className="flex items-center gap-2 -ml-1">
+        {[Route.Login].includes(location) && [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) && (
+          <Icon IconComponent={IconLeft} className="text-default" onClick={() => Router.back()} />
+        )}
         <Image
-          className="z-50 w-[120px] -ml-8 acerSwift:max-macair133:w-[100px]"
-          src={logoSDWhite}
+          className="z-50 w-[110px] -ml-7 acerSwift:max-macair133:w-[100px]"
+          src={logoSDColor}
           alt="loginImage"
         />
-        <div className="flex flex-col  w-fit gap-0 font-medium  text-b2 acerSwift:max-macair133:text-b4 text-white">
-          <p className="-ml-8">
-            {user.email && !user.studentId ? "ระบบจัดการคิว " : "ระบบรับบัตรคิว "}
-            <span className="iphone:max-sm:hidden">
-              คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่
-            </span>
+        <div className="flex flex-col  w-fit gap-0 font-medium text-[14px]  iphone-max:sm:text-[13px] acerSwift:max-macair133:text-b4 text-default">
+          <p className="-ml-8 ">
+            {user.email && !user.studentId ? "ระบบจัดการคิว " : "รับบัตรคิว "}
           </p>
           {user.email && !user.studentId ? (
-            <p className=" -ml-8">
-              Queue Management
-            </p>
+            <p className=" -ml-8 font-semibold">Queue Management</p>
           ) : (
-            <p className=" -ml-8">
-              Ticket Queue
-            </p>
+            <p className=" -ml-8 font-semibold">Ticket Queue</p>
           )}
         </div>
       </div>

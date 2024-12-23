@@ -10,6 +10,7 @@ import Loading from "@/components/Loading";
 import { validateEngThai } from "@/helpers/validation";
 import { setUser } from "@/store/user";
 import IconUsers from "../../public/icons/users.svg";
+import IconChevron from "../../public/icons/chevronRight.svg";
 import {
   Form,
   FormControl,
@@ -103,17 +104,16 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col h-full w-full overflow-y-auto gap-10 justify-center items-center">
-      <div className="flex flex-col h-fit items-center text-[#262626] justify-center text-center text-[24px] font-medium iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px]">
-        <p>วันนี้เราสามารถช่วยอะไรคุณได้บ้าง</p>
-        <p>
-          What can we help you with today? <br /> Let us know to get started
+    <div className="flex bg-[#fafafa] flex-col h-full w-full overflow-y-auto gap-16 justify-center items-center">
+      <div className="flex flex-col h-fit items-center  justify-center text-center text-[24px] font-medium iphone:max-sm:w-[85vw] iphone:max-sm:text-[20px] sm:max-macair133:text-[20px] macair133:text-[32px]">
+        <p className=" font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-[#4285f4] via-[#ec407a] via-[#a06ee1] to-[#fb8c00] bg-clip-text text-transparent">
+          What can we help you with today?
         </p>
       </div>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onClickLogin)}
-          className="flex flex-col gap-4"
+          className="flex flex-col gap-6"
         >
           <FormField
             control={form.control}
@@ -131,7 +131,7 @@ export default function Login() {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="w-full"
+                    className="w-full font-normal iphone:max-sm:rounded-xl iphone:max-sm:text-[13px] bg-[#f0f0f0] border-none iphone:max-sm:h-9"
                     placeholder="e.g. สมหมาย"
                     {...field}
                     onBlur={() => onBlurHandler("firstName")}
@@ -157,7 +157,7 @@ export default function Login() {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="w-full"
+                    className="w-full font-normal iphone:max-sm:rounded-xl iphone:max-sm:text-[13px] bg-[#f0f0f0] border-none iphone:max-sm:h-9"
                     placeholder="e.g. เรียนดี"
                     {...field}
                     onBlur={() => onBlurHandler("lastName")}
@@ -184,14 +184,14 @@ export default function Login() {
                 >
                   <FormControl>
                     <SelectTrigger
-                      className={`iphone:max-sm:w-[85vw] iphone:max-sm:h-32 iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] px-6 ${
+                      className={`iphone:max-sm:w-[85vw] shadow-none !h-9 bg-[#f0f0f0] border-none  iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] px-4 ${
                         form.getValues().topic === 0
-                          ? "py-3 text-primary iphone:max-sm:h-12"
-                          : "py-2 iphone:max-sm:h-18"
+                          ? "py-3 text-default "
+                          : "py-2"
                       }`}
                       onBlur={() => onBlurHandler("topic")}
                     >
-                      <SelectValue placeholder="เลือกเรื่องที่ต้องการจะให้เราช่วยเหลือ" />
+                      <SelectValue placeholder="Select topic" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -200,22 +200,7 @@ export default function Login() {
                         <SelectItem value={item.id.toString()} key={item.id}>
                           <div className="flex items-center gap-4 py-1">
                             <div
-                              className={`${
-                                item.topicTH === "อื่นๆ"
-                                  ? "bg-contactList-others"
-                                  : item.topicTH === "ทุนการศึกษา"
-                                  ? "bg-contactList-scholarship"
-                                  : item.topicTH === "ขอคำปรึกษาด้านวิชาการ"
-                                  ? "bg-contactList-consultation"
-                                  : item.topicTH ===
-                                    "แจ้งปัญหาด้านการเรียนการสอน"
-                                  ? "bg-contactList-report"
-                                  : item.topicTH ===
-                                    "ขอจัดกิจกรรมหรือโครงการพิเศษ"
-                                  ? "bg-contactList-request"
-                                  : item.topicTH === "ฝึกงาน-สหกิจศึกษา" &&
-                                    "bg-contactList-internship"
-                              } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
+                              className={` h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
                             ></div>
                             <div className="flex flex-col text-start text-b2">
                               <p>
@@ -253,12 +238,11 @@ export default function Login() {
                   <div className="flex flex-col  items-center justify-center w-full px-6">
                     <div className="flex items-center gap-2">
                       <Icon IconComponent={IconUsers} className="!size-5" />
-                      <div className="text-start text-b2 iphone:max-sm:text-b3">
+                      <div className="text-start text-default mt-1 text-b2 iphone:max-sm:text-b3">
                         <p className="font-medium">
-                          มีคิวก่อนหน้าคุณ
-                          <span className="font-semibold"> (Waiting) </span>
+                          <span className="font-semibold"> Waiting </span>
                           <span className="text-h2 iphone:max-sm:text-b1 font-semibold text-default">
-                            11 คิว
+                            11 Queues
                           </span>
                         </p>
                       </div>
@@ -268,13 +252,28 @@ export default function Login() {
               )}
             />
           )}
-          <div className="flex justify-center gap-10 mt-10">
-            <Button variant="secondary" onClick={() => Router.back()}>
-              Back
+          <div className="flex flex-col justify-center gap-5 mt-10">
+            <Button
+              type="submit"
+              className={`mt-5 ${
+                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                  ? " w-[100%] rounded-full bg-[#1db9bc] hover:bg-[#189b9d] mt-5 h-12 text-[15px] font-semibold"
+                  : "py-6 px-12 text-[15px] bg-[#1db9bc] hover:bg-[#189b9d] font-semibold"
+              }`}
+              disabled={loading}
+              variant="default"
+            >
+              {loading ? <Loading /> : "Take a Number"}
             </Button>
-            <Button type="submit" disabled={loading} variant="default">
-              {loading ? <Loading /> : "Take a number"}
-            </Button>
+            {![DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) && (
+              <Button
+                className="text-default"
+                variant="link"
+                onClick={() => Router.back()}
+              >
+                Back
+              </Button>
+            )}
           </div>
         </form>
       </Form>
