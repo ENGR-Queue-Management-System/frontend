@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { Route } from "@/config/Route";
 import logoEng from "../../public/images/logoSDShadow.png";
 import logoEngColor from "../../public/images/logoSDColor.png";
-import cmuLogoWhite from "../../public/images/cmuLogoLogin.png";
+import logoSDMinimal from "../../public/images/logoSDMinimalColor.png";
 import cmuLogoColor from "../../public/images/cmuLogoLoginWhite.png";
 import { useAppSelector } from "@/store";
 import { useEffect, useState } from "react";
@@ -34,6 +34,15 @@ export default function Home() {
   const user = useAppSelector((state) => state.user);
   const [testSendNotiList, setTestSendNotiList] = useState<any[]>([]);
   const [selectTest, setSelectTest] = useState("");
+
+  const router = useRouter();
+  const handleSignIn = () => {
+    if (process.env.NEXT_PUBLIC_CMU_OAUTH_URL) {
+      router.push(process.env.NEXT_PUBLIC_CMU_OAUTH_URL);
+    } else {
+      console.error("NEXT_PUBLIC_CMU_OAUTH_URL is not defined");
+    }
+  };
 
   useEffect(() => {
     if (!testSendNotiList.length) {
@@ -86,7 +95,7 @@ export default function Home() {
       <div
         className={`  ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-            ? " w-full h-[40%] flex  !justify-center  !items-center !text-center"
+            ? "hidden"
             : "gradient-bg  !w-[55%] pl-[4vw]  items-center  flex h-screen"
         }    `}
       >
@@ -130,39 +139,87 @@ export default function Home() {
       <div
         className={` ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-            ? " w-full h-[60%]"
-            : "w-[45%] "
-        } flex flex-col  justify-center text-center items-center`}
+            ? "!w-full !h-screen  !justify-end !items-start pb-16 !text-start bg-gradient-to-b from-[#22a0a0]/30 to-white"
+            : "w-[45%] flex flex-col  justify-center text-start items-center "
+        } `}
       >
-        <div className="flex flex-col justify-center w-[80%]  text-center">
-          <div className="flex flex-col items-start">
-            <Icon
-            IconComponent={iconLogin}
-            className="text-[#22a0a0] size-[5vw] stroke-[1.2px] "
+        <div
+          className={`flex flex-col ${
+            [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              ? "w-[100%]  h-full px-8 justify-end items-start text-start"
+              : "w-[80%] justify-center  text-start"
+          } `}
+        >
+          <Image
+            src={
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                ? logoSDMinimal
+                : ""
+            }
+            alt="logoEng"
+            className={`samsungA24:w-[10vw] ${
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                ? " mt-[30px] fixed top-2 left-0 -ml-9  w-[42vw] "
+                : "hidden"
+            } `}
           />
-            <p className="text-[#22a0a0] font-semibold text-[1.8vw]">
-              {" "}
-              Welcome!
-            </p>
-            <p className="text-[#22a0a0] font-medium text-[1.1vw]">
-              {" "}
-              Sign in to Queuing System
-            </p>
+          <div
+            className={` ${
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                ? ""
+                : "flex  w-full items-center"
+            }`}
+          >
+            <Icon
+              IconComponent={iconLogin}
+              className={`text-[#22a0a0] size-20 stroke-[1.2px] mb-3 ${
+                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                  ? "-ml-2"
+                  : " "
+              }`}
+            />
           </div>
-          <p className="my-6 text-[15px] leading-6 text-default text-start font-medium">
-            The Automatic Queuing System lets you take a number and wait
-            comfortably without needing to be at the front. Get notified when
-            it's your turn, ensuring a smooth and stress-free experience.
+          <p
+            className={`${
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                ? "text-[#22a0a0] text-start font-semibold text-[3vh]  "
+                : "text-[#22a0a0] font-semibold text-[1.8vw]"
+            } `}
+          >
+            {" "}
+            Welcome!
+          </p>
+          <p
+            className={`${
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                ? "text-default text-start font-semibold text-[2.5vh] "
+                : "text-default text-start font-semibold text-[2.5vh]"
+            } `}
+          >
+            {" "}
+            Sign in to Queuing System
+          </p>
+
+          <p
+            className={`my-4  ${
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                ? "text-[13px] "
+                : "text-[16px]"
+            } text-default font-medium`}
+          >
+            Let's take a number and wait comfortably without needing to be at
+            the front. Get notified when it's your turn, ensuring a smooth and
+            stress-free experience.
           </p>
           <div
-            className={`flex gap-3  items-center justify-center w-[65%] ${
+            className={`flex gap-3  items-center justify-center  ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? " w-[90%] mt-2"
-                : "w-[100%] mt-6"
-            } acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/40`}
+                ? " w-[100%] mt-2"
+                : "w-[100%] mt-8"
+            }} acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/30`}
           >
             <Icon IconComponent={iconEx} className="text-[#856404]" />
-            <p className="iphone:max-sm:text-[12px] text-[14px] acerSwift:max-macair133:text-b3 text-[#856404] font-bold text-start w-full ">
+            <p className="iphone:max-sm:text-[13px] text-[14px] acerSwift:max-macair133:text-b3 text-[#856404] font-bold text-start w-full ">
               The system is currently in testing. <br />
               <p className="font-medium mt-[2px]">
                 If you experience any issues, please remove the app from your
@@ -170,18 +227,24 @@ export default function Home() {
               </p>
             </p>
           </div>
-          <a href={process.env.NEXT_PUBLIC_CMU_OAUTH_URL}>
+          <div
+            className={`${
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                ? " w-[100%] mt-2"
+                : "flex flex-col !text-center !items-center !justify-center w-[100%] mt-6"
+            }`}
+          >
             <Button
+              onClick={handleSignIn}
               style={{
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.45)",
               }}
               variant="default"
-              className={`text-sm   acerSwift:max-macair133:text-b4  acerSwift:max-macair133:!py-5 acerSwift:max-macair133:px-6 font-semibold py-[22px] iphone:max-sm:rounded-full iphone:max-sm:py-[26px] iphone:max-sm:px-14 iphone:max-sm:mt-5 w-fit px-10 rounded-[8px] ${
+              className={`mt-5 ${
                 [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                  ? "text-[#ffffff] bg-[#5868d5] hover:bg-[#5868d5]  mt-10"
-                  : "text-[#ffffff] bg-[#5868d5] hover:bg-[#5868d5] mt-14"
-              }
-             `}
+                  ? " w-[100%]  bg-[#5868d5] text-white hover:bg-[#5868d5] mt-5 h-12 text-[15px] font-semibold rounded-full"
+                  : " bg-[#5868d5] w-[50%] hover:bg-[#5868d5] text-white py-6 px-12 rounded-lg  text-[15px] font-semibold"
+              }`}
             >
               <Image
                 src={
@@ -194,25 +257,24 @@ export default function Home() {
               />
               Sign in CMU account
             </Button>
-          </a>
-          <div className="flex flex-col mt-6">
-            <p className="sm:max-samsungA24:text-[15px] text-[15px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
-              <span className="font-[500] text-default"> Don't have</span> CMU
-              account?{" "}
-              <span
-                className={`underline font-[500] cursor-pointer ${
-                  [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(
-                    deviceType!
-                  ) || true
-                    ? "text-[#5868d5] hover:text-[#303d91]"
-                    : "text-[#5868d5] hover:text-[#303d91]"
-                } `}
-                onClick={() => Router.push(Route.Login)}
-              >
-                Click here
-              </span>
-            </p>
-            {/* <Button
+            <div className="flex flex-col !text-center !items-center !justify-center w-[100%] mt-6">
+              <p className="sm:max-samsungA24:text-[15px]  text-[15px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
+                <span className="font-[500] text-default"> Don't have</span> CMU
+                account?{" "}
+                <span
+                  className={`underline font-[500] cursor-pointer ${
+                    [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(
+                      deviceType!
+                    ) || true
+                      ? "text-[#5868d5] hover:text-[#303d91]"
+                      : "text-[#5868d5] hover:text-[#303d91]"
+                  } `}
+                  onClick={() => Router.push(Route.Login)}
+                >
+                  Click here
+                </span>
+              </p>
+              {/* <Button
               variant="link"
               className={`text-sm font-[600]   acerSwift:max-macair133:text-b4 underline  ${
                 [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
@@ -224,6 +286,7 @@ export default function Home() {
               <Icon IconComponent={iconFlag} />
               Issue Report
             </Button> */}
+            </div>
           </div>
           {/* <Link href="/admin-dashboard">
             <Button
