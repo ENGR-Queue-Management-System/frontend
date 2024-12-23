@@ -49,6 +49,28 @@
   );
 }
 
+.gradient-try {
+  background: radial-gradient(
+    circle at center bottom,
+    rgb(228, 247, 250) 25%,
+    /* Very light cyan center */ rgb(216, 247, 250) 50%,
+    /* Soft cyan transition */ rgba(245, 235, 220, 1) 75%,
+    /* Light peach */ rgba(249, 225, 200, 1) 100% /* Warm pastel edges */
+  );
+}
+
+.gradient-try-big {
+  background: radial-gradient(
+    circle at center bottom,
+    rgb(228, 247, 250) 25%,
+    /* Very light cyan center */ rgb(216, 247, 250) 50%,
+    /* Soft cyan transition */ rgba(245, 235, 220, 1) 75%,
+    /* Light peach */ rgba(249, 225, 200, 1) 100% /* Warm pastel edges */
+  );
+
+  box-shadow: 4px 0px 3px rgba(0, 0, 0, 0.12); /* Drop shadow on the right */
+}
+
 .gradient-bg-navbar {
   height: 100vh;
   width: 100%;
@@ -70,7 +92,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family:"Manrope", "NotoSansThai",  Arial, Helvetica, sans-serif;
+  font-family: "Manrope", "NotoSansThai", Arial, Helvetica, sans-serif;
 }
 
 @layer base {

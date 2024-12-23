@@ -96,7 +96,7 @@ export default function Home() {
         className={`  ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
             ? "hidden"
-            : "gradient-bg  !w-[55%] pl-[4vw]  items-center  flex h-screen"
+            : "gradient-try-big  !w-[55%] pl-[4vw]  items-center  flex h-screen"
         }    `}
       >
         <div
@@ -104,32 +104,32 @@ export default function Home() {
     ${
       [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
         ? "text-[#3d3d3d] flex flex-col mt-12 !justify-center !items-center !text-center"
-        : "text-start text-white  justify-start items-start flex flex-col "
+        : "text-start text-default  justify-start items-start flex flex-col "
     }`}
         >
           <Image
             src={
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                 ? logoEngColor
-                : logoEng
+                : logoEngColor
             }
             alt="logoEng"
             className={`samsungA24:w-[10vw] ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                 ? " mt-[50px] "
-                : "-ml-3 mt-5 mb-3"
+                : "-ml-1 mt-5 mb-3"
             } acerSwift:max-macair133:w-[12vw] cursor-not-allowed  macair133:max-samsungA24:w-[15vw] iphone:max-sm:w-[40vw] sm:max-macair133:w-[20vw]`}
           />
           <div>
             <p className=" mt-3 sm:max-samsungA24:text-[28px] acerSwift:max-macair133:text-h1 font-[400] iphone:max-sm:text-[24px] text-[34px]">
               ระบบบัตรคิวอัตโนมัติ
             </p>
-            <p className="  sm:max-samsungA24:text-[20px] acerSwift:max-macair133:text-b1 font-[500] iphone:max-sm:text-[18px] text-[28px]">
+            <p className=" -mt-[2px]  sm:max-samsungA24:text-[20px] acerSwift:max-macair133:text-b1 font-[500] iphone:max-sm:text-[18px] text-[28px]">
               Automatic Queuing System
             </p>
           </div>
           <div>
-            <p className=" mt-4 sm:max-samsungA24:text-[16px] acerSwift:max-macair133:text-[16px] font-[500] iphone:max-sm:text-[12px] text-[16px]">
+            <p className=" mt-6 leading-6 sm:max-samsungA24:text-[16px] acerSwift:max-macair133:text-[16px] font-[500] iphone:max-sm:text-[12px] text-[16px]">
               Student Development Room <br />
               Faculty of Engineering, Chiang Mai University
             </p>
@@ -139,7 +139,7 @@ export default function Home() {
       <div
         className={` ${
           [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-            ? "!w-full !h-screen  !justify-end !items-start pb-16 !text-start bg-gradient-to-b from-[#22a0a0]/40 to-white"
+            ? "!w-full !h-screen  !justify-end !items-start pb-12 !text-start gradient-try"
             : "w-[45%] flex flex-col  justify-center text-start items-center "
         } `}
       >
@@ -172,7 +172,7 @@ export default function Home() {
           >
             <Icon
               IconComponent={iconLogin}
-              className={`text-[#22a0a0] size-20 stroke-[1.2px] mb-3 ${
+              className={`text-default size-20 stroke-[1.2px] mb-3 ${
                 [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                   ? "-ml-2"
                   : " "
@@ -182,8 +182,8 @@ export default function Home() {
           <p
             className={`${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? "text-[#22a0a0] text-start font-semibold text-[3vh]  "
-                : "text-[#22a0a0] font-semibold text-[1.8vw]"
+                ? "text-default text-start font-semibold text-[3vh]  "
+                : "text-default font-semibold text-[1.8vw]"
             } `}
           >
             {" "}
@@ -191,9 +191,10 @@ export default function Home() {
           </p>
           <p
             className={`${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? "text-default text-start font-semibold text-[2.5vh] "
-                : "text-default text-start font-semibold text-[2.5vh]"
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ||
+              true
+                ? "text-[#969696] text-start font-medium text-[2.2vh] "
+                : "hidden"
             } `}
           >
             {" "}
@@ -201,7 +202,7 @@ export default function Home() {
           </p>
 
           <p
-            className={`my-4  ${
+            className={`my-8  ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                 ? "text-[13px] "
                 : "text-[16px]"
@@ -265,9 +266,9 @@ export default function Home() {
                   className={`underline font-[500] cursor-pointer ${
                     [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(
                       deviceType!
-                    ) || true
-                      ? "text-[#5868d5] hover:text-[#303d91]"
-                      : "text-[#5868d5] hover:text-[#303d91]"
+                    ) 
+                      ? "text-[#19888a] hover:text-[#206d6f]"
+                      : "text-[#19888a] hover:text-[#206d6f]"
                   } `}
                   onClick={() => Router.push(Route.Login)}
                 >
