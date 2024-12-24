@@ -89,7 +89,7 @@ export default function Home() {
     <motion.div
       initial={
         isPhone
-          ? { x: prevPath == Route.Index ? "100%" : "-100%" }
+          ? { x: prevPath == Route.Login ? "100%" : "-100%" }
           : false
       }
       animate={isPhone ? { x: 0 } : false}
