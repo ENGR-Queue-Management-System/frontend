@@ -19,7 +19,7 @@ import ContactTopicManageModal from "./modal/ContactTopicManageModal";
 import { logout } from "@/services/user/user.service";
 import { ROLE } from "@/config/Enum";
 
-const Profile: React.FC = () => {
+export default function Profile() {
   const user = useAppSelector((state) => state.user.user);
 
   return (
@@ -28,12 +28,12 @@ const Profile: React.FC = () => {
         <PopoverTrigger asChild>
           <Button
             variant="ghost"
-            className="flex items-center translate-x-3 hover:bg-transparent  gap-2"
+            className="flex items-center translate-x-3 hover:bg-transparent gap-2"
           >
-            <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end acerSwift:max-macair133:text-b4">
+            <div className="flex flex-col w-fit py-2 font-normal text-[14px] text-white items-end acerSwift:max-macair133:text-b4">
               <p>{getUserName(user)}</p>
               {user.role == ROLE.ADMIN ? (
-                <p className=" acerSwift:max-macair133:-mt-1">ผู้ดูแลระบบ</p>
+                <p className="acerSwift:max-macair133:-mt-1">ผู้ดูแลระบบ</p>
               ) : user.studentId ? (
                 <p>{user.studentId}</p>
               ) : (
@@ -42,7 +42,7 @@ const Profile: React.FC = () => {
             </div>
             <Icon
               IconComponent={IconUser}
-              className="!size-10 stroke-white  acerSwift:max-macair133:!size-9"
+              className="!size-10 stroke-white acerSwift:max-macair133:!size-9"
             />
           </Button>
         </PopoverTrigger>
@@ -63,8 +63,6 @@ const Profile: React.FC = () => {
               icon={IconHistory}
               title="ประวัติการบริการ"
             ></LogQueueModal>
-            {/* </>
-            )} */}
             <Link href="/student-dashboard">
               <Button variant="ghost">Student dashboard</Button>
             </Link>
@@ -72,17 +70,15 @@ const Profile: React.FC = () => {
               <Button variant="ghost">Admin dashboard</Button>
             </Link>
             <Button
-              className=" bg-white hover:bg-[#f7b1b13b] text-[#f04a4a] justify-start"
+              className="bg-white hover:bg-[#f7b1b13b] text-[#f04a4a] justify-start"
               onClick={logout}
             >
               <Icon IconComponent={IconLogout} className=" stroke-[#f04a4a]" />
-              <p className=" translate-x-1">ออกจากระบบ</p>
+              <p className="translate-x-1">ออกจากระบบ</p>
             </Button>
           </div>
         </PopoverContent>
       </Popover>
     </>
   );
-};
-
-export default Profile;
+}

@@ -24,11 +24,11 @@ type PopupProps = {
   icon?: React.ComponentType<{ className?: string }>;
   title: string;
 };
-const ContactTopicMangeModal: React.FC<PopupProps> = ({
+export default function ContactTopicMangeModal({
   triggerText,
   icon: IconComponent,
   title,
-}) => {
+}: PopupProps) {
   const [openAddTopicModal, setOpenAddTopicModal] = useState(false);
   const [openEditTopicModal, setOpenEditTopicModal] = useState(false);
   const [openDeleteTopicPopup, setOpenDeleteTopicPopup] = useState(false);
@@ -332,6 +332,4 @@ const ContactTopicMangeModal: React.FC<PopupProps> = ({
       </DialogContent>
     </Dialog>
   );
-};
-
-export default ContactTopicMangeModal;
+}

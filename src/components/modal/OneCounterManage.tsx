@@ -13,58 +13,30 @@ import IconTrash from "../../../public/icons/trash.svg";
 import IconList from "../../../public/icons/list.svg";
 import Icon from "@/components/Icon";
 import { Checkbox } from "@/components/ui/checkbox";
-
 import { TimePickerInput } from "../ui/time-picker-input";
 import { Period } from "../ui/time-picker-utils";
 import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE } from "@/config/Enum";
 
-type PopupProps = {
+type Props = {
   title: string;
   type: "add" | "edit";
   opened: boolean;
   onClose: () => void;
 };
 
-const OneCounterManage: React.FC<PopupProps> = ({
+export default function OneCounterManage({
   title,
   type,
   opened,
   onClose,
-}) => {
+}: Props) {
+  const { deviceType } = useNotification();
   const [inputValues, setInputValues] = useState({
     topicTH: "",
     topicEN: "",
     room: "",
   });
-  const { deviceType } = useNotification();
-
-  const categories = [
-    {
-      topicTH: "ฝึกงาน-สหกิจศึกษา",
-      topicEN: "Internship and Cooperative Education",
-    },
-    {
-      topicTH: "อื่นๆ",
-      topicEN: "Others",
-    },
-    {
-      topicTH: "ทุนการศึกษา",
-      topicEN: "Scholarships",
-    },
-    {
-      topicTH: "ขอคำปรึกษาด้านวิชาการ",
-      topicEN: "Academic Consultation",
-    },
-    {
-      topicTH: "แจ้งปัญหาด้านการเรียนการสอน",
-      topicEN: "Report Issues with Teaching and Learning",
-    },
-    {
-      topicTH: "ขอจัดกิจกรรมหรือโครงการพิเศษ",
-      topicEN: "Request for Special Activities or Projects",
-    },
-  ];
 
   const [period, setPeriod] = useState<Period>("PM");
   const [date, setDate] = useState<Date | null>(null);
@@ -74,32 +46,36 @@ const OneCounterManage: React.FC<PopupProps> = ({
 
   return (
     <Dialog open={opened} onOpenChange={onClose}>
-      <DialogContent  classNameClose={`${
-                  [DEVICE_TYPE.IOS].includes(deviceType!) 
-                    ? "pt-12"
-                    : ""
-                }`}
+      <DialogContent
+        classNameClose={`${
+          [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-12" : ""
+        }`}
         className={` ${
-          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) || true
-            ? " w-full h-full "
-            : "max-w-[40vw"
-        } p-6 mb-1 acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4`}
+          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+            ? "w-full h-full"
+            : "md:max-w-[40vw] max-w-[50vw]"
+        } p-6 mb-1 h-fit acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4`}
       >
-        <DialogHeader  className={`${
-                    [DEVICE_TYPE.IOS].includes(deviceType!) || true
-                      ? "pt-12"
-                      : ""
-                  }`}>
+        <DialogHeader
+          className={`${
+            [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-12" : ""
+          }`}
+        >
           <DialogTitle className="text-table-foreground mb-3 acerSwift:max-macair133:text-b1 acerSwift:max-macair133:mb-1">
             {title}
           </DialogTitle>
         </DialogHeader>
-        <div className={`flex flex-col  max-h-[65vh] acerSwift:max-macair133:max-h-[435px] gap-5 acerSwift:max-macair133:gap-3`}>
-          <div className={`flex flex-col w-full gap-4 h-full acerSwift:max-macair133:gap-2.5`}>
+        <div
+          className={`flex flex-col  max-h-[65vh] acerSwift:max-macair133:max-h-[435px] gap-5 acerSwift:max-macair133:gap-3`}
+        >
+          <div
+            className={`flex flex-col w-full gap-4 h-full acerSwift:max-macair133:gap-2.5`}
+          >
             <div
               style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
               className={`flex ${
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) || true
+                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ||
+                true
                   ? " h-fit "
                   : ""
               } rounded-md flex-col w-full p-5 gap-5 acerSwift:max-macair133:p-4 acerSwift:max-macair133:gap-3 justify-start `}
@@ -148,50 +124,6 @@ const OneCounterManage: React.FC<PopupProps> = ({
               </div>
             </div>
           </div>
-
-          <div
-            style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
-            className="overflow-y-auto rounded-md flex flex-1 flex-col h-full"
-          >
-            <div className="sticky flex top-0  bg-table-background text-table-foreground gap-3 px-5 items-center justify-between font-medium py-3">
-              <div className="flex gap-3 text-b2 items-center acerSwift:max-macair133:text-b3">
-                <Icon
-                  IconComponent={IconList}
-                  className="acerSwift:max-macair133:!size-4 size-5"
-                />
-                หัวข้อบริการ
-              </div>
-
-              <div className="text-b2 text-red-500 acerSwift:max-macair133:text-b4">
-                เลือกอย่างน้อย 1 รายการ
-              </div>
-            </div>
-
-            {categories.map((cat) => (
-              <div
-                key={cat.topicTH}
-                className="flex border-b-[1px] mx-5 border-[#e1e1e1] last:border-none px-2 font-medium text-default justify-between gap-3 items-center py-2 acerSwift:max-macair133:py-1.5"
-              >
-                <div className="flex items-center gap-5 ">
-                  <Checkbox id="terms1" />
-                  <div className="flex flex-col py-2 text-b2 acerSwift:max-macair133:text-b4">
-                    <p>{cat.topicTH}</p>
-                    <p>{cat.topicEN}</p>
-                  </div>
-                </div>
-
-                {/* <Button
-                  variant="outline"
-                  className="border-red-500 rounded-full acerSwift:max-macair133:!p-3.5  text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
-                >
-                  <Icon
-                    IconComponent={IconTrash}
-                    className="stroke-delete acerSwift:max-macair133:!size-3.5"
-                  />
-                </Button> */}
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="flex gap-3 justify-end w-full mt-1 acerSwift:max-macair133:mt-0">
@@ -205,6 +137,4 @@ const OneCounterManage: React.FC<PopupProps> = ({
       </DialogContent>
     </Dialog>
   );
-};
-
-export default OneCounterManage;
+}
