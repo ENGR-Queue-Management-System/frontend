@@ -241,7 +241,8 @@ export default function Home({showLink}: PopupProps) {
               Sign in CMU account
             </Button>
             <div className="flex flex-col !text-center !items-center !justify-center w-[100%] mt-6">
-              {showLink && <p className="sm:max-samsungA24:text-[15px]  text-[15px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
+              {/* {showLink &&  */}
+              <p className="sm:max-samsungA24:text-[15px]  text-[15px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
                 <span className="font-[500] text-default"> Don't have</span> CMU
                 account?{" "}
                 <span
@@ -254,7 +255,8 @@ export default function Home({showLink}: PopupProps) {
                 >
                   Click here
                 </span>
-              </p>}
+              </p>
+              {/* } */}
               {/* <Button
                 variant="link"
                 className={`text-sm font-[600]   acerSwift:max-macair133:text-b4 underline  ${
