@@ -22,7 +22,7 @@ const Switch = React.forwardRef<
       {checked && (
         <span
           className={cn(
-            "absolute left-3 text-white text-sm font-medium transition-opacity duration-200 acerSwift:max-macair133:text-b3"
+            "absolute left-3 !text-white text-sm font-medium transition-opacity duration-200 acerSwift:max-macair133:text-b3"
           )}
         >
           เปิด

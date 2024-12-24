@@ -29,12 +29,12 @@ export default function Navbar() {
             <Icon
               IconComponent={IconLeft}
               classNameDiv="cursor-pointer p-2 rounded-full"
-              className="text-default"
+              className="text-default z-50"
               onClick={() => Router.back()}
             />
           )}
         <Image
-          className="z-50 w-[110px] -ml-7 acerSwift:max-macair133:w-[100px]"
+          className=" w-[110px] -ml-8 acerSwift:max-macair133:w-[100px]"
           src={logoSDColor}
           alt="loginImage"
         />

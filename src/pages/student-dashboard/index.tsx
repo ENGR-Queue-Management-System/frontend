@@ -55,46 +55,31 @@ export default function StudentIndex() {
   };
 
   return (
-    <div className="m-auto overflow-y-auto flex flex-col gap-7 acerSwift:max-macair133:gap-6 iphone:max-sm:gap-6 items-center justify-start">
+    <div className="m-auto  overflow-y-auto flex flex-col gap-7 acerSwift:max-macair133:gap-6 iphone:max-sm:gap-6 items-center justify-start">
       <div
-        className={` flex flex-col items-center justify-center text-center text-[24px] acerSwift:max-macair133:!text-h1 text-semibold iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px]`}
+        className={` flex flex-col  items-center justify-center text-center text-[24px] acerSwift:max-macair133:!text-h1 text-semibold iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px]`}
       >
-        <p>วันนี้เราสามารถช่วยอะไรนศ.ได้บ้าง แจ้งมาได้เลยนะคะ</p>
-        <p className="text-bold iphone:max-sm:w-[250px]">
-          What can we help you with today? Let us know to get started
+      
+      <p className=" font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-[#4285f4] via-[#ec407a] via-[#a06ee1] to-[#fb8c00] bg-clip-text text-transparent">
+          What can we help you with today?
         </p>
       </div>
       <Select onValueChange={(value) => setSelectTopic(parseInt(value))}>
         <SelectTrigger
-          className={`iphone:max-sm:w-[85vw] iphone:max-sm:h-32 iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] px-6 ${
-            selectTopic === 0
-              ? "py-3 text-primary iphone:max-sm:h-12"
-              : "py-2 iphone:max-sm:h-18"
-          }`}
+              className={`iphone:max-sm:w-[85vw] shadow-none !h-9 bg-[#f0f0f0] border-none  iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] px-4 ${
+                selectTopic === 0
+                  ? "py-3 text-default "
+                  : "py-2"
+              }`}
         >
-          <SelectValue placeholder="เลือกเรื่องที่ต้องการจะให้เราช่วยเหลือ" />
+          <SelectValue placeholder="Select topic" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             {topics.map((item) => (
               <SelectItem value={item.id.toString()} key={item.id}>
                 <div className="flex items-center gap-4 py-1 acerSwift:max-macair133:gap-4">
-                  <div
-                    className={`${
-                      item.topicTH === "อื่นๆ"
-                        ? "bg-contactList-others"
-                        : item.topicTH === "ทุนการศึกษา"
-                        ? "bg-contactList-scholarship"
-                        : item.topicTH === "ขอคำปรึกษาด้านวิชาการ"
-                        ? "bg-contactList-consultation"
-                        : item.topicTH === "แจ้งปัญหาด้านการเรียนการสอน"
-                        ? "bg-contactList-report"
-                        : item.topicTH === "ขอจัดกิจกรรมหรือโครงการพิเศษ"
-                        ? "bg-contactList-request"
-                        : item.topicTH === "ฝึกงาน-สหกิจศึกษา" &&
-                          "bg-contactList-internship"
-                    } h-3 w-3 acerSwift:max-macair133:h-2.5 acerSwift:max-macair133:w-2.5 rounded-[100%] iphone:max-sm:hidden`}
-                  ></div>
+                
                   <div className="flex flex-col text-start text-b2 acerSwift:max-macair133:text-b3">
                     <p>
                       {item.topicTH} (
@@ -141,10 +126,14 @@ export default function StudentIndex() {
         })()}
 
       <Button
-        className="flex flex-col items-centern gap-0 p-8 py-7 rounded-xl acerSwift:max-macair133:text-b3"
+        className={`mt-5 ${
+          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+            ? " w-[100%] rounded-full bg-primary hover:bg-[#3560b0] mt-5 h-12 text-[15px] font-semibold"
+            : "py-6 px-12 text-[15px] bg-primary hover:bg-[#3560b0] font-semibold"
+        }`}
         disabled={selectTopic === 0}
       >
-        <p>รับบัตรคิว</p>
+     
         <p>Take a number</p>
       </Button>
     </div>

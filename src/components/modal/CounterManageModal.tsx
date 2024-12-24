@@ -52,7 +52,7 @@ export default function CounterManageModal({
             {IconComponent && (
               <IconComponent className="h-5 w-5 -translate-x-1 stroke-[#333333] acerSwift:max-macair133:w-4 acerSwift:max-macair133:h-4" />
             )}
-            <span className="ml-1">{triggerText}</span>
+            <span className="ml-1 ">{triggerText}</span>
           </Button>
         </DialogTrigger>
         <DialogContent
@@ -70,7 +70,7 @@ export default function CounterManageModal({
               [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-12" : ""
             }`}
           >
-            <DialogTitle className="text-table-foreground font-[500]  acerSwift:max-macair133:text-b1">
+            <DialogTitle className="text-primary font-[500]  acerSwift:max-macair133:text-b1">
               {title}
             </DialogTitle>{" "}
           </DialogHeader>
