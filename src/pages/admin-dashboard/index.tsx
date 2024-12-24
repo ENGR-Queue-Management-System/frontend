@@ -32,11 +32,11 @@ export default function AdminIndex() {
   const dispatch = useAppDispatch();
   const [firstFetch, setFirstFetch] = useState(false);
 
-  useEffect(() => {
-    if (!queues.length && !firstFetch) {
-      fetchQueues();
-    }
-  }, [counter]);
+  // useEffect(() => {
+  //   if (!queues.length && !firstFetch) {
+  //     fetchQueues();
+  //   }
+  // }, [counter]);
 
   const fetchQueues = async () => {
     if (counter && counter.id) {
