@@ -16,7 +16,7 @@ import { useAppDispatch, useAppSelector } from "@/store";
 import { useNotification } from "@/notifications/useNotification";
 import Router from "next/router";
 import { Route } from "@/config/Route";
-import { DEVICE_TYPE } from "@/config/Enum";
+import { DEVICE_TYPE, ROLE } from "@/config/Enum";
 import { subscribeNotification } from "@/services/subscription/subscription.service";
 import { setSubscription } from "@/store/subscription";
 
@@ -37,9 +37,9 @@ export default function StudentIndex() {
       ) {
         getSubsrciption();
       }
-      if (user.email && !user.studentId) {
+      if (user.role == ROLE.ADMIN) {
         Router.push(Route.AdminIndex);
-      } else if (user.email && user.studentId) {
+      } else if (user.studentId) {
         Router.push(Route.StudentIndex);
       } else if (user.firstNameTH) {
         Router.push(`${Route.StudentQueue}`);

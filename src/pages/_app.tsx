@@ -3,7 +3,7 @@ import { getCounters } from "@/services/counter/counter.service";
 import { getUserInfo } from "@/services/user/user.service";
 import store, { useAppDispatch, useAppSelector } from "@/store";
 import { setCounters } from "@/store/counter";
-import { setUser } from "@/store/user";
+import { setQueue, setUser } from "@/store/user";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { usePathname, useRouter } from "next/navigation";
@@ -27,8 +27,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { setLoading } from "@/store/loading";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { Button } from "@/components/ui/button";
-import { DEVICE_TYPE } from "@/config/Enum";
+import { DEVICE_TYPE, ROLE } from "@/config/Enum";
 import Icon from "@/components/Icon";
+import { getStudentQueue } from "@/services/queue/queue.service";
+import { StudentQueueRequestDTO } from "@/services/queue/dto/queue.dto";
+import Router from "next/router";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { deviceType } = useNotification();
@@ -37,6 +40,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const location = usePathname();
   const user = useAppSelector((state) => state.user.user);
+  const queue = useAppSelector((state) => state.user.queue);
   const counters = useAppSelector((state) => state.counter);
   const dispatch = useAppDispatch();
 
@@ -53,16 +57,22 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (token) {
       const decodedToken: any = checkTokenExpired(token, true);
       if (decodedToken) {
-        if (!user.email) {
-          if (decodedToken.email) {
+        if (!user.role) {
+          if (decodedToken.role == ROLE.ADMIN) {
             fetchUser();
           } else {
-            dispatch(
-              setUser({
-                firstNameTH: decodedToken.firstName,
-                lastNameTH: decodedToken.lastName,
-              })
-            );
+            const data: any = {
+              firstNameTH: decodedToken.firstName,
+              lastNameTH: decodedToken.lastName,
+            };
+            if (decodedToken.studentId) {
+              data.studentId = decodedToken.studentId;
+            }
+            dispatch(setUser(data));
+            fetchQueue({
+              firstName: decodedToken.firstName,
+              lastName: decodedToken.lastName,
+            });
           }
         }
       } else if (location != Route.Index) {
@@ -71,7 +81,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     } else if (![Route.Index, Route.CmuEntraIDCallback].includes(location)) {
       // router.replace(Route.Index);
     }
-  }, [dispatch, router, user.email]);
+  }, [dispatch, router, user.role]);
 
   const fetchUser = async () => {
     const res = await getUserInfo();
@@ -84,6 +94,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     const res = await getCounters();
     if (res) {
       dispatch(setCounters(res));
+    }
+  };
+
+  const fetchQueue = async (payload: StudentQueueRequestDTO) => {
+    const res = await getStudentQueue(payload);
+    if (res) {
+      dispatch(setQueue({ ...res.queue, waiting: res.waiting }));
+      Router.push(Route.StudentQueue);
     }
   };
 
@@ -168,7 +186,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Icon
               IconComponent={iconBell}
               className={`text-default size-20 stroke-[1.2px] mb-3 ${
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
+                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                   ? "-ml-2"
                   : " "
               }`}
@@ -176,7 +194,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </div>
           <p
             className={`${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
+              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                 ? "text-default text-start font-semibold text-[3vh]  "
                 : "text-default font-medium text-center text-[1.4vw]"
             } `}
@@ -232,7 +250,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.45)",
               }}
               className={`mt-5 ${
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) 
+                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                   ? " w-[100%] rounded-full bg-[#1db9bc] hover:bg-[#189b9d] mt-5 h-12 text-[15px] font-semibold"
                   : "py-6 px-12 text-[15px] bg-[#1db9bc] hover:bg-[#189b9d] font-semibold"
               }`}

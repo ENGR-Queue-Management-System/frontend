@@ -1,24 +1,29 @@
-import { IModelUser } from "@/models/Model";
+import { IModelQueue, IModelUser } from "@/models/Model";
 import moment from "moment";
 import "moment/locale/th";
 
 moment.locale("th");
 
 export const getUserName = (
-  user: Partial<IModelUser> | undefined,
+  user: Partial<IModelUser | IModelQueue> | undefined,
   format?: number
 ) => {
   if (!user) return;
-  switch (format) {
-    case 1:
-      return `${user.firstNameEN} ${user.lastNameEN}`; // John Doe
-    case 2:
-      return `${user.firstNameEN?.toLowerCase()} ${user.lastNameEN?.toLowerCase()}`; // john doe
-    case 3:
-      return `${user.firstNameEN} ${user.lastNameEN?.slice(0, 1)}.`; // John D.
-    default:
-      if (user.firstNameTH) return `${user.firstNameTH} ${user.lastNameTH}`; // กข คง
-      return "";
+  else if ("firstNameTH" in user) {
+    switch (format) {
+      case 1:
+        return `${user.firstNameEN} ${user.lastNameEN}`; // John Doe
+      case 2:
+        return `${user.firstNameEN?.toLowerCase()} ${user.lastNameEN?.toLowerCase()}`; // john doe
+      case 3:
+        return `${user.firstNameEN} ${user.lastNameEN?.slice(0, 1)}.`; // John D.
+      default:
+        if (user.firstNameTH) return `${user.firstNameTH} ${user.lastNameTH}`; // กข คง
+        return "";
+    }
+  } else if ("firstName" in user) {
+    if (user.firstName) return `${user.firstName} ${user.lastName}`;
+    return "";
   }
 };
 

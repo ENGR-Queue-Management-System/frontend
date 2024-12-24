@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 import { Route } from "@/config/Route";
 import logoEng from "../../public/images/logoSDShadow.png";
 import logoEngColor from "../../public/images/logoSDColor.png";
@@ -10,7 +10,7 @@ import cmuLogoColor from "../../public/images/cmuLogoLoginWhite.png";
 import { useAppSelector } from "@/store";
 import { useEffect, useState } from "react";
 import { useNotification } from "@/notifications/useNotification";
-import { DEVICE_TYPE } from "@/config/Enum";
+import { DEVICE_TYPE, ROLE } from "@/config/Enum";
 import Icon from "@/components/Icon";
 import iconFlag from "../../public/icons/flag.svg";
 import iconLogin from "../../public/icons/confetti.svg";
@@ -28,10 +28,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import { getUserName } from "@/helpers/function";
 
 export default function Home() {
   const { deviceType } = useNotification();
   const user = useAppSelector((state) => state.user.user);
+  const queue = useAppSelector((state) => state.user.queue);
   const [testSendNotiList, setTestSendNotiList] = useState<any[]>([]);
   const [selectTest, setSelectTest] = useState("");
 
@@ -48,11 +50,13 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (user.email) {
-      if (user.studentId) {
-        Router.push(Route.StudentIndex);
-      } else {
+    if (user.role) {
+      if (user.role == ROLE.ADMIN) {
         Router.push(Route.AdminIndex);
+      } else if (queue) {
+        Router.push(Route.StudentQueue);
+      } else {
+        Router.push(Route.StudentIndex);
       }
     }
   }, [user]);
@@ -298,7 +302,7 @@ export default function Home() {
                   {testSendNotiList.map((item, index) => (
                     <SelectItem value={index.toString()} key={index}>
                       <div className="flex items-center py-1">
-                        {item.firstName} {item.lastName}
+                        {getUserName(item)}
                       </div>
                     </SelectItem>
                   ))}
