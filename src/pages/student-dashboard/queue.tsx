@@ -48,7 +48,7 @@ export default function StudentQueue() {
               <span className="font-semibold">(anonymous)</span>
             </p>
           </div>
-          <div className="flex max-w-full justify-between gap-0 py-4 px-16 iphone:max-macair133:px-5 acerSwift:max-macair133:w-[40vw]">
+          <div className="flex max-w-full justify-between gap-0 py-4 px-16 iphone:max-sm3:px-5 acerSwift:max-macair133:w-[40vw]">
             {[...Array(5)].map((_, index) => (
               <Icon
                 key={index}
