@@ -88,11 +88,13 @@ export default function Login() {
 
   return (
     <motion.div
-      className="flex bg-[#fafafa] flex-col h-screen  w-full overflow-y-auto  justify-start items-center"
+      className="flex bg-[#fafafa] flex-col h-screen w-full overflow-y-auto justify-start items-center"
       initial={isPhone ? { x: "100%" } : false}
       animate={isPhone ? { x: 0 } : false}
       exit={isPhone ? { x: "-100%" } : undefined}
-      transition={isPhone ? { duration: 0.25, ease: "easeInOut" } : undefined}
+      transition={
+        isPhone ? { duration: 0.5, ease: [0.22, 0.61, 0.36, 1] } : undefined
+      }
     >
       <div className="h-full justify-center gap-16 flex flex-col">
         <div className="flex flex-col h-fit items-center  justify-center text-center text-[24px] font-medium iphone:max-sm:w-[85vw] iphone:max-sm:text-[24px] sm:max-macair133:text-[26px] macair133:text-[32px]">

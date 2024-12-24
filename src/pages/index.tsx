@@ -87,13 +87,13 @@ export default function Home() {
 
   return (
     <motion.div
-      initial={
-        isPhone ? { x: prevPath == Route.Login ? "-100%" : "100%" } : false
-      }
+      className="flex bg-[#fafafa] flex-col h-screen w-full overflow-y-auto justify-start items-center"
+      initial={isPhone ? { x: "100%" } : false}
       animate={isPhone ? { x: 0 } : false}
       exit={isPhone ? { x: "-100%" } : undefined}
-      transition={isPhone ? { duration: 0.25, ease: "easeInOut" } : undefined}
-      className={`flex flex-row ${isPhone ? "flex-col" : ""} h-full w-full`}
+      transition={
+        isPhone ? { duration: 0.5, ease: [0.22, 0.61, 0.36, 1] } : undefined
+      }
     >
       <div
         className={`${
@@ -248,7 +248,7 @@ export default function Home() {
                   Click here
                 </span>
               </p>
-              {/* <Button
+              <Button
                 variant="link"
                 className={`text-sm font-[600]   acerSwift:max-macair133:text-b4 underline  ${
                   isPhone
@@ -259,17 +259,17 @@ export default function Home() {
               >
                 <Icon IconComponent={iconFlag} />
                 Issue Report
-              </Button> */}
+              </Button>
             </div>
           </div>
-          {/* <Link href="/admin-dashboard">
+          <Link href="/admin-dashboard">
             <Button
               variant="link"
               className={`text-sm font-[500] mt-5 underline text-[#000000]`}
             >
               Admin
             </Button>
-          </Link> */}
+          </Link>
           {/* <div className="flex gap-2">
             <Select onValueChange={(value) => setSelectTest(value)}>
               <SelectTrigger className="!w-[30vw] py-2">
