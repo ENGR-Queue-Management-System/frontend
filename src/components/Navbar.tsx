@@ -21,7 +21,7 @@ export default function Navbar() {
       animate={isPhone ? { x: 0 } : false}
       exit={isPhone ? { x: "-100%" } : undefined}
       transition={
-        isPhone ? { duration: 0.25, ease: [0.22, 0.61, 0.36, 1] } : undefined
+        isPhone ? { duration: 0.5, ease: [0.22, 0.61, 0.36, 1] } : undefined
       }
       className={`${
         [DEVICE_TYPE.IOS].includes(deviceType!)
