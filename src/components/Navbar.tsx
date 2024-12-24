@@ -20,7 +20,9 @@ export default function Navbar() {
       initial={isPhone ? { x: "100%" } : false}
       animate={isPhone ? { x: 0 } : false}
       exit={isPhone ? { x: "-100%" } : undefined}
-      transition={isPhone ? { duration: 0.25, ease: "easeInOut" } : undefined}
+      transition={
+        isPhone ? { duration: 0.25, ease: [0.22, 0.61, 0.36, 1] } : undefined
+      }
       className={`${
         [DEVICE_TYPE.IOS].includes(deviceType!)
           ? "pt-[52px] gradient-bg-navbar "
@@ -37,11 +39,7 @@ export default function Navbar() {
             onClick={() => Router.back()}
           />
         )}
-        <Image
-          className=" w-[50px] py-2 "
-          src={logoSDColor}
-          alt="loginImage"
-        />
+        <Image className=" w-[50px] py-2 " src={logoSDColor} alt="loginImage" />
         <div className="flex flex-col  w-fit gap-0 font-medium text-[14px]  iphone-max:sm:text-[13px] acerSwift:max-macair133:text-b4 text-default">
           <p className=" ">
             {user.role == ROLE.ADMIN ? "ระบบจัดการคิว " : "รับบัตรคิว "}
