@@ -99,7 +99,7 @@ export default function Home() {
     ${
       [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
         ? "text-[#3d3d3d] flex flex-col mt-12 !justify-center !items-center !text-center"
-        : "text-start text-default  justify-start items-start flex flex-col "
+        : "text-start text-default gap-3 justify-start items-start flex flex-col "
     }`}
         >
           <Image
@@ -112,8 +112,8 @@ export default function Home() {
             className={`samsungA24:w-[10vw] ${
               [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                 ? " mt-[50px] "
-                : "-ml-1 mt-5 mb-3"
-            } acerSwift:max-macair133:w-[12vw] cursor-not-allowed  macair133:max-samsungA24:w-[15vw] iphone:max-sm:w-[40vw] sm:max-macair133:w-[20vw]`}
+                : "-ml-1 mb-3"
+            } acerSwift:max-macair133:w-[12vw] cursor-not-allowed  macair133:max-samsungA24:w-[14vw] iphone:max-sm:w-[40vw] sm:max-macair133:w-[20vw]`}
           />
           <div>
             <p className=" mt-3 sm:max-samsungA24:text-[28px] acerSwift:max-macair133:text-h1 font-[400] iphone:max-sm:text-[24px] text-[34px]">
@@ -262,8 +262,8 @@ export default function Home() {
                 <span
                   className={`underline font-[500] cursor-pointer ${
                     [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                      ? "text-[#19888a] hover:text-[#206d6f]"
-                      : "text-[#19888a] hover:text-[#206d6f]"
+                      ? "text-[#4e87d6] hover:text-[#3d6eb2]"
+                      : "text-[#4e87d6] hover:text-[#3d6eb2]"
                   } `}
                   onClick={() => Router.push(Route.Login)}
                 >

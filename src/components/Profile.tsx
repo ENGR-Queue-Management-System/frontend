@@ -30,7 +30,7 @@ const Profile: React.FC = () => {
             variant="ghost"
             className="flex items-center translate-x-3 hover:bg-transparent  gap-2"
           >
-            <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end acerSwift:max-macair133:text-b4">
+            <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-default items-end acerSwift:max-macair133:text-b4">
               <p>{getUserName(user)}</p>
               {user.role == ROLE.ADMIN ? (
                 <p className=" acerSwift:max-macair133:-mt-1">ผู้ดูแลระบบ</p>
@@ -42,7 +42,7 @@ const Profile: React.FC = () => {
             </div>
             <Icon
               IconComponent={IconUser}
-              className="!size-10 stroke-white  acerSwift:max-macair133:!size-9"
+              className="!size-10 stroke-default stroke-[1.3px]  acerSwift:max-macair133:!size-9"
             />
           </Button>
         </PopoverTrigger>

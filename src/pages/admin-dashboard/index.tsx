@@ -64,7 +64,7 @@ export default function AdminIndex() {
   };
 
   return (
-    <div className="flex px-2 flex-col min-h-full max-h-full w-full overflow-y-auto bg-[#f9f9f9] pt-3 iphone:max-sm:h-fit">
+    <div className="flex px-5 flex-col min-h-full max-h-full w-full overflow-y-auto bg-[#f9f9f9] py-4 iphone:max-sm:h-fit">
       <div className="flex flex-col !w-full h-full iphone:max-sm:h-fit">
         <div className="flex h-full overflow-hidden pb-2 mb-2 gap-4 iphone:max-sm:pb-0 iphone:max-sm:flex-col-reverse iphone:max-sm:gap-4 iphone:max-sm:h-fit">
           <div
@@ -99,20 +99,7 @@ export default function AdminIndex() {
                         <TableCell className="flex gap-2  translate-y-[6px] items-center">
                           <div className="flex items-center gap-2">
                             <div
-                              className={`${
-                                item.topicId === 6
-                                  ? "bg-contactList-others"
-                                  : item.topicId === 2
-                                  ? "bg-contactList-scholarship"
-                                  : item.topicId === 3
-                                  ? "bg-contactList-consultation"
-                                  : item.topicId === 4
-                                  ? "bg-contactList-report"
-                                  : item.topicId === 5
-                                  ? "bg-contactList-request"
-                                  : item.topicId === 1 &&
-                                    "bg-contactList-internship"
-                              } h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
+                              className={` h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
                             ></div>
                             {item.topic.topicTH}
                           </div>
@@ -124,7 +111,7 @@ export default function AdminIndex() {
                     <TableRow>
                       <TableCell
                         colSpan={5}
-                        className="text-center font-medium"
+                        className="text-center text-[22px] font-medium"
                       >
                         ไม่มีคิวที่รอเรียก
                       </TableCell>
@@ -195,20 +182,7 @@ export default function AdminIndex() {
                         </div>
                         <div className="flex  gap-2 mt-1 acerSwift:max-macair133:mt-0.5 samsungA24:text-h2 acerSwift:max-macair133:text-b2 text-b1 items-center text-[#333333]">
                           <div
-                            className={`${
-                              currentQueue.topicId === 6
-                                ? "bg-contactList-others"
-                                : currentQueue.topicId === 2
-                                ? "bg-contactList-scholarship"
-                                : currentQueue.topicId === 3
-                                ? "bg-contactList-consultation"
-                                : currentQueue.topicId === 4
-                                ? "bg-contactList-report"
-                                : currentQueue.topicId === 5
-                                ? "bg-contactList-request"
-                                : currentQueue.topicId === 1 &&
-                                  "bg-contactList-internship"
-                            } h-3 w-3 acerSwift:max-macair133:h-2.5 acerSwift:max-macair133:w-2.5 rounded-[100%] iphone:max-sm:hidden`}
+                            className={` h-3 w-3 acerSwift:max-macair133:h-2.5 acerSwift:max-macair133:w-2.5 rounded-[100%] iphone:max-sm:hidden`}
                           ></div>
 
                           {currentQueue.topic?.topicTH}
@@ -241,20 +215,7 @@ export default function AdminIndex() {
                         </p>
                         <div className="flex text-b2  acerSwift:max-macair133:text-b4 samsungA24:text-h2 items-center gap-3">
                           <div
-                            className={`${
-                              queues[0]?.topicId === 6
-                                ? "bg-contactList-others"
-                                : queues[0]?.topicId === 2
-                                ? "bg-contactList-scholarship"
-                                : queues[0]?.topicId === 3
-                                ? "bg-contactList-consultation"
-                                : queues[0]?.topicId === 4
-                                ? "bg-contactList-report"
-                                : queues[0]?.topicId === 5
-                                ? "bg-contactList-request"
-                                : queues[0]?.topicId === 1 &&
-                                  "bg-contactList-internship"
-                            } h-3 w-3  acerSwift:max-macair133:h-2  acerSwift:max-macair133:w-2 rounded-[100%] iphone:max-sm:hidden`}
+                            className={` h-3 w-3  acerSwift:max-macair133:h-2  acerSwift:max-macair133:w-2 rounded-[100%] iphone:max-sm:hidden`}
                           ></div>
                           {queues[0]?.topic.topicTH}
                         </div>

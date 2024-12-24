@@ -52,27 +52,25 @@
 .gradient-try {
   background: radial-gradient(
     circle at center bottom,
-    rgb(228, 247, 250) 25%,
-    /* Very light cyan center */ rgb(216, 247, 250) 50%,
-    /* Soft cyan transition */ rgba(245, 235, 220, 1) 75%,
-    /* Light peach */ rgba(249, 225, 200, 1) 100% /* Warm pastel edges */
+    #cbdbf8 25%,
+    #bbd5fb 50%,
+    #8fd6f7 75%,
+    #b1f0ff 100% 
   );
 }
 
 .gradient-try-big {
   background: radial-gradient(
     circle at center bottom,
-    rgb(228, 247, 250) 25%,
-    /* Very light cyan center */ rgb(216, 247, 250) 50%,
-    /* Soft cyan transition */ rgba(245, 235, 220, 1) 75%,
-    /* Light peach */ rgba(249, 225, 200, 1) 100% /* Warm pastel edges */
+    #cbdbf8 25%,
+    #bbd5fb 50%,
+    #bae3f6 75%,
+    #d5f1f9 100% 
   );
-
-  box-shadow: 4px 0px 3px rgba(0, 0, 0, 0.12); /* Drop shadow on the right */
+  box-shadow: 4px 0px 3px rgba(0, 0, 0, 0.12); 
 }
 
 .gradient-bg-navbar {
-
   width: 100%;
   background: linear-gradient(to right, #c3d9ff, #a3c9ff, #8fd6f7, #b1f0ff);
 }

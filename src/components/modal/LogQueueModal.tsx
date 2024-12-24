@@ -331,7 +331,7 @@ const LogQueueModal: React.FC<PopupProps> = ({
         </Button>
       </DialogTrigger>
       <DialogContent
-        className="max-w-[100vw] !rounded-none h-[100vh] flex flex-col pb-12 acerSwift:max-macair133:pb-9 acerSwift:max-macair133:py-5"
+        className="max-w-[100vw] !rounded-none h-[100vh] flex flex-col pb-6 acerSwift:max-macair133:pb-9 acerSwift:max-macair133:py-5"
         type="log"
       >
         <DialogHeader>
@@ -435,20 +435,7 @@ const LogQueueModal: React.FC<PopupProps> = ({
                       <Checkbox />
                       <div className="flex items-center gap-2 acerSwift:max-macair133:text-b4">
                         <div
-                          className={`${
-                            cat.topicTH === "อื่นๆ"
-                              ? "bg-contactList-others"
-                              : cat.topicTH === "ทุนการศึกษา"
-                              ? "bg-contactList-scholarship"
-                              : cat.topicTH === "ขอคำปรึกษาด้านวิชาการ"
-                              ? "bg-contactList-consultation"
-                              : cat.topicTH === "แจ้งปัญหาด้านการเรียนการสอน"
-                              ? "bg-contactList-report"
-                              : cat.topicTH === "ขอจัดกิจกรรมหรือโครงการพิเศษ"
-                              ? "bg-contactList-request"
-                              : cat.topicTH === "ฝึกงาน-สหกิจศึกษา" &&
-                                "bg-contactList-internship"
-                          } h-3 w-3 rounded-[100%]`}
+                          className={` h-3 w-3 rounded-[100%]`}
                         ></div>
                         <p>{cat.topicTH}</p>
                       </div>
@@ -489,22 +476,7 @@ const LogQueueModal: React.FC<PopupProps> = ({
                     <TableCell className="w-[15%]">{item.name}</TableCell>
                     <TableCell className=" w-[25%]   items-center">
                       <div className="flex items-center gap-2">
-                        <div
-                          className={`${
-                            item.category === "อื่นๆ"
-                              ? "bg-contactList-others"
-                              : item.category === "ทุนการศึกษา"
-                              ? "bg-contactList-scholarship"
-                              : item.category === "ขอคำปรึกษาด้านวิชาการ"
-                              ? "bg-contactList-consultation"
-                              : item.category === "แจ้งปัญหาด้านการเรียนการสอน"
-                              ? "bg-contactList-report"
-                              : item.category === "ขอจัดกิจกรรมหรือโครงการพิเศษ"
-                              ? "bg-contactList-request"
-                              : item.category === "ฝึกงาน-สหกิจศึกษา" &&
-                                "bg-contactList-internship"
-                          } h-3 w-3 rounded-[100%]`}
-                        ></div>
+                       
                         {item.category}
                       </div>
                     </TableCell>
