@@ -60,15 +60,15 @@ export default function SubscribeNotification() {
             src={isPhone ? logoSDMinimal : ""}
             alt="logoEng"
             className={` ${
-              isPhone
-                ? " mt-[40px] fixed top-3 left-0 -ml-9  w-[42vw] "
+              !isPhone
+                ? " mt-[40px] fixed top-3 left-6   w-[12vw] "
                 : "hidden"
             } `}
           />{" "}
           <div className={` ${isPhone ? "" : ""}`}>
             <Icon
               IconComponent={iconBell}
-              className={`text-default size-20 stroke-[1.2px] mb-3 ${
+              className={`text-default size-16 stroke-[1.2px] mb-3 ${
                 isPhone ? "-ml-2" : " "
               }`}
             />
