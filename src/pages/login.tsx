@@ -110,9 +110,8 @@ export default function Login() {
       initial={isPhone ? { x: "100%" }: false} 
       animate={isPhone ?{ x: 0 }: false} 
       exit={isPhone ? { x: "-100%" } : undefined}
-      transition={ isPhone ? { duration: 0.5, ease: "easeInOut" }: undefined} 
+      transition={ isPhone ? { duration: 0.25, ease: "easeInOut" }: undefined} 
     >
-      <Navbar />
       <div className="h-full justify-center gap-16 flex flex-col">
       <div className="flex flex-col h-fit items-center  justify-center text-center text-[24px] font-medium iphone:max-sm:w-[85vw] iphone:max-sm:text-[24px] sm:max-macair133:text-[26px] macair133:text-[32px]">
         <p className=" font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-[#4285f4] via-[#ec407a] via-[#a06ee1] to-[#fb8c00] bg-clip-text text-transparent">
