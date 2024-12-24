@@ -124,6 +124,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             Route.Index,
             Route.DisplayQueue,
             Route.CmuEntraIDCallback,
+            Route.Login
           ].includes(location) && <Navbar />}
           <div className="flex flex-col h-full w-full overflow-hidden">
             <Component {...pageProps} />

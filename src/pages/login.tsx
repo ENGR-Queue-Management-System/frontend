@@ -6,6 +6,7 @@ import { useNotification } from "@/notifications/useNotification";
 import { useForm } from "react-hook-form";
 import { reserveNotLogin } from "@/services/authentication/authentication.service";
 import { Input } from "@/components/ui/input";
+import { motion } from "framer-motion";
 import Loading from "@/components/Loading";
 import { validateEngThai } from "@/helpers/validation";
 import { setUser } from "@/store/user";
@@ -38,6 +39,7 @@ import { setTopics } from "@/store/topic";
 import { setQueue } from "@/store/user";
 import { subscribeNotification } from "@/services/subscription/subscription.service";
 import { setSubscription } from "@/store/subscription";
+import Navbar from "@/components/Navbar";
 
 export default function Login() {
   const { deviceType, isPhone, pushSubscription } = useNotification();
@@ -103,7 +105,15 @@ export default function Login() {
   };
 
   return (
-    <div className="flex bg-[#fafafa] flex-col h-full w-full overflow-y-auto gap-16 justify-center items-center">
+    <motion.div
+      className="flex bg-[#fafafa] flex-col h-screen  w-full overflow-y-auto  justify-start items-center"
+      initial={isPhone ? { x: "100%" }: false} 
+      animate={isPhone ?{ x: 0 }: false} 
+      exit={isPhone ? { x: "-100%" } : undefined}
+      transition={ isPhone ? { duration: 0.5, ease: "easeInOut" }: undefined} 
+    >
+      <Navbar />
+      <div className="h-full justify-center gap-16 flex flex-col">
       <div className="flex flex-col h-fit items-center  justify-center text-center text-[24px] font-medium iphone:max-sm:w-[85vw] iphone:max-sm:text-[24px] sm:max-macair133:text-[26px] macair133:text-[32px]">
         <p className=" font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-[#4285f4] via-[#ec407a] via-[#a06ee1] to-[#fb8c00] bg-clip-text text-transparent">
           What can we help you with today?
@@ -277,5 +287,6 @@ export default function Login() {
         </form>
       </Form>
     </div>
+    </motion.div>
   );
 }
