@@ -17,6 +17,7 @@ import { DEVICE_TYPE } from "@/config/Enum";
 
 interface NotificationContextType {
   deviceType: DEVICE_TYPE | null;
+  isPhone: boolean;
   isSupported: boolean;
   isGranted: boolean;
   isDenied: boolean;
@@ -33,6 +34,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [deviceType, setDeviceType] = useState<DEVICE_TYPE | null>(null);
+  const [isPhone, setIsPhone] = useState<boolean>(false);
   const [isSupported, setIsSupported] = useState<boolean>(false);
   const [isGranted, setIsGranted] = useState<boolean>(false);
   const [isDenied, setIsDenied] = useState<boolean>(false);
@@ -44,6 +46,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
     if (isNotificationSupported()) {
       const type = checkDeviceType();
       setDeviceType(type);
+      setIsPhone([DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(type!));
       setIsSupported(true);
       const granted = isPermissionGranted();
       setIsGranted(granted);
@@ -74,6 +77,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
   const contextValue = useMemo(
     () => ({
       deviceType,
+      isPhone,
       isSupported,
       isGranted,
       isDenied,
@@ -83,6 +87,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
     }),
     [
       deviceType,
+      isPhone,
       isSupported,
       isGranted,
       isDenied,

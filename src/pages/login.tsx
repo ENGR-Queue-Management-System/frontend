@@ -10,7 +10,6 @@ import Loading from "@/components/Loading";
 import { validateEngThai } from "@/helpers/validation";
 import { setUser } from "@/store/user";
 import IconUsers from "../../public/icons/users.svg";
-import IconChevron from "../../public/icons/chevronRight.svg";
 import {
   Form,
   FormControl,
@@ -41,7 +40,7 @@ import { subscribeNotification } from "@/services/subscription/subscription.serv
 import { setSubscription } from "@/store/subscription";
 
 export default function Login() {
-  const { deviceType, pushSubscription } = useNotification();
+  const { deviceType, isPhone, pushSubscription } = useNotification();
   const loading = useAppSelector((state) => state.loading.loadingOverlay);
   const counters = useAppSelector((state) =>
     state.counter.filter(({ status }) => status == true)
@@ -256,7 +255,7 @@ export default function Login() {
             <Button
               type="submit"
               className={`mt-5 ${
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                isPhone
                   ? " w-[100%] rounded-full bg-primary hover:bg-[#3560b0] mt-5 h-12 text-[15px] font-semibold"
                   : "py-6 px-12 text-[15px] bg-primary hover:bg-[#3560b0] font-semibold"
               }`}
@@ -265,7 +264,7 @@ export default function Login() {
             >
               {loading ? <Loading /> : "Take a Number"}
             </Button>
-            {![DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) && (
+            {!isPhone && (
               <Button
                 className="text-default"
                 variant="link"

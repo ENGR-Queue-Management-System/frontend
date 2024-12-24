@@ -21,7 +21,8 @@ import { subscribeNotification } from "@/services/subscription/subscription.serv
 import { setSubscription } from "@/store/subscription";
 
 export default function StudentIndex() {
-  const { deviceType, isGranted, pushSubscription } = useNotification();
+  const { deviceType, isGranted, isPhone, pushSubscription } =
+    useNotification();
   const topics = useAppSelector((state) => state.topic);
   const user = useAppSelector((state) => state.user.user);
   const subscription = useAppSelector((state) => state.subscription);
@@ -59,18 +60,15 @@ export default function StudentIndex() {
       <div
         className={` flex flex-col  items-center justify-center text-center text-[24px] acerSwift:max-macair133:!text-h1 text-semibold iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px]`}
       >
-      
-      <p className=" font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-[#4285f4] via-[#ec407a] via-[#a06ee1] to-[#fb8c00] bg-clip-text text-transparent">
+        <p className=" font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-[#4285f4] via-[#ec407a] via-[#a06ee1] to-[#fb8c00] bg-clip-text text-transparent">
           What can we help you with today?
         </p>
       </div>
       <Select onValueChange={(value) => setSelectTopic(parseInt(value))}>
         <SelectTrigger
-              className={`iphone:max-sm:w-[85vw] shadow-none !h-9 bg-[#f0f0f0] border-none  iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] px-4 ${
-                selectTopic === 0
-                  ? "py-3 text-default "
-                  : "py-2"
-              }`}
+          className={`iphone:max-sm:w-[85vw] shadow-none !h-9 bg-[#f0f0f0] border-none  iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] px-4 ${
+            selectTopic === 0 ? "py-3 text-default " : "py-2"
+          }`}
         >
           <SelectValue placeholder="Select topic" />
         </SelectTrigger>
@@ -79,7 +77,6 @@ export default function StudentIndex() {
             {topics.map((item) => (
               <SelectItem value={item.id.toString()} key={item.id}>
                 <div className="flex items-center gap-4 py-1 acerSwift:max-macair133:gap-4">
-                
                   <div className="flex flex-col text-start text-b2 acerSwift:max-macair133:text-b3">
                     <p>
                       {item.topicTH} (
@@ -127,13 +124,12 @@ export default function StudentIndex() {
 
       <Button
         className={`mt-5 ${
-          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+          isPhone
             ? " w-[100%] rounded-full bg-primary hover:bg-[#3560b0] mt-5 h-12 text-[15px] font-semibold"
             : "py-6 px-12 text-[15px] bg-primary hover:bg-[#3560b0] font-semibold"
         }`}
         disabled={selectTopic === 0}
       >
-     
         <p>Take a number</p>
       </Button>
     </div>

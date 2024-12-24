@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -6,17 +6,20 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import IconTrash from "../../../public/icons/trash.svg";
-import IconList from "../../../public/icons/list.svg";
-import Icon from "@/components/Icon";
-import { Checkbox } from "@/components/ui/checkbox";
-import { TimePickerInput } from "../ui/time-picker-input";
-import { Period } from "../ui/time-picker-utils";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE } from "@/config/Enum";
+import { useForm } from "react-hook-form";
+import { CounterUpdateRequestDTO } from "@/services/counter/dto/counter.dto";
 
 type Props = {
   title: string;
@@ -31,18 +34,14 @@ export default function OneCounterManage({
   opened,
   onClose,
 }: Props) {
-  const { deviceType } = useNotification();
-  const [inputValues, setInputValues] = useState({
-    topicTH: "",
-    topicEN: "",
-    room: "",
+  const { deviceType, isPhone } = useNotification();
+  const form = useForm({
+    defaultValues: new CounterUpdateRequestDTO(),
   });
 
-  const [period, setPeriod] = useState<Period>("PM");
-  const [date, setDate] = useState<Date | null>(null);
+  const onCreateCounter = async () => {};
 
-  const minuteRef = React.useRef<HTMLInputElement>(null);
-  const hourRef = React.useRef<HTMLInputElement>(null);
+  const onUpdateCounter = async () => {};
 
   return (
     <Dialog open={opened} onOpenChange={onClose}>
@@ -51,10 +50,8 @@ export default function OneCounterManage({
           [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-12" : ""
         }`}
         className={` ${
-          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-            ? "w-full h-full"
-            : "md:max-w-[40vw] max-w-[50vw]"
-        } p-6 mb-1 h-fit acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4`}
+          isPhone ? "w-full h-full" : "md:max-w-[40vw] max-w-[50vw] h-fit"
+        } p-6 mb-1 acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4`}
       >
         <DialogHeader
           className={`${
@@ -74,45 +71,48 @@ export default function OneCounterManage({
             <div
               style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
               className={`flex ${
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ||
-                true
-                  ? " h-fit "
-                  : ""
+                isPhone ? "h-fit" : ""
               } rounded-md flex-col w-full p-5 gap-5 acerSwift:max-macair133:p-4 acerSwift:max-macair133:gap-3 justify-start `}
             >
-              <div className="flex flex-col gap-1">
-                <p className="text-b2 acerSwift:max-macair133:text-b4">
-                  เลขเคาน์เตอร์{" "}
-                  <span className="text-secondary">
-                    (กรอกเลขระหว่าง 1 ถึง 6)
-                  </span>{" "}
-                  <span className="text-delete">*</span>
-                </p>
-                <Input className="h-8 " placeholder="e.g. 5"></Input>
-              </div>
-              <div className="flex flex-col gap-1">
-                <p className="text-b2 acerSwift:max-macair133:text-b4">
-                  บุคคลประจำเคาน์เตอร์{" "}
-                  <span className="text-secondary font-medium">
-                    (CMU Account)
-                  </span>{" "}
-                  <span className="text-delete">*</span>
-                </p>
-                <Input
-                  className="h-8"
-                  placeholder="e.g. example@cmu.ac.th"
-                ></Input>
-              </div>
-
-              <div className="w-full max-w-sm ">
-                <p className="text-b2 acerSwift:max-macair133:text-b4 mb-1">
-                  ปิดรับคิวอัตโนมัติ <span className="text-delete">*</span>
-                </p>
-                <Input
-                  type="time"
-                  className="w-[50%] acerSwift:max-macair133:w-fit py-2 px-4 border rounded-md text-gray-700"
-                />
-                {/* <TimePickerInput
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(
+                    type == "add" ? onCreateCounter : onUpdateCounter
+                  )}
+                  className="flex flex-col gap-6"
+                >
+                  <div className="flex flex-col gap-1">
+                    <p className="text-b2 acerSwift:max-macair133:text-b4">
+                      เลขเคาน์เตอร์{" "}
+                      <span className="text-secondary">
+                        (กรอกเลขระหว่าง 1 ถึง 6)
+                      </span>{" "}
+                      <span className="text-delete">*</span>
+                    </p>
+                    <Input className="h-8 " placeholder="e.g. 5"></Input>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <p className="text-b2 acerSwift:max-macair133:text-b4">
+                      บุคคลประจำเคาน์เตอร์{" "}
+                      <span className="text-secondary font-medium">
+                        (CMU Account)
+                      </span>{" "}
+                      <span className="text-delete">*</span>
+                    </p>
+                    <Input
+                      className="h-8"
+                      placeholder="e.g. example@cmu.ac.th"
+                    ></Input>
+                  </div>
+                  <div className="w-full max-w-sm ">
+                    <p className="text-b2 acerSwift:max-macair133:text-b4 mb-1">
+                      ปิดรับคิวอัตโนมัติ <span className="text-delete">*</span>
+                    </p>
+                    <Input
+                      type="time"
+                      className="w-[50%] acerSwift:max-macair133:w-fit py-2 px-4 border rounded-md text-gray-700"
+                    />
+                    {/* <TimePickerInput
                   type="time"
                   picker="12hours"
                   period={period}
@@ -121,18 +121,19 @@ export default function OneCounterManage({
                   ref={hourRef}
                   onRightFocus={() => minuteRef.current?.focus()}
                 /> */}
-              </div>
+                  </div>
+                  <div className="flex gap-3 justify-end w-full mt-1 acerSwift:max-macair133:mt-0">
+                    <Button variant={"ghost"} onClick={onClose}>
+                      ยกเลิก
+                    </Button>
+                    <Button type="submit" className="px-4">
+                      เสร็จสิ้น
+                    </Button>
+                  </div>
+                </form>
+              </Form>
             </div>
           </div>
-        </div>
-
-        <div className="flex gap-3 justify-end w-full mt-1 acerSwift:max-macair133:mt-0">
-          <Button variant={"ghost"} onClick={onClose}>
-            ยกเลิก
-          </Button>
-          <Button onClick={onClose} className="px-4">
-            เสร็จสิ้น
-          </Button>
         </div>
       </DialogContent>
     </Dialog>

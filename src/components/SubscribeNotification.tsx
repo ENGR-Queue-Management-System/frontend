@@ -9,33 +9,27 @@ import iconBell from "../../public/icons/bell.svg";
 import Icon from "./Icon";
 
 export default function SubscribeNotification() {
-  const { deviceType, handleSubscribe } = useNotification();
+  const { deviceType, isPhone, handleSubscribe } = useNotification();
   return (
     <div
       className={` ${
-        [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+        isPhone
           ? "flex-col flex !h-full w-full"
           : "flex h-screen  w-screen justify-center text-center items-center overflow-hidden"
       }  `}
     >
       <div
         className={`${
-          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+          isPhone
             ? "hidden"
             : "gradient-try-big text-[1.8vw] font-medium text-default flex flex-col h-screen w-[55%] text-start justify-center  pl-[4vw]"
         }`}
       >
         <Image
-          src={
-            [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-              ? logoEngColor
-              : logoEngColor
-          }
+          src={isPhone ? logoEngColor : logoEngColor}
           alt="logoEng"
           className={`samsungA24:w-[10vw] ${
-            [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-              ? " mt-[50px] mb-4 "
-              : "-ml-1 mt-5 mb-3"
+            isPhone ? " mt-[50px] mb-4 " : "-ml-1 mt-5 mb-3"
           } acerSwift:max-macair133:w-[12vw] cursor-not-allowed macair133:max-samsungA24:w-[11vw] iphone:max-sm:hidden sm:max-macair133:w-[20vw]`}
         />
         <p className="mt-3">Welcome to </p>
@@ -50,50 +44,38 @@ export default function SubscribeNotification() {
 
       <div
         className={` ${
-          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+          isPhone
             ? " !w-full !h-screen  !justify-end !items-start pb-12 !text-start gradient-try"
             : "w-[45%]"
         } flex flex-col  justify-center text-center items-center`}
       >
         <div
           className={`flex flex-col ${
-            [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+            isPhone
               ? "w-[100%]  h-full px-8 justify-end items-start text-start"
               : "w-[80%] justify-center  text-start"
           } `}
         >
           <Image
-            src={
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? logoSDMinimal
-                : ""
-            }
+            src={isPhone ? logoSDMinimal : ""}
             alt="logoEng"
             className={` ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              isPhone
                 ? " mt-[40px] fixed top-3 left-0 -ml-9  w-[42vw] "
                 : "hidden"
             } `}
           />{" "}
-          <div
-            className={` ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? ""
-                : ""
-            }`}
-          >
+          <div className={` ${isPhone ? "" : ""}`}>
             <Icon
               IconComponent={iconBell}
               className={`text-default size-20 stroke-[1.2px] mb-3 ${
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                  ? "-ml-2"
-                  : " "
+                isPhone ? "-ml-2" : " "
               }`}
             />
           </div>
           <p
             className={`${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              isPhone
                 ? "text-default text-start font-semibold text-[3vh]  "
                 : "text-default font-medium text-center text-[1.4vw]"
             } `}
@@ -103,7 +85,7 @@ export default function SubscribeNotification() {
           </p>{" "}
           <p
             className={`${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              isPhone
                 ? "text-[#969696] text-start font-medium text-[2.2vh] "
                 : "hidden"
             } `}
@@ -113,9 +95,7 @@ export default function SubscribeNotification() {
           </p>
           <p
             className={`my-4  ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? "text-[13px] "
-                : "text-[16px] text-center"
+              isPhone ? "text-[13px] " : "text-[16px] text-center"
             } text-default font-medium`}
           >
             Don’t miss your queue! Allow notifications, and we’ll send you a
@@ -123,9 +103,7 @@ export default function SubscribeNotification() {
           </p>
           <div
             className={`flex gap-3  items-center justify-center  ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? " w-[100%] mt-2"
-                : "w-[100%] mt-8"
+              isPhone ? " w-[100%] mt-2" : "w-[100%] mt-8"
             } acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#f63131]/15`}
           >
             <Icon IconComponent={iconEx} className="text-[#f63131]" />
@@ -139,7 +117,7 @@ export default function SubscribeNotification() {
           </div>
           <div
             className={`${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              isPhone
                 ? " w-[100%] mt-2"
                 : "flex flex-col !text-center !items-center !justify-center w-[100%] mt-6"
             }`}
@@ -149,7 +127,7 @@ export default function SubscribeNotification() {
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.45)",
               }}
               className={`mt-5 ${
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                isPhone
                   ? " w-[100%] rounded-full bg-[#1db9bc] hover:bg-[#189b9d] mt-5 h-12 text-[15px] font-semibold"
                   : "py-6 px-12 text-[15px] bg-[#1db9bc] hover:bg-[#189b9d] font-semibold"
               }`}
