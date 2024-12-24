@@ -244,7 +244,7 @@ export default function Home() {
               className={`mt-5 ${
                 [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                   ? " w-[100%]  bg-[#5868d5] text-white hover:bg-[#5868d5] mt-5 h-12 text-[15px] font-semibold rounded-full"
-                  : " bg-[#5868d5] w-[50%] hover:bg-[#5868d5] text-white py-6 px-12 rounded-lg  text-[15px] font-semibold"
+                  : " bg-[#5868d5] min-w-fit w-[50%] hover:bg-[#5868d5] text-white py-6 px-6 rounded-lg  text-[15px] font-semibold"
               }`}
             >
               <Image
