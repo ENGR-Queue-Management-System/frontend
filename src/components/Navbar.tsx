@@ -10,7 +10,7 @@ import Router from "next/router";
 import Icon from "./Icon";
 import { IconLeft } from "react-day-picker";
 
-const Navbar: React.FC = () => {
+export default function Navbar() {
   const { deviceType } = useNotification();
   const location = usePathname();
   const user = useAppSelector((state) => state.user.user);
@@ -52,6 +52,4 @@ const Navbar: React.FC = () => {
       {![Route.Login].includes(location) && <Profile />}
     </div>
   );
-};
-
-export default Navbar;
+}

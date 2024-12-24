@@ -93,8 +93,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   const fetchQueue = async (payload: StudentQueueRequestDTO) => {
     const res = await getStudentQueue(payload);
     if (res) {
-      dispatch(setQueue({ ...res.queue, waiting: res.waiting }));
-      Router.push(Route.StudentQueue);
+      if (res.queue.no) {
+        dispatch(setQueue({ ...res.queue, waiting: res.waiting }));
+        Router.push(Route.StudentQueue);
+      }
     }
   };
 

@@ -33,16 +33,16 @@ import IconFilter from "../../../public/icons/filter.svg";
 import IconSearch from "../../../public/icons/search.svg";
 import { th } from "date-fns/locale";
 
-type PopupProps = {
+type Props = {
   triggerText: string;
   icon?: React.ComponentType<{ className?: string }>;
   title: string;
 };
-const LogQueueModal: React.FC<PopupProps> = ({
+export default function LogQueueModal({
   triggerText,
   icon: IconComponent,
   title,
-}) => {
+}: Props) {
   const [date, setDate] = useState<Date>();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const dataDone = [
@@ -430,8 +430,11 @@ const LogQueueModal: React.FC<PopupProps> = ({
                     กรองรายการติดต่อ
                   </p>
 
-                  {categories.map((cat) => (
-                    <div className="flex items-center space-x-2 py-2">
+                  {categories.map((cat, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center space-x-2 py-2"
+                    >
                       <Checkbox />
                       <div className="flex items-center gap-2 acerSwift:max-macair133:text-b4">
                         <div
@@ -490,6 +493,4 @@ const LogQueueModal: React.FC<PopupProps> = ({
       </DialogContent>
     </Dialog>
   );
-};
-
-export default LogQueueModal;
+}

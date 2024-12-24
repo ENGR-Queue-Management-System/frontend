@@ -18,7 +18,9 @@ export const getUserName = (
       case 3:
         return `${user.firstNameEN} ${user.lastNameEN?.slice(0, 1)}.`; // John D.
       default:
-        if (user.firstNameTH) return `${user.firstNameTH} ${user.lastNameTH}`; // กข คง
+        if (user.firstNameTH)
+          return `${user.firstNameTH} ${user.lastNameTH}`; // กข คง
+        else if (user.email) return user.email;
         return "";
     }
   } else if ("firstName" in user) {

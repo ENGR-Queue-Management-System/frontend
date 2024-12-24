@@ -1,6 +1,6 @@
 import { DEVICE_TYPE } from "@/config/Enum";
 import { useNotification } from "@/notifications/useNotification";
-import { Button } from "react-day-picker";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import logoSDMinimal from "../../public/images/logoSDMiColor.png";
 import logoEngColor from "../../public/images/logoSDColor.png";

@@ -21,31 +21,25 @@ import Icon from "@/components/Icon";
 import OneCounterManage from "./OneCounterManage";
 import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE } from "@/config/Enum";
+import { useAppSelector } from "@/store";
+import { getUserName } from "@/helpers/function";
 
-type PopupProps = {
+type Props = {
   triggerText?: string;
   icon?: React.ComponentType<{ className?: string }>;
   title: string;
 };
-const CounterManageModal: React.FC<PopupProps> = ({
+export default function CounterManageModal({
   triggerText,
   icon: IconComponent,
   title,
-}) => {
+}: Props) {
+  const { deviceType } = useNotification();
+  const isPhone = [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!);
+  const counters = useAppSelector((state) => state.counter);
   const [opendCounterModal, setOpenCounterModal] = useState(false);
   const [openEditOneCounterModal, setOpenEditOneCounterModal] = useState(false);
   const [openAddOneCounterModal, setOpenAddOneCounterModal] = useState(false);
-  const { deviceType } = useNotification();
-
-  const counters = [
-    { id: 1, char: "A", name: "เคาน์เตอร์ A", person: "เนตรนภา สาระแปง" },
-    { id: 2, char: "B", name: "เคาน์เตอร์ B", person: "สมชาย แก้วจันทร์" },
-    { id: 3, char: "C", name: "เคาน์เตอร์ C", person: "วิไลวรรณ ทองดี" },
-    { id: 4, char: "D", name: "เคาน์เตอร์ D", person: "ชาญชัย วิทยา" },
-    { id: 5, char: "E", name: "เคาน์เตอร์ E", person: "พิมพ์ใจ รุ่งเรือง" },
-    { id: 6, char: "F", name: "เคาน์เตอร์ F", person: "ศิริพร ใจงาม" },
-    { id: 7, char: "G", name: "เคาน์เตอร์ G", person: "ก้องเกียรติ ชาญวิทย์" },
-  ];
 
   return (
     <>
@@ -63,21 +57,17 @@ const CounterManageModal: React.FC<PopupProps> = ({
         </DialogTrigger>
         <DialogContent
           classNameClose={`${
-            [DEVICE_TYPE.IOS].includes(deviceType!)
-              ? "pt-12"
-              : ""
+            [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-12" : ""
           }`}
-          className={`  ${
+          className={`${
             [DEVICE_TYPE.IOS].includes(deviceType!)
               ? "w-[100vw] h-full"
-              : "max-w-[50vw]"
+              : "md:max-w-[50vw] min-w-fit"
           }`}
         >
           <DialogHeader
             className={`  ${
-              [DEVICE_TYPE.IOS,].includes(deviceType!)
-                ? "pt-12"
-                : ""
+              [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-12" : ""
             }`}
           >
             <DialogTitle className="text-primary font-[500]  acerSwift:max-macair133:text-b1">
@@ -93,15 +83,13 @@ const CounterManageModal: React.FC<PopupProps> = ({
                 <Icon
                   IconComponent={IconTopic}
                   className="acerSwift:max-macair133:size-5"
-                />{" "}
+                />
                 เคาน์เตอร์ที่ให้บริการ
               </div>
 
               <div
                 className={`max-h-[500px] acerSwift:max-macair133:max-h-[325px]  overflow-y-auto ${
-                  [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                    ? " h-full "
-                    : ""
+                  isPhone ? "h-full" : ""
                 }`}
               >
                 <div className="flex flex-col border-b-[1px] border-[#e1e1e1] acerSwift:max-macair133:mt-2 font-medium text-default gap-3 acerSwift:max-macair133:gap-0 items-center ">
@@ -113,37 +101,25 @@ const CounterManageModal: React.FC<PopupProps> = ({
                       <div className="flex items-center gap-4">
                         <p
                           className={`border rounded-full p-2 px-[14px] acerSwift:max-macair133:text-b3 ${
-                            [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(
-                              deviceType!
-                            )
-                              ? "hidden"
-                              : ""
+                            isPhone ? "hidden" : ""
                           }`}
                         >
-                          {counter.char}
+                          {counter.counter}
                         </p>
                         <div className="flex flex-col">
                           <p
                             className={`text-b2 acerSwift:max-macair133:text-b3 ${
-                              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(
-                                deviceType!
-                              )
-                                ? "text-b3"
-                                : ""
+                              isPhone ? "text-b3" : ""
                             }`}
                           >
-                            {counter.name}
+                            เคาน์เตอร์ {counter.counter}
                           </p>
                           <p
                             className={`text-b3 acerSwift:max-macair133:text-b4 text-primary ${
-                              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(
-                                deviceType!
-                              )
-                                ? "text-b3"
-                                : ""
+                              isPhone ? "text-b3" : ""
                             }`}
                           >
-                            {counter.person}
+                            {getUserName(counter.user)}
                           </p>
                         </div>
                       </div>
@@ -151,40 +127,31 @@ const CounterManageModal: React.FC<PopupProps> = ({
                         <DialogClose asChild>
                           <Button
                             onClick={() => {
-                              console.log(`Editing ${counter.name}`);
                               setOpenEditOneCounterModal(true);
                             }}
                             variant="outline"
                             className="!border-orange-500 text-orange-500 rounded-full hover:bg-[#f7cbb13b] hover:text-orange-600 acerSwift:max-macair133:text-b4"
+                            size={isPhone ? "icon" : "default"}
                           >
                             <Icon
                               IconComponent={IconEdit}
                               className="stroke-orange-500 acerSwift:max-macair133:!size-4"
                             />
-                            {[DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(
-                              deviceType!
-                            )
-                              ? "  "
-                              : "แก้ไข"}
+                            {!isPhone && "แก้ไข"}
                           </Button>
                         </DialogClose>
                         <DialogClose asChild>
                           <Button
-                            onClick={() =>
-                              console.log(`Deleting ${counter.name}`)
-                            }
+                            // onClick={}
                             variant="outline"
                             className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600 acerSwift:max-macair133:text-b4"
+                            size={isPhone ? "icon" : "default"}
                           >
                             <Icon
                               IconComponent={IconTrash}
                               className="stroke-delete acerSwift:max-macair133:!size-4"
                             />
-                            {[DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(
-                              deviceType!
-                            )
-                              ? " "
-                              : "ลบ"}
+                            {!isPhone && "ลบ"}
                           </Button>
                         </DialogClose>
                       </div>
@@ -203,40 +170,33 @@ const CounterManageModal: React.FC<PopupProps> = ({
                   className="acerSwift:max-macair133:size-4"
                 />
                 <span className="ml-1 acerSwift:max-macair133:text-bภ">
-                  {" "}
                   เพิ่มเคาน์เตอร์ที่ให้บริการ
                 </span>
               </Button>
-            </DialogClose>{" "}
-          </div>{" "}
+            </DialogClose>
+          </div>
         </DialogContent>
-        {openAddOneCounterModal && (
-          <OneCounterModal
-            title="เพิ่มเคาน์เตอร์ที่ให้บริการ"
-            type="add"
-            opened={openAddOneCounterModal}
-            onClose={() => {
-              setOpenAddOneCounterModal(false);
+        <OneCounterModal
+          title="เพิ่มเคาน์เตอร์ที่ให้บริการ"
+          type="add"
+          opened={openAddOneCounterModal}
+          onClose={() => {
+            setOpenAddOneCounterModal(false);
+            setOpenCounterModal(true);
+          }}
+        />
+        <OneCounterManage
+          title="แก้ไขเคาน์เตอร์ A"
+          type="edit"
+          opened={openEditOneCounterModal}
+          onClose={() => {
+            setOpenEditOneCounterModal(false);
+            setTimeout(() => {
               setOpenCounterModal(true);
-            }}
-          />
-        )}
-        {openEditOneCounterModal && (
-          <OneCounterManage
-            title="แก้ไขเคาน์เตอร์ A"
-            type="edit"
-            opened={openEditOneCounterModal}
-            onClose={() => {
-              setOpenEditOneCounterModal(false);
-              setTimeout(() => {
-                setOpenCounterModal(true);
-              }, 40);
-            }}
-          />
-        )}
+            }, 40);
+          }}
+        />
       </Dialog>
     </>
   );
-};
-
-export default CounterManageModal;
+}
