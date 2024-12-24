@@ -24,9 +24,15 @@ const Navbar: React.FC = () => {
       style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.3)" }}
     >
       <div className="flex items-center gap-2 -ml-1">
-        {[Route.Login].includes(location) && [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) && (
-          <Icon IconComponent={IconLeft} className="text-default" onClick={() => Router.back()} />
-        )}
+        {[Route.Login].includes(location) &&
+          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) && (
+            <Icon
+              IconComponent={IconLeft}
+              classNameDiv="cursor-pointer p-2 rounded-full"
+              className="text-default"
+              onClick={() => Router.back()}
+            />
+          )}
         <Image
           className="z-50 w-[110px] -ml-7 acerSwift:max-macair133:w-[100px]"
           src={logoSDColor}
