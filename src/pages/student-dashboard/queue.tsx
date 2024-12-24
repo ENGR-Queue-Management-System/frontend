@@ -34,10 +34,10 @@ export default function StudentQueue() {
       <Dialog open={openFeedbackModal} onOpenChange={setOpenFeedbackModal}>
         <DialogContent className="flex flex-col sm:max-w-fit gap-5 acerSwift:max-macair133:p-6 acerSwift:max-macair133:w-fit">
           <DialogHeader>
-            <DialogTitle className="acerSwift:max-macair133:text-b2">
+            <DialogTitle className="acerSwift:max-macair133:text-b2 text-defaultColor">
               แชร์ความคิดเห็นของท่านกับเรา
             </DialogTitle>
-            <DialogDescription className="acerSwift:max-macair133:text-b3">
+            <DialogDescription className="acerSwift:max-macair133:text-b3 iphone:max-sm:!text-b3">
               ท่านพอใจกับบริการของเราแค่ไหน เลือกระดับความพึงพอใจได้เลย
             </DialogDescription>
           </DialogHeader>
@@ -48,7 +48,7 @@ export default function StudentQueue() {
               <span className="font-semibold">(anonymous)</span>
             </p>
           </div>
-          <div className="flex max-w-full justify-between gap-0 py-4 px-16 acerSwift:max-macair133:w-[40vw]">
+          <div className="flex max-w-full justify-between gap-0 py-4 px-16 iphone:max-macair133:px-5 acerSwift:max-macair133:w-[40vw]">
             {[...Array(5)].map((_, index) => (
               <Icon
                 key={index}
