@@ -257,8 +257,8 @@ export default function Login() {
               type="submit"
               className={`mt-5 ${
                 [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                  ? " w-[100%] rounded-full bg-[#1db9bc] hover:bg-[#189b9d] mt-5 h-12 text-[15px] font-semibold"
-                  : "py-6 px-12 text-[15px] bg-[#1db9bc] hover:bg-[#189b9d] font-semibold"
+                  ? " w-[100%] rounded-full bg-primary hover:bg-[#3560b0] mt-5 h-12 text-[15px] font-semibold"
+                  : "py-6 px-12 text-[15px] bg-primary hover:bg-[#3560b0] font-semibold"
               }`}
               disabled={loading}
               variant="default"

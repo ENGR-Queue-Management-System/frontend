@@ -13,7 +13,7 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#009999",
+          DEFAULT: "#4379dc",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -25,8 +25,8 @@ export default {
           foreground: "hsl(var(--secondary-foreground))",
         },
         table: {
-          background: "#e4f7f7",
-          foreground: "#009999",
+          background: "#c9ddf9",
+          foreground: "#256dd3",
           rows: "#F8F9FA",
         },
         contactList: {
