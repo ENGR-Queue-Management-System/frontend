@@ -28,7 +28,7 @@ export default function Navbar() {
       } min-h-fit ipadmini:max-acerSwift:pt-5 acerSwift:max-macair133:min-h-[58px]  border-b border-[#e0e0e0] text-secondary px-5 inline-flex w-full justify-between items-center z-50 border-none top-0`}
       style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.3)" }}
     >
-      <div className="flex items-center gap-2 -ml-1">
+      <div className="flex items-center gap-2 mx-3">
         {[Route.Login].includes(location) && isPhone && (
           <Icon
             IconComponent={IconLeft}
@@ -38,18 +38,18 @@ export default function Navbar() {
           />
         )}
         <Image
-          className=" w-[110px] -ml-8 acerSwift:max-macair133:w-[100px]"
+          className=" w-[50px] py-2 "
           src={logoSDColor}
           alt="loginImage"
         />
         <div className="flex flex-col  w-fit gap-0 font-medium text-[14px]  iphone-max:sm:text-[13px] acerSwift:max-macair133:text-b4 text-default">
-          <p className="-ml-8 ">
+          <p className=" ">
             {user.role == ROLE.ADMIN ? "ระบบจัดการคิว " : "รับบัตรคิว "}
           </p>
           {user.role == ROLE.ADMIN ? (
-            <p className=" -ml-8 font-semibold">Queue Management</p>
+            <p className="  font-semibold">Queue Management</p>
           ) : (
-            <p className=" -ml-8 font-semibold">Ticket Queue</p>
+            <p className="  font-semibold">Ticket Queue</p>
           )}
         </div>
       </div>

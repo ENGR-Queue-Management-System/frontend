@@ -100,49 +100,48 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   };
 
-  // return (
-  //   <>
-  //     <Head>
-  //       <meta
-  //         name="viewport"
-  //         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
-  //       />
-  //     </Head>
-  //     {loading.loading ? (
-  //       <div className="h-screen w-screen">
-  //         <Loading />
-  //       </div>
-  //     ) : !isSupported ? (
-  //       <UnsupportedNotification />
-  //     ) : !isGranted ? (
-  //       <SubscribeNotification />
-  //     ) : loading.loadingOverlay ? (
-  //       <LoadingOverlay />
-  //     ) : (
-  //       <div className="flex flex-col h-screen w-screen overflow-hidden">
-  //         {![
-  //           Route.Index,
-  //           Route.DisplayQueue,
-  //           Route.CmuEntraIDCallback,
-  //           Route.Login
-  //         ].includes(location) && <Navbar />}
-  //         <div className="flex flex-col h-full w-full overflow-hidden">
-  //           <Component {...pageProps} />
-  //         </div>
-  //       </div>
-  //     )}
-  //   </>
-  // );
   return (
-    <div className="flex flex-col h-screen w-screen overflow-hidden">
-      {![Route.Index, Route.DisplayQueue, Route.CmuEntraIDCallback].includes(
-        location
-      ) && <Navbar />}
-      <div className="flex flex-col h-full w-full overflow-hidden">
-        <Component {...pageProps} />
-      </div>
-    </div>
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        />
+      </Head>
+      {loading.loading ? (
+        <div className="h-screen w-screen">
+          <Loading />
+        </div>
+      ) : !isSupported ? (
+        <UnsupportedNotification />
+      ) : !isGranted ? (
+        <SubscribeNotification />
+      ) : loading.loadingOverlay ? (
+        <LoadingOverlay />
+      ) : (
+        <div className="flex flex-col h-screen w-screen overflow-hidden">
+          {![
+            Route.Index,
+            Route.DisplayQueue,
+            Route.CmuEntraIDCallback,
+          ].includes(location) && <Navbar />}
+          <div className="flex flex-col h-full w-full overflow-hidden">
+            <Component {...pageProps} />
+          </div>
+        </div>
+      )}
+    </>
   );
+  // return (
+  //   <div className="flex flex-col h-screen w-screen overflow-hidden">
+  //     {![Route.Index, Route.DisplayQueue, Route.CmuEntraIDCallback].includes(
+  //       location
+  //     ) && <Navbar />}
+  //     <div className="flex flex-col h-full w-full overflow-hidden">
+  //       <Component {...pageProps} />
+  //     </div>
+  //   </div>
+  // );
 }
 
 export default function App(props: AppProps) {
