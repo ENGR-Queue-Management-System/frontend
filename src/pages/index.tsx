@@ -87,13 +87,15 @@ export default function Home() {
 
   return (
     <motion.div
-      className="flex bg-[#fafafa] flex-col h-screen w-full overflow-y-auto justify-start items-center"
-      initial={isPhone ? { x: "100%" } : false}
+      initial={
+        isPhone ? { x: prevPath == Route.Login ? "-100%" : "100%" } : false
+      }
       animate={isPhone ? { x: 0 } : false}
       exit={isPhone ? { x: "-100%" } : undefined}
       transition={
-        isPhone ? { duration: 0.5, ease: [0.22, 0.61, 0.36, 1] } : undefined
+        isPhone ? { duration: 0.4, ease: [0.22, 0.61, 0.36, 1] } : undefined
       }
+      className={`flex flex-row ${isPhone ? "flex-col" : ""} h-full w-full`}
     >
       <div
         className={`${
