@@ -89,7 +89,7 @@ export default function Home() {
     <motion.div
       initial={
         isPhone
-          ? { x: prevPath == Route.Login ? "100%" : "-100%" }
+          ? { x: prevPath == Route.Login ? "-100%" : "100%" }
           : false
       }
       animate={isPhone ? { x: 0 } : false}
@@ -153,7 +153,7 @@ export default function Home() {
             alt="logoEng"
             className={` ${
               isPhone
-                ? " mt-[40px] fixed top-3 left-6   w-[12vw] "
+                ? " mt-[40px] fixed top-4 left-6   w-[12vw] "
                 : "hidden"
             } `}
           />
