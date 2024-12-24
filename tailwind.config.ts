@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         default: "#333333",
+        defaultColor: "#0A123A",
         describe: "#676767",
         delete: "#ff4747",
         background: "hsl(var(--background))",
