@@ -18,9 +18,9 @@ export default function Navbar() {
     <div
       className={`${
         [DEVICE_TYPE.IOS].includes(deviceType!)
-          ? "pt-[56px] gradient-bg-navbar "
+          ? "pt-[52px] gradient-bg-navbar "
           : "gradient-bg-navbar"
-      } min-h-fit ipadmini:max-acerSwift:pt-2 acerSwift:max-macair133:min-h-[58px]  border-b border-[#e0e0e0] text-secondary px-5 inline-flex w-full justify-between items-center z-50 border-none top-0`}
+      } min-h-fit ipadmini:max-acerSwift:pt-5 acerSwift:max-macair133:min-h-[58px]  border-b border-[#e0e0e0] text-secondary px-5 inline-flex w-full justify-between items-center z-50 border-none top-0`}
       style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.3)" }}
     >
       <div className="flex items-center gap-2 -ml-1">
