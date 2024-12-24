@@ -52,22 +52,22 @@
 .gradient-try {
   background: radial-gradient(
     circle at center bottom,
-    #cbdbf8 25%,
-    #bbd5fb 50%,
-    #8fd6f7 75%,
-    #b1f0ff 100% 
+    rgb(228, 247, 250) 25%,
+    rgb(226, 249, 251) 50%,
+    rgb(248, 245, 239) 75%,
+    rgb(251, 240, 226) 100% /* Warm pastel edges */
   );
 }
 
 .gradient-try-big {
   background: radial-gradient(
     circle at center bottom,
-    #cbdbf8 25%,
-    #bbd5fb 50%,
-    #bae3f6 75%,
-    #d5f1f9 100% 
+    rgb(228, 247, 250) 25%,
+    rgb(226, 249, 251) 50%,
+    rgb(248, 245, 239) 75%,
+    rgb(251, 240, 226) 100% /* Warm pastel edges */
   );
-  box-shadow: 4px 0px 3px rgba(0, 0, 0, 0.12); 
+  box-shadow: 4px 0px 3px rgba(0, 0, 0, 0.12);
 }
 
 .gradient-bg-navbar {
