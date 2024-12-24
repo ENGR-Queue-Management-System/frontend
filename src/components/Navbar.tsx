@@ -9,13 +9,18 @@ import { usePathname } from "next/navigation";
 import Router from "next/router";
 import Icon from "./Icon";
 import { IconLeft } from "react-day-picker";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const { deviceType, isPhone } = useNotification();
   const location = usePathname();
   const user = useAppSelector((state) => state.user.user);
   return (
-    <div
+    <motion.div
+      initial={isPhone ? { x: "100%" } : false}
+      animate={isPhone ? { x: 0 } : false}
+      exit={isPhone ? { x: "-100%" } : undefined}
+      transition={isPhone ? { duration: 0.25, ease: "easeInOut" } : undefined}
       className={`${
         [DEVICE_TYPE.IOS].includes(deviceType!)
           ? "pt-[52px] gradient-bg-navbar "
@@ -49,6 +54,6 @@ export default function Navbar() {
         </div>
       </div>
       {![Route.Login].includes(location) && <Profile />}
-    </div>
+    </motion.div>
   );
 }

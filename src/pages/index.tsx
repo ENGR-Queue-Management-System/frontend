@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import Router from "next/router";
+
 import { Route } from "@/config/Route";
 import logoEng from "../../public/images/logoSDShadow.png";
 import logoEngColor from "../../public/images/logoSDColor.png";
@@ -9,6 +9,7 @@ import logoSDMinimal from "../../public/images/logoSDMiColor.png";
 import cmuLogoColor from "../../public/images/cmuLogoLoginWhite.png";
 import { useAppSelector } from "@/store";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE, ROLE } from "@/config/Enum";
 import Icon from "@/components/Icon";
@@ -29,13 +30,18 @@ import {
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import { getUserName } from "@/helpers/function";
+import Router, { useRouter } from "next/router";
 
 export default function Home() {
   const { deviceType, isPhone } = useNotification();
+  const router = useRouter();
   const user = useAppSelector((state) => state.user.user);
   const queue = useAppSelector((state) => state.user.queue);
   const [testSendNotiList, setTestSendNotiList] = useState<any[]>([]);
   const [selectTest, setSelectTest] = useState("");
+  const [prevPath, setPrevPath] = useState("");
+
+  useEffect(() => setPrevPath(router.asPath), [router.asPath]);
 
   useEffect(() => {
     if (!testSendNotiList.length) {
@@ -80,7 +86,17 @@ export default function Home() {
   };
 
   return (
-    <div className={`flex flex-row ${isPhone ? "flex-col" : ""} h-full w-full`}>
+    <motion.div
+      initial={
+        isPhone
+          ? { x: prevPath == Route.Index ? "100%" : "-100%" }
+          : false
+      }
+      animate={isPhone ? { x: 0 } : false}
+      exit={isPhone ? { x: "-100%" } : undefined}
+      transition={isPhone ? { duration: 0.25, ease: "easeInOut" } : undefined}
+      className={`flex flex-row ${isPhone ? "flex-col" : ""} h-full w-full`}
+    >
       <div
         className={`${
           isPhone
@@ -185,10 +201,10 @@ export default function Home() {
             <Icon IconComponent={iconEx} className="text-[#856404]" />
             <p className="iphone:max-sm:text-[13px] text-[14px] acerSwift:max-macair133:text-b3 text-[#856404] font-bold text-start w-full ">
               The system is currently in testing. <br />
-              <p className="font-medium mt-[2px]">
+              <span className="font-medium mt-[2px]">
                 If you experience any issues, please remove the app from your
                 home screen and add it again.
-              </p>
+              </span>
             </p>
           </div>
           <div
@@ -277,6 +293,6 @@ export default function Home() {
           </div> */}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
