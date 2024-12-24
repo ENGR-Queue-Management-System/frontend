@@ -22,7 +22,6 @@ import {
 import { ReserveRequestDTO } from "@/services/authentication/dto/authentication.dto";
 import { toast } from "@/hooks/use-toast";
 import { setLoadingOverlay } from "@/store/loading";
-import { DEVICE_TYPE } from "@/config/Enum";
 import {
   Select,
   SelectTrigger,
@@ -33,13 +32,9 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import Icon from "@/components/Icon";
-import { useEffect } from "react";
-import { getTopics } from "@/services/topic/topic.service";
-import { setTopics } from "@/store/topic";
 import { setQueue } from "@/store/user";
 import { subscribeNotification } from "@/services/subscription/subscription.service";
 import { setSubscription } from "@/store/subscription";
-import Navbar from "@/components/Navbar";
 
 export default function Login() {
   const { deviceType, isPhone, pushSubscription } = useNotification();
