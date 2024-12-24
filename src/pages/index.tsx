@@ -157,7 +157,7 @@ export default function Home({showLink}: PopupProps) {
             src={isPhone ? logoSDMinimal : ""}
             alt="logoEng"
             className={` ${
-              isPhone ? " mt-[40px] fixed top-4 left-6   w-[12vw] " : "hidden"
+              isPhone ? " mt-[40px] fixed top-5 left-6   w-[12vw] " : "hidden"
             } `}
           />
           <div className={` ${isPhone ? "" : "flex  w-full items-center"}`}>
