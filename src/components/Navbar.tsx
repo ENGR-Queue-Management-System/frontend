@@ -11,7 +11,7 @@ import Icon from "./Icon";
 import { IconLeft } from "react-day-picker";
 
 export default function Navbar() {
-  const { deviceType } = useNotification();
+  const { deviceType, isPhone } = useNotification();
   const location = usePathname();
   const user = useAppSelector((state) => state.user.user);
   return (
@@ -24,15 +24,14 @@ export default function Navbar() {
       style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.3)" }}
     >
       <div className="flex items-center gap-2 -ml-1">
-        {[Route.Login].includes(location) &&
-          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) && (
-            <Icon
-              IconComponent={IconLeft}
-              classNameDiv="cursor-pointer p-2 rounded-full"
-              className="text-default z-50"
-              onClick={() => Router.back()}
-            />
-          )}
+        {[Route.Login].includes(location) && isPhone && (
+          <Icon
+            IconComponent={IconLeft}
+            classNameDiv="cursor-pointer p-2 rounded-full"
+            className="text-default z-50"
+            onClick={() => Router.back()}
+          />
+        )}
         <Image
           className=" w-[110px] -ml-8 acerSwift:max-macair133:w-[100px]"
           src={logoSDColor}

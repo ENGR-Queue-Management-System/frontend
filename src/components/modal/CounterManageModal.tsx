@@ -34,8 +34,7 @@ export default function CounterManageModal({
   icon: IconComponent,
   title,
 }: Props) {
-  const { deviceType } = useNotification();
-  const isPhone = [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!);
+  const { deviceType, isPhone } = useNotification();
   const counters = useAppSelector((state) => state.counter);
   const [opendCounterModal, setOpenCounterModal] = useState(false);
   const [openEditOneCounterModal, setOpenEditOneCounterModal] = useState(false);

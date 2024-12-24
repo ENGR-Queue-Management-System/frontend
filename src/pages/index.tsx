@@ -31,7 +31,7 @@ import { toast } from "@/hooks/use-toast";
 import { getUserName } from "@/helpers/function";
 
 export default function Home() {
-  const { deviceType } = useNotification();
+  const { deviceType, isPhone } = useNotification();
   const user = useAppSelector((state) => state.user.user);
   const queue = useAppSelector((state) => state.user.queue);
   const [testSendNotiList, setTestSendNotiList] = useState<any[]>([]);
@@ -80,39 +80,26 @@ export default function Home() {
   };
 
   return (
-    <div
-      className={` flex flex-row ${
-        [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-          ? "flex-col "
-          : ""
-      } h-full w-full`}
-    >
+    <div className={`flex flex-row ${isPhone ? "flex-col" : ""} h-full w-full`}>
       <div
-        className={`  ${
-          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+        className={`${
+          isPhone
             ? "hidden"
             : "gradient-try-big  !w-[55%] pl-[4vw]  items-center  flex h-screen"
-        }    `}
+        }`}
       >
         <div
-          className={`
-    ${
-      [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-        ? "text-[#3d3d3d] flex flex-col mt-12 !justify-center !items-center !text-center"
-        : "text-start text-default gap-3 justify-start items-start flex flex-col "
-    }`}
+          className={`${
+            isPhone
+              ? "text-[#3d3d3d] flex flex-col mt-12 !justify-center !items-center !text-center"
+              : "text-start text-default gap-3 justify-start items-start flex flex-col "
+          }`}
         >
           <Image
-            src={
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? logoEngColor
-                : logoEngColor
-            }
+            src={isPhone ? logoEngColor : logoEngColor}
             alt="logoEng"
             className={`samsungA24:w-[10vw] ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? " mt-[50px] "
-                : "-ml-1 mb-3"
+              isPhone ? " mt-[50px] " : "-ml-1 mb-3"
             } acerSwift:max-macair133:w-[12vw] cursor-not-allowed  macair133:max-samsungA24:w-[14vw] iphone:max-sm:w-[40vw] sm:max-macair133:w-[20vw]`}
           />
           <div>
@@ -132,75 +119,58 @@ export default function Home() {
         </div>
       </div>
       <div
-        className={` ${
-          [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+        className={`${
+          isPhone
             ? "!w-full !h-screen  !justify-end !items-start pb-12 !text-start gradient-try"
             : "w-[45%] flex flex-col  justify-center text-start items-center "
-        } `}
+        }`}
       >
         <div
           className={`flex flex-col ${
-            [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+            isPhone
               ? "w-[100%]  h-full px-8 justify-end items-start text-start"
               : "w-[80%] justify-center  text-start"
           } `}
         >
           <Image
-            src={
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? logoSDMinimal
-                : ""
-            }
+            src={isPhone ? logoSDMinimal : ""}
             alt="logoEng"
             className={` ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              isPhone
                 ? " mt-[40px] fixed top-3 left-0 -ml-9  w-[42vw] "
                 : "hidden"
             } `}
           />
-          <div
-            className={` ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? ""
-                : "flex  w-full items-center"
-            }`}
-          >
+          <div className={` ${isPhone ? "" : "flex  w-full items-center"}`}>
             <Icon
               IconComponent={iconLogin}
               className={`text-default size-20 stroke-[1.2px] mb-3 ${
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                  ? "-ml-2"
-                  : " "
+                isPhone ? "-ml-2" : " "
               }`}
             />
           </div>
           <p
             className={`${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              isPhone
                 ? "text-default text-start font-semibold text-[3vh]  "
                 : "text-default font-semibold text-[1.8vw]"
             } `}
           >
-            {" "}
             Welcome!
           </p>
           <p
             className={`${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!) ||
-              true
+              isPhone || true
                 ? "text-[#969696] text-start font-medium text-[2.2vh] "
                 : "hidden"
             } `}
           >
-            {" "}
             Sign in to Queuing System
           </p>
 
           <p
             className={`my-8  ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? "text-[13px] "
-                : "text-[16px]"
+              isPhone ? "text-[13px] " : "text-[16px]"
             } text-default font-medium`}
           >
             Let's take a number and wait comfortably without needing to be at
@@ -209,9 +179,7 @@ export default function Home() {
           </p>
           <div
             className={`flex gap-3  items-center justify-center  ${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                ? " w-[100%] mt-2"
-                : "w-[100%] mt-8"
+              isPhone ? " w-[100%] mt-2" : "w-[100%] mt-8"
             }} acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/20`}
           >
             <Icon IconComponent={iconEx} className="text-[#856404]" />
@@ -225,7 +193,7 @@ export default function Home() {
           </div>
           <div
             className={`${
-              [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+              isPhone
                 ? " w-[100%] mt-2"
                 : "flex flex-col !text-center !items-center !justify-center w-[100%] mt-6"
             }`}
@@ -239,17 +207,13 @@ export default function Home() {
               }}
               variant="default"
               className={`mt-5 ${
-                [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                isPhone
                   ? " w-[100%]  bg-[#5868d5] text-white hover:bg-[#5868d5] mt-5 h-12 text-[15px] font-semibold rounded-full"
                   : " bg-[#5868d5] min-w-fit w-[50%] hover:bg-[#5868d5] text-white py-6 px-6 rounded-lg  text-[15px] font-semibold"
               }`}
             >
               <Image
-                src={
-                  [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
-                    ? cmuLogoColor
-                    : cmuLogoColor
-                }
+                src={isPhone ? cmuLogoColor : cmuLogoColor}
                 alt="cmulogo"
                 className="w-[42px] mr-2 acerSwift:max-macair133:w-[35px]"
               />
@@ -261,7 +225,7 @@ export default function Home() {
                 account?{" "}
                 <span
                   className={`underline font-[500] cursor-pointer ${
-                    [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                    isPhone
                       ? "text-[#4e87d6] hover:text-[#3d6eb2]"
                       : "text-[#4e87d6] hover:text-[#3d6eb2]"
                   } `}
@@ -273,7 +237,7 @@ export default function Home() {
               <Button
                 variant="link"
                 className={`text-sm font-[600]   acerSwift:max-macair133:text-b4 underline  ${
-                  [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
+                  isPhone
                     ? "text-[#856404] hover:text-[#856404] mt-4"
                     : "text-[#856404] hover:text-[#856404] mt-10 "
                 }
