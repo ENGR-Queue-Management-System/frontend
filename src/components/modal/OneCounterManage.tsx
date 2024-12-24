@@ -20,6 +20,10 @@ import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE } from "@/config/Enum";
 import { useForm } from "react-hook-form";
 import { CounterUpdateRequestDTO } from "@/services/counter/dto/counter.dto";
+import { useAppSelector } from "@/store";
+import Icon from "../Icon";
+import IconList from "../../../public/icons/list.svg";
+import { Checkbox } from "../ui/checkbox";
 
 type Props = {
   title: string;
@@ -35,6 +39,7 @@ export default function OneCounterManage({
   onClose,
 }: Props) {
   const { deviceType, isPhone } = useNotification();
+  const topics = useAppSelector((state) => state.topic);
   const form = useForm({
     defaultValues: new CounterUpdateRequestDTO(),
   });
@@ -66,7 +71,7 @@ export default function OneCounterManage({
           className={`flex flex-col  max-h-[65vh] acerSwift:max-macair133:max-h-[435px] gap-5 acerSwift:max-macair133:gap-3`}
         >
           <div
-            className={`flex flex-col w-full gap-4 h-full acerSwift:max-macair133:gap-2.5`}
+            className={`flex flex-col w-full gap-4 h-full acerSwift:max-macair133:gap-2.5 acerSwift:max-macair133:max-h-[390px] overflow-y-auto p-1`}
           >
             <div
               style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
@@ -122,17 +127,61 @@ export default function OneCounterManage({
                   onRightFocus={() => minuteRef.current?.focus()}
                 /> */}
                   </div>
-                  <div className="flex gap-3 justify-end w-full mt-1 acerSwift:max-macair133:mt-0">
-                    <Button variant={"ghost"} onClick={onClose}>
-                      ยกเลิก
-                    </Button>
-                    <Button type="submit" className="px-4">
-                      เสร็จสิ้น
-                    </Button>
-                  </div>
                 </form>
               </Form>
             </div>
+
+            <div
+              style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
+              className="rounded-md flex flex-1 flex-col h-full"
+            >
+              <div className="sticky flex top-0  bg-table-background text-table-foreground gap-3 px-5 items-center justify-between font-medium py-3">
+                <div className="flex gap-3 text-b2 items-center acerSwift:max-macair133:text-b3">
+                  <Icon
+                    IconComponent={IconList}
+                    className="acerSwift:max-macair133:!size-4 size-5"
+                  />
+                  หัวข้อบริการ
+                </div>
+
+                <div className="text-b2 text-red-500 acerSwift:max-macair133:text-b4">
+                  เลือกอย่างน้อย 1 รายการ
+                </div>
+              </div>
+
+              {topics.map((topic) => (
+                <div
+                  key={topic.id}
+                  className="flex border-b-[1px] mx-5 border-[#e1e1e1] last:border-none px-2 font-medium text-default justify-between gap-3 items-center py-2 acerSwift:max-macair133:py-1.5"
+                >
+                  <div className="flex items-center gap-5 ">
+                    <Checkbox id="terms1" />
+                    <div className="flex flex-col py-2 text-b2 acerSwift:max-macair133:text-b4">
+                      <p>{topic.topicTH}</p>
+                      <p>{topic.topicEN}</p>
+                    </div>
+                  </div>
+
+                  {/* <Button
+                  variant="outline"
+                  className="border-red-500 rounded-full acerSwift:max-macair133:!p-3.5  text-red-500 hover:bg-[#f7b1b13b] hover:text-white"
+                >
+                  <Icon
+                    IconComponent={IconTrash}
+                    className="stroke-delete acerSwift:max-macair133:!size-3.5"
+                  />
+                </Button> */}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex gap-3 justify-end w-full mt-1 acerSwift:max-macair133:mt-0">
+            <Button variant={"ghost"} onClick={onClose}>
+              ยกเลิก
+            </Button>
+            <Button type="submit" className="px-4">
+              เสร็จสิ้น
+            </Button>
           </div>
         </div>
       </DialogContent>

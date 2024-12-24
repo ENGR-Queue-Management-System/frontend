@@ -436,10 +436,8 @@ export default function LogQueueModal({
                       className="flex items-center space-x-2 py-2"
                     >
                       <Checkbox />
-                      <div className="flex items-center gap-2 acerSwift:max-macair133:text-b4">
-                        <div
-                          className={` h-3 w-3 rounded-[100%]`}
-                        ></div>
+                      <div className="flex items-center acerSwift:max-macair133:text-b4 -ml-1">
+                        <div className={` h-3 w-3 rounded-[100%]`}></div>
                         <p>{cat.topicTH}</p>
                       </div>
                     </div>
@@ -479,7 +477,6 @@ export default function LogQueueModal({
                     <TableCell className="w-[15%]">{item.name}</TableCell>
                     <TableCell className=" w-[25%]   items-center">
                       <div className="flex items-center gap-2">
-                       
                         {item.category}
                       </div>
                     </TableCell>

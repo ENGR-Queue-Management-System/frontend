@@ -88,9 +88,7 @@ export default function Home() {
   return (
     <motion.div
       initial={
-        isPhone
-          ? { x: prevPath == Route.Login ? "-100%" : "100%" }
-          : false
+        isPhone ? { x: prevPath == Route.Login ? "-100%" : "100%" } : false
       }
       animate={isPhone ? { x: 0 } : false}
       exit={isPhone ? { x: "-100%" } : undefined}
@@ -152,9 +150,7 @@ export default function Home() {
             src={isPhone ? logoSDMinimal : ""}
             alt="logoEng"
             className={` ${
-              isPhone
-                ? " mt-[40px] fixed top-4 left-6   w-[12vw] "
-                : "hidden"
+              isPhone ? " mt-[40px] fixed top-4 left-6   w-[12vw] " : "hidden"
             } `}
           />
           <div className={` ${isPhone ? "" : "flex  w-full items-center"}`}>
@@ -185,9 +181,9 @@ export default function Home() {
           </p>
 
           <p
-            className={`my-8  ${
-              isPhone ? "text-[13px] " : "text-[16px]"
-            } text-default font-medium`}
+            className={`my-8 acerSwift:max-macair133:my-4 ${
+              isPhone ? "text-b3" : "text-b1"
+            } text-default font-medium acerSwift:max-macair133:text-b2`}
           >
             Let's take a number and wait comfortably without needing to be at
             the front. Get notified when it's your turn, ensuring a smooth and
@@ -195,11 +191,13 @@ export default function Home() {
           </p>
           <div
             className={`flex gap-3  items-center justify-center  ${
-              isPhone ? " w-[100%] mt-2" : "w-[100%] mt-8"
-            }} acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/20`}
+              isPhone
+                ? " w-[100%] mt-2"
+                : "w-[100%] mt-8 acerSwift:max-macair133:mt-4"
+            } p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/20`}
           >
             <Icon IconComponent={iconEx} className="text-[#856404]" />
-            <p className="iphone:max-sm:text-[13px] text-[14px] acerSwift:max-macair133:text-b3 text-[#856404] font-bold text-start w-full ">
+            <p className="iphone:max-sm:text-b3 text-[14px] acerSwift:max-macair133:text-b3 text-[#856404] font-bold text-start w-full">
               The system is currently in testing. <br />
               <span className="font-medium mt-[2px]">
                 If you experience any issues, please remove the app from your
@@ -225,13 +223,13 @@ export default function Home() {
               className={`mt-5 ${
                 isPhone
                   ? " w-[100%]  bg-[#5868d5] text-white hover:bg-[#5868d5] mt-5 h-12 text-[15px] font-semibold rounded-full"
-                  : " bg-[#5868d5] min-w-fit w-[50%] hover:bg-[#5868d5] text-white py-6 px-6 rounded-lg  text-[15px] font-semibold"
+                  : "acerSwift:max-macair133:py-5 bg-[#5868d5] min-w-fit w-[50%] hover:bg-[#5868d5] text-white py-6 px-6 rounded-lg text-[15px] font-semibold"
               }`}
             >
               <Image
                 src={isPhone ? cmuLogoColor : cmuLogoColor}
                 alt="cmulogo"
-                className="w-[42px] mr-2 acerSwift:max-macair133:w-[35px]"
+                className="w-[42px] mr-2 acerSwift:max-macair133:w-[35px] "
               />
               Sign in CMU account
             </Button>
@@ -250,7 +248,7 @@ export default function Home() {
                   Click here
                 </span>
               </p>
-              <Button
+              {/* <Button
                 variant="link"
                 className={`text-sm font-[600]   acerSwift:max-macair133:text-b4 underline  ${
                   isPhone
@@ -261,17 +259,17 @@ export default function Home() {
               >
                 <Icon IconComponent={iconFlag} />
                 Issue Report
-              </Button>
+              </Button> */}
             </div>
           </div>
-          <Link href="/admin-dashboard">
+          {/* <Link href="/admin-dashboard">
             <Button
               variant="link"
               className={`text-sm font-[500] mt-5 underline text-[#000000]`}
             >
               Admin
             </Button>
-          </Link>
+          </Link> */}
           {/* <div className="flex gap-2">
             <Select onValueChange={(value) => setSelectTest(value)}>
               <SelectTrigger className="!w-[30vw] py-2">
