@@ -12,7 +12,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { dateFormatter } from "@/helpers/function";
+import { dateFormatter, getUserName } from "@/helpers/function";
 import { updateCounter } from "@/services/counter/counter.service";
 import { IModelCounter } from "@/models/Model";
 import { toast } from "@/hooks/use-toast";
@@ -95,9 +95,7 @@ export default function AdminIndex() {
                           {item.no}
                         </TableCell>
                         <TableCell>{item.studentId || "-"}</TableCell>
-                        <TableCell>
-                          {item.firstName} {item.lastName}
-                        </TableCell>
+                        <TableCell>{getUserName(item)}</TableCell>
                         <TableCell className="flex gap-2  translate-y-[6px] items-center">
                           <div className="flex items-center gap-2">
                             <div
@@ -191,7 +189,7 @@ export default function AdminIndex() {
                                   -{" "}
                                 </span>
                               )}
-                              {currentQueue.firstName} {currentQueue.lastName}
+                              {getUserName(currentQueue)}
                             </span>
                           </p>
                         </div>
@@ -238,7 +236,7 @@ export default function AdminIndex() {
                             <span className="iphone:max-sm:hidden"> - </span>
                           )}
                           <span className="iphone:max-sm:block">
-                            {queues[0]?.firstName} {queues[0]?.lastName}
+                            {getUserName(queues[0])}
                           </span>
                         </p>
                         <div className="flex text-b2  acerSwift:max-macair133:text-b4 samsungA24:text-h2 items-center gap-3">

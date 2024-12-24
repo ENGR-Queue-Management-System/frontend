@@ -17,6 +17,7 @@ import { getUserName } from "@/helpers/function";
 import Link from "next/link";
 import ContactTopicManageModal from "./modal/ContactTopicManageModal";
 import { logout } from "@/services/user/user.service";
+import { ROLE } from "@/config/Enum";
 
 const Profile: React.FC = () => {
   const user = useAppSelector((state) => state.user.user);
@@ -31,10 +32,10 @@ const Profile: React.FC = () => {
           >
             <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-white items-end acerSwift:max-macair133:text-b4">
               <p>{getUserName(user)}</p>
-              {user.studentId ? (
-                <p>{user.studentId}</p>
-              ) : user.email ? (
+              {user.role == ROLE.ADMIN ? (
                 <p className=" acerSwift:max-macair133:-mt-1">ผู้ดูแลระบบ</p>
+              ) : user.studentId ? (
+                <p>{user.studentId}</p>
               ) : (
                 <></>
               )}
@@ -47,8 +48,6 @@ const Profile: React.FC = () => {
         </PopoverTrigger>
         <PopoverContent className="mr-14">
           <div className="flex flex-col gap-1">
-            {/* {!user.student && user.email && (
-              <> */}
             <ContactTopicManageModal
               triggerText="จัดการหัวข้อการบริการ"
               icon={IconTopic}

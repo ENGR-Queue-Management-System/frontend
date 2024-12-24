@@ -20,18 +20,6 @@ import {
 } from "@/components/ui/table";
 
 export default function Home() {
-  const user = useAppSelector((state) => state.user.user);
-
-  useEffect(() => {
-    if (user.email) {
-      if (user.studentId) {
-        Router.push(Route.StudentIndex);
-      } else {
-        Router.push(Route.AdminIndex);
-      }
-    }
-  }, [user]);
-
   const [time, setTime] = useState<string>("");
   const [dateTime, setDateTime] = useState<string>("");
 

@@ -5,8 +5,10 @@ import { Route } from "@/config/Route";
 import { useEffect } from "react";
 import { loginWithAuth } from "@/services/authentication/authentication.service";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { setUser } from "@/store/user";
+import { setQueue, setUser } from "@/store/user";
 import { jwtDecode } from "jwt-decode";
+import { StudentQueueRequestDTO } from "@/services/queue/dto/queue.dto";
+import { getStudentQueue } from "@/services/queue/queue.service";
 
 export default function CmuEntraIDCallback() {
   const searchParams = useSearchParams();
@@ -26,15 +28,35 @@ export default function CmuEntraIDCallback() {
       const res = await loginWithAuth(code);
       if (res) {
         localStorage.setItem("token", res.token);
+        const decodedToken: any = jwtDecode(res.token);
         if (res.user) {
-          dispatch(setUser(res.user));
+          dispatch(setUser({ ...res.user, role: decodedToken.role }));
           Router.push(Route.AdminIndex);
         } else {
-          const decodedToken = jwtDecode(res.token);
-          dispatch(setUser(decodedToken));
-          Router.push(Route.StudentIndex);
+          dispatch(
+            setUser({
+              role: decodedToken.role,
+              studentId: decodedToken.studentId,
+              firstNameTH: decodedToken.firstName,
+              lastNameTH: decodedToken.lastName,
+            })
+          );
+          fetchQueue({
+            firstName: decodedToken.firstName,
+            lastName: decodedToken.lastName,
+          });
         }
       }
+    }
+  };
+
+  const fetchQueue = async (payload: StudentQueueRequestDTO) => {
+    const res = await getStudentQueue(payload);
+    if (res.queue.no) {
+      dispatch(setQueue({ ...res.queue, waiting: res.waiting }));
+      Router.push(Route.StudentQueue);
+    } else {
+      Router.push(Route.StudentIndex);
     }
   };
 

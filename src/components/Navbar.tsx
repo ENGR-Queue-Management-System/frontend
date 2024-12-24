@@ -2,7 +2,7 @@ import Profile from "./Profile";
 import Image from "next/image";
 import logoSDColor from "../../public/images/logoSDMiColor.png";
 import { useNotification } from "@/notifications/useNotification";
-import { DEVICE_TYPE } from "@/config/Enum";
+import { DEVICE_TYPE, ROLE } from "@/config/Enum";
 import { useAppSelector } from "@/store";
 import { Route } from "@/config/Route";
 import { usePathname } from "next/navigation";
@@ -40,9 +40,9 @@ const Navbar: React.FC = () => {
         />
         <div className="flex flex-col  w-fit gap-0 font-medium text-[14px]  iphone-max:sm:text-[13px] acerSwift:max-macair133:text-b4 text-default">
           <p className="-ml-8 ">
-            {user.email && !user.studentId ? "ระบบจัดการคิว " : "รับบัตรคิว "}
+            {user.role == ROLE.ADMIN ? "ระบบจัดการคิว " : "รับบัตรคิว "}
           </p>
-          {user.email && !user.studentId ? (
+          {user.role == ROLE.ADMIN ? (
             <p className=" -ml-8 font-semibold">Queue Management</p>
           ) : (
             <p className=" -ml-8 font-semibold">Ticket Queue</p>

@@ -1,3 +1,8 @@
+export enum ROLE {
+	ADMIN   = "Admin",
+	STUDENT = "Student"
+}
+
 export enum STATUS {
   WAITING = "WAITING",
   IN_PROGRESS = "IN_PROGRESS",

@@ -1,4 +1,4 @@
-import { STATUS } from "@/config/Enum";
+import { ROLE, STATUS } from "@/config/Enum";
 
 export interface IModelSubscription {
   firstName: string;
@@ -19,6 +19,7 @@ export interface IModelCounter {
 
 export interface IModelUser {
   id?: number;
+  role?: ROLE;
   studentId?: string;
   firstNameTH: string;
   lastNameTH: string;
