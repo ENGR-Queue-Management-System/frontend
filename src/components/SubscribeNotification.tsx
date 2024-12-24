@@ -61,7 +61,7 @@ export default function SubscribeNotification() {
             alt="logoEng"
             className={` ${
               !isPhone
-                ? " mt-[40px] fixed top-3 left-6   w-[12vw] "
+                ? " mt-[40px] fixed top-4 left-6   w-[12vw] "
                 : "hidden"
             } `}
           />{" "}
