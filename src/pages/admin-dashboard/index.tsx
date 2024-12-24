@@ -17,7 +17,7 @@ import { updateCounter } from "@/services/counter/counter.service";
 import { IModelCounter } from "@/models/Model";
 import { toast } from "@/hooks/use-toast";
 import { updateCounterData } from "@/store/counter";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getQueues } from "@/services/queue/queue.service";
 import { setLoadingOverlay } from "@/store/loading";
 import { setCurrentQueue, setQueueList } from "@/store/queue";
@@ -30,15 +30,17 @@ export default function AdminIndex() {
   const queues = useAppSelector((state) => state.queue.queues);
   const currentQueue = useAppSelector((state) => state.queue.current);
   const dispatch = useAppDispatch();
+  const [firstFetch, setFirstFetch] = useState(false);
 
   useEffect(() => {
-    if (!queues.length) {
+    if (!queues.length && !firstFetch) {
       fetchQueues();
     }
   }, [counter]);
 
   const fetchQueues = async () => {
     if (counter && counter.id) {
+      setFirstFetch(true);
       dispatch(setLoadingOverlay(true));
       const res = await getQueues({ counter: counter.id });
       if (res) {

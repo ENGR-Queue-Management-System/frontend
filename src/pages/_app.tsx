@@ -26,6 +26,8 @@ import { StudentQueueRequestDTO } from "@/services/queue/dto/queue.dto";
 import Router from "next/router";
 import Head from "next/head";
 import SubscribeNotification from "@/components/SubscribeNotification";
+import { getTopics } from "@/services/topic/topic.service";
+import { setTopics } from "@/store/topic";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { isSupported, isGranted } = useNotification();
@@ -35,6 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const user = useAppSelector((state) => state.user.user);
   const queue = useAppSelector((state) => state.user.queue);
   const counters = useAppSelector((state) => state.counter);
+  const topics = useAppSelector((state) => state.topic);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -45,6 +48,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (!counters.length) {
       fetchCounters();
+    }
+    if (!topics.length) {
+      fetchTopics();
     }
     const token = localStorage.getItem("token");
     if (token) {
@@ -87,6 +93,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     const res = await getCounters();
     if (res) {
       dispatch(setCounters(res));
+    }
+  };
+
+  const fetchTopics = async () => {
+    const res = await getTopics();
+    if (res) {
+      dispatch(setTopics(res));
     }
   };
 
