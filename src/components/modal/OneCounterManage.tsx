@@ -55,7 +55,9 @@ export default function OneCounterManage({
           [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-12" : ""
         }`}
         className={` ${
-          isPhone ? "w-full h-full" : "md:max-w-[40vw] max-w-[50vw] h-fit"
+          isPhone
+            ? "w-full h-full"
+            : "md:max-w-[40vw] macair133:max-w-[50vw] h-fit"
         } p-6 mb-1 acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4`}
       >
         <DialogHeader
@@ -94,7 +96,10 @@ export default function OneCounterManage({
                       </span>{" "}
                       <span className="text-delete">*</span>
                     </p>
-                    <Input className="h-8 " placeholder="e.g. 5"></Input>
+                    <Input
+                      className="h-8 iphone:max-sm:text-b2"
+                      placeholder="e.g. 5"
+                    ></Input>
                   </div>
                   <div className="flex flex-col gap-1">
                     <p className="text-b2 acerSwift:max-macair133:text-b4">
@@ -105,7 +110,7 @@ export default function OneCounterManage({
                       <span className="text-delete">*</span>
                     </p>
                     <Input
-                      className="h-8"
+                      className="h-8 iphone:max-sm:text-b2"
                       placeholder="e.g. example@cmu.ac.th"
                     ></Input>
                   </div>
@@ -115,7 +120,7 @@ export default function OneCounterManage({
                     </p>
                     <Input
                       type="time"
-                      className="w-[50%] acerSwift:max-macair133:w-fit py-2 px-4 border rounded-md text-gray-700"
+                      className="w-[50%] acerSwift:max-macair133:w-fit py-2 px-4 border rounded-md text-gray-700 iphone:max-sm:text-b2"
                     />
                     {/* <TimePickerInput
                   type="time"

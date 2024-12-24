@@ -16,7 +16,7 @@ import IconEdit from "../../../public/icons/edit.svg";
 import IconTopic from "../../../public/icons/topic.svg";
 import IconExclaimation from "../../../public/icons/exclaimation.svg";
 import IconPlus from "../../../public/icons/plus.svg";
-
+import { useNotification } from "@/notifications/useNotification";
 import Icon from "@/components/Icon";
 
 type PopupProps = {
@@ -29,6 +29,7 @@ export default function ContactTopicMangeModal({
   icon: IconComponent,
   title,
 }: PopupProps) {
+  const { deviceType, isPhone } = useNotification();
   const [openAddTopicModal, setOpenAddTopicModal] = useState(false);
   const [openEditTopicModal, setOpenEditTopicModal] = useState(false);
   const [openDeleteTopicPopup, setOpenDeleteTopicPopup] = useState(false);
@@ -93,11 +94,11 @@ export default function ContactTopicMangeModal({
         </Button>
       </DialogTrigger>
       <DialogContent
-        className={`${
-          openAddTopicModal || openEditTopicModal || openDeleteTopicPopup
-            ? "max-w-[40vw]"
-            : "max-w-[55vw]"
-        }`}
+        className={`  ${
+          (openAddTopicModal || openEditTopicModal || openDeleteTopicPopup) &&
+          !isPhone &&
+          "ipad11:max-w-[40vw] iphone:max-sm:w-[100vw]"
+        } ipad11:max-w-[55vw] iphone:max-sm:max-h-[70vh] flex flex-col justify-start`}
       >
         <DialogHeader>
           <DialogTitle
@@ -120,9 +121,9 @@ export default function ContactTopicMangeModal({
         </DialogHeader>
 
         {!openAddTopicModal && !openEditTopicModal && !openDeleteTopicPopup ? (
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 justify-between h-full iphone:max-sm:pt-1">
             <div
-              className="p-0 rounded-lg mt-2 flex flex-col gap-1 text-b2 acerSwift:max-macair133:text-b3"
+              className="p-0 rounded-lg mt-2 flex flex-col gap-1 text-b2 acerSwift:max-macair133:text-b3 iphone:max-sm:h-full"
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
             >
               <div className="flex bg-table-background text-table-foreground gap-3 items-center font-medium py-3 px-4">
@@ -132,11 +133,11 @@ export default function ContactTopicMangeModal({
                 />{" "}
                 รายชื่อหัวข้อการบริการ
               </div>
-              <div className="max-h-[500px] acerSwift:max-macair133:max-h-[325px] iphone:max-sm:h-[20vh] overflow-y-auto px-5">
+              <div className="max-h-[500px] acerSwift:max-macair133:max-h-[325px] iphone:max-sm:max-h-[360px] overflow-y-auto px-5 ">
                 {categories.map((cat) => (
                   <div
                     key={cat.topicTH}
-                    className="flex border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2"
+                    className="flex iphone:max-sm:flex-col iphone:max-sm:items-start iphone:max-sm:pb-3 border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2"
                   >
                     <div className="flex items-center gap-5">
                       <div className="flex pl-3 flex-col py-2 text-b2 acerSwift:max-macair133:text-b4 acerSwift:max-macair133:py-1">
@@ -145,7 +146,7 @@ export default function ContactTopicMangeModal({
                         <p className="font-normal text-b4 text-table-foreground"></p>
                       </div>
                     </div>
-                    <div className="flex gap-3">
+                    <div className="flex gap-3 iphone:max-sm:justify-end iphone:max-sm:w-full">
                       <Button
                         variant="outline"
                         onClick={() => {
@@ -155,25 +156,27 @@ export default function ContactTopicMangeModal({
                           });
                           setOpenEditTopicModal(true);
                         }}
+                        size={isPhone ? "icon" : "default"}
                         className=" !border-orange-500 text-orange-500 rounded-full hover:bg-[#f7cbb13b] hover:text-orange-600 acerSwift:max-macair133:text-b4"
                       >
                         <Icon
                           IconComponent={IconEdit}
                           className="stroke-orange-500 acerSwift:max-macair133:!size-4"
                         />
-                        แก้ไข
+                        {!isPhone && "แก้ไข"}
                       </Button>
 
                       <Button
                         variant="outline"
                         onClick={() => setOpenDeleteTopicPopup(true)}
+                        size={isPhone ? "icon" : "default"}
                         className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600 acerSwift:max-macair133:text-b4"
                       >
                         <Icon
                           IconComponent={IconTrash}
                           className="stroke-delete acerSwift:max-macair133:!size-4"
                         />
-                        ลบ
+                        {!isPhone && "ลบ"}
                       </Button>
                     </div>
                   </div>
@@ -201,6 +204,7 @@ export default function ContactTopicMangeModal({
                   <Input
                     type="text"
                     value={openEditTopicModal ? inputValues.topicEN : ""}
+                    className="iphone:max-sm:text-b2"
                     placeholder="เช่น ขอคำปรึกษาด้านวิชาการ"
                   />
                 </div>
@@ -211,17 +215,25 @@ export default function ContactTopicMangeModal({
                   <Input
                     type="text"
                     value={openEditTopicModal ? inputValues.topicEN : ""}
+                    className="iphone:max-sm:text-b2"
                     placeholder="e.g. Academic Consultation"
                   />
                 </div>
                 <div className="grid w-full max-w-full items-center gap-1.5">
                   <p className="text-b2 acerSwift:max-macair133:text-b4 font-medium  ">
                     โค้ดสำหรับหัวข้อบริการ{" "}
-                    <span className="text-secondary font-normal">
+                    <span className="text-secondary font-normal iphone:max-sm:hidden">
                       (กรอกตัวอักษรภาษาอังกฤษระหว่าง A ถึง Z)
                     </span>
+                    <p className="text-secondary font-normal ipad11:hidden">
+                      (กรอกตัวอักษรภาษาอังกฤษระหว่าง A ถึง Z)
+                    </p>
                   </p>
-                  <Input type="text" placeholder="e.g. S" />
+                  <Input
+                    type="text"
+                    placeholder="e.g. S"
+                    className="iphone:max-sm:text-b2"
+                  />
                 </div>
               </div>
             </div>

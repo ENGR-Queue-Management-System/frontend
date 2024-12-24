@@ -345,105 +345,106 @@ export default function LogQueueModal({
             </div>
           </DialogTitle>
         </DialogHeader>
-        <div className="overflow-hidden h-full flex flex-col gap-4 px-10">
-          <div className="flex justify-between">
+        <div className="overflow-hidden h-full flex flex-col gap-4 px-10 iphone:max-sm:px-1">
+          <div className="flex ipad11:justify-between iphone:max-sm:flex-col iphone:max-sm:gap-1 iphone:max-sm:text-center">
             <div className="font-semibold text-default flex flex-col acerSwift:max-macair133:text-b3">
               <p>บริการทั้งหมด</p>
               <p className="text-[24px] acerSwift:max-macair133:text-h1 text-table-foreground">
                 14 คิว
               </p>
             </div>
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-4 iphone:max-sm:flex-col">
               <div className="flex w-full max-w-sm items-center gap-2">
                 <Input
                   type="search"
-                  className="w-[340px] acerSwift:max-macair133:text-b4 acerSwift:max-macair133:!h-8"
+                  className="w-[340px] acerSwift:max-macair133:text-b4 acerSwift:max-macair133:!h-8 iphone:max-sm:text-b2"
                   placeholder="ค้นหา เลขคิว, รหัสนักศึกษา, ชื่อ-นามสกุล"
                 />
               </div>
-
-              <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant={"outlineDefault"}
-                    className={cn(
-                      "min-w-44 justify-start text-left font-normal acerSwift:max-macair133:text-b4 acerSwift:max-macair133:!h-8"
-                    )}
-                  >
-                    <CalendarIcon />
-                    {date
-                      ? format(date, "d MMMM yyyy", { locale: th }).replace(
-                          /(\d{4})/,
-                          (match) => (parseInt(match) + 543).toString()
-                        )
-                      : "เลือกวันที่"}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="end">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    onClear={() => {
-                      setDate(undefined);
-                      setIsPopoverOpen(false);
-                    }}
-                    action={() => {
-                      const today = new Date();
-                      setDate(today);
-                      setIsPopoverOpen(false);
-                    }}
-                    disabled={(date) => {
-                      const today = new Date();
-                      const last30Day = new Date();
-                      last30Day.setDate(today.getDate() - 30);
-
-                      return date > today || date < last30Day;
-                    }}
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant={"default"}
-                    className={cn(
-                      "w-fit justify-start text-left font-normal acerSwift:max-macair133:!h-8"
-                    )}
-                  >
-                    <Icon
-                      IconComponent={IconFilter}
-                      className=" !size-[15px] -translate-x-1 acerSwift:max-macair133:-translate-x-0 acerSwift:max-macair133:!size-3.5 "
-                    />
-
-                    <span className="acerSwift:max-macair133:text-b3 ">
-                      กรอง
-                    </span>
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent
-                  className="px-6 py-3 w-auto text-b2 "
-                  align="end"
-                >
-                  <p className="font-medium mb-2 text-primary text-b1 acerSwift:max-macair133:text-b3">
-                    กรองรายการติดต่อ
-                  </p>
-
-                  {categories.map((cat, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center space-x-2 py-2"
+              <div className="flex gap-3 ">
+                <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant={"outlineDefault"}
+                      className={cn(
+                        "min-w-44 iphone:max-sm:w-56 justify-start text-left font-normal acerSwift:max-macair133:text-b4 acerSwift:max-macair133:!h-8"
+                      )}
                     >
-                      <Checkbox />
-                      <div className="flex items-center acerSwift:max-macair133:text-b4 -ml-1">
-                        <div className={` h-3 w-3 rounded-[100%]`}></div>
-                        <p>{cat.topicTH}</p>
+                      <CalendarIcon />
+                      {date
+                        ? format(date, "d MMMM yyyy", { locale: th }).replace(
+                            /(\d{4})/,
+                            (match) => (parseInt(match) + 543).toString()
+                          )
+                        : "เลือกวันที่"}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="end">
+                    <Calendar
+                      mode="single"
+                      selected={date}
+                      onSelect={setDate}
+                      onClear={() => {
+                        setDate(undefined);
+                        setIsPopoverOpen(false);
+                      }}
+                      action={() => {
+                        const today = new Date();
+                        setDate(today);
+                        setIsPopoverOpen(false);
+                      }}
+                      disabled={(date) => {
+                        const today = new Date();
+                        const last30Day = new Date();
+                        last30Day.setDate(today.getDate() - 30);
+
+                        return date > today || date < last30Day;
+                      }}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant={"default"}
+                      className={cn(
+                        "w-fit justify-start text-left font-normal acerSwift:max-macair133:!h-8"
+                      )}
+                    >
+                      <Icon
+                        IconComponent={IconFilter}
+                        className=" !size-[15px] -translate-x-1 acerSwift:max-macair133:-translate-x-0 acerSwift:max-macair133:!size-3.5 "
+                      />
+
+                      <span className="acerSwift:max-macair133:text-b3 ">
+                        กรอง
+                      </span>
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="px-6 py-3 w-auto text-b2 "
+                    align="end"
+                  >
+                    <p className="font-medium mb-2 text-primary text-b1 acerSwift:max-macair133:text-b3">
+                      กรองรายการติดต่อ
+                    </p>
+
+                    {categories.map((cat, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center space-x-2 py-2"
+                      >
+                        <Checkbox />
+                        <div className="flex items-center acerSwift:max-macair133:text-b4 -ml-1">
+                          <div className={` h-3 w-3 rounded-[100%]`}></div>
+                          <p>{cat.topicTH}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </PopoverContent>
-              </Popover>
+                    ))}
+                  </PopoverContent>
+                </Popover>
+              </div>
             </div>
           </div>
           <div
