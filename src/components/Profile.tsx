@@ -18,6 +18,7 @@ import Link from "next/link";
 import ContactTopicManageModal from "./modal/ContactTopicManageModal";
 import { logout } from "@/services/user/user.service";
 import { ROLE } from "@/config/Enum";
+import LoginManageModal from "./modal/LoginManageModal";
 
 export default function Profile() {
   const user = useAppSelector((state) => state.user.user);
@@ -58,6 +59,11 @@ export default function Profile() {
               icon={IconAdminMange}
               title="จัดการเคาน์เตอร์"
             ></CounterManageModal>
+             <LoginManageModal
+              triggerText="จัดการเข้าใช้งานระบบ"
+              icon={IconAdminMange}
+              title="จัดการเข้าใช้งานระบบ"
+            ></LoginManageModal>
             <LogQueueModal
               triggerText="ประวัติการบริการ"
               icon={IconHistory}

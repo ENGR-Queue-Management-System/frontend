@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-
 import { Route } from "@/config/Route";
-import logoEng from "../../public/images/logoSDShadow.png";
 import logoEngColor from "../../public/images/logoSDColor.png";
 import logoSDMinimal from "../../public/images/logoSDMiColor.png";
 import cmuLogoColor from "../../public/images/cmuLogoLoginWhite.png";
@@ -13,7 +11,6 @@ import { motion } from "framer-motion";
 import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE, ROLE } from "@/config/Enum";
 import Icon from "@/components/Icon";
-import iconFlag from "../../public/icons/flag.svg";
 import iconLogin from "../../public/icons/confetti.svg";
 import iconEx from "../../public/icons/exclaimation.svg";
 import {
@@ -32,7 +29,11 @@ import { toast } from "@/hooks/use-toast";
 import { getUserName } from "@/helpers/function";
 import Router, { useRouter } from "next/router";
 
-export default function Home() {
+
+type PopupProps = {
+  showLink?: boolean;
+};
+export default function Home({showLink}: PopupProps) {
   const { deviceType, isPhone } = useNotification();
   const router = useRouter();
   const user = useAppSelector((state) => state.user.user);
@@ -84,6 +85,10 @@ export default function Home() {
       });
     }
   };
+
+  
+  useEffect(() => { console.log(showLink) }, [showLink]); 
+  
 
   return (
     <motion.div
@@ -195,7 +200,7 @@ export default function Home() {
             className={`flex gap-3  items-center justify-center  ${
               isPhone
                 ? " w-[100%] mt-2"
-                : "w-[100%] mt-8 acerSwift:max-macair133:mt-4"
+                : "w-[100%] -mt-2"
             } p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/20`}
           >
             <Icon IconComponent={iconEx} className="text-[#856404]" />
@@ -222,10 +227,10 @@ export default function Home() {
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.45)",
               }}
               variant="default"
-              className={`mt-5 ${
+              className={`mt-3 ${
                 isPhone
-                  ? " w-[100%]  bg-[#5868d5] text-white hover:bg-[#5868d5] mt-5 h-12 text-[15px] font-semibold rounded-full"
-                  : "acerSwift:max-macair133:py-5 bg-[#5868d5] min-w-fit w-[50%] hover:bg-[#5868d5] text-white py-6 px-6 rounded-lg text-[15px] font-semibold"
+                  ? " w-[100%]  bg-[#5868d5] text-white hover:bg-[#4958b8] mt-5 h-12 text-[15px] font-semibold rounded-full"
+                  : "acerSwift:max-macair133:py-5 bg-[#5868d5] min-w-fit w-[50%] hover:bg-[#4958b8] text-white py-6 px-6 rounded-lg text-[15px] font-semibold"
               }`}
             >
               <Image
@@ -236,7 +241,7 @@ export default function Home() {
               Sign in CMU account
             </Button>
             <div className="flex flex-col !text-center !items-center !justify-center w-[100%] mt-6">
-              <p className="sm:max-samsungA24:text-[15px]  text-[15px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
+              {showLink && <p className="sm:max-samsungA24:text-[15px]  text-[15px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
                 <span className="font-[500] text-default"> Don't have</span> CMU
                 account?{" "}
                 <span
@@ -249,8 +254,8 @@ export default function Home() {
                 >
                   Click here
                 </span>
-              </p>
-              <Button
+              </p>}
+              {/* <Button
                 variant="link"
                 className={`text-sm font-[600]   acerSwift:max-macair133:text-b4 underline  ${
                   isPhone
@@ -261,7 +266,7 @@ export default function Home() {
               >
                 <Icon IconComponent={iconFlag} />
                 Issue Report
-              </Button>
+              </Button> */}
             </div>
           </div>
           <Link href="/admin-dashboard">
@@ -272,7 +277,7 @@ export default function Home() {
               Admin
             </Button>
           </Link>
-          {/* <div className="flex gap-2">
+          <div className="flex gap-2">
             <Select onValueChange={(value) => setSelectTest(value)}>
               <SelectTrigger className="!w-[30vw] py-2">
                 <SelectValue placeholder="Select Test Notification" />
@@ -290,7 +295,7 @@ export default function Home() {
               </SelectContent>
             </Select>
             <Button onClick={sendPushNotification}>Test</Button>
-          </div> */}
+          </div>
         </div>
       </div>
     </motion.div>
