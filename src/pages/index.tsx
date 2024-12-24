@@ -35,15 +35,6 @@ export default function Home() {
   const [testSendNotiList, setTestSendNotiList] = useState<any[]>([]);
   const [selectTest, setSelectTest] = useState("");
 
-  const router = useRouter();
-  const handleSignIn = () => {
-    if (process.env.NEXT_PUBLIC_CMU_OAUTH_URL) {
-      router.push(process.env.NEXT_PUBLIC_CMU_OAUTH_URL);
-    } else {
-      console.error("NEXT_PUBLIC_CMU_OAUTH_URL is not defined");
-    }
-  };
-
   useEffect(() => {
     if (!testSendNotiList.length) {
       const test = async () => {
@@ -236,7 +227,9 @@ export default function Home() {
             }`}
           >
             <Button
-              onClick={handleSignIn}
+              onClick={() =>
+                Router.push(process.env.NEXT_PUBLIC_CMU_ENTRAID_URL!)
+              }
               style={{
                 boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.45)",
               }}
@@ -264,9 +257,7 @@ export default function Home() {
                 account?{" "}
                 <span
                   className={`underline font-[500] cursor-pointer ${
-                    [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(
-                      deviceType!
-                    ) 
+                    [DEVICE_TYPE.IOS, DEVICE_TYPE.ANDROID].includes(deviceType!)
                       ? "text-[#19888a] hover:text-[#206d6f]"
                       : "text-[#19888a] hover:text-[#206d6f]"
                   } `}
