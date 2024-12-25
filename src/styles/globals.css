@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  overscroll-behavior: none;
 }
 
 @font-face {
