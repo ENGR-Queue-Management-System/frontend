@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import { getQueues } from "@/services/queue/queue.service";
 import { setLoadingOverlay } from "@/store/loading";
 import { setCurrentQueue, setQueueList } from "@/store/queue";
+import { useNotification } from "@/notifications/useNotification";
 
 export default function AdminIndex() {
   const user = useAppSelector((state) => state.user.user);
@@ -30,6 +31,7 @@ export default function AdminIndex() {
   const queues = useAppSelector((state) => state.queue.queues);
   const currentQueue = useAppSelector((state) => state.queue.current);
   const dispatch = useAppDispatch();
+  const { deviceType, isPhone } = useNotification();
 
   // useEffect(() => {
   //   if (counter && counter.id) {
@@ -64,7 +66,11 @@ export default function AdminIndex() {
   };
 
   return (
-    <div className="flex px-5 flex-col min-h-full max-h-full w-full overflow-y-auto bg-[#f9f9f9] py-4 iphone:max-sm:h-fit">
+    <div
+      className={`flex ${
+        isPhone || true ? "px-3" : "px-5"
+      }  flex-col min-h-full max-h-full w-full overflow-y-auto bg-[#f9f9f9] py-4 iphone:max-sm:h-fit`}
+    >
       <div className="flex flex-col !w-full h-full iphone:max-sm:h-fit">
         <div className="flex h-full overflow-hidden pb-2 mb-2 gap-4 iphone:max-sm:pb-0 iphone:max-sm:flex-col-reverse iphone:max-sm:gap-4 iphone:max-sm:h-fit">
           <div
@@ -73,52 +79,78 @@ export default function AdminIndex() {
             }}
             className="w-[60%] iphone:max-sm:!h-fit iphone:max-sm:w-[100%] sm:flex-1 sm:flex rounded-lg border border-[#E5DDEA] shadow-shadow-table"
           >
-            <div className="overflow-y-auto iphone:max-sm:!min-h-fit flex flex-1">
-              <Table
-                striped={true}
-                className={`${!queues.length ? "h-full w-full" : ""}`}
-              >
-                <TableHeader>
-                  <TableRow className="sticky text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1 font-bold top-0 z-30 ">
-                    <TableHead>เลขคิว</TableHead>
-                    <TableHead>รหัสนักศึกษา</TableHead>
-                    <TableHead>ชื่อ-นามสกุล</TableHead>
-                    <TableHead>รายการติดต่อ</TableHead>
-                    <TableHead>เพิ่มเติม</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody className="font-normal text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1">
-                  {queues.length ? (
-                    queues.map((item) => (
-                      <TableRow key={item.id}>
-                        <TableCell className="font-medium py-4">
-                          {item.no}
-                        </TableCell>
-                        <TableCell>{item.studentId || "-"}</TableCell>
-                        <TableCell>{getUserName(item)}</TableCell>
-                        <TableCell className="flex gap-2  translate-y-[6px] items-center">
-                          <div className="flex items-center gap-2">
-                            <div
-                              className={` h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
-                            ></div>
-                            {item.topic.topicTH}
-                          </div>
-                        </TableCell>
-                        <TableCell>{item.note || "-"}</TableCell>
+            {!isPhone ||
+              (true && (
+                <div className="overflow-y-auto iphone:max-sm:!min-h-fit flex flex-1">
+                  <Table
+                    striped={true}
+                    className={`${!queues.length ? "h-full w-full" : ""}`}
+                  >
+                    <TableHeader>
+                      <TableRow className="sticky text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1 font-bold top-0 z-30 ">
+                        <TableHead>เลขคิว</TableHead>
+                        <TableHead>รหัสนักศึกษา</TableHead>
+                        <TableHead>ชื่อ-นามสกุล</TableHead>
+                        <TableHead>รายการติดต่อ</TableHead>
+                        <TableHead>เพิ่มเติม</TableHead>
                       </TableRow>
-                    ))
-                  ) : (
-                    <TableRow>
-                      <TableCell
-                        colSpan={5}
-                        className="text-center text-[22px] font-medium"
-                      >
-                        ไม่มีคิวที่รอเรียก
-                      </TableCell>
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
+                    </TableHeader>
+                    <TableBody className="font-normal text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1">
+                      {queues.length ? (
+                        queues.map((item) => (
+                          <TableRow key={item.id}>
+                            <TableCell className="font-medium py-4">
+                              {item.no}
+                            </TableCell>
+                            <TableCell>{item.studentId || "-"}</TableCell>
+                            <TableCell>{getUserName(item)}</TableCell>
+                            <TableCell className="flex gap-2  translate-y-[6px] items-center">
+                              <div className="flex items-center gap-2">
+                                <div
+                                  className={` h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
+                                ></div>
+                                {item.topic.topicTH}
+                              </div>
+                            </TableCell>
+                            <TableCell>{item.note || "-"}</TableCell>
+                          </TableRow>
+                        ))
+                      ) : (
+                        <TableRow>
+                          <TableCell
+                            colSpan={5}
+                            className="text-center text-[22px] font-medium"
+                          >
+                            ไม่มีคิวที่รอเรียก
+                          </TableCell>
+                        </TableRow>
+                      )}
+                    </TableBody>
+                  </Table>
+                </div>
+              ))}
+            <div className="flex flex-col">
+              {queues.length ? (
+                queues.map((items) => (
+                  <div
+                    key={items.id}
+                    className="flex p-4 px-5 items-center bg-white first:rounded-t-md border-b-[1px] last:border-none  justify-between"
+                  >
+                    <div className="flex gap-4 items-center">
+                      <p className=" font-semibold text-[14px] text-primary">
+                        {items.no}
+                      </p>
+                      <div className="flex flex-col">
+                        <p className="text-[13px]">{getUserName(items)}</p>
+                        <p className="text-[13px] text-primary">{items.no}</p>
+                      </div>
+                    </div>
+                    <p className="text-[13px]"> {items.topic.topicTH}</p>
+                  </div>
+                ))
+              ) : (
+                <div className="text-[15px] bg-white rounded-md items-center flex justify-center py-8"> ไม่มีคิวที่รอเรียก </div>
+              )}
             </div>
           </div>
           <div className="flex flex-col gap-3 h-full w-[40%] iphone:max-sm:w-[100%] text-[15px] font-medium">
@@ -130,8 +162,12 @@ export default function AdminIndex() {
             >
               <div>
                 <div className="flex-col">
-                  <p className="acerSwift:max-macair133:text-b3 text-b1">
-                    รับคิวนักศึกษา (ปิดรับคิวอัตโนมัติ
+                  <p
+                    className={`acerSwift:max-macair133:text-b3 text-[14px] ${
+                      isPhone  ? "text-[12px]" : "text-[14px]"
+                    }`}
+                  >
+                    รับคิวนักศึกษา (ปิดรับคิว{" "}
                     {dateFormatter(counter?.timeClosed, true)})
                   </p>
                   <p className="text-primary text-b3 acerSwift:max-macair133:text-b4 ">
@@ -155,11 +191,19 @@ export default function AdminIndex() {
                   {
                     <>
                       <div className="text-center">
-                        <p className="text-h1 acerSwift:max-macair133:text-h2 samsungA24:text-[23px] font-normal ">
+                        <p
+                          className={` ${
+                            isPhone ? "text-[18px]" : "text-h1"
+                          } acerSwift:max-macair133:text-h2 samsungA24:text-[23px] font-medium `}
+                        >
                           คิวที่คุณกำลังให้บริการ
                         </p>
-                        <p className="text-primary  text-b1 acerSwift:max-macair133:text-b2 samsungA24:text-h1 ">
-                          Counter {counter?.counter}
+                        <p
+                          className={`text-primary ${
+                            isPhone ? "text-[15px]" : "text-b1"
+                          }   acerSwift:max-macair133:text-b2 samsungA24:text-h1`}
+                        >
+                          เคาน์เตอร์ {counter?.counter}
                         </p>
                       </div>
                       <div className=" samsungA24:mt-3 iphone:max-sm:mt-3 acerSwift:max-macair133:mt-2 ipad11:max-samsungA24:mt-2 mb-1 acerSwift:max-macair133:mb-0 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] iphone:max-sm:text-[40px] font-medium text-[52px]">
@@ -184,7 +228,6 @@ export default function AdminIndex() {
                           <div
                             className={` h-3 w-3 acerSwift:max-macair133:h-2.5 acerSwift:max-macair133:w-2.5 rounded-[100%] iphone:max-sm:hidden`}
                           ></div>
-
                           {currentQueue.topic?.topicTH}
                         </div>
                       </div>
@@ -192,14 +235,18 @@ export default function AdminIndex() {
                   }
                 </div>
                 <div className="flex flex-col gap-3 samsungA24:gap-4 w-full">
-                  <div className="px-6 py-5 acerSwift:max-macair133:py-2.5 rounded-2xl iphone:max-sm:mt-4 samsungA24:text-h1 text-b1  acerSwift:max-macair133:text-b2 !w-full flex flex-col bg-table-background">
+                  <div className="px-6 py-5 acerSwift:max-macair133:py-2.5 rounded-2xl iphone:max-sm:mt-4 samsungA24:text-h1 text-b1  acerSwift:max-macair133:text-b2 !w-full flex flex-col bg-[#d7e6fb]">
                     <div className=" flex items-center justify-start">
                       <div className=" text-table-foreground font-medium text-center iphone:max-sm:pl-0 iphone:max-sm:pr-4 pr-6 pl-3  border-r-2 border-table-foreground/15">
-                        <p className="iphone:max-sm:text-[15px] acerSwift:max-macair133:text-b4">
+                        <p
+                          className={` acerSwift:max-macair133:text-b4 ${
+                            isPhone ? "text-[14px]" : "text-h1"
+                          }`}
+                        >
                           คิวถัดไป
                         </p>
                         <p className="font-semibold text-[28px] iphone:max-macair133:text-h1">
-                          {queues[0]?.no || "-"}
+                          {queues[0]?.no || "A888"}
                         </p>
                       </div>
 
@@ -222,7 +269,11 @@ export default function AdminIndex() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex macair133:flex-col iphone:max-acerSwift:flex-col  acerSwift:max-macair133:flex-row-reverse w-full h-fit gap-4">
+                  <div
+                    className={`flex macair133:flex-col iphone:max-acerSwift:flex-col  acerSwift:max-macair133:flex-row-reverse w-full h-fit ${
+                      isPhone ? "gap-3" : "gap-4"
+                    } `}
+                  >
                     <Button
                       className="w-full items-center flex samsungA24:h-14 h-12 acerSwift:max-macair133:h-[42px]"
                       disabled={!queues[0]}

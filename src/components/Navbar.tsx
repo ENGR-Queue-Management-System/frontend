@@ -25,7 +25,7 @@ export default function Navbar() {
       }
       className={`${
         [DEVICE_TYPE.IOS].includes(deviceType!)
-          ? "pt-[52px] gradient-bg-navbar "
+          ? "pt-[52px] gradient-bg-navbar px-3"
           : "gradient-bg-navbar"
       } min-h-fit ipadmini:max-acerSwift:pt-5 acerSwift:max-macair133:min-h-[58px]  border-b border-[#e0e0e0] text-secondary px-5 inline-flex w-full justify-between items-center z-50 border-none top-0`}
       style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.3)" }}
@@ -39,8 +39,8 @@ export default function Navbar() {
             onClick={() => Router.back()}
           />
         )}
-        <Image className=" w-[50px] py-2 " src={logoSDColor} alt="loginImage" />
-        <div className="flex flex-col  w-fit gap-0 font-medium text-[14px]  iphone-max:sm:text-[13px] acerSwift:max-macair133:text-b4 text-default">
+        <Image className=" w-[40px] py-3 " src={logoSDColor} alt="loginImage" />
+        <div className={`flex flex-col  w-fit gap-0 font-medium text-[14px]  ${isPhone ? 'text-[12px]' : 'text-[14px]'} acerSwift:max-macair133:text-b4 text-default`}>
           <p className=" ">
             {user.role == ROLE.ADMIN ? "ระบบจัดการคิว " : "รับบัตรคิว "}
           </p>

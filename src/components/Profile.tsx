@@ -19,9 +19,11 @@ import ContactTopicManageModal from "./modal/ContactTopicManageModal";
 import { logout } from "@/services/user/user.service";
 import { ROLE } from "@/config/Enum";
 import LoginManageModal from "./modal/LoginManageModal";
+import { useNotification } from "@/notifications/useNotification";
 
 export default function Profile() {
   const user = useAppSelector((state) => state.user.user);
+  const { deviceType, isPhone } = useNotification();
 
   return (
     <>
@@ -43,7 +45,7 @@ export default function Profile() {
             </div>
             <Icon
               IconComponent={IconUser}
-              className="!size-10 stroke-default stroke-[1.3px]  acerSwift:max-macair133:!size-9"
+              className={` stroke-default stroke-[1.1px] ${isPhone ? '!size-8' : '!size-10'}   acerSwift:max-macair133:!size-9`}
             />
           </Button>
         </PopoverTrigger>
