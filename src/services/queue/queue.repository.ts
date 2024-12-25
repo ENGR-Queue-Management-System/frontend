@@ -15,11 +15,11 @@ export const queueController = (configService: any = {}) => {
     createQueue: async (params: any) => {
       return service.post(prefix, { ...params });
     },
-    updateQueue: async (id: string, params: any) => {
+    updateQueue: async (id: number, params: any) => {
       return service.put(`${prefix}/${id}`, { ...params });
     },
-    deleteQueue: async (id: string) => {
-      return service.get(`${prefix}/${id}`);
+    deleteQueue: async (id: number) => {
+      return service.delete(`${prefix}/${id}`, {});
     },
   };
 };

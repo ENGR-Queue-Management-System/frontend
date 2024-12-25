@@ -18,7 +18,7 @@ export const updateTopic = async (params: any) => {
   return isValidResponse(res);
 };
 
-export const deleteTopic = async (id: string) => {
+export const deleteTopic = async (id: number) => {
   const res = await topicService.deleteTopic(id);
   return isValidResponse(res);
 };

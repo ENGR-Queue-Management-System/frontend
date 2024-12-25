@@ -7,7 +7,7 @@ import { setQueue, setUser } from "@/store/user";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { StrictMode, useEffect } from "react";
 import { Provider } from "react-redux";
 import {
   NotificationProvider,
@@ -37,7 +37,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const location = usePathname();
   const user = useAppSelector((state) => state.user.user);
-  const queue = useAppSelector((state) => state.user.queue);
   const counters = useAppSelector((state) => state.counter);
   const topics = useAppSelector((state) => state.topic);
   const dispatch = useAppDispatch();
@@ -76,17 +75,17 @@ function MyApp({ Component, pageProps }: AppProps) {
             if (decodedToken.studentId) {
               data.studentId = decodedToken.studentId;
             }
-            dispatch(setUser(data));
+            dispatch(setUser({ ...data, role: ROLE.STUDENT }));
             fetchQueue({
-              firstName: decodedToken.firstName,
-              lastName: decodedToken.lastName,
+              firstName: data.firstNameTH,
+              lastName: data.lastNameTH,
             });
           }
         }
       } else if (location != Route.Index) {
         // router.replace(Route.Index);
       }
-    } else if (![Route.Index, Route.CmuEntraIDCallback].includes(location)) {
+    } else if (![Route.Index, Route.Callback].includes(location)) {
       // router.replace(Route.Index);
     }
 
@@ -103,7 +102,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const fetchUser = async () => {
     const res = await getUserInfo();
     if (res) {
-      dispatch(setUser(res));
+      dispatch(setUser({ ...res, role: ROLE.ADMIN }));
     }
   };
 
@@ -151,11 +150,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <LoadingOverlay />
       ) : (
         <div className="flex flex-col h-screen w-screen overflow-hidden">
-          {![
-            Route.Index,
-            Route.DisplayQueue,
-            Route.CmuEntraIDCallback,
-          ].includes(location) && <Navbar />}
+          {![Route.Index, Route.DisplayQueue, Route.Callback].includes(
+            location
+          ) && <Navbar />}
           <div className="flex flex-col h-full w-full overflow-hidden">
             <Component {...pageProps} />
           </div>
@@ -165,7 +162,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
   // return (
   //   <div className="flex flex-col h-screen w-screen overflow-hidden">
-  //     {![Route.Index, Route.DisplayQueue, Route.CmuEntraIDCallback].includes(
+  //     {![Route.Index, Route.DisplayQueue, Route.Callback].includes(
   //       location
   //     ) && <Navbar />}
   //     <div className="flex flex-col h-full w-full overflow-hidden">
@@ -177,11 +174,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 export default function App(props: AppProps) {
   return (
-    <Provider store={store}>
-      <NotificationProvider>
-        <MyApp {...props} />
-        <Toaster />
-      </NotificationProvider>
-    </Provider>
+    <StrictMode>
+      <Provider store={store}>
+        <NotificationProvider>
+          <MyApp {...props} />
+          <Toaster />
+        </NotificationProvider>
+      </Provider>
+    </StrictMode>
   );
 }
