@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  overscroll-behavior: none;
 }
 
 @font-face {
@@ -86,6 +87,7 @@ body {
   -webkit-user-select: text;
   -ms-user-select: text;
   -moz-user-select: text;
+  overscroll-behavior: none;
 }
 
 @media (pointer: coarse) {
@@ -94,6 +96,7 @@ body {
     -webkit-user-select: none;
     -ms-user-select: none;
     -moz-user-select: none;
+    position: fixed;
   }
 }
 
