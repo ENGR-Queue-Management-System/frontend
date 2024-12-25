@@ -7,11 +7,12 @@ const Textarea = React.forwardRef<
 >(({ className, maxLength = 100, ...props }, ref) => {
   const [charCount, setCharCount] = React.useState(0);
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (maxLength && e.target.value.length <= maxLength) {
-      setCharCount(e.target.value.length);
+  React.useEffect(() => {
+    const length = (props.value as string).length;
+    if (maxLength && length <= maxLength) {
+      setCharCount(length);
     }
-  };
+  }, [props.value]);
 
   return (
     <div className="flex flex-col max-w-full relative">
@@ -22,7 +23,6 @@ const Textarea = React.forwardRef<
         )}
         ref={ref}
         maxLength={maxLength}
-        onChange={handleChange}
         {...props}
       />
       {maxLength && (

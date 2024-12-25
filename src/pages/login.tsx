@@ -3,7 +3,9 @@ import Router from "next/router";
 import { Route } from "@/config/Route";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { useNotification } from "@/notifications/useNotification";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { reserveNotLogin } from "@/services/authentication/authentication.service";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
@@ -36,6 +38,19 @@ import { setQueue } from "@/store/user";
 import { subscribeNotification } from "@/services/subscription/subscription.service";
 import { setSubscription } from "@/store/subscription";
 
+const formSchema = z.object({
+  firstName: z
+    .string()
+    .min(1, { message: "First name is required" })
+    .regex(validateEngThai(), "Invalid first name"),
+  lastName: z
+    .string()
+    .min(1, { message: "Last name is required" })
+    .regex(validateEngThai(), "Invalid last name"),
+  topic: z.number().min(1, { message: "Please select a valid topic" }),
+  note: z.string().max(70, "Note cannot exceed 70 characters").optional(),
+});
+
 export default function Login() {
   const { deviceType, isPhone, pushSubscription } = useNotification();
   const loading = useAppSelector((state) => state.loading.loadingOverlay);
@@ -47,21 +62,20 @@ export default function Login() {
     state.topic.filter(({ id }) => topicIds.includes(id))
   );
   const dispatch = useAppDispatch();
-  const form = useForm({
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: new ReserveRequestDTO(),
   });
+  const selectedTopic = form.watch("topic");
 
-  const onBlurHandler = async (fieldName: any) => {
+  const onBlurHandler = async (fieldName: keyof ReserveRequestDTO) => {
     await form.trigger(fieldName);
   };
 
   const onClickLogin = async (data: ReserveRequestDTO) => {
     if (pushSubscription) {
       dispatch(setLoadingOverlay(true));
-      const res = await reserveNotLogin({
-        ...data,
-        topic: parseInt(data.topic as any),
-      });
+      const res = await reserveNotLogin(data);
       if (res) {
         localStorage.setItem("token", res.token);
         toast({
@@ -109,13 +123,7 @@ export default function Login() {
           >
             <FormField
               control={form.control}
-              {...form.register("firstName", {
-                required: "first name is required",
-                pattern: {
-                  value: validateEngThai(),
-                  message: "invalid first name",
-                },
-              })}
+              name="firstName"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="flex">
@@ -123,9 +131,9 @@ export default function Login() {
                   </FormLabel>
                   <FormControl>
                     <Input
+                      {...field}
                       className="w-full font-normal iphone:max-sm:rounded-xl iphone:max-sm:text-[13px] bg-[#f0f0f0] border-none iphone:max-sm:h-9"
                       placeholder="e.g. สมหมาย"
-                      {...field}
                       onBlur={() => onBlurHandler("firstName")}
                     />
                   </FormControl>
@@ -135,13 +143,7 @@ export default function Login() {
             />
             <FormField
               control={form.control}
-              {...form.register("lastName", {
-                required: "last name is required",
-                pattern: {
-                  value: validateEngThai(),
-                  message: "invalid last name",
-                },
-              })}
+              name="lastName"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="flex">
@@ -149,9 +151,9 @@ export default function Login() {
                   </FormLabel>
                   <FormControl>
                     <Input
+                      {...field}
                       className="w-full font-normal iphone:max-sm:rounded-xl iphone:max-sm:text-[13px] bg-[#f0f0f0] border-none iphone:max-sm:h-9"
                       placeholder="e.g. เรียนดี"
-                      {...field}
                       onBlur={() => onBlurHandler("lastName")}
                     />
                   </FormControl>
@@ -161,17 +163,14 @@ export default function Login() {
             />
             <FormField
               control={form.control}
-              {...form.register("topic", {
-                required: true,
-                validate: (value) => Number(value) > 0 || "invalid topic",
-              })}
+              name="topic"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="flex">
                     หัวข้อ (Topic) <p className="text-red-600">*</p>
                   </FormLabel>
                   <Select
-                    onValueChange={field.onChange}
+                    onValueChange={(value) => field.onChange(parseInt(value))}
                     value={field.value ? field.value.toString() : undefined}
                   >
                     <FormControl>
@@ -212,7 +211,7 @@ export default function Login() {
                 </FormItem>
               )}
             />
-            {form.watch().topic !== 0 && (
+            {!!selectedTopic && (
               <FormField
                 control={form.control}
                 name="note"
