@@ -1,6 +1,6 @@
 import { isValidResponse } from "@/helpers/validation";
 import { queueController } from "./queue.repository";
-import { StudentQueueRequestDTO } from "./dto/queue.dto";
+import { QueueRequestDTO, StudentQueueRequestDTO } from "./dto/queue.dto";
 
 const queueService = queueController();
 
@@ -14,7 +14,7 @@ export const getStudentQueue = async (params: StudentQueueRequestDTO) => {
   return isValidResponse(res);
 };
 
-export const createQueue = async (params: any) => {
+export const createQueue = async (params: QueueRequestDTO) => {
   const res = await queueService.createQueue(params);
   return isValidResponse(res);
 };

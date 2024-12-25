@@ -1,5 +1,5 @@
 import apiService from "@/services/apiService";
-import { StudentQueueRequestDTO } from "./dto/queue.dto";
+import { QueueRequestDTO, StudentQueueRequestDTO } from "./dto/queue.dto";
 
 export const queueController = (configService: any = {}) => {
   const service = apiService(configService);
@@ -12,7 +12,7 @@ export const queueController = (configService: any = {}) => {
     getStudentQueue: async (params: StudentQueueRequestDTO) => {
       return service.get(`${prefix}/student`, { ...params });
     },
-    createQueue: async (params: any) => {
+    createQueue: async (params: QueueRequestDTO) => {
       return service.post(prefix, { ...params });
     },
     updateQueue: async (id: number, params: any) => {

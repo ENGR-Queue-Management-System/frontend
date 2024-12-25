@@ -30,10 +30,12 @@ import { getTopics } from "@/services/topic/topic.service";
 import { setTopics } from "@/store/topic";
 import { setConfigData, setPrevPath } from "@/store/config";
 import { getConfigData } from "@/services/config/config.service";
+import ErrorResponse from "@/components/ErrorResponse";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { isSupported, isGranted } = useNotification();
   const loading = useAppSelector((state) => state.loading);
+  const error = useAppSelector((state) => state.errorResponse);
   const router = useRouter();
   const location = usePathname();
   const user = useAppSelector((state) => state.user.user);
@@ -52,6 +54,17 @@ function MyApp({ Component, pageProps }: AppProps) {
     const timeout = setTimeout(() => dispatch(setLoading(false)), 2000);
     return () => clearTimeout(timeout);
   }, []);
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      dispatch(setPrevPath(router.asPath));
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [router]);
 
   useEffect(() => {
     if (!counters.length) {
@@ -88,16 +101,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     } else if (![Route.Index, Route.CmuEntraIDCallback].includes(location)) {
       // router.replace(Route.Index);
     }
-
-    const handleRouteChange = (url: string) => {
-      dispatch(setPrevPath(router.asPath));
-    };
-
-    router.events.on("routeChangeStart", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
-    };
-  }, [dispatch, router, user.role]);
+  }, [dispatch, user.role]);
 
   const fetchUser = async () => {
     const res = await getUserInfo();
@@ -146,13 +150,16 @@ function MyApp({ Component, pageProps }: AppProps) {
         <UnsupportedNotification />
       ) : !isGranted ? (
         <SubscribeNotification />
-      ) : loading.loadingOverlay ? (
-        <LoadingOverlay />
+      ) : error.statusCode ? (
+        <ErrorResponse />
       ) : (
         <div className="flex flex-col h-screen w-screen overflow-hidden">
-          {![Route.Index, Route.DisplayQueue, Route.CmuEntraIDCallback].includes(
-            location
-          ) && <Navbar />}
+          {loading.loadingOverlay && <LoadingOverlay />}
+          {![
+            Route.Index,
+            Route.DisplayQueue,
+            Route.CmuEntraIDCallback,
+          ].includes(location) && <Navbar />}
           <div className="flex flex-col h-full w-full overflow-hidden">
             <Component {...pageProps} />
           </div>

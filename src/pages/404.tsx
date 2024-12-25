@@ -3,6 +3,7 @@ import IconBack from "../../public/icons/arrowLeft.svg";
 import Icon from "@/components/Icon";
 import Image from "next/image";
 import pageNotFound from "../../public/images/404.png";
+import Router from "next/router";
 
 export default function Custom404() {
   return (
@@ -36,13 +37,9 @@ export default function Custom404() {
           alt="Page Not Found"
         />
       </div>
-
-      <Button
-        variant="default"
-        className="iphone:max-sm:!h-[50px] acerSwift:hidden"
-      >
+      <Button variant="default" onClick={() => Router.back()}>
         <Icon IconComponent={IconBack} />
-        Back to The Home Page
+        Back
       </Button>
     </div>
   );

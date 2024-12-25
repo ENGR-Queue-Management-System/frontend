@@ -49,17 +49,17 @@ export default function Home() {
     }
   }, []);
 
-  useEffect(() => {
-    if (user.role) {
-      if (user.role == ROLE.ADMIN) {
-        Router.push(Route.AdminIndex);
-      } else if (queue.no) {
-        Router.push(Route.StudentQueue);
-      } else {
-        Router.push(Route.StudentIndex);
-      }
-    }
-  }, [user.role]);
+  // useEffect(() => {
+  //   if (user.role) {
+  //     if (user.role == ROLE.ADMIN) {
+  //       Router.push(Route.AdminIndex);
+  //     } else if (queue.no) {
+  //       Router.push(Route.StudentQueue);
+  //     } else {
+  //       Router.push(Route.StudentIndex);
+  //     }
+  //   }
+  // }, [user.role]);
 
   const sendPushNotification = async () => {
     const payload = {
