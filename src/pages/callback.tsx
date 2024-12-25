@@ -10,7 +10,7 @@ import { jwtDecode } from "jwt-decode";
 import { StudentQueueRequestDTO } from "@/services/queue/dto/queue.dto";
 import { getStudentQueue } from "@/services/queue/queue.service";
 
-export default function CmuEntraIDCallback() {
+export default function Callback() {
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
   const dispatch = useAppDispatch();

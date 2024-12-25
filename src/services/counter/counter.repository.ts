@@ -16,7 +16,7 @@ export const roomController = (configService: any = {}) => {
       return service.put(`${prefix}/${id}`, { ...params });
     },
     deleteCounter: async (id: number) => {
-      return service.get(`${prefix}/${id}`);
+      return service.delete(`${prefix}/${id}`, {});
     },
   };
 };

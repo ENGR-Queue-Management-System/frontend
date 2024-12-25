@@ -14,8 +14,8 @@ export const topicController = (configService: any = {}) => {
     updateTopic: async (params: any) => {
       return service.put(prefix, { ...params });
     },
-    deleteTopic: async (id: string) => {
-      return service.get(`${prefix}/${id}`);
+    deleteTopic: async (id: number) => {
+      return service.delete(`${prefix}/${id}`, {});
     },
   };
 };

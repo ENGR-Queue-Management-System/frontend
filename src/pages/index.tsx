@@ -53,13 +53,13 @@ export default function Home() {
     if (user.role) {
       if (user.role == ROLE.ADMIN) {
         Router.push(Route.AdminIndex);
-      } else if (queue) {
+      } else if (queue.no) {
         Router.push(Route.StudentQueue);
       } else {
         Router.push(Route.StudentIndex);
       }
     }
-  }, [user]);
+  }, [user.role]);
 
   const sendPushNotification = async () => {
     const payload = {

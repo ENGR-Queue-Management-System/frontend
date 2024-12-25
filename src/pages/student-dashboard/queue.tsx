@@ -23,12 +23,34 @@ import { Button } from "@/components/ui/button";
 import IconStar from "../../../public/icons/star.svg";
 import IconStarFull from "../../../public/icons/starFull.svg";
 import IconExclaimation from "../../../public/icons/exclaimation.svg";
-import { useAppSelector } from "@/store";
+import { useAppDispatch, useAppSelector } from "@/store";
 import { dateFormatter } from "@/helpers/function";
+import { deleteQueue } from "@/services/queue/queue.service";
+import { toast } from "@/hooks/use-toast";
+import Router from "next/router";
+import { Route } from "@/config/Route";
+import { setQueue } from "@/store/user";
 export default function StudentQueue() {
+  const prevPath = useAppSelector((state) => state.config.prevPath);
+  const user = useAppSelector((state) => state.user.user);
   const queue = useAppSelector((state) => state.user.queue);
-  const [openFeedbackModal, setOpenFeedbackModal] = useState(true);
+  const dispatch = useAppDispatch();
+  const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
   const [rateFeedback, setRateFeedback] = useState(0);
+
+  const leaveQueue = async () => {
+    const res = await deleteQueue(queue.id);
+    if (res) {
+      localStorage.removeItem("token");
+      dispatch(setQueue({}));
+      toast({
+        title: "Leave Queue successfully",
+        variant: "success",
+        duration: 3000,
+      });
+      Router.push(prevPath);
+    }
+  };
   return (
     <>
       <Dialog open={openFeedbackModal} onOpenChange={setOpenFeedbackModal}>
@@ -172,6 +194,7 @@ export default function StudentQueue() {
             <Button
               variant="ghost"
               className="text-b1  iphone:max-sm:text-b2 text-delete font-semibold hover:bg-delete/10 w-fit"
+              onClick={leaveQueue}
             >
               Leave the Queues
             </Button>

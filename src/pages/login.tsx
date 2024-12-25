@@ -37,6 +37,8 @@ import Icon from "@/components/Icon";
 import { setQueue } from "@/store/user";
 import { subscribeNotification } from "@/services/subscription/subscription.service";
 import { setSubscription } from "@/store/subscription";
+import { ROLE } from "@/config/Enum";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   firstName: z
@@ -54,6 +56,7 @@ const formSchema = z.object({
 export default function Login() {
   const { deviceType, isPhone, pushSubscription } = useNotification();
   const loading = useAppSelector((state) => state.loading.loadingOverlay);
+  const user = useAppSelector((state) => state.user.user);
   const counters = useAppSelector((state) =>
     state.counter.filter(({ status }) => status == true)
   );
@@ -67,6 +70,13 @@ export default function Login() {
     defaultValues: new ReserveRequestDTO(),
   });
   const selectedTopic = form.watch("topic");
+
+  useEffect(() => {
+    if (user.firstNameTH) {
+      form.setValue("firstName", user.firstNameTH);
+      form.setValue("lastName", user.lastNameTH);
+    }
+  }, [user]);
 
   const onBlurHandler = async (fieldName: keyof ReserveRequestDTO) => {
     await form.trigger(fieldName);
@@ -85,6 +95,7 @@ export default function Login() {
         });
         dispatch(
           setUser({
+            role: ROLE.STUDENT,
             firstNameTH: res.queue.firstName,
             lastNameTH: res.queue.lastName,
           })
@@ -260,7 +271,10 @@ export default function Login() {
                 <Button
                   className="text-default"
                   variant="link"
-                  onClick={() => Router.back()}
+                  onClick={() => {
+                    dispatch(setUser({}));
+                    Router.push(Route.Index);
+                  }}
                 >
                   Back
                 </Button>

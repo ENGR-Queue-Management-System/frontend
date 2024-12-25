@@ -25,6 +25,7 @@ export default function StudentIndex() {
     useNotification();
   const topics = useAppSelector((state) => state.topic);
   const user = useAppSelector((state) => state.user.user);
+  const queue = useAppSelector((state) => state.user.queue);
   const subscription = useAppSelector((state) => state.subscription);
   const dispatch = useAppDispatch();
   const [selectTopic, setSelectTopic] = useState(0);
@@ -43,10 +44,14 @@ export default function StudentIndex() {
       } else if (user.studentId) {
         Router.push(Route.StudentIndex);
       } else if (user.firstNameTH) {
-        Router.push(`${Route.StudentQueue}`);
+        if (queue.no) {
+          Router.push(Route.StudentQueue);
+        } else {
+          Router.push(Route.Login);
+        }
       }
     }
-  }, [user]);
+  }, [user, queue.no]);
 
   const getSubsrciption = async () => {
     const res = await subscribeNotification(pushSubscription!);

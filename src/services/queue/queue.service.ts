@@ -19,12 +19,12 @@ export const createQueue = async (params: any) => {
   return isValidResponse(res);
 };
 
-export const updateQueue = async (id: string, params: any) => {
+export const updateQueue = async (id: number, params: any) => {
   const res = await queueService.updateQueue(id, params);
   return isValidResponse(res);
 };
 
-export const deleteQueue = async (id: string) => {
+export const deleteQueue = async (id: number) => {
   const res = await queueService.deleteQueue(id);
   return isValidResponse(res);
 };
