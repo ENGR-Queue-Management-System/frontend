@@ -6,7 +6,6 @@ import { useNotification } from "@/notifications/useNotification";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { reserveNotLogin } from "@/services/authentication/authentication.service";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
 import Loading from "@/components/Loading";
@@ -21,7 +20,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { ReserveRequestDTO } from "@/services/authentication/dto/authentication.dto";
 import { toast } from "@/hooks/use-toast";
 import { setLoadingOverlay } from "@/store/loading";
 import {
@@ -39,6 +37,8 @@ import { subscribeNotification } from "@/services/subscription/subscription.serv
 import { setSubscription } from "@/store/subscription";
 import { ROLE } from "@/config/Enum";
 import { useEffect } from "react";
+import { QueueRequestDTO } from "@/services/queue/dto/queue.dto";
+import { createQueue } from "@/services/queue/queue.service";
 
 const formSchema = z.object({
   firstName: z
@@ -67,7 +67,7 @@ export default function Login() {
   const dispatch = useAppDispatch();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: new ReserveRequestDTO(),
+    defaultValues: new QueueRequestDTO(),
   });
   const selectedTopic = form.watch("topic");
 
@@ -78,14 +78,14 @@ export default function Login() {
     }
   }, [user]);
 
-  const onBlurHandler = async (fieldName: keyof ReserveRequestDTO) => {
+  const onBlurHandler = async (fieldName: keyof QueueRequestDTO) => {
     await form.trigger(fieldName);
   };
 
-  const onClickLogin = async (data: ReserveRequestDTO) => {
+  const onClickLogin = async (data: QueueRequestDTO) => {
     if (pushSubscription) {
       dispatch(setLoadingOverlay(true));
-      const res = await reserveNotLogin(data);
+      const res = await createQueue(data);
       if (res) {
         localStorage.setItem("token", res.token);
         toast({
