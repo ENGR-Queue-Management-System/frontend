@@ -1,5 +1,10 @@
 import { ROLE, STATUS } from "@/config/Enum";
 
+export interface IModelConfig {
+  id: number;
+  loginNotCmu: boolean;
+}
+
 export interface IModelSubscription {
   firstName: string;
   lastName: string;

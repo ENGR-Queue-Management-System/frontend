@@ -28,7 +28,8 @@ import Head from "next/head";
 import SubscribeNotification from "@/components/SubscribeNotification";
 import { getTopics } from "@/services/topic/topic.service";
 import { setTopics } from "@/store/topic";
-import { setPrevPath } from "@/store/config";
+import { setConfigData, setPrevPath } from "@/store/config";
+import { getConfigData } from "@/services/config/config.service";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { isSupported, isGranted } = useNotification();
@@ -42,6 +43,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    const fetchConfigData = async () => {
+      const res = await getConfigData();
+      if (res) {
+        dispatch(setConfigData(res));
+      }
+    };
+    fetchConfigData();
     const timeout = setTimeout(() => dispatch(setLoading(false)), 2000);
     return () => clearTimeout(timeout);
   }, []);

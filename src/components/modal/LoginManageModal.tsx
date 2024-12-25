@@ -9,6 +9,10 @@ import {
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import LoginPage from "@/pages/index";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { updateLoginNotCmu } from "@/services/config/config.service";
+import { setLoginNotCmu } from "@/store/config";
+import { toast } from "@/hooks/use-toast";
 
 type PopupProps = {
   triggerText?: string;
@@ -20,9 +24,21 @@ export default function LoginManageModal({
   icon: IconComponent,
   title,
 }: PopupProps) {
-  const [isSwitchOn, setIsSwitchOn] = useState(true);
-  const handleSwitchChange = (value: any) => {
-    setIsSwitchOn(value);
+  const config = useAppSelector((state) => state.config);
+  const dispatch = useAppDispatch();
+
+  const onChangeLoginNotCmu = async (value: boolean) => {
+    const res = await updateLoginNotCmu({ loginNotCmu: value });
+    if (res) {
+      dispatch(setLoginNotCmu(value));
+      toast({
+        title: `${
+          value ? "เปิดจองคิว" : "ปิดจองคิว"
+        } โดยไม่ต้องใช้ CMU Account`,
+        variant: "success",
+        duration: 3000,
+      });
+    }
   };
 
   return (
@@ -64,7 +80,10 @@ export default function LoginManageModal({
                 สำหรับนักเรียน นักศึกษา และบุคลากรที่ไม่มี CMU Account
               </p>
             </div>
-            <Switch checked={isSwitchOn} onCheckedChange={handleSwitchChange} />
+            <Switch
+              checked={config.loginNotCmu}
+              onCheckedChange={onChangeLoginNotCmu}
+            />
             <div className="hidden">
               <LoginPage />
             </div>

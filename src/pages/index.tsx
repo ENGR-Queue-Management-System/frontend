@@ -31,7 +31,7 @@ import Router, { useRouter } from "next/router";
 
 export default function Home() {
   const { deviceType, isPhone } = useNotification();
-  const prevPath = useAppSelector((state) => state.config.prevPath);
+  const config = useAppSelector((state) => state.config);
   const user = useAppSelector((state) => state.user.user);
   const queue = useAppSelector((state) => state.user.queue);
   const [testSendNotiList, setTestSendNotiList] = useState<any[]>([]);
@@ -82,7 +82,9 @@ export default function Home() {
   return (
     <motion.div
       initial={
-        isPhone ? { x: prevPath == Route.Login ? "-100%" : "100%" } : false
+        isPhone
+          ? { x: config.prevPath == Route.Login ? "-100%" : "100%" }
+          : false
       }
       animate={isPhone ? { x: 0 } : false}
       exit={isPhone ? { x: "-100%" } : undefined}
@@ -232,20 +234,22 @@ export default function Home() {
             </Button>
             <div className="flex flex-col !text-center !items-center !justify-center w-[100%] mt-6">
               {/* {showLink &&  */}
-              <p className="sm:max-samsungA24:text-[15px]  text-[15px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
-                <span className="font-[500] text-default"> Don't have</span> CMU
-                account?{" "}
-                <span
-                  className={`underline font-[500] cursor-pointer ${
-                    isPhone
-                      ? "text-[#4e87d6] hover:text-[#3d6eb2]"
-                      : "text-[#4e87d6] hover:text-[#3d6eb2]"
-                  } `}
-                  onClick={() => Router.push(Route.Login)}
-                >
-                  Click here
-                </span>
-              </p>
+              {config.loginNotCmu && (
+                <p className="sm:max-samsungA24:text-[15px]  text-[15px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
+                  <span className="font-[500] text-default"> Don't have</span>{" "}
+                  CMU account?{" "}
+                  <span
+                    className={`underline font-[500] cursor-pointer ${
+                      isPhone
+                        ? "text-[#4e87d6] hover:text-[#3d6eb2]"
+                        : "text-[#4e87d6] hover:text-[#3d6eb2]"
+                    } `}
+                    onClick={() => Router.push(Route.Login)}
+                  >
+                    Click here
+                  </span>
+                </p>
+              )}
               {/* } */}
               {/* <Button
                 variant="link"
