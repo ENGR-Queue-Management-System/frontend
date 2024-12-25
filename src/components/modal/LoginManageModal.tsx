@@ -22,7 +22,7 @@ export default function LoginManageModal({
 }: PopupProps) {
   const [isSwitchOn, setIsSwitchOn] = useState(true);
   const handleSwitchChange = (value: any) => {
-    setIsSwitchOn(value); 
+    setIsSwitchOn(value);
   };
 
   return (
@@ -66,7 +66,7 @@ export default function LoginManageModal({
             </div>
             <Switch checked={isSwitchOn} onCheckedChange={handleSwitchChange} />
             <div className="hidden">
-              <LoginPage showLink={isSwitchOn} />
+              <LoginPage />
             </div>
           </div>
         </div>
