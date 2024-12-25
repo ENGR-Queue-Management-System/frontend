@@ -11,6 +11,7 @@
   font-family: "NotoSansThai";
   src: url("../../public/fonts/NotoSansThai.ttf") format("opentype");
   unicode-range: U+0E00- U+0E7F;
+  font-weight: 500 600 700 800 900;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -82,15 +83,15 @@
 
 body {
   user-select: text;
-  -webkit-user-select: text; 
-  -ms-user-select: text; 
-  -moz-user-select: text; 
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  -moz-user-select: text;
 }
 
 @media (pointer: coarse) {
   body {
     user-select: none;
-    -webkit-user-select: none; 
+    -webkit-user-select: none;
     -ms-user-select: none;
     -moz-user-select: none;
   }
