@@ -87,7 +87,6 @@ body {
   -webkit-user-select: text;
   -ms-user-select: text;
   -moz-user-select: text;
-  overscroll-behavior: contain;
 }
 
 @media (pointer: coarse) {
