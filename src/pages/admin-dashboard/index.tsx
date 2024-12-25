@@ -31,13 +31,13 @@ export default function AdminIndex() {
   const queues = useAppSelector((state) => state.queue.queues);
   const currentQueue = useAppSelector((state) => state.queue.current);
   const dispatch = useAppDispatch();
-  const { deviceType, isPhone } = useNotification();
+  const { isPhone } = useNotification();
 
-  // useEffect(() => {
-  //   if (counter && counter.id) {
-  //     fetchQueues();
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (counter && counter.id) {
+      fetchQueues();
+    }
+  }, [counter]);
 
   const fetchQueues = async () => {
     if (counter?.id) {
@@ -128,32 +128,6 @@ export default function AdminIndex() {
                 </Table>
               </div>
             )}
-            <div className="flex flex-col">
-              {queues.length ? (
-                queues.map((items) => (
-                  <div
-                    key={items.id}
-                    className="flex p-4 px-5 items-center bg-white first:rounded-t-md border-b-[1px] last:border-none  justify-between"
-                  >
-                    <div className="flex gap-4 items-center">
-                      <p className=" font-semibold text-[14px] text-primary">
-                        {items.no}
-                      </p>
-                      <div className="flex flex-col">
-                        <p className="text-[13px]">{getUserName(items)}</p>
-                        <p className="text-[13px] text-primary">{items.no}</p>
-                      </div>
-                    </div>
-                    <p className="text-[13px]"> {items.topic.topicTH}</p>
-                  </div>
-                ))
-              ) : (
-                <div className="text-[15px] bg-white rounded-md items-center flex justify-center py-8">
-                  {" "}
-                  ไม่มีคิวที่รอเรียก{" "}
-                </div>
-              )}
-            </div>
           </div>
           <div className="flex flex-col gap-3 h-full w-[40%] iphone:max-sm:w-[100%] text-[15px] font-medium">
             <div

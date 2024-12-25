@@ -20,6 +20,7 @@ import { logout } from "@/services/user/user.service";
 import { ROLE } from "@/config/Enum";
 import LoginManageModal from "./modal/LoginManageModal";
 import { useNotification } from "@/notifications/useNotification";
+import { Route } from "@/config/Route";
 
 export default function Profile() {
   const user = useAppSelector((state) => state.user.user);
@@ -45,7 +46,9 @@ export default function Profile() {
             </div>
             <Icon
               IconComponent={IconUser}
-              className={` stroke-default stroke-[1.1px] ${isPhone ? '!size-8' : '!size-10'}   acerSwift:max-macair133:!size-9`}
+              className={` stroke-default stroke-[1.1px] ${
+                isPhone ? "!size-8" : "!size-10"
+              }   acerSwift:max-macair133:!size-9`}
             />
           </Button>
         </PopoverTrigger>
@@ -61,7 +64,7 @@ export default function Profile() {
               icon={IconAdminMange}
               title="จัดการเคาน์เตอร์"
             ></CounterManageModal>
-             <LoginManageModal
+            <LoginManageModal
               triggerText="จัดการเข้าใช้งานระบบ"
               icon={IconAdminMange}
               title="จัดการเข้าใช้งานระบบ"
@@ -71,10 +74,13 @@ export default function Profile() {
               icon={IconHistory}
               title="ประวัติการบริการ"
             ></LogQueueModal>
-            <Link href="/student-dashboard">
+            <Link href={Route.Index}>
+              <Button variant="ghost">Home</Button>
+            </Link>
+            <Link href={Route.StudentIndex}>
               <Button variant="ghost">Student dashboard</Button>
             </Link>
-            <Link href="/admin-dashboard">
+            <Link href={Route.AdminIndex}>
               <Button variant="ghost">Admin dashboard</Button>
             </Link>
             <Button
