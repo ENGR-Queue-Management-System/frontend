@@ -1,6 +1,6 @@
 export const Route = {
   Index: "/",
-  Callback: "/callback",
+  CmuEntraIDCallback: "/cmuEntraIDCallback",
   Login: "/login",
   AdminIndex: "/admin-dashboard",
   StudentIndex: "/student-dashboard",

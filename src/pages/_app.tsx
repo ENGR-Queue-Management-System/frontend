@@ -85,7 +85,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       } else if (location != Route.Index) {
         // router.replace(Route.Index);
       }
-    } else if (![Route.Index, Route.Callback].includes(location)) {
+    } else if (![Route.Index, Route.CmuEntraIDCallback].includes(location)) {
       // router.replace(Route.Index);
     }
 
@@ -150,7 +150,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <LoadingOverlay />
       ) : (
         <div className="flex flex-col h-screen w-screen overflow-hidden">
-          {![Route.Index, Route.DisplayQueue, Route.Callback].includes(
+          {![Route.Index, Route.DisplayQueue, Route.CmuEntraIDCallback].includes(
             location
           ) && <Navbar />}
           <div className="flex flex-col h-full w-full overflow-hidden">
@@ -162,7 +162,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
   // return (
   //   <div className="flex flex-col h-screen w-screen overflow-hidden">
-  //     {![Route.Index, Route.DisplayQueue, Route.Callback].includes(
+  //     {![Route.Index, Route.DisplayQueue, Route.CmuEntraIDCallback].includes(
   //       location
   //     ) && <Navbar />}
   //     <div className="flex flex-col h-full w-full overflow-hidden">
