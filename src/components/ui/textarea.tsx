@@ -8,7 +8,7 @@ const Textarea = React.forwardRef<
   const [charCount, setCharCount] = React.useState(0);
 
   React.useEffect(() => {
-    const length = (props.value as string).length;
+    const length = (props.value as string)?.length;
     if (maxLength && length <= maxLength) {
       setCharCount(length);
     }
