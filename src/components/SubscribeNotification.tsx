@@ -56,13 +56,16 @@ export default function SubscribeNotification() {
               : "w-[80%] justify-center  text-start"
           } `}
         >
-           <Image
-            src={isPhone ? logoSDMinimal : ""}
-            alt="logoEng"
-            className={` ${
-              isPhone ? " mt-[40px] fixed top-5 left-6   w-[12vw] " : "hidden"
-            } `}
-          />
+          {/* waring Image is missing required "src" */}
+          {isPhone && (
+            <Image
+              src={isPhone ? logoSDMinimal : ""}
+              alt="logoEng"
+              className={` ${
+                isPhone ? " mt-[40px] fixed top-5 left-6   w-[12vw] " : "hidden"
+              } `}
+            />
+          )}
           <div className={` ${isPhone ? "" : ""}`}>
             <Icon
               IconComponent={iconBell}

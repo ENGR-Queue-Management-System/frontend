@@ -6,7 +6,7 @@ import { setCounters } from "@/store/counter";
 import { setQueue, setUser } from "@/store/user";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
 import {
@@ -23,11 +23,12 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { ROLE } from "@/config/Enum";
 import { getStudentQueue } from "@/services/queue/queue.service";
 import { StudentQueueRequestDTO } from "@/services/queue/dto/queue.dto";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import Head from "next/head";
 import SubscribeNotification from "@/components/SubscribeNotification";
 import { getTopics } from "@/services/topic/topic.service";
 import { setTopics } from "@/store/topic";
+import { setPrevPath } from "@/store/config";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { isSupported, isGranted } = useNotification();
@@ -80,6 +81,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     } else if (![Route.Index, Route.CmuEntraIDCallback].includes(location)) {
       // router.replace(Route.Index);
     }
+
+    const handleRouteChange = (url: string) => {
+      dispatch(setPrevPath(router.asPath));
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
   }, [dispatch, router, user.role]);
 
   const fetchUser = async () => {

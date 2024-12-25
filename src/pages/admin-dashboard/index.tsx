@@ -17,7 +17,7 @@ import { updateCounter } from "@/services/counter/counter.service";
 import { IModelCounter } from "@/models/Model";
 import { toast } from "@/hooks/use-toast";
 import { updateCounterData } from "@/store/counter";
-import { useDebugValue, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getQueues } from "@/services/queue/queue.service";
 import { setLoadingOverlay } from "@/store/loading";
 import { setCurrentQueue, setQueueList } from "@/store/queue";
@@ -30,17 +30,15 @@ export default function AdminIndex() {
   const queues = useAppSelector((state) => state.queue.queues);
   const currentQueue = useAppSelector((state) => state.queue.current);
   const dispatch = useAppDispatch();
-  const [firstFetch, setFirstFetch] = useState(false);
 
   // useEffect(() => {
-  //   if (!queues.length && !firstFetch) {
+  //   if (counter && counter.id) {
   //     fetchQueues();
   //   }
-  // }, [counter]);
+  // }, []);
 
   const fetchQueues = async () => {
-    if (counter && counter.id) {
-      setFirstFetch(true);
+    if (counter?.id) {
       dispatch(setLoadingOverlay(true));
       const res = await getQueues({ counter: counter.id });
       if (res) {
@@ -64,8 +62,6 @@ export default function AdminIndex() {
       });
     }
   };
-
-  
 
   return (
     <div className="flex px-5 flex-col min-h-full max-h-full w-full overflow-y-auto bg-[#f9f9f9] py-4 iphone:max-sm:h-fit">

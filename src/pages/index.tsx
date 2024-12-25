@@ -29,20 +29,13 @@ import { toast } from "@/hooks/use-toast";
 import { getUserName } from "@/helpers/function";
 import Router, { useRouter } from "next/router";
 
-
-type PopupProps = {
-  showLink?: boolean;
-};
-export default function Home({showLink}: PopupProps) {
+export default function Home() {
   const { deviceType, isPhone } = useNotification();
-  const router = useRouter();
+  const prevPath = useAppSelector((state) => state.config.prevPath);
   const user = useAppSelector((state) => state.user.user);
   const queue = useAppSelector((state) => state.user.queue);
   const [testSendNotiList, setTestSendNotiList] = useState<any[]>([]);
   const [selectTest, setSelectTest] = useState("");
-  const [prevPath, setPrevPath] = useState("");
-
-  useEffect(() => setPrevPath(router.asPath), [router.asPath]);
 
   useEffect(() => {
     if (!testSendNotiList.length) {
@@ -85,10 +78,6 @@ export default function Home({showLink}: PopupProps) {
       });
     }
   };
-
-  
-  useEffect(() => { console.log(showLink) }, [showLink]); 
-  
 
   return (
     <motion.div
@@ -153,13 +142,16 @@ export default function Home({showLink}: PopupProps) {
               : "w-[80%] justify-center  text-start"
           } `}
         >
-          <Image
-            src={isPhone ? logoSDMinimal : ""}
-            alt="logoEng"
-            className={` ${
-              isPhone ? " mt-[40px] fixed top-5 left-6   w-[12vw] " : "hidden"
-            } `}
-          />
+          {/* waring Image is missing required "src" */}
+          {isPhone && (
+            <Image
+              src={isPhone ? logoSDMinimal : ""}
+              alt="logoEng"
+              className={` ${
+                isPhone ? " mt-[40px] fixed top-5 left-6 w-[12vw] " : "hidden"
+              } `}
+            />
+          )}
           <div className={` ${isPhone ? "" : "flex  w-full items-center"}`}>
             <Icon
               IconComponent={iconLogin}
@@ -198,9 +190,7 @@ export default function Home({showLink}: PopupProps) {
           </p>
           <div
             className={`flex gap-3  items-center justify-center  ${
-              isPhone
-                ? " w-[100%] mt-2"
-                : "w-[100%] -mt-2"
+              isPhone ? " w-[100%] mt-2" : "w-[100%] -mt-2"
             } p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/20`}
           >
             <Icon IconComponent={iconEx} className="text-[#856404]" />
