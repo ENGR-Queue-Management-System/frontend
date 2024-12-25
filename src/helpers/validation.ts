@@ -1,5 +1,8 @@
 import { RESPONSE_MESSAGE, STATUS_CODE } from "@/config/response.enum";
 import { Route } from "@/config/Route";
+import { toast } from "@/hooks/use-toast";
+import store from "@/store";
+import { setErrorResponse } from "@/store/errorResponse";
 import { jwtDecode } from "jwt-decode";
 
 export const checkTokenExpired = (
@@ -24,9 +27,8 @@ export const isValidResponse = async (res: any) => {
   if (res.message === RESPONSE_MESSAGE.SUCCESS) {
     return res.data;
   } else {
+    const dispatch = store.dispatch;
     switch (res.statusCode) {
-      case STATUS_CODE.NOT_FOUND:
-        break;
       case STATUS_CODE.FORBIDDEN:
       case STATUS_CODE.UNAUTHORIZED:
         const isExpired = await checkTokenExpired(
@@ -37,8 +39,18 @@ export const isValidResponse = async (res: any) => {
           window.location.assign(Route.Index);
           return;
         }
+        dispatch(setErrorResponse(res));
+        return;
+      case STATUS_CODE.NOT_FOUND:
         break;
       default:
+        toast({
+          title: res.title ?? "Something Went Wrong",
+          description:
+            res.message ??
+            "An unexpected error occurred. Please try again later.",
+          variant: "error",
+        });
         break;
     }
     return;
