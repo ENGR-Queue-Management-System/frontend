@@ -68,7 +68,7 @@ export default function AdminIndex() {
   return (
     <div
       className={`flex ${
-        isPhone || true ? "px-3" : "px-5"
+        isPhone ? "px-3" : "px-5"
       }  flex-col min-h-full max-h-full w-full overflow-y-auto bg-[#f9f9f9] py-4 iphone:max-sm:h-fit`}
     >
       <div className="flex flex-col !w-full h-full iphone:max-sm:h-fit">
@@ -79,56 +79,55 @@ export default function AdminIndex() {
             }}
             className="w-[60%] iphone:max-sm:!h-fit iphone:max-sm:w-[100%] sm:flex-1 sm:flex rounded-lg border border-[#E5DDEA] shadow-shadow-table"
           >
-            {!isPhone ||
-              (true && (
-                <div className="overflow-y-auto iphone:max-sm:!min-h-fit flex flex-1">
-                  <Table
-                    striped={true}
-                    className={`${!queues.length ? "h-full w-full" : ""}`}
-                  >
-                    <TableHeader>
-                      <TableRow className="sticky text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1 font-bold top-0 z-30 ">
-                        <TableHead>เลขคิว</TableHead>
-                        <TableHead>รหัสนักศึกษา</TableHead>
-                        <TableHead>ชื่อ-นามสกุล</TableHead>
-                        <TableHead>รายการติดต่อ</TableHead>
-                        <TableHead>เพิ่มเติม</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody className="font-normal text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1">
-                      {queues.length ? (
-                        queues.map((item) => (
-                          <TableRow key={item.id}>
-                            <TableCell className="font-medium py-4">
-                              {item.no}
-                            </TableCell>
-                            <TableCell>{item.studentId || "-"}</TableCell>
-                            <TableCell>{getUserName(item)}</TableCell>
-                            <TableCell className="flex gap-2  translate-y-[6px] items-center">
-                              <div className="flex items-center gap-2">
-                                <div
-                                  className={` h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
-                                ></div>
-                                {item.topic.topicTH}
-                              </div>
-                            </TableCell>
-                            <TableCell>{item.note || "-"}</TableCell>
-                          </TableRow>
-                        ))
-                      ) : (
-                        <TableRow>
-                          <TableCell
-                            colSpan={5}
-                            className="text-center text-[22px] font-medium"
-                          >
-                            ไม่มีคิวที่รอเรียก
+            {!isPhone && (
+              <div className="overflow-y-auto iphone:max-sm:!min-h-fit flex flex-1">
+                <Table
+                  striped={true}
+                  className={`${!queues.length ? "h-full w-full" : ""}`}
+                >
+                  <TableHeader>
+                    <TableRow className="sticky text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1 font-bold top-0 z-30 ">
+                      <TableHead>เลขคิว</TableHead>
+                      <TableHead>รหัสนักศึกษา</TableHead>
+                      <TableHead>ชื่อ-นามสกุล</TableHead>
+                      <TableHead>รายการติดต่อ</TableHead>
+                      <TableHead>เพิ่มเติม</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody className="font-normal text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1">
+                    {queues.length ? (
+                      queues.map((item) => (
+                        <TableRow key={item.id}>
+                          <TableCell className="font-medium py-4">
+                            {item.no}
                           </TableCell>
+                          <TableCell>{item.studentId || "-"}</TableCell>
+                          <TableCell>{getUserName(item)}</TableCell>
+                          <TableCell className="flex gap-2  translate-y-[6px] items-center">
+                            <div className="flex items-center gap-2">
+                              <div
+                                className={` h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
+                              ></div>
+                              {item.topic.topicTH}
+                            </div>
+                          </TableCell>
+                          <TableCell>{item.note || "-"}</TableCell>
                         </TableRow>
-                      )}
-                    </TableBody>
-                  </Table>
-                </div>
-              ))}
+                      ))
+                    ) : (
+                      <TableRow>
+                        <TableCell
+                          colSpan={5}
+                          className="text-center text-[22px] font-medium"
+                        >
+                          ไม่มีคิวที่รอเรียก
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+            )}
             <div className="flex flex-col">
               {queues.length ? (
                 queues.map((items) => (
@@ -149,7 +148,10 @@ export default function AdminIndex() {
                   </div>
                 ))
               ) : (
-                <div className="text-[15px] bg-white rounded-md items-center flex justify-center py-8"> ไม่มีคิวที่รอเรียก </div>
+                <div className="text-[15px] bg-white rounded-md items-center flex justify-center py-8">
+                  {" "}
+                  ไม่มีคิวที่รอเรียก{" "}
+                </div>
               )}
             </div>
           </div>
@@ -164,7 +166,7 @@ export default function AdminIndex() {
                 <div className="flex-col">
                   <p
                     className={`acerSwift:max-macair133:text-b3 text-[14px] ${
-                      isPhone  ? "text-[12px]" : "text-[14px]"
+                      isPhone ? "text-[12px]" : "text-[14px]"
                     }`}
                   >
                     รับคิวนักศึกษา (ปิดรับคิว{" "}
@@ -246,7 +248,7 @@ export default function AdminIndex() {
                           คิวถัดไป
                         </p>
                         <p className="font-semibold text-[28px] iphone:max-macair133:text-h1">
-                          {queues[0]?.no || "A888"}
+                          {queues[0]?.no || "-"}
                         </p>
                       </div>
 
