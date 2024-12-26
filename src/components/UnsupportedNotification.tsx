@@ -10,17 +10,17 @@ export default function UnsupportedNotification() {
   return (
     <div className="flex flex-col gradient-try h-full w-full font-[500]  bg-cover bg-center">
       <div className="flex  justify-center items-center text-center     ">
-        <div className="text-black text-center py-5 w-full h-full justify-start items-center flex flex-col gap-5  bg-[rgba(85,85,86,0.25)] ">
+        <div className="text-black text-center py-5 w-full h-full justify-start items-center flex flex-col gap-5  ">
           <Image
             src={logoEng}
             alt="logoEng"
             className=" samsungA24:w-[10vw] mb-3 mt-7 macair133:max-samsungA24:w-[35vw] iphone:max-sm:w-[42vw] sm:max-macair133:w-[30vw]"
           />
           <div>
-            <p className=" sm:max-samsungA24:text-[28px] font-normal iphone:max-sm:text-[24px] text-[34px]">
+            <p className=" sm:max-samsungA24:text-[28px] font-normal iphone:max-sm:text-[28px] text-[34px]">
               ระบบบัตรคิวอัตโนมัติ
             </p>
-            <p className=" sm:max-samsungA24:text-[20px] iphone:max-sm:text-[18px] text-[28px]">
+            <p className=" sm:max-samsungA24:text-[20px] iphone:max-sm:text-[22px] text-[28px]">
               Automatic Queuing System
             </p>
           </div>
