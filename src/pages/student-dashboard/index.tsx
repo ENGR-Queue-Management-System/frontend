@@ -68,22 +68,24 @@ export default function StudentIndex() {
   };
 
   const reverveQueue = async () => {
-    dispatch(setLoadingOverlay(true));
-    const res = await createQueue({ topic: selectTopic, note });
-    if (res) {
-      toast({
-        title: "Reserve Queue successfully",
-        variant: "success",
-        duration: 3000,
-      });
-      dispatch(setQueue({ ...res.queue, waiting: res.waiting }));
-      const resSub = await subscribeNotification(pushSubscription!);
-      if (resSub) {
-        dispatch(setSubscription(res));
+    if (pushSubscription) {
+      dispatch(setLoadingOverlay(true));
+      const res = await createQueue({ topic: selectTopic, note });
+      if (res) {
+        toast({
+          title: "Reserve Queue successfully",
+          variant: "success",
+          duration: 3000,
+        });
+        dispatch(setQueue({ ...res.queue, waiting: res.waiting }));
+        const resSub = await subscribeNotification(pushSubscription);
+        if (resSub) {
+          dispatch(setSubscription(res));
+        }
+        Router.push(Route.StudentQueue);
       }
-      Router.push(Route.StudentQueue);
+      dispatch(setLoadingOverlay(false));
     }
-    dispatch(setLoadingOverlay(false));
   };
 
   return (
