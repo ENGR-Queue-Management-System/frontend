@@ -59,13 +59,13 @@ export default function ErrorResponse() {
   const headerError = (): string => {
     switch (error.statusCode!) {
       case 400:
-        return "Bad Request";
+        return "400 - Bad Request";
       case 401:
-        return "Unauthorized";
+        return "401 - Unauthorized";
       case 403:
         return "403 - Access Denied";
       case 500:
-        return "SDQueue Server Error";
+        return "500 - SDQueue Error";
       default:
         return "";
     }
@@ -174,7 +174,7 @@ export default function ErrorResponse() {
               className={` !w-[100%] rounded-full mt-5 h-12 text-[15px] font-semibold bg-primary hover:bg-[#3560b0] ${
                 isPhone ? "mb-12  " : " "
               }   `}
-              variant='default'
+              variant="default"
               onClick={goToHomePage}
             >
               <Icon IconComponent={IconBack} className="!size-6" />
