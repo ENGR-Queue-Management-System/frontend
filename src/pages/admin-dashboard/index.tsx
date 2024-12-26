@@ -91,7 +91,7 @@ export default function AdminIndex() {
         variant: "success",
         duration: 3000,
       });
-      const next5Queue = queues.filter((q) => q.topicId == res.topicId)[4];
+      const next5Queue = queues.filter((q) => q.topicId == res.topicId)[5];
       if (next5Queue) {
         sendPushNotification({
           firstName: next5Queue.firstName,
