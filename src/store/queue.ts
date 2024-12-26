@@ -11,9 +11,13 @@ export const queueSlice = createSlice({
     setCurrentQueue: (state, action) => {
       return { ...state, current: { ...action.payload } };
     },
+    removeFirstWaitingQueue: (state) => {
+      return { ...state, queues: state.queues.slice(1) };
+    },
   },
 });
 
-export const { setQueueList, setCurrentQueue } = queueSlice.actions;
+export const { setQueueList, setCurrentQueue, removeFirstWaitingQueue } =
+  queueSlice.actions;
 
 export default queueSlice.reducer;

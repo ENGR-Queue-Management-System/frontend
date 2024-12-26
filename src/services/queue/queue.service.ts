@@ -1,6 +1,6 @@
 import { isValidResponse } from "@/helpers/validation";
 import { queueController } from "./queue.repository";
-import { QueueRequestDTO, StudentQueueRequestDTO } from "./dto/queue.dto";
+import { CallQueueRequestDTO, QueueRequestDTO, StudentQueueRequestDTO } from "./dto/queue.dto";
 
 const queueService = queueController();
 
@@ -19,7 +19,7 @@ export const createQueue = async (params: QueueRequestDTO) => {
   return isValidResponse(res);
 };
 
-export const updateQueue = async (id: number, params: any) => {
+export const updateQueue = async (id: number, params: CallQueueRequestDTO) => {
   const res = await queueService.updateQueue(id, params);
   return isValidResponse(res);
 };

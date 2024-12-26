@@ -14,14 +14,20 @@ import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { dateFormatter, getUserName } from "@/helpers/function";
 import { updateCounter } from "@/services/counter/counter.service";
-import { IModelCounter } from "@/models/Model";
+import { IModelCounter, IModelQueue } from "@/models/Model";
 import { toast } from "@/hooks/use-toast";
 import { updateCounterData } from "@/store/counter";
 import { useEffect } from "react";
-import { getQueues } from "@/services/queue/queue.service";
+import { getQueues, updateQueue } from "@/services/queue/queue.service";
 import { setLoadingOverlay } from "@/store/loading";
-import { setCurrentQueue, setQueueList } from "@/store/queue";
+import {
+  removeFirstWaitingQueue,
+  setCurrentQueue,
+  setQueueList,
+} from "@/store/queue";
 import { useNotification } from "@/notifications/useNotification";
+import { STATUS } from "@/config/Enum";
+import { sendQueueNotification } from "@/services/subscription/subscription.service";
 
 export default function AdminIndex() {
   const user = useAppSelector((state) => state.user.user);
@@ -62,6 +68,60 @@ export default function AdminIndex() {
         variant: "default",
         duration: 3000,
       });
+    }
+  };
+
+  const callNextQueue = async (id: number) => {
+    const res = await updateQueue(id, {
+      counter: counter!.id,
+    });
+    if (res) {
+      dispatch(setCurrentQueue(res));
+      dispatch(removeFirstWaitingQueue());
+      sendPushNotification({
+        firstName: res.firstName,
+        lastName: res.lastName,
+        message: JSON.stringify({
+          title: "ถึงคิวของคุณ",
+          // body: "ถึงคิวคุณแล้ว",
+        }),
+      });
+      toast({
+        title: `เรียกคิว ${res.no}`,
+        variant: "success",
+        duration: 3000,
+      });
+      const next5Queue = queues.filter((q) => q.topicId == res.topicId)[4];
+      if (next5Queue) {
+        sendPushNotification({
+          firstName: next5Queue.firstName,
+          lastName: next5Queue.lastName,
+          message: JSON.stringify({
+            title: "อีก 5 คิวจะถึงคิวของคุณ",
+            // body: "ใกล้ถึงคิวคุณแล้ว",
+          }),
+        });
+      }
+    }
+  };
+
+  const sendPushNotification = async (
+    payload: {
+      firstName: string;
+      lastName: string;
+      message: string;
+    },
+    toastMessage?: any
+  ) => {
+    const res = await sendQueueNotification(payload);
+    if (res) {
+      if (toastMessage) {
+        toast({
+          ...toastMessage,
+          variant: "success",
+          duration: 3000,
+        });
+      }
     }
   };
 
@@ -251,6 +311,7 @@ export default function AdminIndex() {
                     <Button
                       className="w-full items-center flex samsungA24:h-14 h-12 acerSwift:max-macair133:h-[42px]"
                       disabled={!queues[0]}
+                      onClick={() => callNextQueue(queues[0].id)}
                     >
                       <p className="samsungA24:text-h2  acerSwift:max-macair133:text-b3">
                         คิวถัดไป
@@ -264,6 +325,19 @@ export default function AdminIndex() {
                       variant="outline"
                       className="w-full samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-b2 text-primary acerSwift:max-macair133:text-b3 samsungA24:text-h2 acerSwift:max-macair133:h-[42px]"
                       disabled={!currentQueue.no}
+                      onClick={() =>
+                        sendPushNotification(
+                          {
+                            firstName: currentQueue.firstName,
+                            lastName: currentQueue.lastName,
+                            message: JSON.stringify({
+                              title: "ถึงคิวคุณแล้ว",
+                              body: "เรียกซ้ำ",
+                            }),
+                          },
+                          { title: `เรียกคิว ${currentQueue.no}` }
+                        )
+                      }
                     >
                       เรียกซ้ำ
                       <Icon
