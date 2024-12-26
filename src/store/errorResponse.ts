@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const errorResponseSlice = createSlice({
   name: "errorResponse",
-  initialState: { error: undefined, statusCode: 403, message: undefined },
+  initialState: { error: undefined, statusCode: undefined, message: undefined },
   reducers: {
     setErrorResponse: (state, action) => {
       return { ...action.payload };
