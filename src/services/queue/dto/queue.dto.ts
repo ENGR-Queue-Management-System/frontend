@@ -1,3 +1,5 @@
+import { STATUS } from "@/config/Enum";
+
 export class StudentQueueRequestDTO {
   firstName: string = "";
   lastName: string = "";
@@ -8,4 +10,8 @@ export class QueueRequestDTO {
   lastName?: string;
   topic: number = 0;
   note?: string;
+}
+
+export class CallQueueRequestDTO {
+  counter: number = 0;
 }
