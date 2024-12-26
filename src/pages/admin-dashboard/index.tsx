@@ -139,53 +139,82 @@ export default function AdminIndex() {
             }}
             className="w-[60%] iphone:max-sm:!h-fit iphone:max-sm:w-[100%] sm:flex-1 sm:flex rounded-lg border border-[#E5DDEA] shadow-shadow-table"
           >
-            <div className="overflow-y-auto iphone:max-sm:!min-h-fit flex flex-1">
-              <Table
-                striped={true}
-                className={`${!queues.length ? "h-full w-full" : ""}`}
-              >
-                <TableHeader>
-                  <TableRow className="sticky text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1 font-bold top-0 z-30 ">
-                    <TableHead>เลขคิว</TableHead>
-                    <TableHead>รหัสนักศึกษา</TableHead>
-                    <TableHead>ชื่อ-นามสกุล</TableHead>
-                    <TableHead>รายการติดต่อ</TableHead>
-                    <TableHead>เพิ่มเติม</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody className="font-normal text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1">
-                  {queues.length ? (
-                    queues.map((item) => (
-                      <TableRow key={item.id}>
-                        <TableCell className="font-medium py-4">
-                          {item.no}
-                        </TableCell>
-                        <TableCell>{item.studentId || "-"}</TableCell>
-                        <TableCell>{getUserName(item)}</TableCell>
-                        <TableCell className="flex gap-2  translate-y-[6px] items-center">
-                          <div className="flex items-center gap-2">
-                            <div
-                              className={` h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
-                            ></div>
-                            {item.topic.topicTH}
-                          </div>
-                        </TableCell>
-                        <TableCell>{item.note || "-"}</TableCell>
-                      </TableRow>
-                    ))
-                  ) : (
-                    <TableRow>
-                      <TableCell
-                        colSpan={5}
-                        className="text-center text-[22px] font-medium"
-                      >
-                        ไม่มีคิวที่รอเรียก
-                      </TableCell>
+            {!isPhone ? (
+              <div className="overflow-y-auto iphone:max-sm:!min-h-fit flex flex-1">
+                <Table
+                  striped={true}
+                  className={`${!queues.length ? "h-full w-full" : ""}`}
+                >
+                  <TableHeader>
+                    <TableRow className="sticky text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1 font-bold top-0 z-30 ">
+                      <TableHead>เลขคิว</TableHead>
+                      <TableHead>รหัสนักศึกษา</TableHead>
+                      <TableHead>ชื่อ-นามสกุล</TableHead>
+                      <TableHead>รายการติดต่อ</TableHead>
+                      <TableHead>เพิ่มเติม</TableHead>
                     </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </div>
+                  </TableHeader>
+                  <TableBody className="font-normal text-b2 acerSwift:max-macair133:text-b4 samsungA24:text-b1">
+                    {queues.length ? (
+                      queues.map((item) => (
+                        <TableRow key={item.id}>
+                          <TableCell className="font-medium py-4">
+                            {item.no}
+                          </TableCell>
+                          <TableCell>{item.studentId || "-"}</TableCell>
+                          <TableCell>{getUserName(item)}</TableCell>
+                          <TableCell className="flex gap-2  translate-y-[6px] items-center">
+                            <div className="flex items-center gap-2">
+                              <div
+                                className={` h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
+                              ></div>
+                              {item.topic.topicTH}
+                            </div>
+                          </TableCell>
+                          <TableCell>{item.note || "-"}</TableCell>
+                        </TableRow>
+                      ))
+                    ) : (
+                      <TableRow>
+                        <TableCell
+                          colSpan={5}
+                          className="text-center text-[22px] font-medium"
+                        >
+                          ไม่มีคิวที่รอเรียก
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+            ) : (
+              <div className="flex flex-col">
+                {queues.length ? (
+                  queues.map((items) => (
+                    <div
+                      key={items.id}
+                      className="flex p-4 px-5 items-center bg-white first:rounded-t-md border-b-[1px] last:border-none  justify-between"
+                    >
+                      <div className="flex gap-4 items-center">
+                        <p className=" font-semibold text-[14px] text-primary">
+                          {items.no}
+                        </p>
+                        <div className="flex flex-col">
+                          <p className="text-[13px]">{getUserName(items)}</p>
+                          <p className="text-[13px] text-primary">{items.no}</p>
+                        </div>
+                      </div>
+                      <p className="text-[13px]"> {items.topic.topicTH}</p>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-[15px] bg-white rounded-md items-center flex justify-center py-8">
+                    {" "}
+                    ไม่มีคิวที่รอเรียก{" "}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
           <div className="flex flex-col gap-3 h-full w-[40%] iphone:max-sm:w-[100%] text-[15px] font-medium">
             <div
