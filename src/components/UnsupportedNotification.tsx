@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function UnsupportedNotification() {
   return (
-    <div className="flex flex-col gradient-unsupport h-full w-full font-[500]  bg-cover bg-center">
+    <div className="flex flex-col gradient-try h-full w-full font-[500]  bg-cover bg-center">
       <div className="flex  justify-center items-center text-center     ">
         <div className="text-black text-center py-5 w-full h-full justify-start items-center flex flex-col gap-5  bg-[rgba(85,85,86,0.25)] ">
           <Image
