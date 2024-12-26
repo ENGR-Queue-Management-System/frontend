@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  font-family: "Manrope", "NotoSansThai", Arial, Helvetica, sans-serif;
   --background: #ffffff;
   --foreground: #171717;
   overscroll-behavior: none;
