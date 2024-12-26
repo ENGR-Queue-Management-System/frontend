@@ -168,14 +168,19 @@ function MyApp({ Component, pageProps }: AppProps) {
     </>
   );
   // return (
-  //   <div className="flex flex-col h-screen w-screen overflow-hidden">
-  //     {![Route.Index, Route.DisplayQueue, Route.CmuEntraIDCallback].includes(
-  //       location
-  //     ) && <Navbar />}
-  //     <div className="flex flex-col h-full w-full overflow-hidden">
-  //       <Component {...pageProps} />
-  //     </div>
-  //   </div>
+  //   <>
+  //   {/* {error.statusCode ? ( */}
+  //       <ErrorResponse />
+  //     {/* ) : (
+  //     <div className="flex flex-col h-screen w-screen overflow-hidden">
+  //       {![Route.Index, Route.DisplayQueue, Route.CmuEntraIDCallback].includes(
+  //         location
+  //       ) && <Navbar />}
+  //       <div className="flex flex-col h-full w-full overflow-hidden">
+  //         <Component {...pageProps} />
+  //       </div>
+  //     </div>)} */}
+  //   </>
   // );
 }
 
