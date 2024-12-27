@@ -65,10 +65,10 @@ export const getKeyEnumByValue = (Enum: any, value: string): string => {
 export const sortData = (
   data: any[] | undefined,
   key: string,
-  typeKey: string = "number",
-  typeSort: string = "asc"
+  typeKey: "number" | "string" | "boolean" = "number",
+  typeSort: "asc" | "desc" = "asc"
 ) => {
-  const isAscending = ["asc", "ASC"].includes(typeSort);
+  const isAscending = "asc" == typeSort;
   data?.sort((a, b) => {
     const aValue =
       a[key] ?? (typeKey === "number" ? 0 : typeKey === "boolean" ? false : "");
