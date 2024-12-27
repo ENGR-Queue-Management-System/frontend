@@ -18,17 +18,18 @@ export default function Custom404() {
             <p className="text-primary iphone:max-sm:text-h1 font-medium -mt-2 acerSwift:text-h2 acerSwift:-mt-3">
               Page Not Found
             </p>
-            <p className="text-describe mt-1 acerSwift:text-b1 font-medium">
+            <p className="text-describe acerSwift:text-b1 font-medium">
               The page you're looking for can't be found.
             </p>
           </div>
 
           <Button
             variant="default"
-            className="iphone:max-sm:hidden acerSwift:mt-5"
+            className="iphone:max-sm:hidden acerSwift:mt-4"
+            onClick={() => Router.back()}
           >
             <Icon IconComponent={IconBack} />
-            Back to The Home Page
+            Back
           </Button>
         </div>
         <Image
@@ -37,7 +38,11 @@ export default function Custom404() {
           alt="Page Not Found"
         />
       </div>
-      <Button variant="default" onClick={() => Router.back()}>
+      <Button
+        variant="default"
+        onClick={() => Router.back()}
+        className="ipad11:hidden iphone:max-sm:py-6"
+      >
         <Icon IconComponent={IconBack} />
         Back
       </Button>
