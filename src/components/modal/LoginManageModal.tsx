@@ -13,6 +13,8 @@ import { useAppDispatch, useAppSelector } from "@/store";
 import { updateLoginNotCmu } from "@/services/config/config.service";
 import { setLoginNotCmu } from "@/store/config";
 import { toast } from "@/hooks/use-toast";
+import { useNotification } from "@/notifications/useNotification";
+import { DEVICE_TYPE } from "@/config/Enum";
 
 type PopupProps = {
   triggerText?: string;
@@ -26,6 +28,7 @@ export default function LoginManageModal({
 }: PopupProps) {
   const config = useAppSelector((state) => state.config);
   const dispatch = useAppDispatch();
+   const { deviceType, isPhone } = useNotification();
 
   const onChangeLoginNotCmu = async (value: boolean) => {
     const res = await updateLoginNotCmu({ loginNotCmu: value });
@@ -55,7 +58,12 @@ export default function LoginManageModal({
         </Button>
       </DialogTrigger>
       <DialogContent
-        className={`ipad11:max-w-[55vw] iphone:max-sm:max-h-[70vh] acerSwift:max-macair133:max-w-[40vw]  iphone:max-sm:px-4 flex flex-col justify-start`}
+      classNameClose={`${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
+                className={`  ${
+                  !isPhone && "ipad11:max-w-[40vw] "
+                } ipad11:max-w-[45vw]  flex flex-col justify-start  ${
+                  isPhone ? "w-[100vw] h-full" : "md:max-w-[50vw] min-w-fit"
+                }`}
       >
         <DialogHeader>
           <DialogTitle
@@ -67,16 +75,16 @@ export default function LoginManageModal({
 
         <div className="flex flex-col gap-4 justify-between h-full iphone:max-sm:pt-1">
           <div
-            className="flex iphone:max-sm:flex-col iphone:max-sm:gap-4 bg-white rounded-lg border border-[#E5DDEA] text-[15px] px-6  iphone:max-sm:px-4 py-4 justify-between items-center"
+            className={`flex  iphone:max-sm:gap-4 bg-white rounded-lg border border-[#E5DDEA] text-[15px] px-6 py-4 justify-between items-center ${isPhone ? 'px-2' : '' }`}
             style={{
               boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
             }}
           >
-            <div className="flex-col">
-              <p className="acerSwift:max-macair133:text-b3 font-medium text-b1 ">
+            <div className="flex-col ">
+              <p className={`acerSwift:max-macair133:text-b3 ${isPhone ? 'text-[13px]' : ' text-b1'} font-medium `}>
                 จองคิวโดยไม่ต้องใช้ CMU Account
               </p>
-              <p className="text-primary text-b3 acerSwift:max-macair133:text-b4 ">
+              <p className="text-primary text-[12px] acerSwift:max-macair133:text-b4 ">
                 สำหรับนักเรียน นักศึกษา และบุคลากรที่ไม่มี CMU Account
               </p>
             </div>
@@ -84,6 +92,7 @@ export default function LoginManageModal({
             <Switch
               checked={config.loginNotCmu}
               onCheckedChange={onChangeLoginNotCmu}
+        
             />
 
             <div className="hidden">

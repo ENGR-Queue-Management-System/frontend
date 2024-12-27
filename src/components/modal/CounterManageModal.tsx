@@ -76,49 +76,46 @@ export default function CounterManageModal({
           </Button>
         </DialogTrigger>
         <DialogContent
-          classNameClose={`${
-            [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-12" : ""
-          }`}
-          className={`${
-            [DEVICE_TYPE.IOS].includes(deviceType!)
-              ? "w-[100vw] h-full"
-              : "md:max-w-[50vw] min-w-fit"
+          classNameClose={`${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
+          className={`  ${
+            !isPhone && "ipad11:max-w-[40vw] "
+          } ipad11:max-w-[45vw]  flex flex-col justify-start  ${
+            isPhone ? "w-[100vw] h-full" : "md:max-w-[50vw] min-w-fit"
           }`}
         >
           <DialogHeader
-            className={`  ${
-              [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-12" : ""
-            }`}
+            className={`  ${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
           >
             <DialogTitle className="text-primary font-[500]  acerSwift:max-macair133:text-b1">
               {title}
             </DialogTitle>{" "}
           </DialogHeader>
-          <div className={`flex flex-col  gap-4  `}>
+          <div className="flex flex-col gap-4 justify-between h-full ">
             <div
-              className="p-0 rounded-lg mt-2 flex flex-col text-[14px]"
+              className={`p-0 rounded-lg mt-2 flex ${
+                isPhone ? "h-[90vh]" : ""
+              } flex-col gap-1 text-b2 acerSwift:max-macair133:text-b3 `}
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
             >
-              <div className="flex bg-table-background text-table-foreground acerSwift:max-macair133:text-b3 gap-3 items-center font-medium py-3 px-4">
+              <div className="flex bg-table-background rounded-t-md text-table-foreground acerSwift:max-macair133:text-b3 gap-3 items-center font-medium py-3 px-4">
                 <Icon
                   IconComponent={IconTopic}
                   className="acerSwift:max-macair133:size-5"
                 />
                 เคาน์เตอร์ที่ให้บริการ
               </div>
-
               <div
-                className={`max-h-[500px] acerSwift:max-macair133:max-h-[325px]  overflow-y-auto ${
-                  isPhone ? "h-full" : ""
+                className={`max-h-[500px] acerSwift:max-macair133:max-h-[325px]   overflow-y-auto ${
+                  isPhone ? "h-full overflow-y-auto" : ""
                 }`}
               >
-                <div className="flex flex-col border-b-[1px] border-[#e1e1e1] acerSwift:max-macair133:mt-2 font-medium text-default gap-3 acerSwift:max-macair133:gap-0 items-center ">
-                  {counters.map((counter) => (
+                {counters.map((counter) => (
+                  <div className="flex px-4 flex-col ">
                     <div
                       key={counter.id}
-                      className="flex justify-between items-center px-5 py-4 acerSwift:max-macair133:py-3 w-full"
+                      className="flex justify-between  items-center border-b-[1px] py-4 acerSwift:max-macair133:py-3 w-full"
                     >
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center w-[65%]  gap-4">
                         <p
                           className={`border rounded-full p-2 px-[14px] acerSwift:max-macair133:text-b3 ${
                             isPhone ? "hidden" : ""
@@ -135,7 +132,7 @@ export default function CounterManageModal({
                             เคาน์เตอร์ {counter.counter}
                           </p>
                           <p
-                            className={`text-b3 acerSwift:max-macair133:text-b4 text-primary ${
+                            className={`text-b3 text-ellipsis overflow-hidden whitespace-nowrap acerSwift:max-macair133:text-b4 text-primary ${
                               isPhone ? "text-b3" : ""
                             }`}
                           >
@@ -143,7 +140,7 @@ export default function CounterManageModal({
                           </p>
                         </div>
                       </div>
-                      <div className="flex gap-3">
+                      <div className="flex w-[35%] gap-3 iphone:max-sm:justify-end iphone:max-sm:w-full">
                         <DialogClose asChild>
                           <Button
                             onClick={() => {
@@ -157,7 +154,9 @@ export default function CounterManageModal({
                               setOpenEditOneCounterModal(true);
                             }}
                             variant="outline"
-                            className="!border-orange-500 text-orange-500 rounded-full hover:bg-[#f7cbb13b] hover:text-orange-600 acerSwift:max-macair133:text-b4"
+                            className={` !border-orange-500 text-orange-500 rounded-full ${
+                              isPhone ? "size-8" : ""
+                            } hover:bg-[#f7cbb13b] hover:text-orange-600 acerSwift:max-macair133:text-b4`}
                             size={isPhone ? "icon" : "default"}
                           >
                             <Icon
@@ -167,38 +166,37 @@ export default function CounterManageModal({
                             {!isPhone && "แก้ไข"}
                           </Button>
                         </DialogClose>
-                        <Button
-                          onClick={() => onDeleteCounter(counter)}
-                          variant="outline"
-                          className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600 acerSwift:max-macair133:text-b4"
-                          size={isPhone ? "icon" : "default"}
-                        >
-                          <Icon
-                            IconComponent={IconTrash}
-                            className="stroke-delete acerSwift:max-macair133:!size-4"
-                          />
-                          {!isPhone && "ลบ"}
-                        </Button>
+                        <DialogClose asChild>
+                          <Button
+                            onClick={() => onDeleteCounter(counter)}
+                            variant="outline"
+                            className={` !border-red-500 text-red-500 rounded-full ${
+                              isPhone ? "size-8" : ""
+                            } hover:bg-[#f7cbb13b] hover:text-red-600 acerSwift:max-macair133:text-b4`}
+                            size={isPhone ? "icon" : "default"}
+                          >
+                            <Icon
+                              IconComponent={IconTrash}
+                              className="stroke-delete acerSwift:max-macair133:!size-4"
+                            />
+                            {!isPhone && "ลบ"}
+                          </Button>
+                        </DialogClose>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
-            <DialogClose>
+          
               <Button
                 onClick={() => setOpenAddOneCounterModal(true)}
-                className="w-full mt-1"
+                className="px-5"
               >
-                <Icon
-                  IconComponent={IconPlus}
-                  className="acerSwift:max-macair133:size-4"
-                />
-                <span className="ml-1 acerSwift:max-macair133:text-bภ">
-                  เพิ่มเคาน์เตอร์ที่ให้บริการ
-                </span>
+                <Icon IconComponent={IconPlus} />
+                เพิ่มเคาน์เตอร์ที่ให้บริการ
               </Button>
-            </DialogClose>
+  
           </div>
         </DialogContent>
         <OneCounterModal
