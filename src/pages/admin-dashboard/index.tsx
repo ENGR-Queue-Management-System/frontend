@@ -355,7 +355,7 @@ export default function AdminIndex() {
                     } `}
                   >
                     <Button
-                      className="w-full items-center flex samsungA24:h-14 h-12 acerSwift:max-macair133:h-[42px]"
+                      className={`w-full ${isPhone ? 'rounded-full' : ''} items-center flex samsungA24:h-14 h-12 acerSwift:max-macair133:h-[42px]`}
                       disabled={!queues[0]}
                       onClick={() => callNextQueue(queues[0].id)}
                     >
@@ -369,7 +369,7 @@ export default function AdminIndex() {
                     </Button>
                     <Button
                       variant="outline"
-                      className="w-full samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-b2 text-primary acerSwift:max-macair133:text-b3 samsungA24:text-h2 acerSwift:max-macair133:h-[42px]"
+                      className={`w-full ${isPhone ? 'rounded-full' : ''} samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-b2 text-primary acerSwift:max-macair133:text-b3 samsungA24:text-h2 acerSwift:max-macair133:h-[42px]`}
                       disabled={!currentQueue.no}
                       onClick={() =>
                         sendPushNotification(

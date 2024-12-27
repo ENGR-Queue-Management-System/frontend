@@ -174,9 +174,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
   // return (
   //   <>
-  //   {/* {error.statusCode ? ( */}
+  // {error.statusCode ? ( 
   //       <ErrorResponse />
-  //     {/* ) : (
+  //      ) : (
   //     <div className="flex flex-col h-screen w-screen overflow-hidden">
   //       {![Route.Index, Route.DisplayQueue, Route.CmuEntraIDCallback].includes(
   //         location
@@ -184,7 +184,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   //       <div className="flex flex-col h-full w-full overflow-hidden">
   //         <Component {...pageProps} />
   //       </div>
-  //     </div>)} */}
+  //     </div>)}
   //   </>
   // );
 }
