@@ -91,7 +91,7 @@ export default function StudentIndex() {
   return (
     <div className="m-auto  overflow-y-auto flex flex-col gap-7 acerSwift:max-macair133:gap-6 iphone:max-sm:gap-6 items-center justify-start">
       <div
-        className={` flex flex-col  items-center justify-center text-center text-[28px] acerSwift:max-macair133:!text-h1 text-semibold iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px]`}
+        className={` flex flex-col  items-center justify-center text-center text-[28px] acerSwift:max-macair133:!text-h1 text-semibold iphone:max-sm:w-[85vw] iphone:max-sm:text-[22px] sm:max-macair133:text-[20px] macair133:text-[24px]`}
       >
         <p className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#4285f4] via-[#ec407a] via-[#a06ee1] to-[#fb8c00]">
           What can we help you with today?
@@ -147,10 +147,9 @@ export default function StudentIndex() {
                   />
                   <div className="text-start text-b2 iphone:max-macair133:text-b3">
                     <p className="font-medium">
-                      มีคิวก่อนหน้าคุณ
-                      <span className="font-semibold">Waiting </span>
-                      <span className="text-h2 iphone:max-sm:text-b1 iphone:max-macair133:text-b2 font-medium">
-                        <span className="text-primary">8</span> คิว
+                      <span className="font-semibold text-[15px]">Waiting </span>
+                      <span className="text-h2 iphone:max-sm:text-[15px] iphone:max-macair133:text-b2 font-medium">
+                        <span className="text-primary font-semibold">8</span> Queues
                       </span>
                     </p>
                   </div>
@@ -163,7 +162,7 @@ export default function StudentIndex() {
       <Button
         className={`mt-5 acerSwift:max-macair133:!mt-0 ${
           isPhone
-            ? " w-[100%] rounded-full bg-primary hover:bg-[#3560b0] mt-5 text-[15px] font-semibold"
+            ? " w-[100%] rounded-full bg-primary hover:bg-[#3560b0] mt-5 text-[15px] font-[500] h-14"
             : "py-8 px-8 text-[15px] acerSwift:max-macair133:py-6 acerSwift:max-macair133:text-b5 bg-primary hover:bg-[#3560b0] acerSwift:max-macair133:font-semibold"
         }`}
         disabled={!selectTopic}

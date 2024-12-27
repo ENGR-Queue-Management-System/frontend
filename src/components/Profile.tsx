@@ -29,6 +29,7 @@ export default function Profile() {
   return (
     <>
       <Popover>
+  
         <PopoverTrigger asChild>
           <Button
             variant="ghost"
@@ -48,15 +49,15 @@ export default function Profile() {
             )}
             <Icon
               IconComponent={IconUser}
-              className={` stroke-default stroke-[1.1px] ${
-                isPhone ? "!size-9" : "!size-10"
+              className={` stroke-default stroke-[1px] ${
+                isPhone ? "!size-10 translate-x-1" : "!size-10"
               }   acerSwift:max-macair133:!size-9`}
             />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className={`mr-14 ${isPhone ? "!w-[90vw] " : ""} `}>
+        <PopoverContent className={` ${isPhone ? "!w-[94vw] rounded-xl -translate-x-3 " : "mr-14"} `}>
           {isPhone && (
-            <div className="flex px-2 py-2 gap-3 items-center">
+            <div   style={{ boxShadow: "rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em" }} className="flex px-2 py-3 mt-1 mb-2 mx-1 rounded-lg gap-3 items-center">
               <Icon
                 IconComponent={IconUser}
                 className={` stroke-primary stroke-[1.1px] size-9  acerSwift:max-macair133:!size-9`}
@@ -73,7 +74,7 @@ export default function Profile() {
               </div>
             </div>
           )}
-          {isPhone && <div className=" border-[1px] mb-2 w-full"></div>}
+        
           <div className="flex flex-col gap-1">
             <ContactTopicManageModal
               triggerText="จัดการหัวข้อการบริการ"
@@ -113,6 +114,7 @@ export default function Profile() {
             </Button>
           </div>
         </PopoverContent>
+       
       </Popover>
     </>
   );

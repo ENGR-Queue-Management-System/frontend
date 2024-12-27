@@ -24,11 +24,15 @@ export default function Navbar() {
         isPhone ? { duration: 0.5, ease: [0.22, 0.61, 0.36, 1] } : undefined
       }
       className={`${
-        [DEVICE_TYPE.IOS].includes(deviceType!)
-          ? "pt-[52px] gradient-bg-navbar px-3"
-          : "gradient-bg-navbar"
-      } min-h-fit ipadmini:max-acerSwift:pt-5 acerSwift:max-macair133:min-h-[58px]  border-b border-[#e0e0e0] text-secondary px-5 inline-flex w-full justify-between items-center z-50 border-none top-0`}
-      style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.3)" }}
+        [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-[52px]" : ""
+      } min-h-fit ipadmini:max-acerSwift:pt-5 acerSwift:max-macair133:min-h-[58px] ${
+        isPhone ? " !px-3 !bg-white/5 !backdrop-blur-xl border-b-[1px]" : "gradient-bg-navbar"
+
+      }    px-5 inline-flex w-full justify-between items-center   `}
+      style={{
+        boxShadow: !isPhone ? "0px 0px 4px 0px rgba(0, 0, 0, 0.3)" : "none",
+      }}
+      
     >
       <div className="flex items-center gap-2  mr-4">
         {[Route.Login].includes(location) && isPhone && (
@@ -40,14 +44,18 @@ export default function Navbar() {
           />
         )}
         <Image className=" w-[40px] py-3 " src={logoSDColor} alt="loginImage" />
-        <div className={`flex flex-col  w-fit gap-0 font-medium text-[14px]  ${isPhone ? 'text-[12px]' : 'text-[14px]'} acerSwift:max-macair133:text-b4 text-default`}>
+        <div
+          className={`flex flex-col  w-fit gap-0 font-medium text-[14px]  ${
+            isPhone ? "text-[12px]" : "text-[14px]"
+          } acerSwift:max-macair133:text-b4 text-default`}
+        >
           <p className=" ">
             {user.role == ROLE.ADMIN ? "ระบบจัดการคิว " : "รับบัตรคิว "}
           </p>
           {user.role == ROLE.ADMIN ? (
             <p className="  font-semibold">Queue Management</p>
           ) : (
-            <p className="  font-semibold">Ticket Queue</p>
+            <p className="  font-medium">Ticket Queue</p>
           )}
         </div>
       </div>

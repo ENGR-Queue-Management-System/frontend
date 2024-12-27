@@ -96,7 +96,7 @@ export default function SubscribeNotification() {
           </p>
           <p
             className={`my-4  ${
-              isPhone ? "text-[13px] " : "text-[16px] text-center"
+              isPhone ? "text-[13px] " : "text-[14px] text-center"
             } text-default font-medium`}
           >
             Don’t miss your queue! Allow notifications, and we’ll send you a
@@ -108,7 +108,7 @@ export default function SubscribeNotification() {
             } acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#f63131]/15`}
           >
             <Icon IconComponent={iconEx} className="text-[#f63131]" />
-            <p className="iphone:max-sm:text-[13px] text-[14px] acerSwift:max-macair133:text-b3 text-[#f63131] font-bold text-start w-full ">
+            <p className="iphone:max-sm:text-[13px] text-[13px] acerSwift:max-macair133:text-b3 text-[#f63131] font-bold text-start w-full ">
               Notifications Required <br />
               <p className="font-medium mt-[2px]">
                 If you do not allow notifications, you won’t be able to access
@@ -130,7 +130,7 @@ export default function SubscribeNotification() {
               className={`mt-5 ${
                 isPhone
                   ? " w-[100%] rounded-full bg-[#1db9bc] hover:bg-[#189b9d] mt-5 h-12 text-[15px] font-semibold"
-                  : "py-6 px-12 text-[15px] bg-[#1db9bc] hover:bg-[#189b9d] font-semibold"
+                  : "py-6 px-12 text-[14px] bg-[#1db9bc] hover:bg-[#189b9d] font-semibold"
               }`}
               onClick={handleSubscribe}
             >

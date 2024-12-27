@@ -166,7 +166,7 @@ export default function Home() {
             className={`${
               isPhone
                 ? "text-default text-start font-semibold text-[3vh]  "
-                : "text-default font-semibold text-[1.8vw]"
+                : "text-default font-semibold text-[1.6vw]"
             } `}
           >
             Welcome!
@@ -174,7 +174,7 @@ export default function Home() {
           <p
             className={`${
               isPhone || true
-                ? "text-[#969696] text-start font-medium text-[2.2vh] "
+                ? "text-[#969696] text-start font-medium text-[2vh] "
                 : "hidden"
             } `}
           >
@@ -183,7 +183,7 @@ export default function Home() {
 
           <p
             className={`my-8 acerSwift:max-macair133:my-4 ${
-              isPhone ? "text-b3" : "text-b1"
+              isPhone ? "text-b3" : "text-[15px]"
             } text-default font-medium acerSwift:max-macair133:text-b2`}
           >
             Let's take a number and wait comfortably without needing to be at
@@ -196,7 +196,7 @@ export default function Home() {
             } p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#FFC107]/20`}
           >
             <Icon IconComponent={iconEx} className="text-[#856404]" />
-            <p className="iphone:max-sm:text-b3 text-[14px] acerSwift:max-macair133:text-b3 text-[#856404] font-bold text-start w-full">
+            <p className="iphone:max-sm:text-b3 text-[13px] acerSwift:max-macair133:text-b3 text-[#856404] font-bold text-start w-full">
               The system is currently in testing. <br />
               <span className="font-medium mt-[2px]">
                 If you experience any issues, please remove the app from your
@@ -222,7 +222,7 @@ export default function Home() {
               className={`mt-3 ${
                 isPhone
                   ? " w-[100%]  bg-[#5868d5] text-white hover:bg-[#4958b8] mt-5 h-12 text-[15px] font-semibold rounded-full"
-                  : "acerSwift:max-macair133:py-5 bg-[#5868d5] min-w-fit w-[50%] hover:bg-[#4958b8] text-white py-6 px-6 rounded-lg text-[15px] font-semibold"
+                  : "acerSwift:max-macair133:py-5 bg-[#5868d5] min-w-fit w-[50%] hover:bg-[#4958b8] text-white py-[22px] px-5 rounded-lg text-[14px] font-semibold"
               }`}
             >
               <Image
@@ -235,7 +235,7 @@ export default function Home() {
             <div className="flex flex-col !text-center !items-center !justify-center w-[100%] mt-6">
               {/* {showLink &&  */}
               {config.loginNotCmu && (
-                <p className="sm:max-samsungA24:text-[15px]  text-[15px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
+                <p className="sm:max-samsungA24:text-[14px]  text-[14px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
                   <span className="font-[500] text-default"> Don't have</span>{" "}
                   CMU account?{" "}
                   <span
@@ -270,10 +270,10 @@ export default function Home() {
               variant="link"
               className={`text-sm font-[500] mt-5 underline text-[#000000]`}
             >
-              Admin
+              Admin Test
             </Button>
           </Link>
-          <div className="flex gap-2">
+          {/* <div className="flex gap-2">
             <Select onValueChange={(value) => setSelectTest(value)}>
               <SelectTrigger className="!w-[30vw] py-2">
                 <SelectValue placeholder="Select Test Notification" />
@@ -291,7 +291,7 @@ export default function Home() {
               </SelectContent>
             </Select>
             <Button onClick={sendPushNotification}>Test</Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </motion.div>

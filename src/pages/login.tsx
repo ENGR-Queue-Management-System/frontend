@@ -260,13 +260,16 @@ export default function Login() {
                 type="submit"
                 className={`mt-5 ${
                   isPhone
-                    ? " w-[100%] rounded-full bg-primary hover:bg-[#3560b0] mt-5 h-12 text-[15px] font-semibold"
+                    ? " w-[100%] rounded-full bg-primary hover:bg-[#3560b0 mt-5 h-14 text-[15px] font-[500]"
                     : "py-6 px-12 text-[15px] bg-primary hover:bg-[#3560b0] font-semibold"
                 }`}
                 disabled={loading}
                 variant="default"
               >
-                {loading ? <Loading /> : "Take a Number"}
+                {loading ? <Loading /> :  <div className="text-center">
+            <p>รับบัตรคิว</p>
+            <p>Take a Number</p>
+          </div>}
               </Button>
               {!isPhone && (
                 <Button
