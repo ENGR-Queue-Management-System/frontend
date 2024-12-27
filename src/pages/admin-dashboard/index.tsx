@@ -45,7 +45,7 @@ export default function AdminIndex() {
     if (counter && counter.id) {
       fetchQueues();
     }
-  }, [counter]);
+  }, [counter?.id]);
 
   const fetchQueues = async () => {
     if (counter?.id) {

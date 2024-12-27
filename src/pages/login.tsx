@@ -60,10 +60,7 @@ export default function Login() {
   const counters = useAppSelector((state) =>
     state.counter.filter(({ status }) => status == true)
   );
-  const topicIds = counters.flatMap(({ topic }) => topic.map((t) => t.id));
-  const topics = useAppSelector((state) =>
-    state.topic.filter(({ id }) => topicIds.includes(id))
-  );
+  const topics = counters.flatMap(({ topic }) => topic);
   const dispatch = useAppDispatch();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

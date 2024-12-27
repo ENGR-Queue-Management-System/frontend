@@ -1,7 +1,7 @@
 export class CounterRequestDTO {
   counter: string = "";
   email: string = "";
-  timeClosed: string = "16:00:00";
+  timeClosed: string = "16:00";
   topics: number[] = [];
 }
 
@@ -10,4 +10,5 @@ export class CounterUpdateRequestDTO {
   status?: boolean;
   timeClosed?: string;
   email?: string;
+  topics?: number[] = [];
 }

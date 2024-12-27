@@ -15,9 +15,13 @@ export const counterSlice = createSlice({
           : counter
       );
     },
+    removeCounter: (state, action) => {
+      return state.filter((counter) => counter.id != action.payload);
+    },
   },
 });
 
-export const { setCounters, updateCounterData } = counterSlice.actions;
+export const { setCounters, updateCounterData, removeCounter } =
+  counterSlice.actions;
 
 export default counterSlice.reducer;
