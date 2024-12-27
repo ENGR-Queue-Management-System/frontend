@@ -28,6 +28,8 @@ import {
 import { useNotification } from "@/notifications/useNotification";
 import { STATUS } from "@/config/Enum";
 import { sendQueueNotification } from "@/services/subscription/subscription.service";
+import Image from "next/image";
+import noQueue from "../../../public/images/noQueue2.png";
 
 export default function AdminIndex() {
   const user = useAppSelector((state) => state.user.user);
@@ -178,9 +180,16 @@ export default function AdminIndex() {
                       <TableRow>
                         <TableCell
                           colSpan={5}
-                          className="text-center text-[22px] font-medium"
+                          className="text-center text-[22px] font-medium bg-white"
                         >
-                          ไม่มีคิวที่รอเรียก
+                          <div className=" flex flex-col items-center justify-center text-default/60 gap-2">
+                            <Image
+                              className="w-[90px] opacity-70"
+                              src={noQueue}
+                              alt="Page Not Found"
+                            />
+                            <p>ไม่มีคิวที่รอเรียก</p>
+                          </div>
                         </TableCell>
                       </TableRow>
                     )}
@@ -208,9 +217,13 @@ export default function AdminIndex() {
                     </div>
                   ))
                 ) : (
-                  <div className="text-[15px] bg-white rounded-md items-center flex justify-center py-8">
-                    {" "}
-                    ไม่มีคิวที่รอเรียก{" "}
+                  <div className="flex flex-col gap-2 text-h2 text-default/60 font-medium bg-white rounded-md items-center justify-center py-8">
+                    <Image
+                      className="w-[80px] opacity-60"
+                      src={noQueue}
+                      alt="Page Not Found"
+                    />
+                    ไม่มีคิวที่รอเรียก
                   </div>
                 )}
               </div>
@@ -298,9 +311,9 @@ export default function AdminIndex() {
                   }
                 </div>
                 <div className="flex flex-col gap-3 samsungA24:gap-4 w-full">
-                  <div className="px-6 py-5 acerSwift:max-macair133:py-2.5 rounded-2xl iphone:max-sm:mt-4 samsungA24:text-h1 text-b1  acerSwift:max-macair133:text-b2 !w-full flex flex-col bg-[#d7e6fb]">
+                  <div className="px-6 py-5 acerSwift:max-macair133:py-2.5 rounded-2xl iphone:max-sm:mt-4 samsungA24:text-h1 text-b1  acerSwift:max-macair133:text-b2 !w-full flex flex-col bg-[#DAE9FF]">
                     <div className=" flex items-center justify-start">
-                      <div className=" text-table-foreground font-medium text-center iphone:max-sm:pl-0 iphone:max-sm:pr-4 pr-6 pl-3  border-r-2 border-table-foreground/15">
+                      <div className=" text-table-foreground  font-medium text-center iphone:max-sm:pl-0 iphone:max-sm:pr-4 pr-6 pl-3  border-r-2 border-table-foreground/15">
                         <p
                           className={` acerSwift:max-macair133:text-b4 ${
                             isPhone ? "text-[14px]" : "text-h1"

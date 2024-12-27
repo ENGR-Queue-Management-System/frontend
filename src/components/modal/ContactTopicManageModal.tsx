@@ -85,7 +85,7 @@ export default function ContactTopicMangeModal({
       <DialogTrigger asChild>
         <Button
           variant="ghost"
-          className="bg-white hover:bg-table-background text-[#333333] justify-start  acerSwift:max-macair133:text-b4"
+          className="bg-white hover:bg-table-background text-[#333333] justify-start acerSwift:max-macair133:text-b4"
         >
           {IconComponent && (
             <IconComponent className="h-5 w-5 -translate-x-1 stroke-[#333333]" />
@@ -98,11 +98,11 @@ export default function ContactTopicMangeModal({
           (openAddTopicModal || openEditTopicModal || openDeleteTopicPopup) &&
           !isPhone &&
           "ipad11:max-w-[40vw] iphone:max-sm:w-[100vw]"
-        } ipad11:max-w-[55vw] iphone:max-sm:max-h-[70vh] flex flex-col justify-start`}
+        } ipad11:max-w-[45vw] iphone:max-sm:max-h-[70vh] flex flex-col justify-start`}
       >
         <DialogHeader>
           <DialogTitle
-            className={`text-table-foreground acerSwift:max-macair133:text-b1 ${
+            className={`text-table-foreground  !font-medium acerSwift:max-macair133:text-b1 ${
               openDeleteTopicPopup && "flex items-center gap-2 text-[#f85959]"
             }`}
           >
