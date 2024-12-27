@@ -129,7 +129,7 @@ export default function ContactTopicMangeModal({
           <div className="flex flex-col gap-4 justify-between h-full ">
             <div
               className={`p-0 rounded-lg mt-2 flex ${
-                isPhone ? "h-[80vh]" : ""
+                isPhone ? "h-[77vh]" : ""
               } flex-col gap-1 text-b2 acerSwift:max-macair133:text-b3 `}
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
             >
@@ -146,13 +146,13 @@ export default function ContactTopicMangeModal({
                 }`}
               >
                 {categories.map((cat) => (
-                  <div className="flex px-4 flex-col ">
+                  <div className="flex px-6 flex-col ">
                     <div
                       key={cat.topicTH}
                       className="flex justify-between  items-center border-b-[1px] py-4 acerSwift:max-macair133:py-3 w-full"
                     >
                       <div className="flex items-center  w-[65%] gap-5">
-                        <div className="flex text-ellipsis w-full overflow-hidden whitespace-nowrap  flex-col  text-b2 acerSwift:max-macair133:text-b4 acerSwift:max-macair133:py-1">
+                        <div className="flex text-ellipsis w-full  overflow-hidden whitespace-nowrap  flex-col  text-b2 acerSwift:max-macair133:text-b4 acerSwift:max-macair133:py-1">
                           <p className={`text-ellipsis overflow-hidden whitespace-nowrap ${
                               isPhone ? "text-[13px]" : ""
                             }`}>
@@ -168,7 +168,7 @@ export default function ContactTopicMangeModal({
                           <p className="font-normal text-b4 text-table-foreground"></p>
                         </div>
                       </div>
-                      <div className="flex w-[35%] gap-3 iphone:max-sm:justify-end iphone:max-sm:w-full">
+                      <div className="flex w-[35%] justify-end gap-3 iphone:max-sm:justify-end iphone:max-sm:w-full">
                         <Button
                           variant="outline"
                           onClick={() => {

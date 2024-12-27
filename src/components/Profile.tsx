@@ -55,12 +55,12 @@ export default function Profile() {
           </Button>
         </PopoverTrigger>
         <PopoverContent className={`mr-14 ${isPhone ? "!w-[90vw] " : ""} `}>
-          <div className="flex px-2 py-2 gap-3 items-center">
+          {isPhone && <div className="flex px-2 py-2 gap-3 items-center">
             <Icon
               IconComponent={IconUser}
               className={` stroke-primary stroke-[1.1px] size-9  acerSwift:max-macair133:!size-9`}
             />
-            <div className="flex flex-col w-fit text-start justify-start items-start  py-2 font-normal text-[14px] text-default items-end acerSwift:max-macair133:text-b4">
+            <div className="flex flex-col w-fit text-start justify-start items-start  py-2 font-normal text-[14px] text-default  acerSwift:max-macair133:text-b4">
               <p className="text-primary">{getUserName(user)}</p>
               {user.role == ROLE.ADMIN ? (
                 <p className="acerSwift:max-macair133:-mt-1">ผู้ดูแลระบบ</p>
@@ -70,7 +70,7 @@ export default function Profile() {
                 <></>
               )}
             </div>
-          </div>{" "}
+          </div>}
           {isPhone && <div className=" border-[1px] mb-2 w-full"></div>}
           <div className="flex flex-col gap-1">
             <ContactTopicManageModal
