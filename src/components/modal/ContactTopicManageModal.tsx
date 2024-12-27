@@ -18,6 +18,7 @@ import IconExclaimation from "../../../public/icons/exclaimation.svg";
 import IconPlus from "../../../public/icons/plus.svg";
 import { useNotification } from "@/notifications/useNotification";
 import Icon from "@/components/Icon";
+import { DEVICE_TYPE } from "@/config/Enum";
 
 type PopupProps = {
   triggerText?: string;
@@ -94,13 +95,18 @@ export default function ContactTopicMangeModal({
         </Button>
       </DialogTrigger>
       <DialogContent
+        classNameClose={`${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
         className={`  ${
           (openAddTopicModal || openEditTopicModal || openDeleteTopicPopup) &&
           !isPhone &&
-          "ipad11:max-w-[40vw] iphone:max-sm:w-[100vw]"
-        } ipad11:max-w-[45vw] iphone:max-sm:max-h-[70vh] flex flex-col justify-start`}
+          "ipad11:max-w-[40vw]"
+        } ipad11:max-w-[45vw]  flex flex-col justify-start  ${
+          isPhone ? "w-[100vw] h-full" : "md:max-w-[50vw] min-w-fit"
+        }`}
       >
-        <DialogHeader>
+        <DialogHeader
+          className={`  ${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
+        >
           <DialogTitle
             className={`text-table-foreground  !font-medium acerSwift:max-macair133:text-b1 ${
               openDeleteTopicPopup && "flex items-center gap-2 text-[#f85959]"
@@ -117,67 +123,85 @@ export default function ContactTopicMangeModal({
               ? "ลบหัวข้อการบริการ"
               : title}
           </DialogTitle>
-          <DialogDescription></DialogDescription>
         </DialogHeader>
 
         {!openAddTopicModal && !openEditTopicModal && !openDeleteTopicPopup ? (
-          <div className="flex flex-col gap-4 justify-between h-full iphone:max-sm:pt-1">
+          <div className="flex flex-col gap-4 justify-between h-full ">
             <div
-              className="p-0 rounded-lg mt-2 flex flex-col gap-1 text-b2 acerSwift:max-macair133:text-b3 iphone:max-sm:h-full"
+              className={`p-0 rounded-lg mt-2 flex ${
+                isPhone ? "h-[90vh]" : ""
+              } flex-col gap-1 text-b2 acerSwift:max-macair133:text-b3 `}
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
             >
-              <div className="flex bg-table-background text-table-foreground gap-3 items-center font-medium py-3 px-4">
+              <div className="flex bg-table-background rounded-t-md text-table-foreground gap-3 items-center font-medium py-3 px-4">
                 <Icon
                   IconComponent={IconTopic}
                   className="acerSwift:max-macair133:size-5"
                 />{" "}
                 รายชื่อหัวข้อการบริการ
               </div>
-              <div className="max-h-[500px] acerSwift:max-macair133:max-h-[325px] iphone:max-sm:max-h-[360px] overflow-y-auto px-5 ">
+              <div
+                className={`max-h-[500px] acerSwift:max-macair133:max-h-[325px]   overflow-y-auto ${
+                  isPhone ? "h-full overflow-y-auto" : ""
+                }`}
+              >
                 {categories.map((cat) => (
-                  <div
-                    key={cat.topicTH}
-                    className="flex iphone:max-sm:flex-col iphone:max-sm:items-start iphone:max-sm:pb-3 border-b-[1px] border-[#e1e1e1] font-medium text-default justify-between gap-3 items-center py-2"
-                  >
-                    <div className="flex items-center gap-5">
-                      <div className="flex pl-3 flex-col py-2 text-b2 acerSwift:max-macair133:text-b4 acerSwift:max-macair133:py-1">
-                        <p>{cat.topicTH}</p>
-                        <p>{cat.topicEN}</p>
-                        <p className="font-normal text-b4 text-table-foreground"></p>
+                  <div className="flex px-4 flex-col ">
+                    <div
+                      key={cat.topicTH}
+                      className="flex justify-between  items-center border-b-[1px] py-4 acerSwift:max-macair133:py-3 w-full"
+                    >
+                      <div className="flex items-center  w-[65%] gap-5">
+                        <div className="flex text-ellipsis w-full overflow-hidden whitespace-nowrap  flex-col  text-b2 acerSwift:max-macair133:text-b4 acerSwift:max-macair133:py-1">
+                          <p className={`text-ellipsis overflow-hidden whitespace-nowrap ${
+                              isPhone ? "text-[13px]" : ""
+                            }`}>
+                            {cat.topicTH}
+                          </p>
+                          <p
+                            className={`text-ellipsis overflow-hidden whitespace-nowrap ${
+                              isPhone ? "text-[12px]" : ""
+                            } `}
+                          >
+                            {cat.topicEN}
+                          </p>
+                          <p className="font-normal text-b4 text-table-foreground"></p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex gap-3 iphone:max-sm:justify-end iphone:max-sm:w-full">
-                      <Button
-                        variant="outline"
-                        onClick={() => {
-                          setInputValues({
-                            topicTH: cat.topicTH,
-                            topicEN: cat.topicEN,
-                          });
-                          setOpenEditTopicModal(true);
-                        }}
-                        size={isPhone ? "icon" : "default"}
-                        className=" !border-orange-500 text-orange-500 rounded-full hover:bg-[#f7cbb13b] hover:text-orange-600 acerSwift:max-macair133:text-b4"
-                      >
-                        <Icon
-                          IconComponent={IconEdit}
-                          className="stroke-orange-500 acerSwift:max-macair133:!size-4"
-                        />
-                        {!isPhone && "แก้ไข"}
-                      </Button>
+                      <div className="flex w-[35%] gap-3 iphone:max-sm:justify-end iphone:max-sm:w-full">
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            setInputValues({
+                              topicTH: cat.topicTH,
+                              topicEN: cat.topicEN,
+                            });
+                            setOpenEditTopicModal(true);
+                          }}
+                          size={isPhone ? "icon" : "default"}
+                          className={` !border-orange-500 text-orange-500 rounded-full ${isPhone ? 'size-8' : ''} hover:bg-[#f7cbb13b] hover:text-orange-600 acerSwift:max-macair133:text-b4`}
+                        >
+                          <Icon
+                            IconComponent={IconEdit}
+                            className="stroke-orange-500 acerSwift:max-macair133:!size-4"
+                          />
+                          {!isPhone && "แก้ไข"}
+                        </Button>
 
-                      <Button
-                        variant="outline"
-                        onClick={() => setOpenDeleteTopicPopup(true)}
-                        size={isPhone ? "icon" : "default"}
-                        className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600 acerSwift:max-macair133:text-b4"
-                      >
-                        <Icon
-                          IconComponent={IconTrash}
-                          className="stroke-delete acerSwift:max-macair133:!size-4"
-                        />
-                        {!isPhone && "ลบ"}
-                      </Button>
+                        <Button
+                          variant="outline"
+                          onClick={() => setOpenDeleteTopicPopup(true)}
+                          size={isPhone ? "icon" : "default"}
+                          className={` !border-red-500 text-red-500 rounded-full ${isPhone ? 'size-8' : ''} hover:bg-[#f7cbb13b] hover:text-red-600 acerSwift:max-macair133:text-b4`}
+
+                        >
+                          <Icon
+                            IconComponent={IconTrash}
+                            className="stroke-delete acerSwift:max-macair133:!size-4"
+                          />
+                          {!isPhone && "ลบ"}
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 ))}

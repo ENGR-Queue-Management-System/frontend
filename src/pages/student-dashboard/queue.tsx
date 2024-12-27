@@ -152,8 +152,8 @@ export default function StudentQueue() {
                   />
                   <div className="text-start text-b1 iphone:max-macair133:text-b3">
                     <p className="font-medium">
-                      มีคิวก่อนหน้าคุณ
-                      <span className="font-semibold">(Waiting)</span>
+                     
+                      <span className="font-semibold">Waiting</span>
                     </p>
                   </div>
                 </div>

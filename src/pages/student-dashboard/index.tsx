@@ -144,8 +144,8 @@ export default function StudentIndex() {
                   />
                   <div className="text-start text-b2 iphone:max-macair133:text-b3 ">
                     <p className="font-medium">
-                      มีคิวก่อนหน้าคุณ
-                      <span className="font-semibold"> (Waiting) </span>
+               
+                      <span className="font-semibold">Waiting </span>
                       <span className="text-h2 iphone:max-sm:text-b1 iphone:max-macair133:text-b2 font-semibold text-default">
                         8 คิว
                       </span>

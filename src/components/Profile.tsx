@@ -28,14 +28,40 @@ export default function Profile() {
 
   return (
     <>
-      <Popover>
+      <Popover >
         <PopoverTrigger asChild>
           <Button
             variant="ghost"
             className="flex items-center translate-x-3 hover:bg-transparent gap-2"
           >
+            {!isPhone && (
+              <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-default items-end acerSwift:max-macair133:text-b4">
+                <p>{getUserName(user)}</p>
+                {user.role == ROLE.ADMIN ? (
+                  <p className="acerSwift:max-macair133:-mt-1">ผู้ดูแลระบบ</p>
+                ) : user.studentId ? (
+                  <p>{user.studentId}</p>
+                ) : (
+                  <></>
+                )}
+              </div>
+            )}
+            <Icon
+              IconComponent={IconUser}
+              className={` stroke-default stroke-[1.1px] ${
+                isPhone ? "!size-9" : "!size-10"
+              }   acerSwift:max-macair133:!size-9`}
+            />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className={`mr-14 ${isPhone ? "!w-[90vw] " : ""} `}>
+          <div className="flex px-2 py-2 gap-3 items-center">
+            <Icon
+              IconComponent={IconUser}
+              className={` stroke-primary stroke-[1.1px] size-9  acerSwift:max-macair133:!size-9`}
+            />
             <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-default items-end acerSwift:max-macair133:text-b4">
-              <p>{getUserName(user)}</p>
+              <p className="text-primary">ธนพร ชาญชนะโยธิน</p>
               {user.role == ROLE.ADMIN ? (
                 <p className="acerSwift:max-macair133:-mt-1">ผู้ดูแลระบบ</p>
               ) : user.studentId ? (
@@ -44,15 +70,8 @@ export default function Profile() {
                 <></>
               )}
             </div>
-            <Icon
-              IconComponent={IconUser}
-              className={` stroke-default stroke-[1.1px] ${
-                isPhone ? "!size-8" : "!size-10"
-              }   acerSwift:max-macair133:!size-9`}
-            />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="mr-14">
+          </div>{" "}
+          {isPhone && <div className=" border-[1px] mb-2 w-full"></div>}
           <div className="flex flex-col gap-1">
             <ContactTopicManageModal
               triggerText="จัดการหัวข้อการบริการ"
