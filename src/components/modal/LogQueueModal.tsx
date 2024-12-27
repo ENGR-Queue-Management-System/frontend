@@ -334,6 +334,7 @@ export default function LogQueueModal({
         </Button>
       </DialogTrigger>
       <DialogContent
+       classNameClose={`${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
         className="max-w-[100vw] !rounded-none h-[100vh] flex flex-col pb-6 acerSwift:max-macair133:pb-9 acerSwift:max-macair133:py-5"
         type="log"
       >
