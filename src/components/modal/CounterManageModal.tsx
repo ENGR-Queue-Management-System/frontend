@@ -93,7 +93,7 @@ export default function CounterManageModal({
           <div className="flex flex-col gap-4 justify-between h-full ">
             <div
               className={`p-0 rounded-lg mt-2 flex ${
-                isPhone ? "h-[80vh]" : ""
+                isPhone ? "h-[77vh]" : ""
               } flex-col gap-1 text-b2 acerSwift:max-macair133:text-b3 `}
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
             >
@@ -110,7 +110,7 @@ export default function CounterManageModal({
                 }`}
               >
                 {counters.map((counter) => (
-                  <div className="flex px-4 flex-col ">
+                  <div className="flex px-6 flex-col ">
                     <div
                       key={counter.id}
                       className="flex justify-between  items-center border-b-[1px] py-4 acerSwift:max-macair133:py-3 w-full"
@@ -140,7 +140,7 @@ export default function CounterManageModal({
                           </p>
                         </div>
                       </div>
-                      <div className="flex w-[35%] gap-3 iphone:max-sm:justify-end iphone:max-sm:w-full">
+                      <div className="flex w-[35%] gap-3 justify-end iphone:max-sm:justify-end iphone:max-sm:w-full">
                         <DialogClose asChild>
                           <Button
                             onClick={() => {
