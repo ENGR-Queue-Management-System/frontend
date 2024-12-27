@@ -60,8 +60,8 @@ export default function Profile() {
               IconComponent={IconUser}
               className={` stroke-primary stroke-[1.1px] size-9  acerSwift:max-macair133:!size-9`}
             />
-            <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-default items-end acerSwift:max-macair133:text-b4">
-              <p className="text-primary">ธนพร ชาญชนะโยธิน</p>
+            <div className="flex flex-col w-fit text-start justify-start items-start  py-2 font-normal text-[14px] text-default items-end acerSwift:max-macair133:text-b4">
+              <p className="text-primary">{getUserName(user)}</p>
               {user.role == ROLE.ADMIN ? (
                 <p className="acerSwift:max-macair133:-mt-1">ผู้ดูแลระบบ</p>
               ) : user.studentId ? (

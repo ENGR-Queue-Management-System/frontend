@@ -93,7 +93,7 @@ export default function CounterManageModal({
           <div className="flex flex-col gap-4 justify-between h-full ">
             <div
               className={`p-0 rounded-lg mt-2 flex ${
-                isPhone ? "h-[90vh]" : ""
+                isPhone ? "h-[80vh]" : ""
               } flex-col gap-1 text-b2 acerSwift:max-macair133:text-b3 `}
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
             >
