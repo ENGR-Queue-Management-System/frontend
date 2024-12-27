@@ -91,26 +91,29 @@ export default function StudentIndex() {
   return (
     <div className="m-auto  overflow-y-auto flex flex-col gap-7 acerSwift:max-macair133:gap-6 iphone:max-sm:gap-6 items-center justify-start">
       <div
-        className={` flex flex-col  items-center justify-center text-center text-[24px] acerSwift:max-macair133:!text-h1 text-semibold iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px]`}
+        className={` flex flex-col  items-center justify-center text-center text-[28px] acerSwift:max-macair133:!text-h1 text-semibold iphone:max-sm:w-[85vw] iphone:max-sm:text-[16px] sm:max-macair133:text-[20px] macair133:text-[24px]`}
       >
-        <p className=" font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-[#4285f4] via-[#ec407a] via-[#a06ee1] to-[#fb8c00]">
+        <p className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#4285f4] via-[#ec407a] via-[#a06ee1] to-[#fb8c00]">
           What can we help you with today?
         </p>
       </div>
       <Select onValueChange={(value) => setSelectTopic(parseInt(value))}>
         <SelectTrigger
-          className={`iphone:max-sm:w-[85vw] shadow-none !h-9 bg-[#f0f0f0] border-none  iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] px-4 ${
+          className={`iphone:max-sm:w-[85vw] shadow-none !h-9 bg-[#f0f0f0] border-none iphone:max-sm:text-sm sm:max-macair133:w-[45vw] macair133:w-[40vw] px-4 ${
             selectTopic === 0 ? "py-3 text-default " : "py-2"
           }`}
         >
-          <SelectValue placeholder="Select topic" />
+          <SelectValue
+            placeholder="Select topic"
+            className="acerSwift:max-macair133:text-b4"
+          />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             {topics.map((item) => (
               <SelectItem value={item.id.toString()} key={item.id}>
                 <div className="flex items-center gap-4 py-1 acerSwift:max-macair133:gap-4">
-                  <div className="flex flex-col text-start text-b2 acerSwift:max-macair133:text-b3">
+                  <div className="flex flex-col text-start text-b2 acerSwift:max-macair133:text-b4">
                     <p>
                       {item.topicTH} (
                       <span className="font-medium">{item.topicEN}</span>)
@@ -131,7 +134,7 @@ export default function StudentIndex() {
                   value={note}
                   onChange={(event) => setNote(event.target.value)}
                   maxLength={70}
-                  className="acerSwift:max-macair133:text-b4"
+                  className="acerSwift:max-macair133:text-b4 sm:max-macair133:w-[45vw]"
                   placeholder={`ข้อความเพิ่มเติม (Message)`}
                 />
               </div>
@@ -142,12 +145,12 @@ export default function StudentIndex() {
                     IconComponent={IconUsers}
                     className="!size-5 iphone:max-macair133:!size-4"
                   />
-                  <div className="text-start text-b2 iphone:max-macair133:text-b3 ">
+                  <div className="text-start text-b2 iphone:max-macair133:text-b3">
                     <p className="font-medium">
-               
+                      มีคิวก่อนหน้าคุณ
                       <span className="font-semibold">Waiting </span>
-                      <span className="text-h2 iphone:max-sm:text-b1 iphone:max-macair133:text-b2 font-semibold text-default">
-                        8 คิว
+                      <span className="text-h2 iphone:max-sm:text-b1 iphone:max-macair133:text-b2 font-medium">
+                        <span className="text-primary">8</span> คิว
                       </span>
                     </p>
                   </div>
@@ -158,15 +161,22 @@ export default function StudentIndex() {
         })()}
 
       <Button
-        className={`mt-5 ${
+        className={`mt-5 acerSwift:max-macair133:!mt-0 ${
           isPhone
-            ? " w-[100%] rounded-full bg-primary hover:bg-[#3560b0] mt-5 h-12 text-[15px] font-semibold"
-            : "py-6 px-12 text-[15px] bg-primary hover:bg-[#3560b0] font-semibold"
+            ? " w-[100%] rounded-full bg-primary hover:bg-[#3560b0] mt-5 text-[15px] font-semibold"
+            : "py-8 px-8 text-[15px] acerSwift:max-macair133:py-6 acerSwift:max-macair133:text-b5 bg-primary hover:bg-[#3560b0] acerSwift:max-macair133:font-semibold"
         }`}
         disabled={!selectTopic}
         onClick={reverveQueue}
       >
-        {loading ? <Loading /> : "Take a Number"}
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="text-center">
+            <p>รับบัตรคิว</p>
+            <p>Take a Number</p>
+          </div>
+        )}
       </Button>
     </div>
   );
