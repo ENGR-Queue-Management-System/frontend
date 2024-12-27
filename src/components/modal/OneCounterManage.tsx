@@ -19,17 +19,21 @@ import {
 import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE } from "@/config/Enum";
 import { useForm } from "react-hook-form";
-import {
-  CounterRequestDTO,
-  CounterUpdateRequestDTO,
-} from "@/services/counter/dto/counter.dto";
-import { useAppSelector } from "@/store";
+import { CounterRequestDTO } from "@/services/counter/dto/counter.dto";
+import { useAppDispatch, useAppSelector } from "@/store";
 import Icon from "../Icon";
 import IconList from "../../../public/icons/list.svg";
 import { Checkbox } from "../ui/checkbox";
 import { z } from "zod";
 import { validateEmail } from "@/helpers/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  createCounter,
+  updateCounter,
+} from "@/services/counter/counter.service";
+import { addCounter } from "@/store/counter";
+import { toast } from "@/hooks/use-toast";
+import { isEqual } from "lodash";
 
 const formSchema = z.object({
   counter: z
@@ -51,7 +55,7 @@ type Props = {
   type: "add" | "edit";
   opened: boolean;
   onClose: () => void;
-  data?: CounterRequestDTO;
+  data?: CounterRequestDTO & { id: number };
 };
 
 export default function OneCounterManage({
@@ -63,10 +67,15 @@ export default function OneCounterManage({
 }: Props) {
   const { deviceType, isPhone } = useNotification();
   const topics = useAppSelector((state) => state.topic);
+  const dispatch = useAppDispatch();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: new CounterRequestDTO(),
+    defaultValues: { ...new CounterRequestDTO() },
   });
+
+  useEffect(() => {
+    form.reset();
+  }, [onClose]);
 
   useEffect(() => {
     if (data) {
@@ -77,14 +86,31 @@ export default function OneCounterManage({
     }
   }, [data]);
 
-  const onCreateCounter = async () => {
-    onClose();
-    form.reset();
+  const onCreateCounter = async (value: CounterRequestDTO) => {
+    const res = await createCounter(value);
+    if (res) {
+      dispatch(addCounter(res));
+      toast({
+        title: "Create Counter successfully",
+        variant: "success",
+        duration: 3000,
+      });
+      onClose();
+    }
   };
 
-  const onUpdateCounter = async () => {
+  const onUpdateCounter = async (value: CounterRequestDTO) => {
+    // const res = await updateCounter(data?.id!, value);
+    // if (res) {
+    //   dispatch(addCounter(res));
+    //   toast({
+    //     title: `Update Counter ${data?.counter!} successfully`,
+    //     variant: "success",
+    //     duration: 3000,
+    //   });
     onClose();
-    form.reset();
+    form.reset(new CounterRequestDTO());
+    // }
   };
 
   return (
@@ -144,13 +170,11 @@ export default function OneCounterManage({
                         <FormControl>
                           <Input
                             {...field}
-                            onChange={(event) =>
-                              field.onChange(parseInt(event.target.value))
-                            }
                             className="h-8 iphone:max-sm:text-b2"
                             placeholder="e.g. 5"
                           />
                         </FormControl>
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -175,6 +199,7 @@ export default function OneCounterManage({
                             placeholder="e.g. example@cmu.ac.th"
                           ></Input>
                         </FormControl>
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -196,6 +221,7 @@ export default function OneCounterManage({
                             className="w-[50%] acerSwift:max-macair133:w-fit py-2 px-4 border rounded-md text-gray-700 iphone:max-sm:text-b2"
                           />
                         </FormControl>
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -242,14 +268,19 @@ export default function OneCounterManage({
                                         )}
                                         onCheckedChange={(checked) => {
                                           return checked
-                                            ? field.onChange([
-                                                ...field.value,
-                                                topic.id,
-                                              ])
+                                            ? field.onChange(
+                                                [
+                                                  ...field.value,
+                                                  topic.id,
+                                                ].sort()
+                                              )
                                             : field.onChange(
-                                                field.value?.filter(
-                                                  (value) => value !== topic.id
-                                                )
+                                                field.value
+                                                  ?.filter(
+                                                    (value) =>
+                                                      value !== topic.id
+                                                  )
+                                                  .sort()
                                               );
                                         }}
                                       />
@@ -258,6 +289,7 @@ export default function OneCounterManage({
                                       <p>{topic.topicTH}</p>
                                       <p>{topic.topicEN}</p>
                                     </FormLabel>
+                                    <FormMessage />
                                   </div>
                                 </FormItem>
                               );
@@ -270,16 +302,14 @@ export default function OneCounterManage({
                 />
               </div>
               <div className="flex gap-3 justify-end w-full mt-1 acerSwift:max-macair133:mt-0">
-                <Button
-                  variant={"ghost"}
-                  onClick={() => {
-                    onClose();
-                    form.reset();
-                  }}
-                >
+                <Button type="reset" variant={"ghost"} onClick={onClose}>
                   ยกเลิก
                 </Button>
-                <Button type="submit" className="px-4">
+                <Button
+                  type="submit"
+                  className="px-4"
+                  disabled={type == "edit" && isEqual(data, form.watch())}
+                >
                   เสร็จสิ้น
                 </Button>
               </div>

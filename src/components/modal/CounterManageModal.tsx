@@ -42,7 +42,9 @@ export default function CounterManageModal({
   const { deviceType, isPhone } = useNotification();
   const counters = useAppSelector((state) => state.counter);
   const dispatch = useAppDispatch();
-  const [editCounter, setEditCounter] = useState<CounterRequestDTO>();
+  const [editCounter, setEditCounter] = useState<
+    CounterRequestDTO & { id: number }
+  >();
   const [opendCounterModal, setOpenCounterModal] = useState(false);
   const [openEditOneCounterModal, setOpenEditOneCounterModal] = useState(false);
   const [openAddOneCounterModal, setOpenAddOneCounterModal] = useState(false);
@@ -146,6 +148,7 @@ export default function CounterManageModal({
                           <Button
                             onClick={() => {
                               setEditCounter({
+                                id: counter.id,
                                 counter: counter.counter,
                                 email: counter.user.email!,
                                 timeClosed: counter.timeClosed as any,
@@ -164,20 +167,18 @@ export default function CounterManageModal({
                             {!isPhone && "แก้ไข"}
                           </Button>
                         </DialogClose>
-                        <DialogClose asChild>
-                          <Button
-                            onClick={() => onDeleteCounter(counter)}
-                            variant="outline"
-                            className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600 acerSwift:max-macair133:text-b4"
-                            size={isPhone ? "icon" : "default"}
-                          >
-                            <Icon
-                              IconComponent={IconTrash}
-                              className="stroke-delete acerSwift:max-macair133:!size-4"
-                            />
-                            {!isPhone && "ลบ"}
-                          </Button>
-                        </DialogClose>
+                        <Button
+                          onClick={() => onDeleteCounter(counter)}
+                          variant="outline"
+                          className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600 acerSwift:max-macair133:text-b4"
+                          size={isPhone ? "icon" : "default"}
+                        >
+                          <Icon
+                            IconComponent={IconTrash}
+                            className="stroke-delete acerSwift:max-macair133:!size-4"
+                          />
+                          {!isPhone && "ลบ"}
+                        </Button>
                       </div>
                     </div>
                   ))}
