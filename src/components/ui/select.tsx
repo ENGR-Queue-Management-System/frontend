@@ -17,7 +17,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "iphone:max-sm:w-[85vw] iphone:max-sm:text-sm iphone:max-macair133:text-sm sm:max-macair133:w-[50vw] text-wrap font-medium flex h-fit w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-0 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 ",
+      "iphone:max-sm:w-[85vw] acerSwift:max-macair133:text-b4 iphone:max-sm:text-sm iphone:max-macair133:text-sm sm:max-macair133:w-[50vw] text-wrap font-medium flex h-fit w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-0 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 ",
       className
     )}
     style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 0px 2px" }}

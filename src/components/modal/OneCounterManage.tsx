@@ -255,8 +255,12 @@ export default function OneCounterManage({
                                       />
                                     </FormControl>
                                     <FormLabel className="flex flex-col py-2 text-b2 acerSwift:max-macair133:text-b4">
-                                      <p>{topic.topicTH}</p>
-                                      <p>{topic.topicEN}</p>
+                                      <p className="mb-1 text-primary">
+                                        {topic.topicTH}
+                                      </p>
+                                      <p className="text-describe">
+                                        {topic.topicEN}
+                                      </p>
                                     </FormLabel>
                                   </div>
                                 </FormItem>

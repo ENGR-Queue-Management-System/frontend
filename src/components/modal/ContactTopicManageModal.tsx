@@ -311,7 +311,7 @@ export default function ContactTopicMangeModal({
           <div className="flex flex-col gap-1 w-full">
             <div className="flex gap-3 items-start justify-start w-full p-4 rounded-md bg-[#ffecec] ">
               <Icon IconComponent={IconExclaimation} className="text-delete" />
-              <p className="text-b2 acerSwift:max-macair133:text-b3 text-delete w-full text-medium">
+              <p className="text-b2 acerSwift:max-macair133:text-b3 text-delete w-full text-[500]">
                 การดำเนินการนี้ไม่สามารถย้อนกลับได้ หลังจากคุณลบหัวข้อบริการนี้
                 หัวข้อบริการจะถูกลบออกจากระบบนี้อย่างถาวร
                 คุณแน่ใจจะลบหัวข้อบริการนี้ใช่ไหม?
