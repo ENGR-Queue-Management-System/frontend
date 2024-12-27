@@ -129,7 +129,7 @@ export default function ContactTopicMangeModal({
           <div className="flex flex-col gap-4 justify-between h-full ">
             <div
               className={`p-0 rounded-lg mt-2 flex ${
-                isPhone ? "h-[77vh]" : ""
+                isPhone ? "h-[76vh]" : ""
               } flex-col gap-1 text-b2 acerSwift:max-macair133:text-b3 `}
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 8px" }}
             >
@@ -207,7 +207,7 @@ export default function ContactTopicMangeModal({
                 ))}
               </div>
             </div>
-            <Button className="px-5" onClick={() => setOpenAddTopicModal(true)}>
+            <Button className={`px-5 ${isPhone ? 'h-12 text-[15px] font-[500] rounded-full' : ''} `} onClick={() => setOpenAddTopicModal(true)}>
               <Icon IconComponent={IconPlus} />
               เพิ่มหัวข้อการบริการ
             </Button>
