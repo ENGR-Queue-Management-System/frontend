@@ -66,8 +66,11 @@ export default function AdminIndex() {
     if (res) {
       dispatch(updateCounterData(res));
       toast({
-        title: res.status ? "เปิดรับคิว" : "ปิดรับคิว",
-        variant: "default",
+        title: res.status ? "เปิดรับคำสั่ง" : "ปิดรับคำสั่ง",
+        description: res.status
+          ? "ระบบเปิดรับคำสั่งสำเร็จแล้ว"
+          : "ระบบปิดรับคำสั่งสำเร็จแล้ว",
+        variant: "success",
         duration: 3000,
       });
     }
@@ -90,6 +93,7 @@ export default function AdminIndex() {
       });
       toast({
         title: `เรียกคิว ${res.no}`,
+        description: "",
         variant: "success",
         duration: 3000,
       });
