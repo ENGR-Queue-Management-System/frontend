@@ -336,7 +336,7 @@ export default function LogQueueModal({
       >
         <DialogHeader>
           <DialogTitle>
-            <div className="flex flex-col gap-2  text-primary px-4 acerSwift:max-macair133:text-b1">
+            <div className="flex flex-col gap-2 font-medium text-primary px-4 acerSwift:max-macair133:text-b1">
               {title}
               <p className="text-default/60 font-medium text-b2 acerSwift:max-macair133:text-b3">
                 ประวัติการให้บริการย้อนหลัง 30 วัน
@@ -347,7 +347,7 @@ export default function LogQueueModal({
         </DialogHeader>
         <div className="overflow-hidden h-full flex flex-col gap-4 px-10 iphone:max-sm:px-1">
           <div className="flex ipad11:justify-between iphone:max-sm:flex-col iphone:max-sm:gap-1 iphone:max-sm:text-center">
-            <div className="font-semibold text-default flex flex-col acerSwift:max-macair133:text-b3">
+            <div className="font-semibold text-default flex flex-col acerSwift:max-macair133:text-b3 iphone:max-sm:pb-3">
               <p>บริการทั้งหมด</p>
               <p className="text-[24px] acerSwift:max-macair133:text-h1 text-table-foreground">
                 14 คิว
@@ -476,7 +476,7 @@ export default function LogQueueModal({
                     </TableCell>
                     <TableCell className="w-[10%]">{item.studentId}</TableCell>
                     <TableCell className="w-[15%]">{item.name}</TableCell>
-                    <TableCell className=" w-[25%]   items-center">
+                    <TableCell className=" w-[25%] items-center">
                       <div className="flex items-center gap-2">
                         {item.category}
                       </div>

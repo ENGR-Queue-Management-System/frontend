@@ -55,11 +55,11 @@ export default function LoginManageModal({
         </Button>
       </DialogTrigger>
       <DialogContent
-        className={`   ipad11:max-w-[55vw] iphone:max-sm:max-h-[70vh] flex flex-col justify-start`}
+        className={`ipad11:max-w-[55vw] iphone:max-sm:max-h-[70vh] acerSwift:max-macair133:max-w-[40vw]  iphone:max-sm:px-4 flex flex-col justify-start`}
       >
         <DialogHeader>
           <DialogTitle
-            className={`text-table-foreground acerSwift:max-macair133:text-b1 `}
+            className={`text-table-foreground acerSwift:max-macair133:text-b1 font-medium`}
           >
             {title}
           </DialogTitle>
@@ -67,23 +67,25 @@ export default function LoginManageModal({
 
         <div className="flex flex-col gap-4 justify-between h-full iphone:max-sm:pt-1">
           <div
-            className="flex bg-white rounded-lg border border-[#E5DDEA] text-[15px] px-6 py-3 justify-between items-center"
+            className="flex iphone:max-sm:flex-col iphone:max-sm:gap-4 bg-white rounded-lg border border-[#E5DDEA] text-[15px] px-6  iphone:max-sm:px-4 py-4 justify-between items-center"
             style={{
               boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
             }}
           >
             <div className="flex-col">
-              <p className="acerSwift:max-macair133:text-b3 text-b1">
+              <p className="acerSwift:max-macair133:text-b3 font-medium text-b1 ">
                 จองคิวโดยไม่ต้องใช้ CMU Account
               </p>
               <p className="text-primary text-b3 acerSwift:max-macair133:text-b4 ">
                 สำหรับนักเรียน นักศึกษา และบุคลากรที่ไม่มี CMU Account
               </p>
             </div>
+
             <Switch
               checked={config.loginNotCmu}
               onCheckedChange={onChangeLoginNotCmu}
             />
+
             <div className="hidden">
               <LoginPage />
             </div>
