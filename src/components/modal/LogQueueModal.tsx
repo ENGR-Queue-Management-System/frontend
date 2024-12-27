@@ -32,6 +32,8 @@ import Icon from "@/components/Icon";
 import IconFilter from "../../../public/icons/filter.svg";
 import IconSearch from "../../../public/icons/search.svg";
 import { th } from "date-fns/locale";
+import { DEVICE_TYPE } from "@/config/Enum";
+import { useNotification } from "@/notifications/useNotification";
 
 type Props = {
   triggerText: string;
@@ -44,6 +46,7 @@ export default function LogQueueModal({
   title,
 }: Props) {
   const [date, setDate] = useState<Date>();
+  const { deviceType, isPhone } = useNotification();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const dataDone = [
     {
@@ -334,7 +337,9 @@ export default function LogQueueModal({
         className="max-w-[100vw] !rounded-none h-[100vh] flex flex-col pb-6 acerSwift:max-macair133:pb-9 acerSwift:max-macair133:py-5"
         type="log"
       >
-        <DialogHeader>
+        <DialogHeader
+          className={`  ${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
+        >
           <DialogTitle>
             <div className="flex flex-col gap-2 font-medium text-primary px-4 acerSwift:max-macair133:text-b1">
               {title}
@@ -347,7 +352,7 @@ export default function LogQueueModal({
         </DialogHeader>
         <div className="overflow-hidden h-full flex flex-col gap-4 px-10 iphone:max-sm:px-1">
           <div className="flex ipad11:justify-between iphone:max-sm:flex-col iphone:max-sm:gap-1 iphone:max-sm:text-center">
-            <div className="font-semibold text-default flex flex-col acerSwift:max-macair133:text-b3 iphone:max-sm:pb-3">
+            <div className="font-[500] text-default flex flex-col acerSwift:max-macair133:text-b3 iphone:max-sm:pb-3">
               <p>บริการทั้งหมด</p>
               <p className="text-[24px] acerSwift:max-macair133:text-h1 text-table-foreground">
                 14 คิว
@@ -361,7 +366,7 @@ export default function LogQueueModal({
                   placeholder="ค้นหา เลขคิว, รหัสนักศึกษา, ชื่อ-นามสกุล"
                 />
               </div>
-              <div className="flex gap-3 ">
+              <div className={`flex gap-3  ${isPhone ? 'justify-start items-start text-start w-full' : ''} `}>
                 <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                   <PopoverTrigger asChild>
                     <Button
@@ -453,39 +458,73 @@ export default function LogQueueModal({
             }}
             className="max-h-full rounded-lg overflow-hidden  shadow-shadow-table flex w-full border border-[#E5DDEA]"
           >
-            <Table striped={true}>
-              <TableHeader className="acerSwift:max-macair133:!h-12 ">
-                <TableRow className="sticky text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b4  font-bold top-0 z-30 ">
-                  <TableHead>วันที่</TableHead>
-                  <TableHead>เวลาเข้ารับบริการ</TableHead>
-                  <TableHead>เลขคิว</TableHead>
-                  <TableHead>รหัสนักศึกษา</TableHead>
-                  <TableHead>ชื่อ-นามสกุล</TableHead>
-                  <TableHead>รายการติดต่อ</TableHead>
-                  <TableHead className="w-[50%]">เพิ่มเติม</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className="font-normal text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b4 ">
-                {dataDone.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell className="w-[10%]">{item.date}</TableCell>
-                    <TableCell className="w-[12%]">{item.time}</TableCell>
-                    <TableCell className="font-medium py-4 w-[8%]">
-                      {item.id < 10 ? "A00" : item.id < 100 && "A0"}
-                      {item.id}
-                    </TableCell>
-                    <TableCell className="w-[10%]">{item.studentId}</TableCell>
-                    <TableCell className="w-[15%]">{item.name}</TableCell>
-                    <TableCell className=" w-[25%] items-center">
-                      <div className="flex items-center gap-2">
-                        {item.category}
-                      </div>
-                    </TableCell>
-                    <TableCell className="w-[20%]"></TableCell>
+            {!isPhone ? (
+              <Table striped={true}>
+                <TableHeader className="acerSwift:max-macair133:!h-12 ">
+                  <TableRow className="sticky text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b4  font-bold top-0 z-30 ">
+                    <TableHead>วันที่</TableHead>
+                    <TableHead>เวลาเข้ารับบริการ</TableHead>
+                    <TableHead>เลขคิว</TableHead>
+                    <TableHead>รหัสนักศึกษา</TableHead>
+                    <TableHead>ชื่อ-นามสกุล</TableHead>
+                    <TableHead>รายการติดต่อ</TableHead>
+                    <TableHead className="w-[50%]">เพิ่มเติม</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody className="font-normal text-b2 samsungA24:text-b1 acerSwift:max-macair133:text-b4 ">
+                  {dataDone.map((item) => (
+                    <TableRow key={item.id}>
+                      <TableCell className="w-[10%]">{item.date}</TableCell>
+                      <TableCell className="w-[12%]">{item.time}</TableCell>
+                      <TableCell className="font-medium py-4 w-[8%]">
+                        {item.id < 10 ? "A00" : item.id < 100 && "A0"}
+                        {item.id}
+                      </TableCell>
+                      <TableCell className="w-[10%]">
+                        {item.studentId}
+                      </TableCell>
+                      <TableCell className="w-[15%]">{item.name}</TableCell>
+                      <TableCell className=" w-[25%] items-center">
+                        <div className="flex items-center gap-2">
+                          {item.category}
+                        </div>
+                      </TableCell>
+                      <TableCell className="w-[20%]"></TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            ) : (
+              <div className="overflow-y-auto w-full">
+                <div className="flex  flex-col h-auto">
+                  {dataDone.map((item) => (
+                    <div className="flex flex-col px-5">
+                      <div
+                        key={item.id}
+                        className="!w-full text-[12px] border-b-[1px]   font-[500] gap-2 items-center p-3 pl-2  flex flex-row"
+                      >
+                        <div className="flex text-default w-[35%]  justify-between gap-[2px] flex-col">
+                          <p>{item.date}</p>
+                          <p>{item.time}</p>
+                        </div>
+
+                        <div className="flex text-primary w-[65%]  mt-1 flex-col  gap-1">
+                          <p className="text-ellipsis overflow-hidden whitespace-nowrap">
+                            {item.studentId}
+                          </p>
+                          <p className="text-ellipsis overflow-hidden whitespace-nowrap">
+                            {item.name}
+                          </p>
+                          <p className="text-default font-[400] text-ellipsis overflow-hidden whitespace-nowrap">
+                            {item.category}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </DialogContent>
