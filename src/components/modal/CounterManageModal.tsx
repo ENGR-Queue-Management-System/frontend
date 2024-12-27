@@ -21,8 +21,13 @@ import Icon from "@/components/Icon";
 import OneCounterManage from "./OneCounterManage";
 import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE } from "@/config/Enum";
-import { useAppSelector } from "@/store";
+import { useAppDispatch, useAppSelector } from "@/store";
 import { getUserName } from "@/helpers/function";
+import { IModelCounter } from "@/models/Model";
+import { deleteCounter } from "@/services/counter/counter.service";
+import { toast } from "@/hooks/use-toast";
+import { removeCounter } from "@/store/counter";
+import { CounterRequestDTO } from "@/services/counter/dto/counter.dto";
 
 type Props = {
   triggerText?: string;
@@ -36,9 +41,23 @@ export default function CounterManageModal({
 }: Props) {
   const { deviceType, isPhone } = useNotification();
   const counters = useAppSelector((state) => state.counter);
+  const dispatch = useAppDispatch();
+  const [editCounter, setEditCounter] = useState<CounterRequestDTO>();
   const [opendCounterModal, setOpenCounterModal] = useState(false);
   const [openEditOneCounterModal, setOpenEditOneCounterModal] = useState(false);
   const [openAddOneCounterModal, setOpenAddOneCounterModal] = useState(false);
+
+  const onDeleteCounter = async (counter: IModelCounter) => {
+    // const res = await deleteCounter(counter.id);
+    // if (res) {
+    //   dispatch(removeCounter(counter.id));
+    //   toast({
+    //     title: `Counter ${counter.counter} is deleted`,
+    //     variant: "success",
+    //     duration: 3000,
+    //   });
+    // }
+  };
 
   return (
     <>
@@ -126,6 +145,12 @@ export default function CounterManageModal({
                         <DialogClose asChild>
                           <Button
                             onClick={() => {
+                              setEditCounter({
+                                counter: counter.counter,
+                                email: counter.user.email!,
+                                timeClosed: counter.timeClosed as any,
+                                topics: counter.topic.map(({ id }) => id),
+                              });
                               setOpenEditOneCounterModal(true);
                             }}
                             variant="outline"
@@ -141,7 +166,7 @@ export default function CounterManageModal({
                         </DialogClose>
                         <DialogClose asChild>
                           <Button
-                            // onClick={}
+                            onClick={() => onDeleteCounter(counter)}
                             variant="outline"
                             className="border-red-500 rounded-full text-red-500 hover:bg-[#f7b1b13b] hover:text-red-600 acerSwift:max-macair133:text-b4"
                             size={isPhone ? "icon" : "default"}
@@ -185,9 +210,10 @@ export default function CounterManageModal({
           }}
         />
         <OneCounterManage
-          title="แก้ไขเคาน์เตอร์ A"
+          title={`แก้ไขเคาน์เตอร์ ${editCounter?.counter}`}
           type="edit"
           opened={openEditOneCounterModal}
+          data={editCounter}
           onClose={() => {
             setOpenEditOneCounterModal(false);
             setTimeout(() => {

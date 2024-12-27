@@ -31,6 +31,7 @@ import { setTopics } from "@/store/topic";
 import { setConfigData, setPrevPath } from "@/store/config";
 import { getConfigData } from "@/services/config/config.service";
 import ErrorResponse from "@/components/ErrorResponse";
+// import setupSocket, { socket } from "@/config/socket";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { isSupported, isGranted } = useNotification();
@@ -50,9 +51,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         dispatch(setConfigData(res));
       }
     };
+    // setupSocket();
     fetchConfigData();
     const timeout = setTimeout(() => dispatch(setLoading(false)), 2000);
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      // socket.close();
+    };
   }, []);
 
   useEffect(() => {
