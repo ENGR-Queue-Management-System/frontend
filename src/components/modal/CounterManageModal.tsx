@@ -195,7 +195,7 @@ export default function CounterManageModal({
                                 counter: counter.counter,
                                 email: counter.user.email!,
                                 timeClosed: counter.timeClosed as any,
-                                topics: counter.topic.map(({ id }) => id),
+                                topics: counter.topics.map(({ id }) => id),
                               });
                               setOpenEditOneCounterModal(true);
                             }}
@@ -218,7 +218,7 @@ export default function CounterManageModal({
                                 counter: counter.counter,
                                 email: counter.user.email!,
                                 timeClosed: counter.timeClosed as any,
-                                topics: counter.topic.map(({ id }) => id),
+                                topics: counter.topics.map(({ id }) => id),
                               });
                               setOpenDeleteCounterPopup(true);
                             }}

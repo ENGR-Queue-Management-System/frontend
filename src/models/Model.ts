@@ -19,7 +19,7 @@ export interface IModelCounter {
   status: boolean;
   timeClosed: Date;
   user: IModelUser;
-  topic: IModelTopic[];
+  topics: IModelTopic[];
 }
 
 export interface IModelUser {
