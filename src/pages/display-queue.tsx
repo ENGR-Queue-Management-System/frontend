@@ -133,15 +133,15 @@ export default function Home() {
       case AQI_STATUS.GOOD:
         return "bg-[#39c992] text-black";
       case AQI_STATUS.MODERATE:
-        return "bg-[#fdd64b] text-[#000000]";
+        return "bg-[#fdd64b] text-black";
       case AQI_STATUS.UNHEALTHY_SG:
-        return "bg-[#faa166] text-[#000000]";
+        return "bg-[#faa166] text-black";
       case AQI_STATUS.UNHEALTHY:
-        return "bg-[#cd3030] text-[#ffffff]";
+        return "bg-[#cd3030] text-white";
       case AQI_STATUS.VERY_UNHEALTHY:
-        return "bg-[#70497f] text-[#ffffff]";
+        return "bg-[#70497f] text-white";
       case AQI_STATUS.HAZARDOUS:
-        return "bg-[#793e50] text-[#ffffff]";
+        return "bg-[#793e50] text-white";
       default:
         return "bg-black";
     }
@@ -162,7 +162,7 @@ export default function Home() {
         // );
         // const aqiValue = response.data.data.current.pollution.aqius;
         
-        const aqiValue = 226; // Mock test color bg and text
+        const aqiValue = 200; // Mock test color bg and text
         setAqi(aqiValue);
         setAqiStatus(determineAqiStatus(aqiValue));
       } catch (error) {
