@@ -2,8 +2,7 @@ import Router from "next/router";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Route } from "@/config/Route";
-import logoSD from "../../public/images/logoSD.png";
-import qrCode from "../../public/images/qrCode.png";
+import logoSD from "../../public/images/logoSDBlack.png";
 import Icon from "@/components/Icon";
 import { useAppSelector } from "@/store";
 import { useEffect, useState } from "react";
@@ -18,6 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import axios from "axios";
 
 export default function Home() {
   const [time, setTime] = useState<string>("");
@@ -52,7 +52,7 @@ export default function Home() {
         day: "numeric",
         month: "short",
       };
-      const currentDate = new Intl.DateTimeFormat("en-EN", options).format(
+      const currentDate = new Intl.DateTimeFormat("en-GB", options).format(
         new Date()
       );
       setDateTime(currentDate);
@@ -69,24 +69,31 @@ export default function Home() {
       <Table className="w-full " striped={true}>
         <TableHeader>
           <TableRow className="sticky text-b2 samsungA24:text-b1 font-bold top-0 z-30">
-            <TableHead className=" rounded-tl-2xl bg-[#001F3F] text-[3vh] text-center border-b-[2px] border-r-[2px] border-[#8ff5a7] p-3 py-4 text-[#ffffff]">
-              หมายเลขคิวที่เรียก <br /> Called Queue
+            <TableHead className=" bg-[#000000] w-[20%] !rounded-none  border-b-[2px] border-[#ffffff]  text-[4vh] text-center text-[#efde25] p-3">
+              Counter
             </TableHead>
-            <TableHead className=" bg-[#001F3F] rounded-tr-2xl border-b-[2px] border-[#8ff5a7]  text-[3vh] text-center text-[#ffffff] p-3">
-              เคาน์เตอร์ <br /> (Counter)
+            <TableHead className="  bg-[#000000] text-[4vh]  w-[25%] text-center border-b-[2px]  border-l-[2px] border-[#fffffff] p-3 py-4 text-[#efde25]">
+              Called No.
+            </TableHead>
+            <TableHead className="  bg-[#000000] text-[4vh]  w-[55%] text-start border-b-[2px]  border-[#fffffff] p-3 py-4 text-[#efde25]">
+              Name
             </TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody className="font-normal rounded-br-2xl text-center text-b2 samsungA24:text-b1">
+        <TableBody className="font-normal  text-center text-b2 samsungA24:text-b1">
           {queueData && queueData.length > 0 ? (
             queueData.map((item: any) => (
               <TableRow className="" key={item.queueNumber}>
-                <TableCell className="font-semibold bg-[#0b1734] border-r-[2px] border-[#8ff5a7] rounded-bl-2xl  text-white text-[14vh] ">
-                  {item.queueNumber}
-                  <p className="text-[3.8vh]  -mt-4 my-10">วรพิชชา เมืองยศ</p>
-                </TableCell>
-                <TableCell className=" bg-[#0b1734] rounded-br-2xl text-white font-semibold text-[14vh]">
+                <TableCell className=" bg-[#0E1235]  text-white font-semibold text-[6vh]">
                   {item.counter}
+                </TableCell>
+                <TableCell className="font-semibold bg-[#0E1235] border-l-[2px] border-[#ffffff]  text-[#efde25] text-[6vh] ">
+                  {item.queueNumber}
+                </TableCell>
+                <TableCell className="font-semibold text-start bg-[#0E1235]   border-[#ffffff]  text-white text-[5vh] ">
+                  <p className=" font-normal font-roboto text-[4vh] -ml-3">
+                    {item.name}
+                  </p>
                 </TableCell>
               </TableRow>
             ))
@@ -102,84 +109,124 @@ export default function Home() {
     );
   };
 
-  const queueData = [{ queueNumber: "A081", counter: "A" }];
+  const AQI_STATUS = {
+    GOOD: "Good",
+    MODERATE: "Moderate",
+    UNHEALTHY_SG: "Concern",
+    UNHEALTHY: "Unhealthy",
+    VERY_UNHEALTHY: "Very Unhealthy",
+    HAZARDOUS: "Hazardous",
+  };
 
-  const calledQueueData = [
-    { queueNumber: "A080" },
-    { queueNumber: "B021" },
-    { queueNumber: "B020" },
-    { queueNumber: "A079" },
-    { queueNumber: "C025" },
-    { queueNumber: "A078" },
-    { queueNumber: "A077" },
-    { queueNumber: "A076" },
+  const [aqi, setAqi] = useState<number | null>(null);
+  const [aqiStatus, setAqiStatus] = useState<string>("");
+  const determineAqiStatus = (value: number): string => {
+    if (value <= 50) return AQI_STATUS.GOOD;
+    if (value <= 100) return AQI_STATUS.MODERATE;
+    if (value <= 150) return AQI_STATUS.UNHEALTHY_SG;
+    if (value <= 200) return AQI_STATUS.UNHEALTHY;
+    if (value <= 300) return AQI_STATUS.VERY_UNHEALTHY;
+    return AQI_STATUS.HAZARDOUS;
+  };
+  const getAqiBackgroundColor = (status: string): string => {
+    switch (status) {
+      case AQI_STATUS.GOOD:
+        return "bg-[#39c992] text-black";
+      case AQI_STATUS.MODERATE:
+        return "bg-[#fdd64b] text-[#000000]";
+      case AQI_STATUS.UNHEALTHY_SG:
+        return "bg-[#faa166] text-[#000000]";
+      case AQI_STATUS.UNHEALTHY:
+        return "bg-[#cd3030] text-[#ffffff]";
+      case AQI_STATUS.VERY_UNHEALTHY:
+        return "bg-[#70497f] text-[#ffffff]";
+      case AQI_STATUS.HAZARDOUS:
+        return "bg-[#793e50] text-[#ffffff]";
+      default:
+        return "bg-black";
+    }
+  };
+
+  useEffect(() => {
+    const fetchAqi = async () => {
+      try {
+        // const response = await axios.get(
+        //   "https://api.airvisual.com/v2/nearest_city",
+        //   {
+        //     params: {
+        //       key: "4f6af6ef-9045-4d4e-b95e-7a125bb11db8", // Replace with your API key
+        //       lat: "18.79", // Example latitude
+        //       lon: "98.95", // Example longitude
+        //     },
+        //   }
+        // );
+        // const aqiValue = response.data.data.current.pollution.aqius;
+        
+        const aqiValue = 226; // Mock test color bg and text
+        setAqi(aqiValue);
+        setAqiStatus(determineAqiStatus(aqiValue));
+      } catch (error) {
+        console.error("Error fetching AQI data:", error);
+      }
+    };
+  
+    fetchAqi(); 
+    const interval = setInterval(fetchAqi, 30 * 60 * 1000); 
+    return () => clearInterval(interval); 
+  }, []);
+  
+
+  const queueData = [
+    { queueNumber: "C081", counter: "1", name: "สวิช จารึกพูนผล" },
+    { queueNumber: "S012", counter: "2", name: "ธนพร ชาญชนะโยธิน" },
+    { queueNumber: "B065", counter: "3", name: "วรพิชชา เมืองยศ" },
+    { queueNumber: "E034", counter: "4", name: "สุพิชญา รวมสิน" },
+    { queueNumber: "T024", counter: "5", name: "เอกชัย แพร่ไพศาลภูบาล" },
+    { queueNumber: "A008", counter: "6", name: "เนตรนภา สาระแปง" },
   ];
+
 
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
-      {/* Navbar (Sticky and does not scroll) */}
       <div
         style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
-        className="sticky top-0 flex min-h-[11vh] bg-[#001F3F] border-b border-[#000000] justify-between items-center px-10 z-50"
+        className="sticky top-0 flex min-h-[11vh] bg-[#efde25] border-b border-[#000000] justify-between items-center px-10 z-50"
       >
-        <div className="flex flex-col text-white text-[2.4vh] gap-[2px]">
-          <p className="font-medium">คิวห้องงานพัฒนาคุณภาพนักศึกษา</p>
-          <p className="font-semibold">Student Development Room Queue</p>
-        </div>
-        <p className="text-white text-[5.2vh] font-medium">{time}</p>
-        <div className="flex flex-col text-end text-white text-[2.4vh] gap-[2px]">
-          <p className="font-medium">คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
-          <p className="font-semibold">Faculty of Engineering, CMU</p>
+        <div className="flex gap-8  h-full items-center justify-center  ">
+          <p className="text-[#000000] text-[6vh] font-semibold">{dateTime}</p>
+          <p className="text-[#000000] text-[6vh] font-semibold">{time}</p>
+        </div>{" "}
+        <div className="flex  gap-5 items-center">
+          <Image src={logoSD} alt="cmulogo" className="w-[4.5vw]  " />
         </div>
       </div>
 
-      {/* Main Content (Flex-grow to fill remaining height) */}
       <div className="flex flex-col flex-grow">
-        <div className="flex bg-[#8ff5a7] p-4 w-full flex-col flex-grow">
-          <QueueCallTable queueData={queueData} />
-        </div>
+        <QueueCallTable queueData={queueData} />
 
-        {/* Footer Section */}
-        <div className="flex flex-grow bg-slate-800 px-12 py-3 gap-4  w-full">
-          <div className="flex flex-col gap-4 w-[69%]">
-            <div className="grid grid-cols-3 gap-4">
-              <div className="flex rounded-2xl justify-center items-center p-5 text-white bg-[#FF5733] flex-col">
-                <p className="text-[3.3vh]">Counter A</p>
-                <p className="text-[7vh] font-semibold">A081</p>
-              </div>
-              <div className="flex rounded-2xl justify-center items-center p-5 text-white bg-[#1E90FF] flex-col">
-                <p className="text-[3.3vh]">Counter B</p>
-                <p className="text-[7vh] font-semibold">B081</p>
-              </div>
-              <div className="flex rounded-2xl justify-center items-center p-5 text-white bg-[#918123] flex-col">
-                <p className="text-[3.3vh]">Counter C</p>
-                <p className="text-[7vh] font-semibold">C081</p>
-              </div>
-            </div>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="flex rounded-2xl justify-center items-center p-5 text-white bg-[#28A745] flex-col">
-                <p className="text-[3.3vh]">Counter D</p>
-                <p className="text-[7vh] font-semibold">D081</p>
-              </div>
-              <div className="flex rounded-2xl justify-center items-center p-5 text-white bg-[#FF69B4] flex-col">
-                <p className="text-[3.3vh]">Counter E</p>
-                <p className="text-[7vh] font-semibold">E081</p>
-              </div>
-              <div className="flex rounded-2xl justify-center items-center p-5 text-white  bg-[#8A2BE2] flex-col">
-                <p className="text-[3.3vh]">Counter F</p>
-                <p className="text-[7vh] font-semibold">F081</p>
-              </div>
-            </div>
+        <div className="flex flex-grow bg-[#fffffff]  gap-4  w-full">
+          <div
+            className={`flex w-[40%] px-10 h-full items-center gap-9 justify-between text-black text-start ${
+              aqiStatus ? getAqiBackgroundColor(aqiStatus) : "bg-gray-300"
+            }`}
+          >
+            <p className="text-[2.7vh] ">
+              <span className="font-semibold text-[6vh]">
+                {" "}
+                {aqi !== null ? aqi : "loading"}
+              </span>{" "}
+              US AQI
+            </p>
+            <p className="font-semibold text-[5.2vh]">
+              {" "}
+              {aqiStatus || "loading"}
+            </p>
           </div>
-          <div className="text-white w-[31%] flex flex-col h-full text-center items-center justify-center">
-            <p className="text-[3.3vh]">จองคิวได้ที่</p>
-            <p className="text-[3.3vh]">q.eng.cmu.ac.th</p>
-            <Image
-              src={qrCode}
-              style={{ borderRadius: "20px" }}
-              alt="qrcode"
-              className="w-[18vw] mr-2"
-            />
+          <div className="flex gap-8 px-12 w-[60%]  items-center justify-center ">
+            <p className="text-[#000000] text-[5.8vh] font-medium">
+              จองคิวได้ที่
+              <span className="font-semibold"> q.eng.cmu.ac.th</span>
+            </p>
           </div>
         </div>
       </div>
