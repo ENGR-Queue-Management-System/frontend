@@ -83,6 +83,42 @@
   );
 }
 
+.countdown-active {
+  position: relative;
+  overflow: hidden; /* Ensure the moving element stays within the button */
+  color: #ffffff; /* Ensure text color contrasts the background */
+}
+
+.countdown-active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0; /* Start from the left */
+  height: 100%;
+  width: 100%;
+  background-color: #2753a5; /* Solid black color */
+  transform: translateX(-100%); /* Start fully outside on the left */
+  animation: moveSolidColor 5s linear forwards; /* Duration: 6 seconds */
+  z-index: 0; /* Keep the background behind the text */
+}
+
+.countdown-active span {
+  position: relative;
+  z-index: 1; /* Text is above the moving background */
+}
+  
+@keyframes moveSolidColor {
+  0% {
+    transform: translateX(-100%); /* Start outside the left edge */
+  }
+  100% {
+    transform: translateX(0); /* Fill the entire button */
+  }
+}
+
+
+
+
 body {
   user-select: text;
   -webkit-user-select: text;
