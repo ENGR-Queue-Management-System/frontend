@@ -311,7 +311,6 @@ export default function OneCounterManage({
                                         {topic.topicEN}
                                       </p>
                                     </FormLabel>
-                                    <FormMessage />
                                   </div>
                                 </FormItem>
                               );

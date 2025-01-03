@@ -83,11 +83,11 @@ export default function CounterManageModal({
           }`}
         >
           <DialogHeader
-            className={`  ${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
+            className={`${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
           >
             <DialogTitle className="text-primary font-[500]  acerSwift:max-macair133:text-b1">
               {title}
-            </DialogTitle>{" "}
+            </DialogTitle>
           </DialogHeader>
           <div className="flex flex-col gap-4 justify-between h-full ">
             <div

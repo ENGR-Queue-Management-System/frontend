@@ -8,9 +8,6 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import IconUsers from "../../../public/icons/users.svg";
-import IconUser from "../../../public/icons/user.svg";
 import IconTrash from "../../../public/icons/trash.svg";
 import IconEdit from "../../../public/icons/edit.svg";
 import IconTopic from "../../../public/icons/topic.svg";
@@ -19,7 +16,12 @@ import IconPlus from "../../../public/icons/plus.svg";
 import { useNotification } from "@/notifications/useNotification";
 import Icon from "@/components/Icon";
 import { DEVICE_TYPE } from "@/config/Enum";
-import { useAppSelector } from "@/store";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { TopicRequestDTO } from "@/services/topic/dto/topic.dto";
+import { deleteTopic } from "@/services/topic/topic.service";
+import { removeTopic } from "@/store/topic";
+import { toast } from "@/hooks/use-toast";
+import OneTopicManageModal from "./OneTopicManageModal";
 
 type PopupProps = {
   triggerText?: string;
@@ -33,25 +35,32 @@ export default function ContactTopicMangeModal({
 }: PopupProps) {
   const { deviceType, isPhone } = useNotification();
   const topics = useAppSelector((state) => state.topic);
+  const dispatch = useAppDispatch();
+  const [editTopic, setEditTopic] = useState<
+    TopicRequestDTO & { id: number }
+  >();
+  const [opendTopicModal, setOpenTopicModal] = useState(false);
   const [openAddTopicModal, setOpenAddTopicModal] = useState(false);
   const [openEditTopicModal, setOpenEditTopicModal] = useState(false);
   const [openDeleteTopicPopup, setOpenDeleteTopicPopup] = useState(false);
 
-  const [inputValues, setInputValues] = useState({
-    topicTH: "",
-    topicEN: "",
-  });
+  const onDeleteTopic = async () => {
+    if (editTopic) {
+      const res = await deleteTopic(editTopic.id);
+      if (res) {
+        dispatch(removeTopic(editTopic.id));
+        toast({
+          title: `Topic ${editTopic.topicTH} is deleted`,
+          variant: "success",
+          duration: 3000,
+        });
+        setOpenDeleteTopicPopup(false);
+      }
+    }
+  };
 
   return (
-    <Dialog
-      onOpenChange={(isOpen) => {
-        if (isOpen) {
-          setOpenDeleteTopicPopup(false);
-          setOpenAddTopicModal(false);
-          setOpenEditTopicModal(false);
-        }
-      }}
-    >
+    <Dialog open={opendTopicModal} onOpenChange={setOpenTopicModal}>
       <DialogTrigger asChild>
         <Button
           variant="ghost"
@@ -74,7 +83,7 @@ export default function ContactTopicMangeModal({
         }`}
       >
         <DialogHeader
-          className={`  ${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
+          className={`${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
         >
           <DialogTitle
             className={`text-table-foreground  !font-medium acerSwift:max-macair133:text-b1 ${
@@ -84,17 +93,44 @@ export default function ContactTopicMangeModal({
             {openDeleteTopicPopup && (
               <Icon IconComponent={IconTrash} className="stroke-[#f85959]" />
             )}
-            {openAddTopicModal
-              ? "เพิ่มหัวข้อการบริการ"
-              : openEditTopicModal
-              ? "แก้ไขหัวข้อการบริการ"
-              : openDeleteTopicPopup
-              ? "ลบหัวข้อการบริการ"
-              : title}
+            {openDeleteTopicPopup ? "ลบหัวข้อการบริการ" : title}
           </DialogTitle>
         </DialogHeader>
 
-        {!openAddTopicModal && !openEditTopicModal && !openDeleteTopicPopup ? (
+        {openDeleteTopicPopup ? (
+          <div className="flex flex-col gap-1 w-full">
+            <div className="flex gap-3 items-start justify-start w-full p-4 rounded-md bg-[#ffecec] ">
+              <Icon IconComponent={IconExclaimation} className="text-delete" />
+              <p className="text-b2 acerSwift:max-macair133:text-b3 text-delete w-full text-[500]">
+                การดำเนินการนี้ไม่สามารถย้อนกลับได้ หลังจากคุณลบหัวข้อบริการนี้
+                หัวข้อบริการจะถูกลบออกจากระบบนี้อย่างถาวร
+                คุณแน่ใจจะลบหัวข้อบริการนี้ใช่ไหม?
+              </p>
+            </div>
+            <div className="mt-4 flex flex-col  ">
+              <p className="text-b2 acerSwift:max-macair133:text-b3 text-describe">
+                หัวข้อบริการ
+              </p>
+              <p className="text-b1 acerSwift:max-macair133:text-b2">
+                {editTopic?.topicTH}
+              </p>
+            </div>
+            <div className="flex gap-3 mt-3 justify-end text-default">
+              <Button
+                variant="ghost"
+                onClick={() => setOpenDeleteTopicPopup(false)}
+              >
+                ยกเลิก
+              </Button>
+              <Button
+                className="bg-delete hover:bg-delete/90"
+                onClick={onDeleteTopic}
+              >
+                ลบหัวข้อบริการ
+              </Button>
+            </div>
+          </div>
+        ) : (
           <div className="flex flex-col gap-4 justify-between h-full ">
             <div
               className={`p-0 rounded-lg mt-2 flex ${
@@ -106,7 +142,7 @@ export default function ContactTopicMangeModal({
                 <Icon
                   IconComponent={IconTopic}
                   className="acerSwift:max-macair133:size-5"
-                />{" "}
+                />
                 รายชื่อหัวข้อการบริการ
               </div>
               <div
@@ -143,10 +179,13 @@ export default function ContactTopicMangeModal({
                         <Button
                           variant="outline"
                           onClick={() => {
-                            setInputValues({
+                            setEditTopic({
+                              id: topic.id,
                               topicTH: topic.topicTH,
                               topicEN: topic.topicEN,
+                              code: topic.code,
                             });
+                            setOpenTopicModal(false);
                             setOpenEditTopicModal(true);
                           }}
                           size={isPhone ? "icon" : "default"}
@@ -163,7 +202,15 @@ export default function ContactTopicMangeModal({
 
                         <Button
                           variant="outline"
-                          onClick={() => setOpenDeleteTopicPopup(true)}
+                          onClick={() => {
+                            setEditTopic({
+                              id: topic.id,
+                              topicTH: topic.topicTH,
+                              topicEN: topic.topicEN,
+                              code: topic.code,
+                            });
+                            setOpenDeleteTopicPopup(true);
+                          }}
                           size={isPhone ? "icon" : "default"}
                           className={` !border-red-500 text-red-500 rounded-full ${
                             isPhone ? "size-8" : ""
@@ -185,166 +232,38 @@ export default function ContactTopicMangeModal({
               className={`px-5 ${
                 isPhone ? "h-12 text-[15px] font-[500] rounded-full" : ""
               } `}
-              onClick={() => setOpenAddTopicModal(true)}
+              onClick={() => {
+                setOpenTopicModal(false);
+                setOpenAddTopicModal(true);
+              }}
             >
               <Icon IconComponent={IconPlus} />
               เพิ่มหัวข้อการบริการ
             </Button>
           </div>
-        ) : openEditTopicModal || openAddTopicModal ? (
-          <div>
-            <div className="flex flex-col  gap-4 pb-4">
-              <div
-                // style={{
-                //   boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)",
-                // }}
-                className=" gap-4 rounded-lg text-b2  text-start flex flex-col "
-              >
-                <div className="grid w-full max-w-full items-center gap-1.5">
-                  <p className="text-b2 acerSwift:max-macair133:text-b4 font-medium">
-                    หัวข้อภาษาไทย
-                  </p>
-                  <Input
-                    type="text"
-                    value={openEditTopicModal ? inputValues.topicEN : ""}
-                    className="iphone:max-sm:text-b2"
-                    placeholder="เช่น ขอคำปรึกษาด้านวิชาการ"
-                  />
-                </div>
-                <div className="grid w-full max-w-full items-center gap-1.5">
-                  <p className="text-b2 acerSwift:max-macair133:text-b4 font-medium">
-                    หัวข้อภาษาอังกฤษ
-                  </p>
-                  <Input
-                    type="text"
-                    value={openEditTopicModal ? inputValues.topicEN : ""}
-                    className="iphone:max-sm:text-b2"
-                    placeholder="e.g. Academic Consultation"
-                  />
-                </div>
-                <div className="grid w-full max-w-full items-center gap-1.5">
-                  <p className="text-b2 acerSwift:max-macair133:text-b4 font-medium  ">
-                    โค้ดสำหรับหัวข้อบริการ{" "}
-                    <span className="text-secondary font-normal iphone:max-sm:hidden">
-                      (กรอกตัวอักษรภาษาอังกฤษระหว่าง A ถึง Z)
-                    </span>
-                    <p className="text-secondary font-normal ipad11:hidden">
-                      (กรอกตัวอักษรภาษาอังกฤษระหว่าง A ถึง Z)
-                    </p>
-                  </p>
-                  <Input
-                    type="text"
-                    placeholder="e.g. S"
-                    className="iphone:max-sm:text-b2"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex gap-3 justify-end text-default">
-              <Button
-                variant="ghost"
-                onClick={() => {
-                  setOpenEditTopicModal(false);
-                  setOpenAddTopicModal(false);
-                }}
-              >
-                ยกเลิก
-              </Button>
-              <Button
-                onClick={() => {
-                  setOpenEditTopicModal(false);
-                  setOpenAddTopicModal(false);
-                }}
-              >
-                เสร็จสิ้น
-              </Button>
-            </div>
-          </div>
-        ) : // ) : openAddTopicModal ? (
-        //   <div>
-        //     <div className="flex flex-col gap-4 pb-4">
-        //       <div
-        //         style={{
-        //           boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)",
-        //         }}
-        //         className=" gap-4   py-5 rounded-lg px-4 text-b2  text-start flex flex-col "
-        //       >
-        //         <div className="grid w-full max-w-full items-center gap-1.5">
-        //           <p className="text-b2 acerSwift:max-macair133:text-b3 font-medium">
-        //             หัวข้อภาษาไทย
-        //           </p>
-        //           <Input type="text" placeholder="เช่น ขอคำปรึกษาด้านวิชาการ" />
-        //         </div>
-        //         <div className="grid w-full max-w-full items-center gap-1.5">
-        //           <p className="text-b2 acerSwift:max-macair133:text-b3 font-medium">
-        //             หัวข้อภาษาอังกฤษ
-        //           </p>
-        //           <Input type="text" placeholder="e.g. Academic Consultation" />
-        //         </div>
-        //         <div className="grid w-full max-w-full items-center gap-1.5">
-        //           <p className="text-b2 acerSwift:max-macair133:text-b3 font-medium  ">
-        //             โค้ดสำหรับหัวข้อบริการ{" "}
-        //             <span className="text-secondary font-normal">
-        //               (กรอกตัวอักษรภาษาอังกฤษระหว่าง A ถึง Z)
-        //             </span>
-        //           </p>
-        //           <Input type="text" placeholder="e.g. S" />
-        //         </div>
-        //       </div>
-        //     </div>
-
-        //     <div className="flex gap-3 justify-end text-default">
-        //       <Button
-        //         className="mt-4"
-        //         variant="ghost"
-        //         onClick={() => setOpenAddTopicModal(false)}
-        //       >
-        //         ยกเลิก
-        //       </Button>
-        //       <Button
-        //         className="mt-4"
-        //         onClick={() => setOpenAddTopicModal(false)}
-        //       >
-        //         เสร็จสิ้น
-        //       </Button>
-        //     </div>
-        //   </div>
-        openDeleteTopicPopup ? (
-          <div className="flex flex-col gap-1 w-full">
-            <div className="flex gap-3 items-start justify-start w-full p-4 rounded-md bg-[#ffecec] ">
-              <Icon IconComponent={IconExclaimation} className="text-delete" />
-              <p className="text-b2 acerSwift:max-macair133:text-b3 text-delete w-full text-[500]">
-                การดำเนินการนี้ไม่สามารถย้อนกลับได้ หลังจากคุณลบหัวข้อบริการนี้
-                หัวข้อบริการจะถูกลบออกจากระบบนี้อย่างถาวร
-                คุณแน่ใจจะลบหัวข้อบริการนี้ใช่ไหม?
-              </p>
-            </div>
-            <div className="mt-4 flex flex-col  ">
-              <p className="text-b2 acerSwift:max-macair133:text-b3 text-describe">
-                หัวข้อบริการ
-              </p>
-              <p className="text-b1 acerSwift:max-macair133:text-b2">
-                ทุนการศึกษา
-              </p>
-            </div>
-            <div className="flex gap-3 mt-3 justify-end text-default">
-              <Button
-                variant="ghost"
-                onClick={() => setOpenDeleteTopicPopup(false)}
-              >
-                ยกเลิก
-              </Button>
-              <Button
-                className="bg-delete hover:bg-delete/90"
-                onClick={() => setOpenDeleteTopicPopup(false)}
-              >
-                ลบหัวข้อบริการ
-              </Button>
-            </div>
-          </div>
-        ) : null}
+        )}
       </DialogContent>
+      <OneTopicManageModal
+        title="เพิ่มหัวข้อการบริการ"
+        type="add"
+        opened={openAddTopicModal}
+        onClose={() => {
+          setOpenAddTopicModal(false);
+          setOpenTopicModal(true);
+        }}
+      />
+      <OneTopicManageModal
+        title="แก้ไขหัวข้อการบริการ"
+        type="edit"
+        opened={openEditTopicModal}
+        data={editTopic}
+        onClose={() => {
+          setOpenEditTopicModal(false);
+          setTimeout(() => {
+            setOpenTopicModal(true);
+          }, 40);
+        }}
+      />
     </Dialog>
   );
 }
