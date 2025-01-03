@@ -22,7 +22,7 @@ export default function setupSocket() {
     // queue
     socket.on("addQueue", (data: IModelQueue) => {
       console.log("Queue added:", data);
-      if (counter?.topic.find(({ id }) => id == data.topicId)) {
+      if (counter?.topics.find(({ id }) => id == data.topicId)) {
         dispatch(addNewQueue(data));
       }
     });

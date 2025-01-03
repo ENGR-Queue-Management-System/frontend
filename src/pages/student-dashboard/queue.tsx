@@ -1,9 +1,5 @@
 import { useState } from "react";
 import Icon from "@/components/Icon";
-import IconNext from "../../../public/icons/next.svg";
-import IconRecall from "../../../public/icons/repeat.svg";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import IconSpeech from "../../../public/icons/speechBubble.svg";
 import IconLocation from "../../../public/icons/location.svg";
 import IconUsers from "../../../public/icons/users.svg";
 import IconCalendar from "../../../public/icons/calender.svg";
@@ -18,7 +14,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import IconStar from "../../../public/icons/star.svg";
 import IconStarFull from "../../../public/icons/starFull.svg";
@@ -28,7 +23,6 @@ import { dateFormatter } from "@/helpers/function";
 import { deleteQueue } from "@/services/queue/queue.service";
 import { toast } from "@/hooks/use-toast";
 import Router from "next/router";
-import { Route } from "@/config/Route";
 import { setQueue } from "@/store/user";
 export default function StudentQueue() {
   const prevPath = useAppSelector((state) => state.config.prevPath);
@@ -152,7 +146,6 @@ export default function StudentQueue() {
                   />
                   <div className="text-start text-b1 iphone:max-macair133:text-b3">
                     <p className="font-medium">
-                     
                       <span className="font-semibold">Waiting</span>
                     </p>
                   </div>
