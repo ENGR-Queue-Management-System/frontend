@@ -74,10 +74,8 @@ export default function ContactTopicMangeModal({
       </DialogTrigger>
       <DialogContent
         classNameClose={`${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
-        className={`  ${
-          (openAddTopicModal || openEditTopicModal || openDeleteTopicPopup) &&
-          !isPhone &&
-          "ipad11:max-w-[40vw]"
+        className={`${
+          openDeleteTopicPopup && !isPhone && "ipad11:max-w-[40vw]"
         } ipad11:max-w-[45vw]  flex flex-col justify-start  ${
           isPhone ? "w-[100vw] h-full" : "md:max-w-[50vw] min-w-fit"
         }`}
