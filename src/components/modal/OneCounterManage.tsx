@@ -19,7 +19,10 @@ import {
 import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE } from "@/config/Enum";
 import { useForm } from "react-hook-form";
-import { CounterRequestDTO } from "@/services/counter/dto/counter.dto";
+import {
+  CounterRequestDTO,
+  CounterUpdateRequestDTO,
+} from "@/services/counter/dto/counter.dto";
 import { useAppDispatch, useAppSelector } from "@/store";
 import Icon from "../Icon";
 import IconList from "../../../public/icons/list.svg";
@@ -31,7 +34,7 @@ import {
   createCounter,
   updateCounter,
 } from "@/services/counter/counter.service";
-import { addCounter } from "@/store/counter";
+import { addCounter, updateCounterData } from "@/store/counter";
 import { toast } from "@/hooks/use-toast";
 import { isEqual } from "lodash";
 
@@ -99,18 +102,33 @@ export default function OneCounterManage({
     }
   };
 
-  const onUpdateCounter = async (value: CounterRequestDTO) => {
-    // const res = await updateCounter(data?.id!, value);
-    // if (res) {
-    //   dispatch(addCounter(res));
-    //   toast({
-    //     title: `Update Counter ${data?.counter!} successfully`,
-    //     variant: "success",
-    //     duration: 3000,
-    //   });
-    onClose();
-    form.reset(new CounterRequestDTO());
-    // }
+  const onUpdateCounter = async (value: CounterUpdateRequestDTO) => {
+    if (data) {
+      const payload: CounterUpdateRequestDTO = {};
+      if (value.counter != data.counter) {
+        payload.counter = value.counter;
+      }
+      if (value.email != data.email) {
+        payload.email = value.email;
+      }
+      if (value.timeClosed != data.timeClosed) {
+        payload.timeClosed = value.timeClosed;
+      }
+      if (!isEqual(value.topics, data.topics)) {
+        payload.topics = value.topics;
+      }
+      const res = await updateCounter(data?.id!, payload);
+      if (res) {
+        dispatch(updateCounterData(res));
+        toast({
+          title: `Update Counter ${data?.counter!} successfully`,
+          variant: "success",
+          duration: 3000,
+        });
+        onClose();
+        form.reset(new CounterRequestDTO());
+      }
+    }
   };
 
   return (
@@ -312,7 +330,10 @@ export default function OneCounterManage({
                 <Button
                   type="submit"
                   className="px-4"
-                  disabled={type == "edit" && isEqual(data, form.watch())}
+                  disabled={
+                    type == "edit" &&
+                    isEqual(data, { id: data?.id, ...form.watch() })
+                  }
                 >
                   เสร็จสิ้น
                 </Button>

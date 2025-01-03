@@ -19,6 +19,7 @@ import IconPlus from "../../../public/icons/plus.svg";
 import { useNotification } from "@/notifications/useNotification";
 import Icon from "@/components/Icon";
 import { DEVICE_TYPE } from "@/config/Enum";
+import { useAppSelector } from "@/store";
 
 type PopupProps = {
   triggerText?: string;
@@ -31,6 +32,7 @@ export default function ContactTopicMangeModal({
   title,
 }: PopupProps) {
   const { deviceType, isPhone } = useNotification();
+  const topics = useAppSelector((state) => state.topic);
   const [openAddTopicModal, setOpenAddTopicModal] = useState(false);
   const [openEditTopicModal, setOpenEditTopicModal] = useState(false);
   const [openDeleteTopicPopup, setOpenDeleteTopicPopup] = useState(false);
@@ -39,39 +41,6 @@ export default function ContactTopicMangeModal({
     topicTH: "",
     topicEN: "",
   });
-
-  const categories = [
-    {
-      topicTH: "ฝึกงาน-สหกิจศึกษา",
-      topicEN: "Internship and Cooperative Education",
-      room: "งานบริการนักศึกษา",
-    },
-    {
-      topicTH: "อื่นๆ",
-      topicEN: "Others",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-    },
-    {
-      topicTH: "ทุนการศึกษา",
-      topicEN: "Scholarships",
-      room: "งานบริการนักศึกษา",
-    },
-    {
-      topicTH: "ขอคำปรึกษาด้านวิชาการ",
-      topicEN: "Academic Consultation",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-    },
-    {
-      topicTH: "แจ้งปัญหาด้านการเรียนการสอน",
-      topicEN: "Report Issues with Teaching and Learning",
-      room: "งานบริการนักศึกษา",
-    },
-    {
-      topicTH: "ขอจัดกิจกรรมหรือโครงการพิเศษ",
-      topicEN: "Request for Special Activities or Projects",
-      room: "งานพัฒนาคุณภาพนักศึกษา",
-    },
-  ];
 
   return (
     <Dialog
@@ -145,25 +114,27 @@ export default function ContactTopicMangeModal({
                   isPhone ? "h-full overflow-y-auto" : ""
                 }`}
               >
-                {categories.map((cat) => (
-                  <div className="flex px-6 flex-col ">
+                {topics.map((topic) => (
+                  <div key={topic.id} className="flex px-6 flex-col ">
                     <div
-                      key={cat.topicTH}
+                      key={topic.topicTH}
                       className="flex justify-between  items-center border-b-[1px] py-4 acerSwift:max-macair133:py-3 w-full"
                     >
                       <div className="flex items-center  w-[65%] gap-5">
                         <div className="flex text-ellipsis w-full  overflow-hidden whitespace-nowrap  flex-col  text-b2 acerSwift:max-macair133:text-b4 acerSwift:max-macair133:py-1">
-                          <p className={`text-ellipsis overflow-hidden whitespace-nowrap ${
+                          <p
+                            className={`text-ellipsis overflow-hidden whitespace-nowrap ${
                               isPhone ? "text-[13px]" : ""
-                            }`}>
-                            {cat.topicTH}
+                            }`}
+                          >
+                            {topic.topicTH}
                           </p>
                           <p
                             className={`text-ellipsis overflow-hidden whitespace-nowrap ${
                               isPhone ? "text-[12px]" : ""
                             } `}
                           >
-                            {cat.topicEN}
+                            {topic.topicEN}
                           </p>
                           <p className="font-normal text-b4 text-table-foreground"></p>
                         </div>
@@ -173,13 +144,15 @@ export default function ContactTopicMangeModal({
                           variant="outline"
                           onClick={() => {
                             setInputValues({
-                              topicTH: cat.topicTH,
-                              topicEN: cat.topicEN,
+                              topicTH: topic.topicTH,
+                              topicEN: topic.topicEN,
                             });
                             setOpenEditTopicModal(true);
                           }}
                           size={isPhone ? "icon" : "default"}
-                          className={` !border-orange-500 text-orange-500 rounded-full ${isPhone ? 'size-8' : ''} hover:bg-[#f7cbb13b] hover:text-orange-600 acerSwift:max-macair133:text-b4`}
+                          className={` !border-orange-500 text-orange-500 rounded-full ${
+                            isPhone ? "size-8" : ""
+                          } hover:bg-[#f7cbb13b] hover:text-orange-600 acerSwift:max-macair133:text-b4`}
                         >
                           <Icon
                             IconComponent={IconEdit}
@@ -192,8 +165,9 @@ export default function ContactTopicMangeModal({
                           variant="outline"
                           onClick={() => setOpenDeleteTopicPopup(true)}
                           size={isPhone ? "icon" : "default"}
-                          className={` !border-red-500 text-red-500 rounded-full ${isPhone ? 'size-8' : ''} hover:bg-[#f7cbb13b] hover:text-red-600 acerSwift:max-macair133:text-b4`}
-
+                          className={` !border-red-500 text-red-500 rounded-full ${
+                            isPhone ? "size-8" : ""
+                          } hover:bg-[#f7cbb13b] hover:text-red-600 acerSwift:max-macair133:text-b4`}
                         >
                           <Icon
                             IconComponent={IconTrash}
@@ -207,7 +181,12 @@ export default function ContactTopicMangeModal({
                 ))}
               </div>
             </div>
-            <Button className={`px-5 ${isPhone ? 'h-12 text-[15px] font-[500] rounded-full' : ''} `} onClick={() => setOpenAddTopicModal(true)}>
+            <Button
+              className={`px-5 ${
+                isPhone ? "h-12 text-[15px] font-[500] rounded-full" : ""
+              } `}
+              onClick={() => setOpenAddTopicModal(true)}
+            >
               <Icon IconComponent={IconPlus} />
               เพิ่มหัวข้อการบริการ
             </Button>

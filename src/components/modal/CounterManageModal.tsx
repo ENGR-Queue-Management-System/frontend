@@ -16,7 +16,6 @@ import IconTopic from "../../../public/icons/topic.svg";
 import IconPlus from "../../../public/icons/plus.svg";
 import IconRight from "../../../public/icons/chevronRight.svg";
 import OneCounterModal from "../modal/OneCounterManage";
-
 import Icon from "@/components/Icon";
 import OneCounterManage from "./OneCounterManage";
 import { useNotification } from "@/notifications/useNotification";
@@ -110,7 +109,7 @@ export default function CounterManageModal({
                 }`}
               >
                 {counters.map((counter) => (
-                  <div className="flex px-6 flex-col ">
+                  <div key={counter.id} className="flex px-6 flex-col ">
                     <div
                       key={counter.id}
                       className="flex justify-between  items-center border-b-[1px] py-4 acerSwift:max-macair133:py-3 w-full"
@@ -188,15 +187,16 @@ export default function CounterManageModal({
                 ))}
               </div>
             </div>
-          
-              <Button
-                onClick={() => setOpenAddOneCounterModal(true)}
-                className={`px-5 ${isPhone ? 'h-12 text-[15px] font-[500] rounded-full' : ''}`}
-              >
-                <Icon IconComponent={IconPlus} />
-                เพิ่มเคาน์เตอร์ที่ให้บริการ
-              </Button>
-  
+
+            <Button
+              onClick={() => setOpenAddOneCounterModal(true)}
+              className={`px-5 ${
+                isPhone ? "h-12 text-[15px] font-[500] rounded-full" : ""
+              }`}
+            >
+              <Icon IconComponent={IconPlus} />
+              เพิ่มเคาน์เตอร์ที่ให้บริการ
+            </Button>
           </div>
         </DialogContent>
         <OneCounterModal
