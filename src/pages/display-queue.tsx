@@ -29,7 +29,6 @@ export default function Home() {
         timeZone: "Asia/Bangkok",
         hour: "2-digit",
         minute: "2-digit",
-        second: "2-digit",
         hour12: false,
       };
       const currentTime = new Intl.DateTimeFormat("en-US", options).format(
@@ -84,14 +83,14 @@ export default function Home() {
           {queueData && queueData.length > 0 ? (
             queueData.map((item: any) => (
               <TableRow className="" key={item.queueNumber}>
-                <TableCell className=" bg-[#0E1235]  text-white font-semibold text-[6vh]">
+                <TableCell className=" bg-[#0c134a]  text-white font-semibold text-[6vh]">
                   {item.counter}
                 </TableCell>
-                <TableCell className="font-semibold bg-[#0E1235] border-l-[2px] border-[#ffffff]  text-[#efde25] text-[6vh] ">
+                <TableCell className="font-semibold bg-[#0c134a] border-l-[2px] border-[#ffffff]  text-[#efde25] text-[6vh] ">
                   {item.queueNumber}
                 </TableCell>
-                <TableCell className="font-semibold text-start bg-[#0E1235]   border-[#ffffff]  text-white text-[5vh] ">
-                  <p className=" font-normal font-roboto text-[4vh] -ml-3">
+                <TableCell className="font-semibold text-start bg-[#0c134a]   border-[#ffffff]  text-white ">
+                  <p className=" font-normal font-roboto text-[3.5vh] -ml-3">
                     {item.name}
                   </p>
                 </TableCell>
@@ -114,7 +113,7 @@ export default function Home() {
     MODERATE: "Moderate",
     UNHEALTHY_SG: "Concern",
     UNHEALTHY: "Unhealthy",
-    VERY_UNHEALTHY: "Very Unhealthy",
+    VERY_UNHEALTHY: "Harmful",
     HAZARDOUS: "Hazardous",
   };
 
@@ -161,7 +160,7 @@ export default function Home() {
         //   }
         // );
         // const aqiValue = response.data.data.current.pollution.aqius;
-        
+
         const aqiValue = 200; // Mock test color bg and text
         setAqi(aqiValue);
         setAqiStatus(determineAqiStatus(aqiValue));
@@ -169,12 +168,11 @@ export default function Home() {
         console.error("Error fetching AQI data:", error);
       }
     };
-  
-    fetchAqi(); 
-    const interval = setInterval(fetchAqi, 30 * 60 * 1000); 
-    return () => clearInterval(interval); 
+
+    fetchAqi();
+    const interval = setInterval(fetchAqi, 30 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
-  
 
   const queueData = [
     { queueNumber: "C081", counter: "1", name: "สวิช จารึกพูนผล" },
@@ -183,30 +181,19 @@ export default function Home() {
     { queueNumber: "E034", counter: "4", name: "สุพิชญา รวมสิน" },
     { queueNumber: "T024", counter: "5", name: "เอกชัย แพร่ไพศาลภูบาล" },
     { queueNumber: "A008", counter: "6", name: "เนตรนภา สาระแปง" },
+    { queueNumber: "M023", counter: "7", name: "Thomas Edison" },
   ];
-
 
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
-      <div
-        style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
-        className="sticky top-0 flex min-h-[11vh] bg-[#efde25] border-b border-[#000000] justify-between items-center px-10 z-50"
-      >
-        <div className="flex gap-8  h-full items-center justify-center  ">
-          <p className="text-[#000000] text-[6vh] font-semibold">{dateTime}</p>
-          <p className="text-[#000000] text-[6vh] font-semibold">{time}</p>
-        </div>{" "}
-        <div className="flex  gap-5 items-center">
-          <Image src={logoSD} alt="cmulogo" className="w-[4.5vw]  " />
-        </div>
-      </div>
-
       <div className="flex flex-col flex-grow">
         <QueueCallTable queueData={queueData} />
-
-        <div className="flex flex-grow bg-[#fffffff]  gap-4  w-full">
+        <div className="flex flex-grow bg-[#fffffff]   w-full">
+          <div className="px-10 w-[12%] bg-black  flex items-center justify-center  ">
+            <p className="text-[#ffffff]  text-[6vh] font-semibold">{time}</p>
+          </div>{" "}
           <div
-            className={`flex w-[40%] px-10 h-full items-center gap-9 justify-between text-black text-start ${
+            className={`flex w-[35%] px-10 h-full items-center gap-9 justify-between text-black text-start ${
               aqiStatus ? getAqiBackgroundColor(aqiStatus) : "bg-gray-300"
             }`}
           >
@@ -222,9 +209,9 @@ export default function Home() {
               {aqiStatus || "loading"}
             </p>
           </div>
-          <div className="flex gap-8 px-12 w-[60%]  items-center justify-center ">
+          <div className="flex gap-8 px-12 w-[50%]  items-center justify-center ">
             <p className="text-[#000000] text-[5.8vh] font-medium">
-              จองคิวได้ที่
+             <span className="font-roboto font-normal"> จองคิวได้ที่</span>
               <span className="font-semibold"> q.eng.cmu.ac.th</span>
             </p>
           </div>
