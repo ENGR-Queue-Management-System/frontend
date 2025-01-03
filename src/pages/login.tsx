@@ -68,9 +68,8 @@ export default function Login() {
   });
   const selectedTopic = form.watch("topic");
   console.log(counters);
-  
+
   console.log(topics);
-  
 
   useEffect(() => {
     if (user.firstNameTH) {
@@ -124,7 +123,7 @@ export default function Login() {
     >
       <div className="h-full justify-center gap-16 flex flex-col">
         <div className="flex flex-col h-fit items-center  justify-center text-center text-[24px] font-medium iphone:max-sm:w-[85vw] iphone:max-sm:text-[24px] sm:max-macair133:text-[26px] macair133:text-[32px]">
-          <p className=" font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-[#4285f4] via-[#ec407a] via-[#a06ee1] to-[#fb8c00] bg-clip-text text-transparent">
+          <p className=" font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-[#4285f4] via-[#ec407a] via-[#a06ee1] to-[#fb8c00] bg-clip-text text-transparent ">
             What can we help you with today?
           </p>
         </div>
@@ -187,14 +186,14 @@ export default function Login() {
                   >
                     <FormControl>
                       <SelectTrigger
-                        className={`iphone:max-sm:w-[85vw] shadow-none !h-9 bg-[#f0f0f0] border-none  iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] px-4 ${
+                        className={`iphone:max-sm:w-[85vw] shadow-none !h-9 iphone:max-sm:!h-fit iphone:max-sm:py-1 bg-[#f0f0f0] border-none  iphone:max-sm:text-sm sm:max-macair133:w-[50vw] macair133:w-[40vw] px-4 ${
                           form.getValues().topic === 0
                             ? "py-3 text-default "
                             : "py-2"
                         }`}
                         onBlur={() => onBlurHandler("topic")}
                       >
-                        <SelectValue placeholder="Select topic" />
+                        <SelectValue placeholder="Select topic" className="" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -202,10 +201,10 @@ export default function Login() {
                         {topics.map((item) => (
                           <SelectItem value={item.id.toString()} key={item.id}>
                             <div className="flex items-center gap-4 py-1">
-                              <div
+                              {/* <div
                                 className={` h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
-                              ></div>
-                              <div className="flex flex-col text-start text-b2">
+                              ></div> */}
+                              <div className="flex flex-col text-start text-b2 iphone:max-sm:text-b4 ">
                                 <p>
                                   {item.topicTH} (
                                   <span className="font-medium">
@@ -260,16 +259,22 @@ export default function Login() {
                 type="submit"
                 className={`mt-5 ${
                   isPhone
-                    ? " w-[100%] rounded-full bg-primary hover:bg-[#3560b0 mt-5 h-14 text-[15px] font-[500]"
+                    ? `w-[100%] rounded-full bg-primary hover:bg-[#3560b0] ${
+                        selectedTopic ? "-mt-5" : "mt-5"
+                      } h-[58px] text-[13px] font-[500] text-white`
                     : "py-6 px-12 text-[15px] bg-primary hover:bg-[#3560b0] font-semibold"
                 }`}
                 disabled={loading}
                 variant="default"
               >
-                {loading ? <Loading /> :  <div className="text-center">
-            <p>รับบัตรคิว</p>
-            <p>Take a Number</p>
-          </div>}
+                {loading ? (
+                  <Loading />
+                ) : (
+                  <div className="text-center">
+                    <p>รับบัตรคิว</p>
+                    <p>Take a Number</p>
+                  </div>
+                )}
               </Button>
               {!isPhone && (
                 <Button
