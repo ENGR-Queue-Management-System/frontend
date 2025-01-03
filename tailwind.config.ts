@@ -90,7 +90,9 @@ export default {
         macair133: "1280px",
         samsungA24: "1600px",
       },
-      fontFamily: {},
+      fontFamily: {
+        roboto: ['Roboto', 'sans-serif'],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
