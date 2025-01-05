@@ -20,11 +20,7 @@ import { updateCounterData } from "@/store/counter";
 import { useEffect } from "react";
 import { getQueues, updateQueue } from "@/services/queue/queue.service";
 import { setLoadingOverlay } from "@/store/loading";
-import {
-  removeFirstWaitingQueue,
-  setCurrentQueue,
-  setQueueList,
-} from "@/store/queue";
+import { removeQueueByID, setCurrentQueue, setQueueList } from "@/store/queue";
 import { useNotification } from "@/notifications/useNotification";
 import { STATUS } from "@/config/Enum";
 import { sendQueueNotification } from "@/services/subscription/subscription.service";
@@ -64,7 +60,6 @@ export default function AdminIndex() {
       status: !counter?.status,
     });
     if (res) {
-      dispatch(updateCounterData(res));
       toast({
         title: res.status ? "เปิดรับคำสั่ง" : "ปิดรับคำสั่ง",
         description: res.status
@@ -79,10 +74,10 @@ export default function AdminIndex() {
   const callNextQueue = async (id: number) => {
     const res = await updateQueue(id, {
       counter: counter!.id,
+      current: currentQueue.id,
     });
     if (res) {
       dispatch(setCurrentQueue(res));
-      dispatch(removeFirstWaitingQueue());
       sendPushNotification({
         firstName: res.firstName,
         lastName: res.lastName,
@@ -355,7 +350,9 @@ export default function AdminIndex() {
                     } `}
                   >
                     <Button
-                      className={`w-full ${isPhone ? 'rounded-full' : ''} items-center flex samsungA24:h-14 h-12 acerSwift:max-macair133:h-[42px]`}
+                      className={`w-full ${
+                        isPhone ? "rounded-full" : ""
+                      } items-center flex samsungA24:h-14 h-12 acerSwift:max-macair133:h-[42px]`}
                       disabled={!queues[0]}
                       onClick={() => callNextQueue(queues[0].id)}
                     >
@@ -369,7 +366,9 @@ export default function AdminIndex() {
                     </Button>
                     <Button
                       variant="outline"
-                      className={`w-full ${isPhone ? 'rounded-full' : ''} samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-b2 text-primary acerSwift:max-macair133:text-b3 samsungA24:text-h2 acerSwift:max-macair133:h-[42px]`}
+                      className={`w-full ${
+                        isPhone ? "rounded-full" : ""
+                      } samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-b2 text-primary acerSwift:max-macair133:text-b3 samsungA24:text-h2 acerSwift:max-macair133:h-[42px]`}
                       disabled={!currentQueue.no}
                       onClick={() =>
                         sendPushNotification(

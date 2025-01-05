@@ -6,48 +6,20 @@ import logoEngColor from "../../public/images/logoSDColor.png";
 import logoSDMinimal from "../../public/images/logoSDMiColor.png";
 import cmuLogoColor from "../../public/images/cmuLogoLoginWhite.png";
 import { useAppSelector } from "@/store";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNotification } from "@/notifications/useNotification";
-import { DEVICE_TYPE, ROLE } from "@/config/Enum";
 import Icon from "@/components/Icon";
 import iconLogin from "../../public/icons/confetti.svg";
 import iconEx from "../../public/icons/exclaimation.svg";
-import {
-  sendQueueNotification,
-  testSendNoti,
-} from "@/services/subscription/subscription.service";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { toast } from "@/hooks/use-toast";
-import { getUserName } from "@/helpers/function";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
+import { ROLE } from "@/config/Enum";
+import { useEffect } from "react";
 
 export default function Home() {
   const { deviceType, isPhone } = useNotification();
   const config = useAppSelector((state) => state.config);
   const user = useAppSelector((state) => state.user.user);
   const queue = useAppSelector((state) => state.user.queue);
-  const [testSendNotiList, setTestSendNotiList] = useState<any[]>([]);
-  const [selectTest, setSelectTest] = useState("");
-
-  useEffect(() => {
-    if (!testSendNotiList.length) {
-      const test = async () => {
-        const res = await testSendNoti();
-        if (res) {
-          setTestSendNotiList(res);
-        }
-      };
-      test();
-    }
-  }, []);
 
   // useEffect(() => {
   //   if (user.role) {
@@ -60,24 +32,6 @@ export default function Home() {
   //     }
   //   }
   // }, [user.role]);
-
-  const sendPushNotification = async () => {
-    const payload = {
-      ...testSendNotiList[parseInt(selectTest)],
-      message: JSON.stringify({
-        title: "Test Notification",
-        body: "this is test notification.",
-      }),
-    };
-    const res = await sendQueueNotification(payload);
-    if (res) {
-      toast({
-        title: res.status,
-        variant: "success",
-        duration: 3000,
-      });
-    }
-  };
 
   return (
     <motion.div
@@ -233,7 +187,6 @@ export default function Home() {
               Sign in CMU account
             </Button>
             <div className="flex flex-col !text-center !items-center !justify-center w-[100%] mt-6">
-              {/* {showLink &&  */}
               {config.loginNotCmu && (
                 <p className="sm:max-samsungA24:text-[14px]  text-[14px] iphone:max-sm:text-[14px] font-[500]  acerSwift:max-macair133:text-b3">
                   <span className="font-[500] text-default"> Don't have</span>{" "}
@@ -250,7 +203,6 @@ export default function Home() {
                   </span>
                 </p>
               )}
-              {/* } */}
               {/* <Button
                 variant="link"
                 className={`text-sm font-[600]   acerSwift:max-macair133:text-b4 underline  ${
@@ -273,25 +225,6 @@ export default function Home() {
               Admin Test
             </Button>
           </Link>
-          {/* <div className="flex gap-2">
-            <Select onValueChange={(value) => setSelectTest(value)}>
-              <SelectTrigger className="!w-[30vw] py-2">
-                <SelectValue placeholder="Select Test Notification" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  {testSendNotiList.map((item, index) => (
-                    <SelectItem value={index.toString()} key={index}>
-                      <div className="flex items-center py-1">
-                        {getUserName(item)}
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-            <Button onClick={sendPushNotification}>Test</Button>
-          </div> */}
         </div>
       </div>
     </motion.div>

@@ -27,13 +27,11 @@ export default function LoginManageModal({
   title,
 }: PopupProps) {
   const config = useAppSelector((state) => state.config);
-  const dispatch = useAppDispatch();
   const { deviceType, isPhone } = useNotification();
 
   const onChangeLoginNotCmu = async (value: boolean) => {
     const res = await updateLoginNotCmu({ loginNotCmu: value });
     if (res) {
-      dispatch(setLoginNotCmu(value));
       toast({
         title: `${
           value ? "เปิดจองคิว" : "ปิดจองคิว"

@@ -40,6 +40,7 @@ export interface IModelTopic {
   topicTH: string;
   topicEN: string;
   code: string;
+  waiting: number;
 }
 
 export interface IModelQueue {

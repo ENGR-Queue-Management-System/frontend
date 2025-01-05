@@ -13,6 +13,13 @@ export const topicSlice = createSlice({
         topic.id == action.payload.id ? { ...topic, ...action.payload } : topic
       );
     },
+    updateWaitingTopic: (state, action) => {
+      return state.map((topic) =>
+        topic.id == action.payload.id
+          ? { ...topic, waiting: action.payload.waiting }
+          : topic
+      );
+    },
     addTopic: (state, action) => {
       state.push({ ...action.payload });
     },
@@ -22,7 +29,12 @@ export const topicSlice = createSlice({
   },
 });
 
-export const { setTopics, updateTopicData, addTopic, removeTopic } =
-  topicSlice.actions;
+export const {
+  setTopics,
+  updateTopicData,
+  updateWaitingTopic,
+  addTopic,
+  removeTopic,
+} = topicSlice.actions;
 
 export default topicSlice.reducer;

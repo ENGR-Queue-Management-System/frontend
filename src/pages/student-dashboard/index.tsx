@@ -147,9 +147,15 @@ export default function StudentIndex() {
                   />
                   <div className="text-start text-b2 iphone:max-macair133:text-b3">
                     <p className="font-medium">
-                      <span className="font-semibold text-[15px]">Waiting </span>
+                      <span className="font-semibold text-[15px]">
+                        Waiting{" "}
+                      </span>
                       <span className="text-h2 iphone:max-sm:text-[15px] iphone:max-macair133:text-b2 font-medium">
-                        <span className="text-primary font-semibold">8</span> Queues
+                        <span className="text-primary font-semibold">
+                          {topics.find(({ id }) => id == selectTopic)
+                            ?.waiting || 0}
+                        </span>{" "}
+                        Queues
                       </span>
                     </p>
                   </div>

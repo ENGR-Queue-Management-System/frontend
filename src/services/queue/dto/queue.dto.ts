@@ -14,4 +14,5 @@ export class QueueRequestDTO {
 
 export class CallQueueRequestDTO {
   counter: number = 0;
+  current: number = 0;
 }
