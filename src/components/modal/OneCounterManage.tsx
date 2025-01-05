@@ -138,8 +138,8 @@ export default function OneCounterManage({
         }`}
         className={` ${
           isPhone
-            ? "w-full max-h-full"
-            : "md:max-w-[40vw] macair133:max-w-[50vw] h-fit"
+            ? "w-full h-full"
+            : "md:max-w-[40vw] macair133:max-w-[50vw] h-fit "
         } p-6 mb-1 acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4`}
       >
         <DialogHeader
@@ -159,7 +159,7 @@ export default function OneCounterManage({
             className="flex flex-col gap-6"
           >
             <div
-              className={`flex flex-col  max-h-[65vh] acerSwift:max-macair133:max-h-[435px] gap-5 acerSwift:max-macair133:gap-3`}
+              className={`flex flex-col max-h-[65vh] acerSwift:max-macair133:max-h-[435px] iphone:max-sm:max-h-[86vh] gap-5 acerSwift:max-macair133:gap-3`}
             >
               <div
                 className={`flex flex-col w-full gap-4 h-full acerSwift:max-macair133:gap-2.5 acerSwift:max-macair133:max-h-[390px] overflow-y-auto p-1`}

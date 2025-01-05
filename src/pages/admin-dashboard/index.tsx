@@ -1,5 +1,6 @@
 import Icon from "@/components/Icon";
 import IconNext from "../../../public/icons/next.svg";
+import IconX from "../../../public/icons/x.svg";
 import IconRecall from "../../../public/icons/repeat.svg";
 import {
   Table,
@@ -17,7 +18,7 @@ import { updateCounter } from "@/services/counter/counter.service";
 import { IModelCounter, IModelQueue } from "@/models/Model";
 import { toast } from "@/hooks/use-toast";
 import { updateCounterData } from "@/store/counter";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getQueues, updateQueue } from "@/services/queue/queue.service";
 import { setLoadingOverlay } from "@/store/loading";
 import { removeQueueByID, setCurrentQueue, setQueueList } from "@/store/queue";
@@ -126,6 +127,58 @@ export default function AdminIndex() {
     }
   };
 
+  const [countdown, setCountdown] = useState<number | null>(null); // Countdown state
+  const [countdownActive, setCountdownActive] = useState(false); // Is countdown active
+
+  useEffect(() => {
+    if (countdown === null) return;
+
+    if (countdown <= 0) {
+      callNextQueue(queues[0].id); // Automatically call next queue when countdown finishes
+      setCountdown(null); // Reset countdown
+      setCountdownActive(false);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setCountdown((prev) => (prev ? prev - 1 : 0)); // Decrement countdown
+    }, 1000);
+
+    return () => clearTimeout(timer); // Cleanup timer
+  }, [countdown, callNextQueue, queues]);
+
+  const startCountdown = () => {
+    if (countdownActive) {
+      // Call queue immediately if countdown is active
+      callNextQueue(queues[0].id);
+      setCountdown(null); // Reset countdown
+      setCountdownActive(false);
+      return;
+    }
+
+    setCountdown(5); // Start 5-second countdown
+    setCountdownActive(true);
+
+    // Start countdown logic
+    const interval = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev === 1) {
+          clearInterval(interval);
+          setCountdownActive(false);
+          callNextQueue(queues[0].id); // Call next queue on countdown completion
+          return null;
+        }
+        if (prev === null) return 5;
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
+  const cancelCountdown = () => {
+    setCountdown(null); // Reset countdown
+    setCountdownActive(false);
+  };
+
   return (
     <div
       className={`flex ${
@@ -179,7 +232,7 @@ export default function AdminIndex() {
                       <TableRow>
                         <TableCell
                           colSpan={5}
-                          className="text-center text-[22px] font-medium bg-white"
+                          className="text-center text-[22px] font-medium"
                         >
                           <div className=" flex flex-col items-center justify-center text-default/60 gap-2">
                             <Image
@@ -196,7 +249,7 @@ export default function AdminIndex() {
                 </Table>
               </div>
             ) : (
-              <div className="flex flex-col">
+              <div className="flex flex-col  ipadmini:max-acerSwift:w-full">
                 {queues.length ? (
                   queues.map((items) => (
                     <div
@@ -216,7 +269,7 @@ export default function AdminIndex() {
                     </div>
                   ))
                 ) : (
-                  <div className="flex flex-col gap-2 text-h2 text-default/60 font-medium bg-white rounded-md items-center justify-center py-8">
+                  <div className="flex flex-col gap-2 text-h2 text-default/60 font-medium bg-white  ipadmini:max-acerSwift:w-full  ipadmini:max-acerSwift:h-full  ipadmini:max-acerSwift:m-auto rounded-md items-center justify-center py-8 ">
                     <Image
                       className="w-[80px] opacity-60"
                       src={noQueue}
@@ -336,9 +389,6 @@ export default function AdminIndex() {
                           </span>
                         </p>
                         <div className="flex text-b2  acerSwift:max-macair133:text-b4 samsungA24:text-h2 items-center gap-3">
-                          <div
-                            className={` h-3 w-3  acerSwift:max-macair133:h-2  acerSwift:max-macair133:w-2 rounded-[100%] iphone:max-sm:hidden`}
-                          ></div>
                           {queues[0]?.topic.topicTH}
                         </div>
                       </div>
@@ -352,41 +402,53 @@ export default function AdminIndex() {
                     <Button
                       className={`w-full ${
                         isPhone ? "rounded-full" : ""
-                      } items-center flex samsungA24:h-14 h-12 acerSwift:max-macair133:h-[42px]`}
+                      } items-center flex samsungA24:h-14 h-12 samsungA24:text-h2 acerSwift:max-macair133:h-[42px] ${
+                        countdownActive ? "countdown-active" : ""
+                      }`}
                       disabled={!queues[0]}
-                      onClick={() => callNextQueue(queues[0].id)}
+                      onClick={startCountdown}
                     >
-                      <p className="samsungA24:text-h2  acerSwift:max-macair133:text-b3">
-                        คิวถัดไป
-                      </p>
-                      <Icon
-                        IconComponent={IconNext}
-                        className="!size-5 acerSwift:max-macair133:!size-4"
-                      />
+                      <span>
+                        {countdownActive
+                          ? `เรียกได้เลย (00:0${countdown})`
+                          : "คิวถัดไป"}
+                      </span>
+                      {!countdownActive && (
+                        <Icon
+                          IconComponent={IconNext}
+                          className="!size-5 acerSwift:max-macair133:!size-4"
+                        />
+                      )}
                     </Button>
+
                     <Button
                       variant="outline"
                       className={`w-full ${
                         isPhone ? "rounded-full" : ""
                       } samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-b2 text-primary acerSwift:max-macair133:text-b3 samsungA24:text-h2 acerSwift:max-macair133:h-[42px]`}
                       disabled={!currentQueue.no}
-                      onClick={() =>
-                        sendPushNotification(
-                          {
-                            firstName: currentQueue.firstName,
-                            lastName: currentQueue.lastName,
-                            message: JSON.stringify({
-                              title: "ถึงคิวคุณแล้ว",
-                              body: "เรียกซ้ำ",
-                            }),
-                          },
-                          { title: `เรียกคิว ${currentQueue.no}` }
-                        )
+                      onClick={
+                        countdownActive
+                          ? cancelCountdown
+                          : () =>
+                              sendPushNotification(
+                                {
+                                  firstName: currentQueue.firstName,
+                                  lastName: currentQueue.lastName,
+                                  message: JSON.stringify({
+                                    title: "ถึงคิวคุณแล้ว",
+                                    body: "เรียกซ้ำ",
+                                  }),
+                                },
+                                {
+                                  title: `เรียกซ้ำคิว ${currentQueue.no}  สำเร็จ! `,
+                                }
+                              )
                       }
                     >
-                      เรียกซ้ำ
+                      {countdownActive ? "ยกเลิกเรียกคิว" : "เรียกซ้ำ"}
                       <Icon
-                        IconComponent={IconRecall}
+                        IconComponent={countdownActive ? IconX : IconRecall}
                         className="!size-5 acerSwift:max-macair133:!size-4"
                       />
                     </Button>

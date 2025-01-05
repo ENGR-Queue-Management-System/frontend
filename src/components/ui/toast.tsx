@@ -1,6 +1,10 @@
 import * as React from "react";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { cva, type VariantProps } from "class-variance-authority";
+import Icon from "@/components/Icon";
+import IconSuccess from "../../../public/icons/success.svg";
+import IconError from "../../../public/icons/error.svg";
+import { Check } from "lucide-react";
 import { X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -27,9 +31,9 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: "w-fit border bg-black text-white",
-        success: "w-fit bg-[#191919] text-white",
-        error: "w-fit bg-red-400 text-white",
+        default: "w-fit border bg-[#191919] text-white",
+        success: "w-fit bg-[#191919] text-[#24F46D]",
+        error: "w-fit bg-[#191919] text-[#FF6288]",
         destructive:
           "w-fit destructive group border-destructive bg-destructive text-destructive-foreground",
       },
@@ -44,15 +48,26 @@ const Toast = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> &
     VariantProps<typeof toastVariants>
->(({ className, variant, ...props }, ref) => {
+>(({ className, children, variant, ...props }, ref) => {
+  const icon =
+    variant === "error" ? (
+      <Icon IconComponent={IconError} className="size-6 text-[#FF6288]" />
+    ) : (
+      <Icon IconComponent={IconSuccess} className="size-6 text-[#24F46D]" />
+    );
+
   return (
     <ToastPrimitives.Root
       ref={ref}
-      className={cn(toastVariants({ variant }), className)}
+      className={cn(toastVariants({ variant }), "gap-1.5", className)}
       {...props}
-    />
+    >
+      {icon}
+      {children}
+    </ToastPrimitives.Root>
   );
 });
+
 Toast.displayName = ToastPrimitives.Root.displayName;
 
 const ToastAction = React.forwardRef<
@@ -90,17 +105,27 @@ ToastClose.displayName = ToastPrimitives.Close.displayName;
 
 const ToastTitle = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Title>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title>
->(({ className, ...props }, ref) => (
-  <ToastPrimitives.Title
-    ref={ref}
-    className={cn(
-      "text-sm font-semibold [&+div]:text-xs text-[#24F46D]",
-      className
-    )}
-    {...props}
-  />
-));
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title> & {
+    variant?: "error" | "success" | "default";
+  }
+>(({ className, children, variant, ...props }, ref) => {
+  return (
+    <ToastPrimitives.Title
+      ref={ref}
+      className={cn(
+        `flex items-center gap-2 text-[15px] iphone:max-sm:text-[14px] !font-semibold"
+        }`,
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </ToastPrimitives.Title>
+  );
+});
+
+ToastTitle.displayName = ToastPrimitives.Title.displayName;
+
 ToastTitle.displayName = ToastPrimitives.Title.displayName;
 
 const ToastDescription = React.forwardRef<
@@ -109,7 +134,10 @@ const ToastDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Description
     ref={ref}
-    className={cn("text-sm opacity-90", className)}
+    className={cn(
+      "text-sm opacity-90 !text-white iphone:max-sm:text-[13px]",
+      className
+    )}
     {...props}
   />
 ));
