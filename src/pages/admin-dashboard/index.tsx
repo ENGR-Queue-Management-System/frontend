@@ -95,7 +95,7 @@ export default function AdminIndex() {
       });
       const nextQueues = queues
       .filter((q) => q.topicId == res.topicId)
-      .slice(0, 5); 
+      .slice(1, 5); 
     
     nextQueues.forEach((queue, index) => {
       const queuesLeft = 5 - index; 
