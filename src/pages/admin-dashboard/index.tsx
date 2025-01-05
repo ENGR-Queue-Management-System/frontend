@@ -440,8 +440,8 @@ export default function AdminIndex() {
                                   firstName: currentQueue.firstName,
                                   lastName: currentQueue.lastName,
                                   message: JSON.stringify({
-                                    title: "ถึงคิวคุณแล้ว",
-                                    body: "เรียกซ้ำ",
+                                    title: "Recall - Your Queue Has Arrived!",
+                                    body: "Please come into the Student Development Room—we’re here and ready to help!",
                                   }),
                                 },
                                 {
