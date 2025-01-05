@@ -217,14 +217,7 @@ export default function Home() {
               </Button> */}
             </div>
           </div>
-          <Link href="/admin-dashboard">
-            <Button
-              variant="link"
-              className={`text-sm font-[500] mt-5 underline text-[#000000]`}
-            >
-              Admin Test
-            </Button>
-          </Link>
+         
         </div>
       </div>
     </motion.div>

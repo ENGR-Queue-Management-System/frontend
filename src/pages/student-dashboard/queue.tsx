@@ -109,6 +109,7 @@ export default function StudentQueue() {
             <p>
               ห้องงานพัฒนาคุณภาพนักศึกษา <br />{" "}
               <span className="font-medium">Student Development Room</span>
+          
             </p>
           </div>
 
@@ -125,19 +126,18 @@ export default function StudentQueue() {
 
               <div className="flex flex-col items-center samsungA24:mt-3 iphone:max-sm:mt-3 ipad11:max-samsungA24:mt-0 text-primary samsungA24:text-[100px] iphone:max-macair133:text-[50px] font-medium text-[65px] ">
                 {queue.no}
-                <div className="flex items-center justify-center gap-3 top-6">
-                  <div
-                    className={`bg-contactList-scholarship 
-                      h-3 w-3 rounded-[100%] iphone:max-sm:hidden mt-1`}
-                  ></div>
+                <div className="flex items-center flex-col justify-center mt-5">
                   <p className="text-b1 acerSwift:max-macair133:text-b2 text-default">
-                    {queue.topic?.topicTH} ({queue.topic?.topicEN})
+                    {queue.topic?.topicTH}
+                  </p>
+                  <p className="text-b1 acerSwift:max-macair133:text-b2 text-default">
+                    {queue.topic?.topicEN}
                   </p>
                 </div>
               </div>
             </div>
-
-            <div className="flex flex-col w-full gap-4 acerSwift:max-macair133:gap-2.5">
+            <div className="border-t-2 border-dashed w-full"></div>{" "}
+            <div className="flex flex-col w-full justify-center items-center gap-4 -mt-5 acerSwift:max-macair133:gap-2.5">
               <div className="flex items-center justify-between w-full px-6">
                 <div className="flex items-center gap-3 ">
                   <Icon
@@ -146,16 +146,16 @@ export default function StudentQueue() {
                   />
                   <div className="text-start text-b1 iphone:max-macair133:text-b3">
                     <p className="font-medium">
-                      <span className="font-semibold">Waiting</span>
+                      <span className="font-medoum">Waiting</span>
                     </p>
                   </div>
                 </div>
-                <p className="text-h2 iphone:max-macair133:text-b2 font-semibold text-default">
-                  {queue.waiting || 0} คิว
+                <p className=" iphone:max-macair133:text-b2 font-semibold text-default">
+                  {queue.waiting || 0}{" "}
+                  {queue.waiting && queue.waiting > 1 ? "queues" : "queue"}
                 </p>
-              </div>
-              <div className="border-t-2 border-dashed w-full"></div>
-              <div className="flex items-center justify-between w-full text-describe px-6 iphone:max-macair133:text-b3">
+              </div>{" "}
+              <div className="flex  items-center justify-between w-full text-describe px-6 iphone:max-macair133:text-b3">
                 <div className="flex items-center gap-3">
                   <Icon
                     IconComponent={IconCalendar}
@@ -177,20 +177,24 @@ export default function StudentQueue() {
                   </p>
                 </div>
               </div>
+             <a href="https://maps.app.goo.gl/T7xRnmceViqYbPvy9" className="mt-3 underline text-[14px] font-semibold text-primary">See to find the Student Development Room</a>
             </div>
-            <div className="flex flex-col text-center text-describe text-b2 iphone:max-macair133:text-b4 iphone:max-sm:mx-8">
+            <div className="flex flex-col text-center -mt-3 text-describe text-b2 iphone:max-macair133:text-b4 iphone:max-sm:mx-8">
               <p>ขอสงวนสิทธิในการข้ามคิว กรณีที่นักศึกษาไม่แสดงตน</p>
               <p>
                 We reserve the right to skip your queue if you do not show up.
               </p>
             </div>
+         
             <Button
               variant="ghost"
-              className="text-b1  iphone:max-sm:text-b2 text-delete font-semibold hover:bg-delete/10 w-fit"
+              className="text-b1 -mt-1 iphone:max-sm:text-b2 text-delete font-semibold hover:bg-delete/10 w-full"
               onClick={leaveQueue}
             >
-              Leave the Queues
+              Leave queues
             </Button>
+           
+          
           </div>
         </div>
       </div>
