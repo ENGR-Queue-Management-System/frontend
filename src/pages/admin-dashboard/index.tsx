@@ -237,7 +237,7 @@ export default function AdminIndex() {
                       <TableRow>
                         <TableCell
                           colSpan={5}
-                          className="text-center text-[22px] font-medium bg-white"
+                          className="text-center text-[22px] font-medium"
                         >
                           <div className=" flex flex-col items-center justify-center text-default/60 gap-2">
                             <Image
@@ -254,7 +254,7 @@ export default function AdminIndex() {
                 </Table>
               </div>
             ) : (
-              <div className="flex flex-col">
+              <div className="flex flex-col  ipadmini:max-acerSwift:w-full">
                 {queues.length ? (
                   queues.map((items) => (
                     <div
@@ -274,7 +274,7 @@ export default function AdminIndex() {
                     </div>
                   ))
                 ) : (
-                  <div className="flex flex-col gap-2 text-h2 text-default/60 font-medium bg-white rounded-md items-center justify-center py-8">
+                  <div className="flex flex-col gap-2 text-h2 text-default/60 font-medium bg-white  ipadmini:max-acerSwift:w-full  ipadmini:max-acerSwift:h-full  ipadmini:max-acerSwift:m-auto rounded-md items-center justify-center py-8 ">
                     <Image
                       className="w-[80px] opacity-60"
                       src={noQueue}
@@ -445,7 +445,9 @@ export default function AdminIndex() {
                                     body: "เรียกซ้ำ",
                                   }),
                                 },
-                                { title: `เรียกคิว ${currentQueue.no}` }
+                                {
+                                  title: `เรียกซ้ำคิว ${currentQueue.no}  สำเร็จ! `,
+                                }
                               )
                       }
                     >
