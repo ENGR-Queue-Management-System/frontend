@@ -93,19 +93,21 @@ export default function AdminIndex() {
         variant: "success",
         duration: 3000,
       });
-      for (let i = 5; i >= 1; i--) {
-        const nextQueue = queues.filter((q) => q.topicId == res.topicId)[i - 1];
-        if (nextQueue) {
-          sendPushNotification({
-            firstName: nextQueue.firstName,
-            lastName: nextQueue.lastName,
-            message: JSON.stringify({
-              title: `You're Almost There!`,
-              body: `There are ${i} queues left before your queue. Please come to the Student Development Room to get ready!`,
-            }),
-          });
-        }
-      }
+      const nextQueues = queues
+      .filter((q) => q.topicId == res.topicId)
+      .slice(0, 5); 
+    
+    nextQueues.forEach((queue, index) => {
+      const queuesLeft = 5 - index; 
+      sendPushNotification({
+        firstName: queue.firstName,
+        lastName: queue.lastName,
+        message: JSON.stringify({
+          title: `You're Almost There!`,
+          body: `There are ${queuesLeft} queues left before your turn. Please come to the Student Development Room to get ready!`,
+        }),
+      });
+    });
     }
   };
 
