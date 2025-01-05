@@ -186,7 +186,7 @@ export default function AdminIndex() {
       }  flex-col min-h-full max-h-full w-full overflow-y-auto bg-[#f9f9f9] py-4 iphone:max-sm:h-fit`}
     >
       <div className="flex flex-col !w-full h-full iphone:max-sm:h-fit">
-        <div className="flex h-full overflow-hidden pb-2 mb-2 gap-4 iphone:max-sm:pb-0 iphone:max-sm:flex-col-reverse iphone:max-sm:gap-4 iphone:max-sm:h-fit">
+        <div className="flex h-full overflow-hidden   gap-4 iphone:max-sm:pb-0 iphone:max-sm:flex-col-reverse iphone:max-sm:gap-4 iphone:max-sm:h-fit">
           <div
             style={{
               boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
@@ -367,13 +367,13 @@ export default function AdminIndex() {
                     <div className=" flex items-center justify-start">
                       <div className=" text-table-foreground  font-medium text-center iphone:max-sm:pl-0 iphone:max-sm:pr-4 pr-6 pl-3  border-r-2 border-table-foreground/15">
                         <p
-                          className={` acerSwift:max-macair133:text-b4 ${
-                            isPhone ? "text-[14px]" : "text-h1"
+                          className={` acerSwift:max-macair133:text-b4 macair133:text-[17px] ${
+                            isPhone ? "text-[14px]" : "text-[15px]"
                           }`}
                         >
                           คิวถัดไป
                         </p>
-                        <p className="font-semibold text-[28px] iphone:max-macair133:text-h1">
+                        <p className="font-semibold text-[24px] iphone:max-macair133:text-h1">
                           {queues[0]?.no || "-"}
                         </p>
                       </div>

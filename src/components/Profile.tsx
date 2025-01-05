@@ -4,6 +4,8 @@ import IconAdminMange from "../../public/icons/adminManage.svg";
 import IconHistory from "../../public/icons/history.svg";
 import IconLogout from "../../public/icons/logout.svg";
 import IconTopic from "../../public/icons/topic.svg";
+import IconDesk from "../../public/icons/desk.svg";
+import IconMessage from "../../public/icons/message.svg";
 import {
   Popover,
   PopoverContent,
@@ -21,6 +23,7 @@ import { ROLE } from "@/config/Enum";
 import LoginManageModal from "./modal/LoginManageModal";
 import { useNotification } from "@/notifications/useNotification";
 import { Route } from "@/config/Route";
+import FeedbackListModal from "./modal/FeedbackListModal";
 
 export default function Profile() {
   const user = useAppSelector((state) => state.user.user);
@@ -29,7 +32,6 @@ export default function Profile() {
   return (
     <>
       <Popover>
-  
         <PopoverTrigger asChild>
           <Button
             variant="ghost"
@@ -55,9 +57,19 @@ export default function Profile() {
             />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className={` ${isPhone ? "!w-[94vw] rounded-xl -translate-x-3 " : "mr-14"} `}>
+        <PopoverContent
+          className={` ${
+            isPhone ? "!w-[94vw] rounded-xl -translate-x-3 " : "mr-14"
+          } `}
+        >
           {isPhone && (
-            <div   style={{ boxShadow: "rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em" }} className="flex px-2 py-3 mt-1 mb-2 mx-1 rounded-lg gap-3 items-center">
+            <div
+              style={{
+                boxShadow:
+                  "rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em",
+              }}
+              className="flex px-2 py-3 mt-1 mb-2 mx-1 rounded-lg gap-3 items-center"
+            >
               <Icon
                 IconComponent={IconUser}
                 className={` stroke-primary stroke-[1.1px] size-9  acerSwift:max-macair133:!size-9`}
@@ -74,7 +86,7 @@ export default function Profile() {
               </div>
             </div>
           )}
-        
+
           <div className="flex flex-col gap-1">
             <ContactTopicManageModal
               triggerText="จัดการหัวข้อการบริการ"
@@ -83,7 +95,7 @@ export default function Profile() {
             ></ContactTopicManageModal>
             <CounterManageModal
               triggerText="จัดการเคาน์เตอร์"
-              icon={IconAdminMange}
+              icon={IconDesk}
               title="จัดการเคาน์เตอร์"
             ></CounterManageModal>
             <LoginManageModal
@@ -91,6 +103,11 @@ export default function Profile() {
               icon={IconAdminMange}
               title="จัดการเข้าใช้งานระบบ"
             ></LoginManageModal>
+            <FeedbackListModal
+              triggerText="ข้อเสนอแนะของนักศึกษา"
+              icon={IconMessage}
+              title="ข้อคิดเห็นของนักศึกษา"
+            ></FeedbackListModal>
             <LogQueueModal
               triggerText="ประวัติการบริการ"
               icon={IconHistory}
@@ -114,7 +131,6 @@ export default function Profile() {
             </Button>
           </div>
         </PopoverContent>
-       
       </Popover>
     </>
   );
