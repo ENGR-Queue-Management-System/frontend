@@ -83,8 +83,8 @@ export default function AdminIndex() {
         firstName: res.firstName,
         lastName: res.lastName,
         message: JSON.stringify({
-          title: "ถึงคิวของคุณ",
-          // body: "ถึงคิวคุณแล้ว",
+          title: "Your Queue Has Arrived!",
+          body: "Please come into the Student Development Room—we’re here and ready to help. Thanks so much for waiting!",
         }),
       });
       toast({
@@ -93,16 +93,18 @@ export default function AdminIndex() {
         variant: "success",
         duration: 3000,
       });
-      const next5Queue = queues.filter((q) => q.topicId == res.topicId)[5];
-      if (next5Queue) {
-        sendPushNotification({
-          firstName: next5Queue.firstName,
-          lastName: next5Queue.lastName,
-          message: JSON.stringify({
-            title: "อีก 5 คิวจะถึงคิวของคุณ",
-            // body: "ใกล้ถึงคิวคุณแล้ว",
-          }),
-        });
+      for (let i = 5; i >= 1; i--) {
+        const nextQueue = queues.filter((q) => q.topicId == res.topicId)[i - 1];
+        if (nextQueue) {
+          sendPushNotification({
+            firstName: nextQueue.firstName,
+            lastName: nextQueue.lastName,
+            message: JSON.stringify({
+              title: `You're Almost There!`,
+              body: `There are ${i} queues left before your queue. Please come to the Student Development Room to get ready!`,
+            }),
+          });
+        }
       }
     }
   };
