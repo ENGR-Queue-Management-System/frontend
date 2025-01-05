@@ -37,11 +37,11 @@ export default function StudentQueue() {
     if (res) {
       localStorage.removeItem("token");
       dispatch(setQueue({}));
-      toast({
-        title: "Leave Queue successfully",
-        variant: "success",
-        duration: 3000,
-      });
+      // toast({
+      //   title: "Leave Queue successfully",
+      //   variant: "success",
+      //   duration: 3000,
+      // });
       Router.push(prevPath);
     }
   };

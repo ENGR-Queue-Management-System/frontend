@@ -29,7 +29,10 @@ export default function StudentIndex() {
   const { deviceType, isGranted, isPhone, pushSubscription } =
     useNotification();
   const loading = useAppSelector((state) => state.loading.loadingOverlay);
-  const topics = useAppSelector((state) => state.topic);
+  const counters = useAppSelector((state) =>
+    state.counter.filter(({ status }) => status == true)
+  );
+  const topics = counters.flatMap(({ topics }) => topics);
   const user = useAppSelector((state) => state.user.user);
   const queue = useAppSelector((state) => state.user.queue);
   const subscription = useAppSelector((state) => state.subscription);

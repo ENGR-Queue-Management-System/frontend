@@ -241,7 +241,9 @@ export default function Login() {
                           <p className="font-medium">
                             <span className="font-semibold"> Waiting </span>
                             <span className="text-b2 iphone:max-sm:text-b3 font-medium text-primary">
-                              11 Queues
+                              {topics.find(({ id }) => id == selectedTopic)
+                                ?.waiting || 0}{" "}
+                              Queues
                             </span>
                           </p>
                         </div>

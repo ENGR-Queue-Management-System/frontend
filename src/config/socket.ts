@@ -59,7 +59,7 @@ export default function setupSocket() {
     // queue
     if (data.event === "addQueue") {
       const queueData = data.data;
-      if (counter?.topics.find(({ id }) => id == queueData.queue.topicId)) {
+      if (counter?.topics.some(({ id }) => id == queueData.queue.topicId)) {
         dispatch(addNewQueue(queueData.queue));
       }
       dispatch(
