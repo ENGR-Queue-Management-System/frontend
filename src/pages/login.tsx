@@ -67,9 +67,6 @@ export default function Login() {
     defaultValues: new QueueRequestDTO(),
   });
   const selectedTopic = form.watch("topic");
-  console.log(counters);
-
-  console.log(topics);
 
   useEffect(() => {
     if (user.firstNameTH) {

@@ -21,11 +21,7 @@ import { updateCounterData } from "@/store/counter";
 import { useEffect, useState } from "react";
 import { getQueues, updateQueue } from "@/services/queue/queue.service";
 import { setLoadingOverlay } from "@/store/loading";
-import {
-  removeFirstWaitingQueue,
-  setCurrentQueue,
-  setQueueList,
-} from "@/store/queue";
+import { removeQueueByID, setCurrentQueue, setQueueList } from "@/store/queue";
 import { useNotification } from "@/notifications/useNotification";
 import { STATUS } from "@/config/Enum";
 import { sendQueueNotification } from "@/services/subscription/subscription.service";
@@ -65,7 +61,6 @@ export default function AdminIndex() {
       status: !counter?.status,
     });
     if (res) {
-      dispatch(updateCounterData(res));
       toast({
         title: res.status ? "เปิดรับคำสั่ง" : "ปิดรับคำสั่ง",
         description: res.status
@@ -80,10 +75,10 @@ export default function AdminIndex() {
   const callNextQueue = async (id: number) => {
     const res = await updateQueue(id, {
       counter: counter!.id,
+      current: currentQueue.id,
     });
     if (res) {
       dispatch(setCurrentQueue(res));
-      dispatch(removeFirstWaitingQueue());
       sendPushNotification({
         firstName: res.firstName,
         lastName: res.lastName,

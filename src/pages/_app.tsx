@@ -31,7 +31,7 @@ import { setTopics } from "@/store/topic";
 import { setConfigData, setPrevPath } from "@/store/config";
 import { getConfigData } from "@/services/config/config.service";
 import ErrorResponse from "@/components/ErrorResponse";
-// import setupSocket, { socket } from "@/config/socket";
+import setupSocket from "@/config/socket";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { isSupported, isGranted } = useNotification();
@@ -51,12 +51,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         dispatch(setConfigData(res));
       }
     };
-    // setupSocket();
+    setupSocket();
     fetchConfigData();
     const timeout = setTimeout(() => dispatch(setLoading(false)), 2000);
     return () => {
       clearTimeout(timeout);
-      // socket.close();
     };
   }, []);
 
@@ -174,7 +173,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
   // return (
   //   <>
-  // {error.statusCode ? ( 
+  // {error.statusCode ? (
   //       <ErrorResponse />
   //      ) : (
   //     <div className="flex flex-col h-screen w-screen overflow-hidden">

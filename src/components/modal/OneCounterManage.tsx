@@ -119,7 +119,6 @@ export default function OneCounterManage({
       }
       const res = await updateCounter(data?.id!, payload);
       if (res) {
-        dispatch(updateCounterData(res));
         toast({
           title: `Update Counter ${data?.counter!} successfully`,
           variant: "success",
