@@ -2,7 +2,8 @@ import Router from "next/router";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Route } from "@/config/Route";
-import logoSD from "../../public/images/logoSDBlack.png";
+import logoSD from "../../public/images/logoSDMinimalWhite.png";
+import logoSD2 from "../../public/images/logoSD3D.png";
 import Icon from "@/components/Icon";
 import { useAppSelector } from "@/store";
 import { useEffect, useState } from "react";
@@ -162,13 +163,14 @@ export default function DisplayQueue() {
       <Table className="w-full h-full">
         <TableHeader>
           <TableRow className="sticky text-b2 samsungA24:text-b1 font-bold top-0 z-30">
-            <TableHead className="bg-[#000000] w-[20%] !rounded-none  border-b-[2px] border-[#ffffff]  text-[4vh] text-center text-[#efde25] p-3">
+            <TableHead className="bg-[#1a237e]   w-[20%] gap-4 !rounded-none  border-b-[2px] border-[#1a237e]  text-[4vh] text-center text-white p-3">
+           
               Counter
             </TableHead>
-            <TableHead className="bg-[#000000] text-[4vh]  w-[25%] text-center border-b-[2px]  border-l-[2px] border-[#fffffff] p-3 py-4 text-[#efde25]">
+            <TableHead className="bg-[#1a237e] text-[4vh]  w-[25%] text-center border-b-[2px]  border-l-[2px] border-[#1a237e] p-3 py-4 text-white">
               Called No.
             </TableHead>
-            <TableHead className="bg-[#000000] text-[4vh]  w-[55%] text-start border-b-[2px]  border-[#fffffff] p-3 py-4 text-[#efde25]">
+            <TableHead className="bg-[#1a237e] text-[4vh]  w-[55%] text-start border-b-[2px]  border-[#1a237e] p-3 py-4 text-white">
               Name
             </TableHead>
           </TableRow>
@@ -178,23 +180,23 @@ export default function DisplayQueue() {
             counters.map((item) => (
               <TableRow
                 key={item.currentQueue?.no || item.counter}
-                className="bg-[#0c134a]"
+                className="bg-[#f5f5f5]"
               >
-                <TableCell className="text-white font-semibold text-[6vh]">
+                <TableCell className="text-[#000000] font-sarabunBold font-semibold border-b-[4px] border-[#1a237e] text-[7.5vh]">
                   {item.counter}
                 </TableCell>
                 <TableCell
-                  className={`font-semibold border-l-[2px] border-[#ffffff] text-[#efde25] text-[6vh]
+                  className={`font-semibold font-sarabunBold border-l-[4px] border-b-[4px] border-[#1a237e] text-[#000000] text-[7.5vh]
                     ${blinkingRows.includes(item.counter) ? "blink" : ""}`}
                 >
                   {item.currentQueue?.no || "-"}
                 </TableCell>
                 <TableCell
-                  className={`font-semibold text-start border-[#ffffff] text-white ${
+                  className={`font-semibold text-start border-[#1a237e]  border-b-[4px] text-[#000000] ${
                     blinkingRows.includes(item.counter) ? "blink" : ""
                   }`}
                 >
-                  <p className="font-normal font-roboto text-[3.5vh] -ml-3">
+                  <p className="font-normal font-sarabun text-[6vh] -ml-3">
                     {getUserName(item.currentQueue)}
                   </p>
                 </TableCell>
@@ -203,7 +205,7 @@ export default function DisplayQueue() {
           ) : (
             <TableRow>
               <TableCell colSpan={2} className="text-center py-4">
-                No data available
+                No Counter available
               </TableCell>
             </TableRow>
           )}
@@ -253,19 +255,19 @@ export default function DisplayQueue() {
   useEffect(() => {
     const fetchAqi = async () => {
       try {
-        // const response = await axios.get(
-        //   "https://api.airvisual.com/v2/nearest_city",
-        //   {
-        //     params: {
-        //       key: "4f6af6ef-9045-4d4e-b95e-7a125bb11db8", // Replace with your API key
-        //       lat: "18.79", // Example latitude
-        //       lon: "98.95", // Example longitude
-        //     },
-        //   }
-        // );
-        // const aqiValue = response.data.data.current.pollution.aqius;
+        const response = await axios.get(
+          "https://api.airvisual.com/v2/nearest_city",
+          {
+            params: {
+              key: "4f6af6ef-9045-4d4e-b95e-7a125bb11db8", // Replace with your API key
+              lat: "18.79", // Example latitude
+              lon: "98.95", // Example longitude
+            },
+          }
+        );
+        const aqiValue = response.data.data.current.pollution.aqius;
 
-        const aqiValue = 200; // Mock test color bg and text
+       //  const aqiValue = 200; Mock test color bg and text
         setAqi(aqiValue);
         setAqiStatus(determineAqiStatus(aqiValue));
       } catch (error) {
@@ -281,35 +283,42 @@ export default function DisplayQueue() {
   return (
     <div className="flex flex-col h-screen overflow-hidden">
       <div className="flex flex-col h-full justify-between flex-grow">
+    
         <QueueCallTable />
         <div className="flex flex-grow bg-[#ffffff] h-[15%] w-full">
-          <div className="px-10 w-[12%] bg-black  flex items-center justify-center">
-            <p className="text-[#ffffff]  text-[6vh] font-semibold">{time}</p>
-          </div>{" "}
-          <div
-            className={`flex w-[35%] px-10 h-full items-center gap-9 justify-between text-black text-start ${
-              aqiStatus ? getAqiBackgroundColor(aqiStatus) : "bg-gray-300"
-            }`}
-          >
-            <p className="text-[2.7vh] ">
-              <span className="font-semibold text-[6vh]">
-                {" "}
-                {aqi !== null ? aqi : "loading"}
-              </span>{" "}
-              US AQI
-            </p>
-            <p className="font-semibold text-[5.2vh]">
-              {" "}
-              {aqiStatus || "loading"}
-            </p>
-          </div>
-          <div className="flex gap-8 px-12 w-[50%]  items-center justify-center ">
-            <p className="text-[#000000] text-[5.8vh] font-medium">
-              <span className="font-roboto font-normal"> จองคิวได้ที่</span>
-              <span className="font-semibold"> q.eng.cmu.ac.th</span>
-            </p>
-          </div>
-        </div>
+       
+       <div className="pr-10 pl-8 w-[18%] bg-black  flex gap-4 items-center border-t-2 border-black  justify-center">
+       <Image
+         src={logoSD}
+         alt="logoEng"
+         className={`w-[4vw] `}
+       />
+         <p className="text-[#ffffff]  text-[6vh] font-semibold">{time}</p>
+       </div>{" "}
+       <div
+         className={`flex w-[35%] px-10 h-full items-center gap-9 justify-between text-black text-start ${
+           aqiStatus ? getAqiBackgroundColor(aqiStatus) : "bg-gray-300"
+         }`}
+       >
+         <p className="text-[2.7vh] ">
+           <span className="font-semibold text-[6vh]">
+             {" "}
+             {aqi !== null ? aqi : "loading"}
+           </span>{" "}
+           US AQI
+         </p>
+         <p className="font-semibold text-[5.2vh]">
+           {" "}
+           {aqiStatus || "loading"}
+         </p>
+       </div>
+       <div className="flex gap-8 px-12 w-[47%] bg-black  items-center justify-center ">
+         <p className="text-[#ffffff] text-[5.8vh] font-medium">
+           <span className="font-sarabun  font-normal"> จองคิวได้ที่</span>
+           <span className="font-semibold font-sarabun"> q.eng.cmu.ac.th</span>
+         </p>
+       </div>
+     </div>
       </div>
     </div>
   );

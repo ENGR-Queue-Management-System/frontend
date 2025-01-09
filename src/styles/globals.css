@@ -16,12 +16,48 @@
   font-weight: 500 600 700 800 900;
 }
 
+@font-face {
+  font-family: "Sarabun";
+  src: url("../../public/fonts/Sarabun-regular.ttf") format("opentype");
+  unicode-range: U+0E00- U+0E7F;
+  font-weight: 500 600 700 800 900;
+}
+
+@font-face {
+  font-family: "SarabunBold";
+  src: url("../../public/fonts/Sarabun-Medium.ttf") format("opentype");
+  unicode-range: U+0E00- U+0E7F;
+  font-weight: 500 600 700 800 900;
+}
+
+@font-face {
+  font-family: "Chula";
+  src: url("../../public/fonts/ChulaNarak\ Regular.ttf") format("opentype");
+  unicode-range: U+0E00- U+0E7F;
+  font-weight: 500 600 700 800 900;
+}
+
 /* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
 } */
+
+.font-chula {
+  font-family: "Chula", Arial, Helvetica, sans-serif !important;
+  font-weight: 500; /* Adjust weight if necessary */
+}
+
+.font-sarabun {
+  font-family: "Sarabun", Arial, Helvetica, sans-serif !important;
+  font-weight: 500; /* Adjust weight if necessary */
+}
+
+.font-sarabunBold {
+  font-family: "SarabunBold", Arial, Helvetica, sans-serif !important;
+  font-weight: 600; /* Adjust weight if necessary */
+}
 
 /* For Firefox */
 .scroller {
