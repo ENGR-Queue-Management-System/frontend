@@ -130,21 +130,32 @@ export default function DisplayQueue() {
     );
 
     if (newQueue.length > 0) {
-      const newBlinkingRows = updatedCounters
-        .filter(({ counter }) => !prevQueue.some((q) => q.counter === counter))
-        .map((item) => item.counter);
-
-      setBlinkingRows(newBlinkingRows);
       setAudioQueue((prevQueue) => [...prevQueue, ...newQueue]);
       setPrevQueue(updatedCounters);
+    }
+  }, [counters]);
 
+  useEffect(() => {
+    if (audioQueue.length > 0 && !isPlaying) {
+      const current = audioQueue[0];
+      setBlinkingRows([current.counter]); // Blink the current counter
+      setIsPlaying(true);
+
+      // Simulate audio play
+      const audioDuration = 3000; // 3 seconds for example
       const timer = setTimeout(() => {
-        setBlinkingRows([]);
-      }, 5000);
+        setAudioQueue((prev) => prev.slice(1)); // Remove the played item
+        setIsPlaying(false);
+      }, audioDuration);
 
       return () => clearTimeout(timer);
     }
-  }, [counters]);
+
+    // Stop blinking when the queue is empty
+    if (audioQueue.length === 0 && blinkingRows.length > 0) {
+      setBlinkingRows([]);
+    }
+  }, [audioQueue, isPlaying, blinkingRows]);
 
   const QueueCallTable = () => {
     return (
