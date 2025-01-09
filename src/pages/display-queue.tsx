@@ -18,8 +18,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import axios from "axios";
+import { getUserName } from "@/helpers/function";
 
-export default function Home() {
+export default function DisplayQueue() {
+  const counters = useAppSelector((state) => state.counter);
+  const [blinkingRows, setBlinkingRows] = useState<string[]>([]);
   const [time, setTime] = useState<string>("");
   const [dateTime, setDateTime] = useState<string>("");
 
@@ -63,35 +66,61 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const QueueCallTable = ({ queueData }: any) => {
+  useEffect(() => {
+    const updatedCounters = counters
+      .filter((item) => !!item.currentQueue)
+      .map((item) => item.counter);
+
+    if (updatedCounters.length > 0) {
+      setBlinkingRows(updatedCounters);
+
+      const timer = setTimeout(() => {
+        setBlinkingRows([]);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [counters]);
+
+  const QueueCallTable = () => {
     return (
-      <Table className="w-full " striped={true}>
+      <Table className="w-full h-full">
         <TableHeader>
           <TableRow className="sticky text-b2 samsungA24:text-b1 font-bold top-0 z-30">
-            <TableHead className=" bg-[#000000] w-[20%] !rounded-none  border-b-[2px] border-[#ffffff]  text-[4vh] text-center text-[#efde25] p-3">
+            <TableHead className="bg-[#000000] w-[20%] !rounded-none  border-b-[2px] border-[#ffffff]  text-[4vh] text-center text-[#efde25] p-3">
               Counter
             </TableHead>
-            <TableHead className="  bg-[#000000] text-[4vh]  w-[25%] text-center border-b-[2px]  border-l-[2px] border-[#fffffff] p-3 py-4 text-[#efde25]">
+            <TableHead className="bg-[#000000] text-[4vh]  w-[25%] text-center border-b-[2px]  border-l-[2px] border-[#fffffff] p-3 py-4 text-[#efde25]">
               Called No.
             </TableHead>
-            <TableHead className="  bg-[#000000] text-[4vh]  w-[55%] text-start border-b-[2px]  border-[#fffffff] p-3 py-4 text-[#efde25]">
+            <TableHead className="bg-[#000000] text-[4vh]  w-[55%] text-start border-b-[2px]  border-[#fffffff] p-3 py-4 text-[#efde25]">
               Name
             </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody className="font-normal  text-center text-b2 samsungA24:text-b1">
-          {queueData && queueData.length > 0 ? (
-            queueData.map((item: any) => (
-              <TableRow className="" key={item.queueNumber}>
-                <TableCell className=" bg-[#0c134a]  text-white font-semibold text-[6vh]">
+          {!!counters.length ? (
+            counters.map((item) => (
+              <TableRow
+                key={item.currentQueue?.no || item.counter}
+                className="bg-[#0c134a]"
+              >
+                <TableCell className="text-white font-semibold text-[6vh]">
                   {item.counter}
                 </TableCell>
-                <TableCell className="font-semibold bg-[#0c134a] border-l-[2px] border-[#ffffff]  text-[#efde25] text-[6vh] ">
-                  {item.queueNumber}
+                <TableCell
+                  className={`font-semibold border-l-[2px] border-[#ffffff] text-[#efde25] text-[6vh]
+                    ${blinkingRows.includes(item.counter) ? "blink" : ""}`}
+                >
+                  {item.currentQueue?.no || "-"}
                 </TableCell>
-                <TableCell className="font-semibold text-start bg-[#0c134a]   border-[#ffffff]  text-white ">
-                  <p className=" font-normal font-roboto text-[3.5vh] -ml-3">
-                    {item.name}
+                <TableCell
+                  className={`font-semibold text-start border-[#ffffff] text-white ${
+                    blinkingRows.includes(item.counter) ? "blink" : ""
+                  }`}
+                >
+                  <p className="font-normal font-roboto text-[3.5vh] -ml-3">
+                    {getUserName(item.currentQueue)}
                   </p>
                 </TableCell>
               </TableRow>
@@ -174,22 +203,12 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const queueData = [
-    { queueNumber: "C081", counter: "1", name: "สวิช จารึกพูนผล" },
-    { queueNumber: "S012", counter: "2", name: "ธนพร ชาญชนะโยธิน" },
-    { queueNumber: "B065", counter: "3", name: "วรพิชชา เมืองยศ" },
-    { queueNumber: "E034", counter: "4", name: "สุพิชญา รวมสิน" },
-    { queueNumber: "T024", counter: "5", name: "เอกชัย แพร่ไพศาลภูบาล" },
-    { queueNumber: "A008", counter: "6", name: "เนตรนภา สาระแปง" },
-    { queueNumber: "M023", counter: "7", name: "Thomas Edison" },
-  ];
-
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
-      <div className="flex flex-col flex-grow">
-        <QueueCallTable queueData={queueData} />
-        <div className="flex flex-grow bg-[#fffffff]   w-full">
-          <div className="px-10 w-[12%] bg-black  flex items-center justify-center  ">
+    <div className="flex flex-col h-screen overflow-hidden">
+      <div className="flex flex-col h-full justify-between flex-grow">
+        <QueueCallTable />
+        <div className="flex flex-grow bg-[#ffffff] h-[15%] w-full">
+          <div className="px-10 w-[12%] bg-black  flex items-center justify-center">
             <p className="text-[#ffffff]  text-[6vh] font-semibold">{time}</p>
           </div>{" "}
           <div
@@ -211,7 +230,7 @@ export default function Home() {
           </div>
           <div className="flex gap-8 px-12 w-[50%]  items-center justify-center ">
             <p className="text-[#000000] text-[5.8vh] font-medium">
-             <span className="font-roboto font-normal"> จองคิวได้ที่</span>
+              <span className="font-roboto font-normal"> จองคิวได้ที่</span>
               <span className="font-semibold"> q.eng.cmu.ac.th</span>
             </p>
           </div>

@@ -31,15 +31,15 @@ export default function LoginManageModal({
 
   const onChangeLoginNotCmu = async (value: boolean) => {
     const res = await updateLoginNotCmu({ loginNotCmu: value });
-    if (res) {
-      toast({
-        title: `${
-          value ? "เปิดจองคิว" : "ปิดจองคิว"
-        } โดยไม่ต้องใช้ CMU Account`,
-        variant: "success",
-        duration: 3000,
-      });
-    }
+    // if (res) {
+    //   toast({
+    //     title: `${
+    //       value ? "เปิดจองคิว" : "ปิดจองคิว"
+    //     } โดยไม่ต้องใช้ CMU Account`,
+    //     variant: "success",
+    //     duration: 3000,
+    //   });
+    // }
   };
 
   return (

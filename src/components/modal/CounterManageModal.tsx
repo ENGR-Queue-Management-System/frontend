@@ -52,12 +52,11 @@ export default function CounterManageModal({
     if (editCounter) {
       const res = await deleteCounter(editCounter.id);
       if (res) {
-        dispatch(removeCounter(editCounter.id));
-        toast({
-          title: `Counter ${editCounter.counter} is deleted`,
-          variant: "success",
-          duration: 3000,
-        });
+        // toast({
+        //   title: `Counter ${editCounter.counter} is deleted`,
+        //   variant: "success",
+        //   duration: 3000,
+        // });
         setOpenDeleteCounterPopup(false);
       }
     }
