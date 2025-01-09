@@ -6,7 +6,7 @@ const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement> & { striped?: boolean }
 >(({ className, striped = false, ...props }, ref) => (
-  <div className="relative w-full overflow-auto rounded-md">
+  <div className="relative w-full h-full overflow-auto rounded-md">
     <table
       ref={ref}
       className={cn(

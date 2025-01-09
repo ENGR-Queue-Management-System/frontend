@@ -23,12 +23,15 @@ import { getUserName } from "@/helpers/function";
 export default function DisplayQueue() {
   const counters = useAppSelector((state) => state.counter);
   const [blinkingRows, setBlinkingRows] = useState<string[]>([]);
-  const [time, setTime] = useState<string>("");
-  const [dateTime, setDateTime] = useState<string>("");
   const [audioQueue, setAudioQueue] = useState<
     { counter: string; no: string }[]
   >([]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [prevQueue, setPrevQueue] = useState<{ counter: string; no: string }[]>(
+    []
+  );
+  const [time, setTime] = useState<string>("");
+  const [dateTime, setDateTime] = useState<string>("");
 
   useEffect(() => {
     const updateTime = () => {
@@ -71,50 +74,47 @@ export default function DisplayQueue() {
   }, []);
 
   useEffect(() => {
+    const playAudioSequence = async (no: string, counter: string) => {
+      const audioFiles = [
+        "/voices/callNumber.mp3",
+        `/voices/voice${no[0]}.mp3`,
+        `/voices/voice${no[1]}.mp3`,
+        `/voices/voice${no[2]}.mp3`,
+        `/voices/voice${no[3]}.mp3`,
+        "/voices/toCounter.mp3",
+        `/voices/voice${counter}.mp3`,
+        "/voices/kra.mp3",
+      ];
+
+      const playSequence = async (index: number) => {
+        if (index < audioFiles.length) {
+          const audio = new Audio(audioFiles[index]);
+          await new Promise((resolve) => {
+            audio.onended = resolve;
+            audio.onerror = resolve;
+            audio.play();
+          });
+          await playSequence(index + 1);
+        }
+      };
+      await playSequence(0);
+    };
+
     const processAudioQueue = async () => {
       if (isPlaying || audioQueue.length === 0) return;
-
       setIsPlaying(true);
       const { counter, no } = audioQueue[0];
-
       try {
         await playAudioSequence(no, counter);
       } catch (error) {
         console.error("Error playing audio sequence:", error);
       }
-
-      setAudioQueue((prevQueue) => prevQueue.slice(1)); // Remove the processed item.
+      setAudioQueue((prevQueue) => prevQueue.slice(1));
       setIsPlaying(false);
     };
 
     processAudioQueue();
   }, [audioQueue, isPlaying]);
-
-  const playAudioSequence = (no: string, counter: string) => {
-    const audioFiles = [
-      "/voices/callNumber.mp3",
-      `/voices/voice${no[0]}.mp3`,
-      `/voices/voice${no[1]}.mp3`,
-      `/voices/voice${no[2]}.mp3`,
-      `/voices/voice${no[3]}.mp3`,
-      "/voices/toCounter.mp3",
-      `/voices/voice${counter}.mp3`,
-      "/voices/kra.mp3",
-    ];
-
-    const playSequence = async (index: number) => {
-      if (index < audioFiles.length) {
-        const audio = new Audio(audioFiles[index]);
-        await new Promise((resolve) => {
-          audio.onended = resolve;
-          audio.onerror = resolve;
-          audio.play();
-        });
-        await playSequence(index + 1);
-      }
-    };
-    return playSequence(0);
-  };
 
   useEffect(() => {
     const updatedCounters = counters
@@ -124,16 +124,19 @@ export default function DisplayQueue() {
         no: item.currentQueue?.no || "",
       }));
 
-    if (updatedCounters.length > 0) {
-      setBlinkingRows(updatedCounters.map((item) => item.counter));
+    const newQueue = updatedCounters.filter(
+      ({ counter, no }) =>
+        !prevQueue.some((q) => q.counter === counter && q.no === no)
+    );
 
-      setAudioQueue((prevQueue) => [
-        ...prevQueue,
-        ...updatedCounters.filter(
-          ({ counter, no }) =>
-            !prevQueue.some((q) => q.counter === counter && q.no === no)
-        ),
-      ]);
+    if (newQueue.length > 0) {
+      const newBlinkingRows = updatedCounters
+        .filter(({ counter }) => !prevQueue.some((q) => q.counter === counter))
+        .map((item) => item.counter);
+
+      setBlinkingRows(newBlinkingRows);
+      setAudioQueue((prevQueue) => [...prevQueue, ...newQueue]);
+      setPrevQueue(updatedCounters);
 
       const timer = setTimeout(() => {
         setBlinkingRows([]);
