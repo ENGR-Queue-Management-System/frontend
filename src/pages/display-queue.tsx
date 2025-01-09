@@ -25,6 +25,10 @@ export default function DisplayQueue() {
   const [blinkingRows, setBlinkingRows] = useState<string[]>([]);
   const [time, setTime] = useState<string>("");
   const [dateTime, setDateTime] = useState<string>("");
+  const [audioQueue, setAudioQueue] = useState<
+    { counter: string; no: string }[]
+  >([]);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -66,6 +70,26 @@ export default function DisplayQueue() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const processAudioQueue = async () => {
+      if (isPlaying || audioQueue.length === 0) return;
+
+      setIsPlaying(true);
+      const { counter, no } = audioQueue[0];
+
+      try {
+        await playAudioSequence(no, counter);
+      } catch (error) {
+        console.error("Error playing audio sequence:", error);
+      }
+
+      setAudioQueue((prevQueue) => prevQueue.slice(1)); // Remove the processed item.
+      setIsPlaying(false);
+    };
+
+    processAudioQueue();
+  }, [audioQueue, isPlaying]);
+
   const playAudioSequence = (no: string, counter: string) => {
     const audioFiles = [
       "/voices/callNumber.mp3",
@@ -78,29 +102,38 @@ export default function DisplayQueue() {
       "/voices/kra.mp3",
     ];
 
-    const playSequence = (index: number) => {
+    const playSequence = async (index: number) => {
       if (index < audioFiles.length) {
         const audio = new Audio(audioFiles[index]);
-        audio.play();
-        audio.onended = () => playSequence(index + 1);
+        await new Promise((resolve) => {
+          audio.onended = resolve;
+          audio.onerror = resolve;
+          audio.play();
+        });
+        await playSequence(index + 1);
       }
     };
-    playSequence(0);
+    return playSequence(0);
   };
 
   useEffect(() => {
     const updatedCounters = counters
       .filter((item) => !!item.currentQueue)
-      .map((item) => ({ counter: item.counter, no: item.currentQueue?.no }));
+      .map((item) => ({
+        counter: item.counter,
+        no: item.currentQueue?.no || "",
+      }));
 
     if (updatedCounters.length > 0) {
       setBlinkingRows(updatedCounters.map((item) => item.counter));
 
-      updatedCounters.forEach(({ counter, no }) => {
-        if (no) {
-          playAudioSequence(no, counter);
-        }
-      });
+      setAudioQueue((prevQueue) => [
+        ...prevQueue,
+        ...updatedCounters.filter(
+          ({ counter, no }) =>
+            !prevQueue.some((q) => q.counter === counter && q.no === no)
+        ),
+      ]);
 
       const timer = setTimeout(() => {
         setBlinkingRows([]);
