@@ -75,11 +75,11 @@ export default function StudentIndex() {
       dispatch(setLoadingOverlay(true));
       const res = await createQueue({ topic: selectTopic, note });
       if (res) {
-        toast({
-          title: "Reserve Queue successfully",
-          variant: "success",
-          duration: 3000,
-        });
+        // toast({
+        //   title: "Reserve Queue successfully",
+        //   variant: "success",
+        //   duration: 3000,
+        // });
         dispatch(setQueue({ ...res.queue, waiting: res.waiting }));
         const resSub = await subscribeNotification(pushSubscription);
         if (resSub) {

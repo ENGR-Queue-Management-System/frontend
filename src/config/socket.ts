@@ -1,13 +1,24 @@
 import store from "@/store";
 import { setLoginNotCmu } from "@/store/config";
-import { updateCounterData } from "@/store/counter";
+import {
+  addCounter,
+  removeCounter,
+  updateCounterCurrentQueue,
+  updateCounterData,
+} from "@/store/counter";
 import { addNewQueue, removeQueueByID, updateQueueByID } from "@/store/queue";
-import { updateWaitingTopic } from "@/store/topic";
+import {
+  addTopic,
+  removeTopic,
+  updateTopicData,
+  updateWaitingTopic,
+} from "@/store/topic";
+
+const socketUrl = process.env.NEXT_PUBLIC_WEB_SOCKET!;
+export let socket = new WebSocket(socketUrl);
 
 export default function setupSocket() {
-  const socketUrl = process.env.NEXT_PUBLIC_WEB_SOCKET!;
   let socket = new WebSocket(socketUrl);
-  let reconnectAttempts = 0;
 
   const dispatch = store.dispatch;
   const counter = store
@@ -16,7 +27,6 @@ export default function setupSocket() {
 
   socket.onopen = () => {
     console.log("Connected to WebSocket server");
-    reconnectAttempts = 0;
   };
 
   socket.onclose = (event) => {
@@ -30,16 +40,9 @@ export default function setupSocket() {
   };
 
   const attemptReconnect = () => {
-    if (reconnectAttempts < 5) {
-      reconnectAttempts++;
-      const delay = Math.min(1000 * reconnectAttempts, 10000);
-      console.log(`Reconnecting in ${delay / 1000} seconds...`);
-
-      setTimeout(() => {
-        socket = new WebSocket(socketUrl);
-        setupSocket();
-      }, delay);
-    }
+    console.log(`Reconnecting...`);
+    socket = new WebSocket(socketUrl);
+    setupSocket();
   };
 
   socket.onmessage = (event) => {
@@ -51,9 +54,31 @@ export default function setupSocket() {
     }
 
     // counter
+    if (data.event === "addCounter") {
+      const counterData = data.data;
+      dispatch(addCounter(counterData));
+    }
     if (data.event === "updateCounter") {
       const counterData = data.data;
       dispatch(updateCounterData(counterData));
+    }
+    if (data.event === "deleteCounter") {
+      const counterData = data.data;
+      dispatch(removeCounter(counterData));
+    }
+
+    // topic
+    if (data.event === "addTopic") {
+      const topicData = data.data;
+      dispatch(addTopic(topicData));
+    }
+    if (data.event === "updateTopic") {
+      const topicData = data.data;
+      dispatch(updateTopicData(topicData));
+    }
+    if (data.event === "deleteTopic") {
+      const topicData = data.data;
+      dispatch(removeTopic(topicData));
     }
 
     // queue
@@ -71,17 +96,12 @@ export default function setupSocket() {
     }
     if (data.event === "updateQueue") {
       const queueData = data.data;
-      if (counter?.topics.find(({ id }) => id == queueData.current.topicId)) {
-        dispatch(updateQueueByID(queueData.current));
-      }
+      dispatch(updateQueueByID(queueData.current));
+      dispatch(updateCounterCurrentQueue(queueData.current));
     }
     if (data.event === "deleteQueue") {
       const queueData = data.data;
       dispatch(removeQueueByID(queueData));
     }
-  };
-
-  return () => {
-    socket.close();
   };
 }

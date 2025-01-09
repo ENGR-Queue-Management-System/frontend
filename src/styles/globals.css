@@ -42,6 +42,19 @@
   border-radius: 8px;
 }
 
+@keyframes blink {
+  0%,
+  100% {
+  }
+  50% {
+    color: transparent;
+  }
+}
+
+.blink {
+  animation: blink 1s ease-in-out 5;
+}
+
 .gradient-bg {
   background: radial-gradient(
     circle at center bottom,
@@ -106,7 +119,7 @@
   position: relative;
   z-index: 1; /* Text is above the moving background */
 }
-  
+
 @keyframes moveSolidColor {
   0% {
     transform: translateX(-100%); /* Start outside the left edge */
@@ -115,9 +128,6 @@
     transform: translateX(0); /* Fill the entire button */
   }
 }
-
-
-
 
 body {
   user-select: text;

@@ -34,7 +34,6 @@ import {
   createCounter,
   updateCounter,
 } from "@/services/counter/counter.service";
-import { addCounter, updateCounterData } from "@/store/counter";
 import { toast } from "@/hooks/use-toast";
 import { isEqual } from "lodash";
 
@@ -92,12 +91,11 @@ export default function OneCounterManage({
   const onCreateCounter = async (value: CounterRequestDTO) => {
     const res = await createCounter(value);
     if (res) {
-      dispatch(addCounter(res));
-      toast({
-        title: "Create Counter successfully",
-        variant: "success",
-        duration: 3000,
-      });
+      // toast({
+      //   title: "Create Counter successfully",
+      //   variant: "success",
+      //   duration: 3000,
+      // });
       onClose();
     }
   };
@@ -118,15 +116,15 @@ export default function OneCounterManage({
         payload.topics = value.topics;
       }
       const res = await updateCounter(data?.id!, payload);
-      if (res) {
-        toast({
-          title: `Update Counter ${data?.counter!} successfully`,
-          variant: "success",
-          duration: 3000,
-        });
-        onClose();
-        form.reset(new CounterRequestDTO());
-      }
+      // if (res) {
+      //   toast({
+      //     title: `Update Counter ${data?.counter!} successfully`,
+      //     variant: "success",
+      //     duration: 3000,
+      //   });
+      //   onClose();
+      //   form.reset(new CounterRequestDTO());
+      // }
     }
   };
 

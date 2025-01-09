@@ -27,20 +27,18 @@ export default function FeedbackListModal({
   title,
 }: PopupProps) {
   const config = useAppSelector((state) => state.config);
-  const dispatch = useAppDispatch();
   const { deviceType, isPhone } = useNotification();
 
   const onChangeLoginNotCmu = async (value: boolean) => {
     const res = await updateLoginNotCmu({ loginNotCmu: value });
     if (res) {
-      dispatch(setLoginNotCmu(value));
-      toast({
-        title: `${
-          value ? "เปิดจองคิว" : "ปิดจองคิว"
-        } โดยไม่ต้องใช้ CMU Account`,
-        variant: "success",
-        duration: 3000,
-      });
+      // toast({
+      //   title: `${
+      //     value ? "เปิดจองคิว" : "ปิดจองคิว"
+      //   } โดยไม่ต้องใช้ CMU Account`,
+      //   variant: "success",
+      //   duration: 3000,
+      // });
     }
   };
 

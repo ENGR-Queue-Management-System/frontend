@@ -17,13 +17,11 @@ import { dateFormatter, getUserName } from "@/helpers/function";
 import { updateCounter } from "@/services/counter/counter.service";
 import { IModelCounter, IModelQueue } from "@/models/Model";
 import { toast } from "@/hooks/use-toast";
-import { updateCounterData } from "@/store/counter";
 import { useEffect, useState } from "react";
 import { getQueues, updateQueue } from "@/services/queue/queue.service";
 import { setLoadingOverlay } from "@/store/loading";
-import { removeQueueByID, setCurrentQueue, setQueueList } from "@/store/queue";
+import { setQueueList } from "@/store/queue";
 import { useNotification } from "@/notifications/useNotification";
-import { STATUS } from "@/config/Enum";
 import { sendQueueNotification } from "@/services/subscription/subscription.service";
 import Image from "next/image";
 import noQueue from "../../../public/images/noQueue2.png";
@@ -33,8 +31,8 @@ export default function AdminIndex() {
   const counter = useAppSelector((state) =>
     state.counter.find((c) => c.user.id == user.id)
   );
-  const queues = useAppSelector((state) => state.queue.queues);
-  const currentQueue = useAppSelector((state) => state.queue.current);
+  const queues = useAppSelector((state) => state.queue);
+  const currentQueue: Partial<IModelQueue> = counter?.currentQueue ?? {};
   const dispatch = useAppDispatch();
   const { isPhone } = useNotification();
 
@@ -49,8 +47,7 @@ export default function AdminIndex() {
       dispatch(setLoadingOverlay(true));
       const res = await getQueues({ counter: counter.id });
       if (res) {
-        dispatch(setQueueList(res.queues));
-        dispatch(setCurrentQueue(res.current));
+        dispatch(setQueueList(res));
       }
       dispatch(setLoadingOverlay(false));
     }
@@ -60,25 +57,24 @@ export default function AdminIndex() {
     const res: IModelCounter = await updateCounter(counter?.id!, {
       status: !counter?.status,
     });
-    if (res) {
-      toast({
-        title: res.status ? "เปิดรับคำสั่ง" : "ปิดรับคำสั่ง",
-        description: res.status
-          ? "ระบบเปิดรับคำสั่งสำเร็จแล้ว"
-          : "ระบบปิดรับคำสั่งสำเร็จแล้ว",
-        variant: "success",
-        duration: 3000,
-      });
-    }
+    // if (res) {
+    //   toast({
+    //     title: res.status ? "เปิดรับคำสั่ง" : "ปิดรับคำสั่ง",
+    //     description: res.status
+    //       ? "ระบบเปิดรับคำสั่งสำเร็จแล้ว"
+    //       : "ระบบปิดรับคำสั่งสำเร็จแล้ว",
+    //     variant: "success",
+    //     duration: 3000,
+    //   });
+    // }
   };
 
   const callNextQueue = async (id: number) => {
     const res = await updateQueue(id, {
       counter: counter!.id,
-      current: currentQueue.id,
+      current: currentQueue.id!,
     });
     if (res) {
-      dispatch(setCurrentQueue(res));
       sendPushNotification({
         firstName: res.firstName,
         lastName: res.lastName,
@@ -87,27 +83,27 @@ export default function AdminIndex() {
           body: "Please come into the Student Development Room—we’re here and ready to help. Thanks so much for waiting!",
         }),
       });
-      toast({
-        title: `เรียกคิว ${res.no}`,
-        description: "",
-        variant: "success",
-        duration: 3000,
-      });
+      // toast({
+      //   title: `เรียกคิว ${res.no}`,
+      //   description: "",
+      //   variant: "success",
+      //   duration: 3000,
+      // });
       const nextQueues = queues
-      .filter((q) => q.topicId == res.topicId)
-      .slice(1, 5); 
-    
-    nextQueues.forEach((queue, index) => {
-      const queuesLeft = 5 - index; 
-      sendPushNotification({
-        firstName: queue.firstName,
-        lastName: queue.lastName,
-        message: JSON.stringify({
-          title: `You're Almost There!`,
-          body: `There are ${queuesLeft} queues left before your turn. Please come to the Student Development Room to get ready!`,
-        }),
+        .filter((q) => q.topicId == res.topicId)
+        .slice(1, 5);
+
+      nextQueues.forEach((queue, index) => {
+        const queuesLeft = 5 - index;
+        sendPushNotification({
+          firstName: queue.firstName,
+          lastName: queue.lastName,
+          message: JSON.stringify({
+            title: `You're Almost There!`,
+            body: `There are ${queuesLeft} queues left before your turn. Please come to the Student Development Room to get ready!`,
+          }),
+        });
       });
-    });
     }
   };
 
@@ -120,15 +116,15 @@ export default function AdminIndex() {
     toastMessage?: any
   ) => {
     const res = await sendQueueNotification(payload);
-    if (res) {
-      if (toastMessage) {
-        toast({
-          ...toastMessage,
-          variant: "success",
-          duration: 3000,
-        });
-      }
-    }
+    // if (res) {
+    //   if (toastMessage) {
+    //     toast({
+    //       ...toastMessage,
+    //       variant: "success",
+    //       duration: 3000,
+    //     });
+    //   }
+    // }
   };
 
   const [countdown, setCountdown] = useState<number | null>(null); // Countdown state
@@ -137,7 +133,7 @@ export default function AdminIndex() {
   useEffect(() => {
     if (countdown === null) return;
 
-    if (countdown <= 0) {
+    if (countdown <= 0 && countdownActive) {
       callNextQueue(queues[0].id); // Automatically call next queue when countdown finishes
       setCountdown(null); // Reset countdown
       setCountdownActive(false);
@@ -149,7 +145,7 @@ export default function AdminIndex() {
     }, 1000);
 
     return () => clearTimeout(timer); // Cleanup timer
-  }, [countdown, callNextQueue, queues]);
+  }, [countdown, queues]);
 
   const startCountdown = () => {
     if (countdownActive) {
@@ -437,8 +433,8 @@ export default function AdminIndex() {
                           : () =>
                               sendPushNotification(
                                 {
-                                  firstName: currentQueue.firstName,
-                                  lastName: currentQueue.lastName,
+                                  firstName: currentQueue.firstName!,
+                                  lastName: currentQueue.lastName!,
                                   message: JSON.stringify({
                                     title: "Recall - Your Queue Has Arrived!",
                                     body: "Please come into the Student Development Room—we’re here and ready to help!",

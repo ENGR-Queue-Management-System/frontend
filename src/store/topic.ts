@@ -22,6 +22,7 @@ export const topicSlice = createSlice({
     },
     addTopic: (state, action) => {
       state.push({ ...action.payload });
+      return state;
     },
     removeTopic: (state, action) => {
       return state.filter((topic) => topic.id != action.payload);

@@ -16,11 +16,9 @@ import IconPlus from "../../../public/icons/plus.svg";
 import { useNotification } from "@/notifications/useNotification";
 import Icon from "@/components/Icon";
 import { DEVICE_TYPE } from "@/config/Enum";
-import { useAppDispatch, useAppSelector } from "@/store";
+import { useAppSelector } from "@/store";
 import { TopicRequestDTO } from "@/services/topic/dto/topic.dto";
 import { deleteTopic } from "@/services/topic/topic.service";
-import { removeTopic } from "@/store/topic";
-import { toast } from "@/hooks/use-toast";
 import OneTopicManageModal from "./OneTopicManageModal";
 
 type PopupProps = {
@@ -35,7 +33,6 @@ export default function ContactTopicMangeModal({
 }: PopupProps) {
   const { deviceType, isPhone } = useNotification();
   const topics = useAppSelector((state) => state.topic);
-  const dispatch = useAppDispatch();
   const [editTopic, setEditTopic] = useState<
     TopicRequestDTO & { id: number }
   >();
@@ -48,12 +45,11 @@ export default function ContactTopicMangeModal({
     if (editTopic) {
       const res = await deleteTopic(editTopic.id);
       if (res) {
-        dispatch(removeTopic(editTopic.id));
-        toast({
-          title: `Topic ${editTopic.topicTH} is deleted`,
-          variant: "success",
-          duration: 3000,
-        });
+        // toast({
+        //   title: `Topic ${editTopic.topicTH} is deleted`,
+        //   variant: "success",
+        //   duration: 3000,
+        // });
         setOpenDeleteTopicPopup(false);
       }
     }

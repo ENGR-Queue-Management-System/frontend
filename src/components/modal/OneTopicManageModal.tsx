@@ -76,12 +76,11 @@ export default function OneTopicManageModal({
   const onCreateTopic = async (value: TopicRequestDTO) => {
     const res = await createTopic(value);
     if (res) {
-      dispatch(addTopic(res));
-      toast({
-        title: "Create Topic successfully",
-        variant: "success",
-        duration: 3000,
-      });
+      // toast({
+      //   title: "Create Topic successfully",
+      //   variant: "success",
+      //   duration: 3000,
+      // });
       onClose();
     }
   };
@@ -100,12 +99,11 @@ export default function OneTopicManageModal({
       }
       const res = await updateTopic(data.id, payload);
       if (res) {
-        dispatch(updateTopicData(res));
-        toast({
-          title: `Update Topic successfully`,
-          variant: "success",
-          duration: 3000,
-        });
+        // toast({
+        //   title: `Update Topic successfully`,
+        //   variant: "success",
+        //   duration: 3000,
+        // });
         onClose();
         form.reset(new TopicRequestDTO());
       }
