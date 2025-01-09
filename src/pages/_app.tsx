@@ -45,18 +45,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const fetchConfigData = async () => {
-      const res = await getConfigData();
-      if (res) {
-        dispatch(setConfigData(res));
-      }
-    };
-    setupSocket();
-    fetchConfigData();
+    // setupSocket();
     const timeout = setTimeout(() => dispatch(setLoading(false)), 2000);
     return () => {
       clearTimeout(timeout);
-      socket.close();
+      // socket.close();
     };
   }, []);
 
@@ -72,12 +65,40 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router]);
 
   useEffect(() => {
-    if (!counters.length) {
-      fetchCounters();
-    }
-    if (!topics.length) {
-      fetchTopics();
-    }
+    const fetchPeriodicData = async () => {
+      try {
+        const [configRes, countersRes, topicsRes] = await Promise.all([
+          getConfigData(),
+          getCounters(),
+          getTopics(),
+        ]);
+        if (configRes) {
+          dispatch(setConfigData(configRes));
+        }
+        if (countersRes) {
+          dispatch(setCounters(countersRes));
+        }
+        if (topicsRes) {
+          dispatch(setTopics(topicsRes));
+        }
+
+        if (user.role == ROLE.STUDENT && user.firstNameTH && user.lastNameTH) {
+          fetchQueue({
+            firstName: user.firstNameTH,
+            lastName: user.lastNameTH,
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching periodic data:", error);
+      }
+    };
+
+    const interval = setInterval(fetchPeriodicData, 1000);
+
+    return () => clearInterval(interval);
+  }, [dispatch]);
+
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       const decodedToken: any = checkTokenExpired(token, true);
@@ -94,10 +115,6 @@ function MyApp({ Component, pageProps }: AppProps) {
               data.studentId = decodedToken.studentId;
             }
             dispatch(setUser({ ...data, role: ROLE.STUDENT }));
-            fetchQueue({
-              firstName: data.firstNameTH,
-              lastName: data.lastNameTH,
-            });
           }
         }
       } else if (location != Route.Index) {
@@ -115,26 +132,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   };
 
-  const fetchCounters = async () => {
-    const res = await getCounters();
-    if (res) {
-      dispatch(setCounters(res));
-    }
-  };
-
-  const fetchTopics = async () => {
-    const res = await getTopics();
-    if (res) {
-      dispatch(setTopics(res));
-    }
-  };
-
   const fetchQueue = async (payload: StudentQueueRequestDTO) => {
     const res = await getStudentQueue(payload);
     if (res) {
       if (res.queue.no) {
         dispatch(setQueue({ ...res.queue, waiting: res.waiting }));
-        Router.push(Route.StudentQueue);
+        if (location != Route.StudentQueue) Router.push(Route.StudentQueue);
       }
     }
   };
