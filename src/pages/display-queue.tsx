@@ -66,13 +66,41 @@ export default function DisplayQueue() {
     return () => clearInterval(interval);
   }, []);
 
+  const playAudioSequence = (no: string, counter: string) => {
+    const audioFiles = [
+      "/voices/callNumber.mp3",
+      `/voices/voice${no[0]}.mp3`,
+      `/voices/voice${no[1]}.mp3`,
+      `/voices/voice${no[2]}.mp3`,
+      `/voices/voice${no[3]}.mp3`,
+      "/voices/toCounter.mp3",
+      `/voices/voice${counter}.mp3`,
+      "/voices/kra.mp3",
+    ];
+
+    const playSequence = (index: number) => {
+      if (index < audioFiles.length) {
+        const audio = new Audio(audioFiles[index]);
+        audio.play();
+        audio.onended = () => playSequence(index + 1);
+      }
+    };
+    playSequence(0);
+  };
+
   useEffect(() => {
     const updatedCounters = counters
       .filter((item) => !!item.currentQueue)
-      .map((item) => item.counter);
+      .map((item) => ({ counter: item.counter, no: item.currentQueue?.no }));
 
     if (updatedCounters.length > 0) {
-      setBlinkingRows(updatedCounters);
+      setBlinkingRows(updatedCounters.map((item) => item.counter));
+
+      updatedCounters.forEach(({ counter, no }) => {
+        if (no) {
+          playAudioSequence(no, counter);
+        }
+      });
 
       const timer = setTimeout(() => {
         setBlinkingRows([]);

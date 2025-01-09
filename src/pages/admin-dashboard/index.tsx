@@ -17,7 +17,7 @@ import { dateFormatter, getUserName } from "@/helpers/function";
 import { updateCounter } from "@/services/counter/counter.service";
 import { IModelCounter, IModelQueue } from "@/models/Model";
 import { toast } from "@/hooks/use-toast";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getQueues, updateQueue } from "@/services/queue/queue.service";
 import { setLoadingOverlay } from "@/store/loading";
 import { setQueueList } from "@/store/queue";
@@ -127,45 +127,29 @@ export default function AdminIndex() {
     // }
   };
 
-  const [countdown, setCountdown] = useState<number | null>(null); // Countdown state
-  const [countdownActive, setCountdownActive] = useState(false); // Is countdown active
-
-  useEffect(() => {
-    if (countdown === null) return;
-
-    if (countdown <= 0 && countdownActive) {
-      callNextQueue(queues[0].id); // Automatically call next queue when countdown finishes
-      setCountdown(null); // Reset countdown
-      setCountdownActive(false);
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      setCountdown((prev) => (prev ? prev - 1 : 0)); // Decrement countdown
-    }, 1000);
-
-    return () => clearTimeout(timer); // Cleanup timer
-  }, [countdown, queues]);
+  const [countdown, setCountdown] = useState<number | null>(null);
+  const [countdownActive, setCountdownActive] = useState(false);
+  const countdownCanceledRef = useRef(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const startCountdown = () => {
     if (countdownActive) {
-      // Call queue immediately if countdown is active
       callNextQueue(queues[0].id);
-      setCountdown(null); // Reset countdown
-      setCountdownActive(false);
+      clearCountdown();
       return;
     }
 
-    setCountdown(5); // Start 5-second countdown
+    setCountdown(5);
     setCountdownActive(true);
+    countdownCanceledRef.current = false;
 
-    // Start countdown logic
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       setCountdown((prev) => {
         if (prev === 1) {
-          clearInterval(interval);
-          setCountdownActive(false);
-          callNextQueue(queues[0].id); // Call next queue on countdown completion
+          clearCountdown();
+          if (!countdownCanceledRef.current) {
+            callNextQueue(queues[0].id);
+          }
           return null;
         }
         if (prev === null) return 5;
@@ -175,7 +159,16 @@ export default function AdminIndex() {
   };
 
   const cancelCountdown = () => {
-    setCountdown(null); // Reset countdown
+    countdownCanceledRef.current = true;
+    clearCountdown();
+  };
+
+  const clearCountdown = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    setCountdown(null);
     setCountdownActive(false);
   };
 
@@ -426,7 +419,7 @@ export default function AdminIndex() {
                       className={`w-full ${
                         isPhone ? "rounded-full" : ""
                       } samsungA24:h-14 iphone:max-sm:mb-3 h-12 text-b2 text-primary acerSwift:max-macair133:text-b3 samsungA24:text-h2 acerSwift:max-macair133:h-[42px]`}
-                      disabled={!currentQueue.no}
+                      disabled={!countdownActive && !currentQueue.no}
                       onClick={
                         countdownActive
                           ? cancelCountdown
