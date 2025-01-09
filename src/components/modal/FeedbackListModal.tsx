@@ -7,14 +7,19 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Switch } from "@/components/ui/switch";
+import { Progress } from "@/components/ui/progress";
 import LoginPage from "@/pages/index";
-import { useAppDispatch, useAppSelector } from "@/store";
+import { useAppSelector } from "@/store";
 import { updateLoginNotCmu } from "@/services/config/config.service";
-import { setLoginNotCmu } from "@/store/config";
-import { toast } from "@/hooks/use-toast";
+import { Toggle } from "@/components/ui/toggle";
+import { Bold } from "lucide-react";
+import IconTopic from "../../../public/icons/topic.svg";
 import { useNotification } from "@/notifications/useNotification";
 import { DEVICE_TYPE } from "@/config/Enum";
+import IconExclaimation from "../../../public/icons/exclaimation.svg";
+import Icon from "../Icon";
+import IconStar from "../../../public/icons/star.svg";
+import IconStarFull from "../../../public/icons/starFull.svg";
 
 type PopupProps = {
   triggerText?: string;
@@ -41,6 +46,116 @@ export default function FeedbackListModal({
       // });
     }
   };
+
+  const totalReviews = 30;
+
+  const mockData = [
+    { value: 5, rating: 5 },
+    { value: 4, rating: 4 },
+    { value: 10, rating: 3 },
+    { value: 8, rating: 2 },
+    { value: 3, rating: 1 },
+  ];
+
+  const data = mockData.map((item) => ({
+    ...item,
+    percent: (item.value / totalReviews) * 100,
+  }));
+
+  const feedback = [
+    {
+      No: 20,
+      rating: 4,
+      description: "โดยรวมแล้วก็ถือว่าดีค่ะ แต่ก็ยังมีจุดที่สามารถพัฒนาได้บ้าง",
+    },
+    {
+      No: 19,
+      rating: 5,
+      description:
+        "บริการเยี่ยมมาก! พอใจสุดๆ เลยค่ะ ได้รับการบริการที่ดีเยี่ยมจริงๆ! ทั้งรวดเร็วและมีความเป็นมืออาชีพ",
+    },
+    {
+      No: 18,
+      rating: 3,
+      description:
+        "บริการดีค่ะ แต่บางครั้งรู้สึกว่ามีบางจุดที่สามารถปรับปรุงได้บ้าง",
+    },
+    {
+      No: 17,
+      rating: 2,
+      description:
+        "บริการอาจจะต้องปรับปรุงค่ะ พอใจในบางจุด แต่ยังมีบางอย่างที่ยังไม่สมบูรณ์เท่าที่ควร",
+    },
+    {
+      No: 16,
+      rating: 1,
+      description:
+        "ประสบการณ์ไม่ค่อยดีเท่าไรค่ะ บริการช้าและไม่มีการตอบสนองที่ดี",
+    },
+    {
+      No: 15,
+      rating: 4,
+      description: "โดยรวมแล้วก็ดีค่ะ แต่สามารถปรับปรุงในบางจุดได้บ้าง",
+    },
+    {
+      No: 14,
+      rating: 3,
+      description: "บริการดีค่ะ แต่ยังต้องปรับปรุงอีกหลายจุด",
+    },
+    {
+      No: 13,
+      rating: 5,
+      description: "บริการเยี่ยมมากค่ะ! ทุกอย่างสมบูรณ์แบบ. พอใจสุดๆ เลยค่ะ",
+    },
+    {
+      No: 12,
+      rating: 2,
+      description: "การบริการยังต้องปรับปรุงค่ะ ไม่ค่อยพอใจเท่าไร",
+    },
+    {
+      No: 11,
+      rating: 4,
+      description: "โดยรวมแล้วบริการดีค่ะ พอใจในระดับหนึ่ง",
+    },
+    {
+      No: 10,
+      rating: 1,
+      description: "ประสบการณ์แย่ค่ะ บริการช้าและไม่ค่อยตอบสนอง",
+    },
+    {
+      No: 9,
+      rating: 3,
+      description: "บริการดีค่ะ แต่ยังมีบางจุดที่ต้องปรับปรุง",
+    },
+    { No: 8, rating: 2, description: "บริการยังไม่ดีเท่าที่ควร" },
+    {
+      No: 7,
+      rating: 5,
+      description: "บริการสุดยอดค่ะ! ทุกอย่างเป็นไปตามที่คาดหวังไว้",
+    },
+    {
+      No: 6,
+      rating: 1,
+      description: "ประสบการณ์ไม่ดีค่ะ คิดว่าไม่ได้รับบริการที่ดี",
+    },
+    {
+      No: 5,
+      rating: 3,
+      description: "บริการโอเคค่ะ แต่ยังมีช่องว่างสำหรับการปรับปรุง",
+    },
+    {
+      No: 4,
+      rating: 4,
+      description: "บริการดีค่ะ แต่ยังสามารถทำให้ดีกว่านี้ได้",
+    },
+    {
+      No: 3,
+      rating: 2,
+      description: "บริการไม่ค่อยพอใจเท่าไรค่ะ หวังว่าจะดีขึ้นในอนาคต",
+    },
+    { No: 2, rating: 5, description: "บริการเยี่ยมค่ะ! ไม่มีข้อผิดพลาดใดๆ" },
+    { No: 1, rating: 1, description: "บริการไม่ดีค่ะ ประสบการณ์แย่" },
+  ];
 
   return (
     <Dialog>
@@ -74,35 +189,91 @@ export default function FeedbackListModal({
         </DialogHeader>
 
         <div className="flex flex-col gap-4 justify-between h-full iphone:max-sm:pt-1">
+          <div className="flex w-full gap-3 items-center justify-center acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#1F93EF]/10">
+            <Icon IconComponent={IconExclaimation} className="text-[#1F93EF]" />
+            <p className="text-b2 acerSwift:max-macair133:text-b3 text-[#1F93EF] w-full font-medium">
+              ความคิดเห็นของนักศึกษาจะถูกแสดงในรูปแบบที่ไม่ระบุตัวตน{" "}
+              <span className="font-semibold">(anonymous)</span>
+            </p>
+          </div>
           <div
-            className={`flex  iphone:max-sm:gap-4 bg-white rounded-lg border border-[#E5DDEA] text-[15px] px-6 py-4 justify-between items-center ${
-              isPhone ? "px-2" : ""
-            }`}
+            className="py-2 rounded-md border"
             style={{
               boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
             }}
           >
-            <div className="flex-col ">
-              <p
-                className={`acerSwift:max-macair133:text-b3 ${
-                  isPhone ? "text-[13px]" : " text-b1"
-                } font-medium `}
-              >
-                จองคิวโดยไม่ต้องใช้ CMU Account
-              </p>
-              <p className="text-primary text-[12px] acerSwift:max-macair133:text-b4 ">
-                สำหรับนักเรียน นักศึกษา และบุคลากรที่ไม่มี CMU Account
-              </p>
-            </div>
+            <div className="flex justify-between items-center py-2">
+              <div className="flex flex-col justify-center items-center w-[45%] gap-2 border-r-2 py-6">
+                <p className="text-4xl font-semibold">4.7</p>
+                <p className="text-b2">
+                  อ้างอิงจากความคิดเห็น {totalReviews} รายการ
+                </p>
+              </div>
 
-            <Switch
-              checked={config.loginNotCmu}
-              onCheckedChange={onChangeLoginNotCmu}
-            />
+              <div className="h-fit w-[55%] flex flex-col gap-1.5 px-4 ">
+                {data.map((item, index) => (
+                  <div key={index} className="flex gap-4 items-center">
+                    <div className="flex gap-1 items-center">
+                      {[...Array(5)].map((_, indexRate) => (
+                        <Icon
+                          key={indexRate}
+                          IconComponent={
+                            indexRate + 1 <= item.rating
+                              ? IconStarFull
+                              : IconStar
+                          }
+                          className={`size-4 stroke-[1.5px] text-[#ffba08]`}
+                        />
+                      ))}
+                    </div>
 
-            <div className="hidden">
-              <LoginPage />
+                    <Progress value={item.percent} className="max-w-full" />
+                    <p className="text-b4 w-10">{item.value}</p>
+                  </div>
+                ))}
+              </div>
             </div>
+          </div>
+          <div className="flex flex-col gap-4 mt-1">
+            <div className="flex items-center justify-between border-b pb-4">
+              <p className="text-b1 font-semibold text-primary">
+                รายการความคิดเห็น ({totalReviews} รายการ)
+              </p>
+              <div className="flex gap-2">
+                {[...Array(5)].map((_, indexFill) => (
+                  <Toggle key={indexFill}>
+                    <p>{5 - indexFill}</p>
+                    <IconStar className="size-3.5 text-default" />
+                  </Toggle>
+                ))}
+              </div>
+            </div>
+            <div className="max-h-72 h-full overflow-y-auto">
+              {feedback.map((e, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col gap-2 pb-5 border-b mb-5"
+                >
+                  <p className="font-semibold text-b2">ความคิดเห็นที่ {e.No}</p>
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, indexRate) => (
+                      <Icon
+                        key={indexRate}
+                        IconComponent={
+                          indexRate + 1 <= e.rating ? IconStarFull : IconStar
+                        }
+                        className={`size-4 stroke-[1.5px] text-[#ffba08]`}
+                      />
+                    ))}
+                  </div>
+                  <p className="text-b2">{e.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="hidden">
+            <LoginPage />
           </div>
         </div>
       </DialogContent>

@@ -106,7 +106,7 @@ export default function Profile() {
             <FeedbackListModal
               triggerText="ข้อเสนอแนะของนักศึกษา"
               icon={IconMessage}
-              title="ข้อคิดเห็นของนักศึกษา"
+              title="ความคิดเห็นของนักศึกษา"
             ></FeedbackListModal>
             <LogQueueModal
               triggerText="ประวัติการบริการ"

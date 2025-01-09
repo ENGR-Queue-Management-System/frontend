@@ -29,7 +29,7 @@ export default function StudentQueue() {
   const user = useAppSelector((state) => state.user.user);
   const queue = useAppSelector((state) => state.user.queue);
   const dispatch = useAppDispatch();
-  const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
+  const [openFeedbackModal, setOpenFeedbackModal] = useState(true);
   const [rateFeedback, setRateFeedback] = useState(0);
 
   const leaveQueue = async () => {
@@ -97,9 +97,9 @@ export default function StudentQueue() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      <div className="flex justify-center overflow-y-auto items-center h-full ">
+      <div className="flex justify-center overflow-y-auto items-center h-full acerSwift:max-samsungA24:my-4">
         <div
-          className="flex iphone:max-sm:overflow-clip flex-col h-fit  iphone:w-[90%] sm:w-[35%] acerSwift:max-macair133:w-[33%]  bg-white rounded-lg border border-[#E5DDEA] overflow-clip"
+          className="flex iphone:max-sm:overflow-clip flex-col h-full iphone:w-[90%] sm:w-[35%] acerSwift:max-macair133:w-[33%] bg-white rounded-lg border border-[#E5DDEA] overflow-clip"
           style={{
             boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
           }}
@@ -109,11 +109,10 @@ export default function StudentQueue() {
             <p>
               ห้องงานพัฒนาคุณภาพนักศึกษา <br />{" "}
               <span className="font-medium">Student Development Room</span>
-          
             </p>
           </div>
 
-          <div className="flex flex-col gap-10 acerSwift:max-macair133:gap-8 justify-between items-center px-6 py-6 iphone:max-sm:px-2 ">
+          <div className="flex flex-col gap-10 acerSwift:max-macair133:gap-8 justify-between items-center px-6 py-6 iphone:max-sm:px-2">
             <div className="flex justify-start flex-col gap-5 items-center samsungA24:mt-7 samsungA24:gap-5 acerSwift:max-macair133:gap-3">
               <div className="text-center">
                 <p className="text-h1 samsungA24:text-[23px] acerSwift:max-macair133:text-h2 iphone:max-sm:text-h2 font-normal">
@@ -177,24 +176,27 @@ export default function StudentQueue() {
                   </p>
                 </div>
               </div>
-             <a href="https://maps.app.goo.gl/T7xRnmceViqYbPvy9" className="mt-3 underline text-[14px] font-semibold text-primary">See to find the Student Development Room</a>
+              <a
+                href="https://maps.app.goo.gl/T7xRnmceViqYbPvy9"
+                target="_blank"
+                className="mt-3 underline text-[14px] font-semibold text-primary"
+              >
+                See to find the Student Development Room
+              </a>
             </div>
-            <div className="flex flex-col text-center -mt-3 text-describe text-b2 iphone:max-macair133:text-b4 iphone:max-sm:mx-8">
+            <div className="flex flex-col text-center -mt-5 text-describe text-b2 iphone:max-macair133:text-b4 iphone:max-sm:mx-8">
               <p>ขอสงวนสิทธิในการข้ามคิว กรณีที่นักศึกษาไม่แสดงตน</p>
               <p>
                 We reserve the right to skip your queue if you do not show up.
               </p>
             </div>
-         
             <Button
               variant="ghost"
-              className="text-b1 -mt-1 iphone:max-sm:text-b2 text-delete font-semibold hover:bg-delete/10 w-full"
+              className="text-b1 -mt-5 iphone:max-sm:text-b2 text-delete font-semibold hover:bg-delete/10 w-full"
               onClick={leaveQueue}
             >
               Leave queues
             </Button>
-           
-          
           </div>
         </div>
       </div>

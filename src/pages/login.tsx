@@ -253,7 +253,7 @@ export default function Login() {
                 )}
               />
             )}
-            <div className="flex flex-col justify-center gap-5 mt-10">
+            <div className="flex flex-col justify-center items-center gap-5 mt-10">
               <Button
                 type="submit"
                 className={`mt-5 ${
@@ -261,7 +261,7 @@ export default function Login() {
                     ? `w-[100%] rounded-full bg-primary hover:bg-[#3560b0] ${
                         selectedTopic ? "-mt-5" : "mt-5"
                       } h-[58px] text-[13px] font-[500] text-white`
-                    : "py-6 px-12 text-[15px] bg-primary hover:bg-[#3560b0] font-semibold"
+                    : "py-8 px-8 w-fit text-[14px] bg-primary hover:bg-[#3560b0] font-semibold"
                 }`}
                 disabled={loading}
                 variant="default"

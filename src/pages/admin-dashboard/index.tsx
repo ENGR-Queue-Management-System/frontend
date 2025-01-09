@@ -10,6 +10,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import IconDes from "../../../public/icons/description.svg";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/store";
@@ -60,8 +67,9 @@ export default function AdminIndex() {
   };
 
   const onChangeStatusCounter = async () => {
+    const updatedStatus = !counter?.status; // Toggle the counter status
     const res: IModelCounter = await updateCounter(counter?.id!, {
-      status: !counter?.status,
+      status: updatedStatus,
     });
     // if (res) {
     //   toast({
@@ -216,15 +224,35 @@ export default function AdminIndex() {
                           </TableCell>
                           <TableCell>{item.studentId || "-"}</TableCell>
                           <TableCell>{getUserName(item)}</TableCell>
-                          <TableCell className="flex gap-2  translate-y-[6px] items-center">
-                            <div className="flex items-center gap-2">
-                              <div
-                                className={` h-3 w-3 rounded-[100%] iphone:max-sm:hidden`}
-                              ></div>
-                              {item.topic.topicTH}
-                            </div>
+                          <TableCell>{item.topic.topicTH}</TableCell>
+                          <TableCell>
+                            {item.note ? (
+                              <TooltipProvider delayDuration={1}>
+                                <Tooltip>
+                                  <TooltipTrigger className=" cursor-default -translate-x-2 ">
+                                    <div className="hover:bg-describe/20 p-1.5 mt-0.5 rounded-full">
+                                      <Icon
+                                        IconComponent={IconDes}
+                                        className="mt-0.5"
+                                      />
+                                    </div>
+                                  </TooltipTrigger>
+                                  <TooltipContent side="bottom" align="end">
+                                    <div className="flex flex-col gap-2">
+                                      <p className="text-primary font-medium">
+                                        เพิ่มเติมของคิว {item.no}
+                                      </p>
+                                      <p className="text-black font-normal">
+                                        {item.note}
+                                      </p>
+                                    </div>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            ) : (
+                              "-"
+                            )}
                           </TableCell>
-                          <TableCell>{item.note || "-"}</TableCell>
                         </TableRow>
                       ))
                     ) : (
@@ -314,7 +342,7 @@ export default function AdminIndex() {
               }}
             >
               <div className="flex flex-col  justify-between items-center  h-full ">
-                <div className="flex justify-start flex-col items-center mt-3 samsungA24:mt-7 acerSwift:max-macair133:mt-2 samsungA24:gap-5 h-full">
+                <div className="flex justify-between mb-9 flex-col  items-center mt-3 samsungA24:mt-7 acerSwift:max-macair133:mt-2 samsungA24:gap-5 h-full">
                   {
                     <>
                       <div className="text-center">
@@ -333,7 +361,7 @@ export default function AdminIndex() {
                           เคาน์เตอร์ {counter?.counter}
                         </p>
                       </div>
-                      <div className=" samsungA24:mt-3 iphone:max-sm:mt-3 acerSwift:max-macair133:mt-2 ipad11:max-samsungA24:mt-2 mb-1 acerSwift:max-macair133:mb-0 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] iphone:max-sm:text-[40px] font-medium text-[52px]">
+                      <div className=" samsungA24:mt-3 iphone:max-sm:mt-3 acerSwift:max-macair133:mt-2 ipad11:max-samsungA24:mt-2 mb-1 acerSwift:max-macair133:mb-0 border-primary text-primary rounded-[100%] flex items-center justify-center samsungA24:text-[100px] iphone:max-sm:text-[40px] font-medium text-[72px]">
                         {currentQueue.no || "-"}
                       </div>
                       <div className="text-center items-center justify-center flex flex-col samsungA24:text-[22px] acerSwift:max-macair133:text-b1 text-h2 text-primary">
