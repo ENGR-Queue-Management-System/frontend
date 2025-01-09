@@ -19,7 +19,6 @@ import { IModelCounter, IModelQueue } from "@/models/Model";
 import { toast } from "@/hooks/use-toast";
 import { useEffect, useRef, useState } from "react";
 import { getQueues, updateQueue } from "@/services/queue/queue.service";
-import { setLoadingOverlay } from "@/store/loading";
 import { setQueueList } from "@/store/queue";
 import { useNotification } from "@/notifications/useNotification";
 import { sendQueueNotification } from "@/services/subscription/subscription.service";
@@ -37,19 +36,26 @@ export default function AdminIndex() {
   const { isPhone } = useNotification();
 
   useEffect(() => {
+    let intervalId: NodeJS.Timeout | null = null;
     if (counter && counter.id) {
       fetchQueues();
+      intervalId = setInterval(() => {
+        fetchQueues();
+      }, 1000);
+      return () => {
+        if (intervalId) {
+          clearInterval(intervalId);
+        }
+      };
     }
   }, [counter?.id]);
 
   const fetchQueues = async () => {
     if (counter?.id) {
-      dispatch(setLoadingOverlay(true));
       const res = await getQueues({ counter: counter.id });
       if (res) {
         dispatch(setQueueList(res));
       }
-      dispatch(setLoadingOverlay(false));
     }
   };
 
