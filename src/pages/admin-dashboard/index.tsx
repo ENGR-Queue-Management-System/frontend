@@ -104,20 +104,21 @@ export default function AdminIndex() {
       //   duration: 3000,
       // });
       const nextQueues = queues
-        .filter((q) => q.topicId == res.topicId)
-        .slice(1, 5);
-
-      nextQueues.forEach((queue, index) => {
-        const queuesLeft = 5 + index;
-        sendPushNotification({
-          firstName: queue.firstName,
-          lastName: queue.lastName,
-          message: JSON.stringify({
-            title: `You're Almost There!`,
-            body: `There are ${queuesLeft} queues left before your ${queuesLeft >= 2 ? 'queues' : 'queue'}. Please come to the Student Development Room to get ready!`,
-          }),
-        });
+      .filter((q) => q.topicId == res.topicId)
+      .slice(1, 5); // Select the next 4 queues after the current user
+    
+    nextQueues.forEach((queue, index) => {
+      const queuesLeft = index + 1; // Calculate position relative to the user
+      sendPushNotification({
+        firstName: queue.firstName,
+        lastName: queue.lastName,
+        message: JSON.stringify({
+          title: `You're Almost There!`,
+          body: `There ${queuesLeft > 1 ? 'are' : 'is'} ${queuesLeft} ${queuesLeft > 1 ? 'queues' : 'queue'} left before your turn.`,
+        }),
       });
+    });
+    
     }
   };
 
