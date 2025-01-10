@@ -118,7 +118,7 @@ export default function OneTopicManageModal({
         }`}
         className={` ${
           isPhone
-            ? "w-full max-h-full"
+            ? "w-full max-h-full px-3"
             : "md:max-w-[40vw] macair133:max-w-[50vw] h-fit"
         } p-6 mb-1 acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4`}
       >

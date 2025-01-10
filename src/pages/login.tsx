@@ -85,11 +85,11 @@ export default function Login() {
       const res = await createQueue(data);
       if (res) {
         localStorage.setItem("token", res.token);
-        toast({
-          title: "Reserve Successfully",
-          variant: "success",
-          duration: 3000,
-        });
+        // toast({
+        //   title: "Reserve Successfully",
+        //   variant: "success",
+        //   duration: 3000,
+        // });
         dispatch(
           setUser({
             role: ROLE.STUDENT,

@@ -77,11 +77,11 @@ export default function CounterManageModal({
           </Button>
         </DialogTrigger>
         <DialogContent
-          classNameClose={`${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
+          classNameClose={`${deviceType == DEVICE_TYPE.IOS ? "pt-12 " : ""}`}
           className={`${
             openDeleteCounterPopup && !isPhone && "ipad11:max-w-[40vw]"
           } ipad11:max-w-[45vw]  flex flex-col justify-start  ${
-            isPhone ? "w-[100vw] h-full" : "md:max-w-[50vw] min-w-fit"
+            isPhone ? "w-[100vw] px-3 h-full" : "md:max-w-[50vw] min-w-fit"
           }`}
         >
           <DialogHeader

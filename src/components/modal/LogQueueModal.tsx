@@ -334,10 +334,12 @@ export default function LogQueueModal({
         </Button>
       </DialogTrigger>
       <DialogContent
-       classNameClose={`${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
-        className="max-w-[100vw] !rounded-none h-[100vh] flex flex-col pb-6 acerSwift:max-macair133:pb-9 acerSwift:max-macair133:py-5"
-        type="log"
-      >
+    
+              classNameClose={`${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
+              className={`    ${
+                isPhone ? "w-[100vw] px-3 h-full" : "max-w-[100vw] !rounded-none h-[100vh] flex flex-col pb-6 acerSwift:max-macair133:pb-9 acerSwift:max-macair133:py-5"
+              }`}
+            >
         <DialogHeader
           className={`  ${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
         >
@@ -353,7 +355,7 @@ export default function LogQueueModal({
         </DialogHeader>
         <div className="overflow-hidden h-full flex flex-col gap-4 px-10 iphone:max-sm:px-1">
           <div className="flex ipad11:justify-between iphone:max-sm:flex-col iphone:max-sm:gap-1 iphone:max-sm:text-center">
-            <div className="font-[500] text-default flex flex-col acerSwift:max-macair133:text-b3 iphone:max-sm:pb-3">
+            <div className={`font-[500] text-default flex flex-col ${isPhone ? 'hidden' : ''} acerSwift:max-macair133:text-b3 iphone:max-sm:pb-3`}>
               <p>บริการทั้งหมด</p>
               <p className="text-[24px] acerSwift:max-macair133:text-h1 text-table-foreground">
                 14 คิว
@@ -363,17 +365,17 @@ export default function LogQueueModal({
               <div className="flex w-full max-w-sm items-center gap-2">
                 <Input
                   type="search"
-                  className="w-[340px] acerSwift:max-macair133:text-b4 acerSwift:max-macair133:!h-8 iphone:max-sm:text-b2"
+                  className={`${isPhone ? 'w-full' : 'w-[340px]'} acerSwift:max-macair133:text-b4 acerSwift:max-macair133:!h-8 iphone:max-sm:text-b2`}
                   placeholder="ค้นหา เลขคิว, รหัสนักศึกษา, ชื่อ-นามสกุล"
                 />
               </div>
-              <div className={`flex gap-3  ${isPhone ? 'justify-start items-start text-start w-full' : ''} `}>
+              <div className={`flex gap-3  ${isPhone ? 'justify-between items-start text-start w-full' : ''} `}>
                 <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                   <PopoverTrigger asChild>
                     <Button
                       variant={"outlineDefault"}
                       className={cn(
-                        "min-w-44 iphone:max-sm:w-56 justify-start text-left font-normal acerSwift:max-macair133:text-b4 acerSwift:max-macair133:!h-8"
+                        "min-w-44 iphone:max-sm:w-full justify-start text-left font-normal acerSwift:max-macair133:text-b4 acerSwift:max-macair133:!h-8"
                       )}
                     >
                       <CalendarIcon />
@@ -429,7 +431,7 @@ export default function LogQueueModal({
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent
-                    className="px-6 py-3 w-auto text-b2 "
+                    className="px-6 py-3 w-auto -translate-x-6 -translate-y-1 text-b2 "
                     align="end"
                   >
                     <p className="font-medium mb-2 text-primary text-b1 acerSwift:max-macair133:text-b3">

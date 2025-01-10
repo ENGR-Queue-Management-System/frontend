@@ -44,13 +44,13 @@ export const isValidResponse = async (res: any) => {
       case STATUS_CODE.NOT_FOUND:
         break;
       default:
-        toast({
-          title: res.title ?? "Something Went Wrong",
-          description:
-            res.message ??
-            "An unexpected error occurred. Please try again later.",
-          variant: "error",
-        });
+        // toast({
+        //   title: res.title ?? "Something Went Wrong",
+        //   description:
+        //     res.message ??
+        //     "An unexpected error occurred. Please try again later.",
+        //   variant: "error",
+        // });
         break;
     }
     return;

@@ -34,7 +34,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [deviceType, setDeviceType] = useState<DEVICE_TYPE | null>(null);
-  const [isPhone, setIsPhone] = useState<boolean>(false);
+  const [isPhone, setIsPhone] = useState<boolean>(true);
   const [isSupported, setIsSupported] = useState<boolean>(false);
   const [isGranted, setIsGranted] = useState<boolean>(false);
   const [isDenied, setIsDenied] = useState<boolean>(false);

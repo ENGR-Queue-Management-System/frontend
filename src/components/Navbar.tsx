@@ -26,7 +26,7 @@ export default function Navbar() {
       className={`${
         [DEVICE_TYPE.IOS].includes(deviceType!) ? "pt-[52px]" : ""
       } min-h-fit ipadmini:max-acerSwift:pt-5 acerSwift:max-macair133:min-h-[58px] ${
-        isPhone ? " !px-3 !bg-white/5 !backdrop-blur-xl border-b-[1px]" : "gradient-bg-navbar"
+        isPhone ? " !px-4 !bg-[#f9f9f9]  " : "gradient-bg-navbar"
 
       }    px-5 inline-flex w-full justify-between items-center   `}
       style={{
@@ -34,7 +34,7 @@ export default function Navbar() {
       }}
       
     >
-      <div className="flex items-center gap-2  mr-4">
+      <div className="flex items-center justify-center gap-3  mr-4">
         {[Route.Login].includes(location) && isPhone && (
           <Icon
             IconComponent={IconLeft}
@@ -43,19 +43,19 @@ export default function Navbar() {
             onClick={() => Router.back()}
           />
         )}
-        <Image className=" w-[40px] py-3 " src={logoSDColor} alt="loginImage" />
+        <Image className={` w-[42px]  ${isPhone ? "w-[38px] py-3" : "w-[45px] py-4"} `} src={logoSDColor} alt="loginImage" />
         <div
           className={`flex flex-col  w-fit gap-0 font-medium text-[14px]  ${
-            isPhone ? "text-[12px]" : "text-[14px]"
+            isPhone ? "text-[11px]" : "text-[14px]"
           } acerSwift:max-macair133:text-b4 text-default`}
         >
-          <p className=" ">
+          <p className=" text-[15px]">
             {user.role == ROLE.ADMIN ? "ระบบจัดการคิว " : "รับบัตรคิว "}
           </p>
           {user.role == ROLE.ADMIN ? (
-            <p className="  font-semibold">Queue Management</p>
+            <p className={`  ${isPhone ? "text-[10px]" : "text-[12px]"}  font-semibold`}>Queue Management</p>
           ) : (
-            <p className="  font-medium">Ticket Queue</p>
+            <p className={` ${isPhone ? "text-[10px]" : "text-[12px]"}  font-medium`}>Ticket Queue</p>
           )}
         </div>
       </div>

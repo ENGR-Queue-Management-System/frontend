@@ -174,43 +174,58 @@ export default function FeedbackListModal({
         classNameClose={`${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
         className={`  ${
           !isPhone && "ipad11:max-w-[40vw] "
-        } ipad11:max-w-[45vw]  flex flex-col justify-start  ${
-          isPhone ? "w-[100vw] h-full" : "md:max-w-[50vw] min-w-fit"
-        }`}
+        } ipad11:max-w-[55vw]  flex flex-col justify-start  ${
+          isPhone ? "w-[100vw] px-3 h-full" : "md:max-w-[50vw] min-w-fit"
+        } `}
       >
         <DialogHeader
           className={`  ${deviceType == DEVICE_TYPE.IOS ? "pt-12" : ""}`}
         >
           <DialogTitle
-            className={`text-table-foreground acerSwift:max-macair133:text-b1 font-medium`}
+            className={`text-table-foreground acerSwift:max-macair133:text-b1 mb-2 font-medium`}
           >
             {title}
           </DialogTitle>
         </DialogHeader>
 
-        <div className="flex flex-col gap-4 justify-between h-full iphone:max-sm:pt-1">
-          <div className="flex w-full gap-3 items-center justify-center acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#1F93EF]/10">
-            <Icon IconComponent={IconExclaimation} className="text-[#1F93EF]" />
-            <p className="text-b2 acerSwift:max-macair133:text-b3 text-[#1F93EF] w-full font-medium">
+        <div className="flex flex-col gap-3 overflow-y-auto justify-between h-full iphone:max-sm:myt-1">
+          <div className="flex w-full gap-3   items-center justify-center acerSwift:max-macair133:w-[40vw] p-4 acerSwift:max-macair133:p-3 rounded-md bg-[#1F93EF]/10">
+            <Icon IconComponent={IconStar} className="text-[#1F93EF] size-4" />
+            <p className=" text-[12px] ipad11:max-samsungA24:text-[14px] text-[#1F93EF] w-full font-medium">
               ความคิดเห็นของนักศึกษาจะถูกแสดงในรูปแบบที่ไม่ระบุตัวตน{" "}
-              <span className="font-semibold">(anonymous)</span>
             </p>
           </div>
           <div
-            className="py-2 rounded-md border"
+            className={` ${
+              isPhone ? "p-0 py-[2px] " : "p-2"
+            } rounded-md border`}
             style={{
               boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
             }}
           >
             <div className="flex justify-between items-center py-2">
-              <div className="flex flex-col justify-center items-center w-[45%] gap-2 border-r-2 py-6">
-                <p className="text-4xl font-semibold">4.7</p>
-                <p className="text-b2">
-                  อ้างอิงจากความคิดเห็น {totalReviews} รายการ
+              <div
+                className={`flex flex-col justify-center items-center ${
+                  isPhone ? "w-[20%] border-none" : "w-[20%]"
+                } gap-2 border-r-2 py-6`}
+              >
+                <p
+                  className={`${
+                    isPhone ? "ml-3" : ""
+                  } text-4xl iphone:max-ipad11:text-2xl font-bold`}
+                >
+                  4.7
+                </p>
+                <p className={` ${isPhone ? "text-[10px] ml-3" : "text-b2"}`}>
+                  {totalReviews} เรตติ้ง
                 </p>
               </div>
 
-              <div className="h-fit w-[55%] flex flex-col gap-1.5 px-4 ">
+              <div
+                className={`h-fit ${
+                  isPhone ? "w-[80%]" : "w-[80%]"
+                } flex flex-col gap-1.5 px-4 `}
+              >
                 {data.map((item, index) => (
                   <div key={index} className="flex gap-4 items-center">
                     <div className="flex gap-1 items-center">
@@ -222,39 +237,51 @@ export default function FeedbackListModal({
                               ? IconStarFull
                               : IconStar
                           }
-                          className={`size-4 stroke-[1.5px] text-[#ffba08]`}
+                          className={`${
+                            isPhone ? "size-3" : "size-4"
+                          }  stroke-[1.5px] text-[#ffba08]`}
                         />
                       ))}
                     </div>
 
                     <Progress value={item.percent} className="max-w-full" />
-                    <p className="text-b4 w-10">{item.value}</p>
+                    <p
+                      className={`${isPhone ? "text-[8px] " : "text-[13px]"}  `}
+                    >
+                      {item.value}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-4 mt-1">
-            <div className="flex items-center justify-between border-b pb-4">
-              <p className="text-b1 font-semibold text-primary">
-                รายการความคิดเห็น ({totalReviews} รายการ)
-              </p>
+          <div
+              style={{
+                position: "sticky", // Make the div sticky
+                top: "0",
+                zIndex: 10, // Ensure it stays above other elements when overlapping
+                background: "white", // Optional: Avoid transparency when sticking
+              }}
+              className="flex mt-2 border-b pb-4"
+            >
               <div className="flex gap-2">
                 {[...Array(5)].map((_, indexFill) => (
                   <Toggle key={indexFill}>
                     <p>{5 - indexFill}</p>
-                    <IconStar className="size-3.5 text-default" />
+                    <IconStar className="size-3 text-default" />
                   </Toggle>
                 ))}
               </div>
             </div>
-            <div className="max-h-72 h-full overflow-y-auto">
+          <div className={`flex flex-col   mt-1 ${isPhone ? " " : "h-[300px]"}`}>
+           
+            <div className={`  ${isPhone ? "h-full" : " "} `}>
               {feedback.map((e, index) => (
                 <div
                   key={index}
                   className="flex flex-col gap-2 pb-5 border-b mb-5"
                 >
-                  <p className="font-semibold text-b2">ความคิดเห็นที่ {e.No}</p>
+                  <p className="font-medium text-b2">ความคิดเห็นที่ {e.No}</p>
                   <div className="flex gap-1">
                     {[...Array(5)].map((_, indexRate) => (
                       <Icon
@@ -266,7 +293,7 @@ export default function FeedbackListModal({
                       />
                     ))}
                   </div>
-                  <p className="text-b2">{e.description}</p>
+                  <p className={`${isPhone ? 'text-[12px]' : 'text-b2'} `}>{e.description}</p>
                 </div>
               ))}
             </div>
