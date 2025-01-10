@@ -182,7 +182,9 @@ export default function DisplayQueue() {
                 key={item.currentQueue?.no || item.counter}
                 className="bg-[#f5f5f5]"
               >
-                <TableCell className="text-[#000000] font-sarabunBold font-semibold border-b-[4px] border-[#1a237e] text-[7.5vh]">
+                <TableCell className={`text-[#000000] font-sarabunBold font-semibold border-b-[4px] border-[#1a237e] text-[7.5vh] ${
+                    blinkingRows.includes(item.counter) ? "blink " : ""
+                  }`}>
                   {item.counter}
                 </TableCell>
                 <TableCell
@@ -193,10 +195,10 @@ export default function DisplayQueue() {
                 </TableCell>
                 <TableCell
                   className={`font-semibold text-start border-[#1a237e]  border-b-[4px] text-[#000000] ${
-                    blinkingRows.includes(item.counter) ? "blink" : ""
+                    blinkingRows.includes(item.counter) ? "blink " : ""
                   }`}
                 >
-                  <p className="font-normal font-sarabun text-[6vh] -ml-3">
+                  <p className="font-normal font-pridi text-[7vh] -ml-3">
                     {getUserName(item.currentQueue)}
                   </p>
                 </TableCell>
@@ -255,19 +257,19 @@ export default function DisplayQueue() {
   useEffect(() => {
     const fetchAqi = async () => {
       try {
-        const response = await axios.get(
-          "https://api.airvisual.com/v2/nearest_city",
-          {
-            params: {
-              key: "4f6af6ef-9045-4d4e-b95e-7a125bb11db8", // Replace with your API key
-              lat: "18.79", // Example latitude
-              lon: "98.95", // Example longitude
-            },
-          }
-        );
-        const aqiValue = response.data.data.current.pollution.aqius;
+        // const response = await axios.get(
+        //   "https://api.airvisual.com/v2/nearest_city",
+        //   {
+        //     params: {
+        //       key: "4f6af6ef-9045-4d4e-b95e-7a125bb11db8", // Replace with your API key
+        //       lat: "18.79", // Example latitude
+        //       lon: "98.95", // Example longitude
+        //     },
+        //   }
+        // );
+        // const aqiValue = response.data.data.current.pollution.aqius;
 
-       //  const aqiValue = 200; Mock test color bg and text
+        const aqiValue = 200; //Mock test color bg and text
         setAqi(aqiValue);
         setAqiStatus(determineAqiStatus(aqiValue));
       } catch (error) {
@@ -314,8 +316,8 @@ export default function DisplayQueue() {
        </div>
        <div className="flex gap-8 px-12 w-[47%] bg-black  items-center justify-center ">
          <p className="text-[#ffffff] text-[5.8vh] font-medium">
-           <span className="font-sarabun  font-normal"> จองคิวได้ที่</span>
-           <span className="font-semibold font-sarabun"> q.eng.cmu.ac.th</span>
+           <span className="font-pridi font-normal"> จองคิวได้ที่</span>
+           <span className="font-semibold "> q.eng.cmu.ac.th</span>
          </p>
        </div>
      </div>
