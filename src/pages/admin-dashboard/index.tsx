@@ -94,7 +94,7 @@ export default function AdminIndex() {
         lastName: res.lastName,
         message: JSON.stringify({
           title: "Your Queue Has Arrived!",
-          body: "Please come into the Student Development Room—we’re here and ready to help. Thanks so much for waiting!",
+          body: "Please come into the Student Development Room—we’re here and ready to help.",
         }),
       });
       // toast({
@@ -108,13 +108,13 @@ export default function AdminIndex() {
         .slice(1, 5);
 
       nextQueues.forEach((queue, index) => {
-        const queuesLeft = 5 - index;
+        const queuesLeft = 5 + index;
         sendPushNotification({
           firstName: queue.firstName,
           lastName: queue.lastName,
           message: JSON.stringify({
             title: `You're Almost There!`,
-            body: `There are ${queuesLeft} queues left before your turn. Please come to the Student Development Room to get ready!`,
+            body: `There are ${queuesLeft} queues left before your ${queuesLeft >= 2 ? 'queues' : 'queue'}. Please come to the Student Development Room to get ready!`,
           }),
         });
       });
