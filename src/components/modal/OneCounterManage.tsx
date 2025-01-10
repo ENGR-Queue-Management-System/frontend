@@ -136,7 +136,7 @@ export default function OneCounterManage({
         }`}
         className={` ${
           isPhone
-            ? "w-full h-full"
+            ? "w-full h-full px-3"
             : "md:max-w-[40vw] macair133:max-w-[50vw] h-fit "
         } p-6 mb-1 acerSwift:max-macair133:p-5 flex flex-col acerSwift:max-macair133:gap-4`}
       >

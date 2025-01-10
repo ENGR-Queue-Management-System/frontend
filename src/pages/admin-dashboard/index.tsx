@@ -190,7 +190,7 @@ export default function AdminIndex() {
   return (
     <div
       className={`flex ${
-        isPhone ? "px-3" : "px-5"
+        isPhone ? "px-3 -mt-1" : "px-5"
       }  flex-col min-h-full max-h-full w-full overflow-y-auto bg-[#f9f9f9] py-4 iphone:max-sm:h-fit`}
     >
       <div className="flex flex-col !w-full h-full iphone:max-sm:h-fit">
@@ -290,7 +290,7 @@ export default function AdminIndex() {
                         </p>
                         <div className="flex flex-col">
                           <p className="text-[13px]">{getUserName(items)}</p>
-                          <p className="text-[13px] text-primary">{items.no}</p>
+                          <p className="text-[12px] text-primary">{items.studentId || "-"}</p>
                         </div>
                       </div>
                       <p className="text-[13px]"> {items.topic.topicTH}</p>

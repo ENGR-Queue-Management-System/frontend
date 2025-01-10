@@ -38,7 +38,7 @@ export default function Profile() {
             className="flex items-center translate-x-3 hover:bg-transparent gap-2"
           >
             {!isPhone && (
-              <div className="flex flex-col w-fit  py-2 font-normal text-[14px] text-default items-end acerSwift:max-macair133:text-b4">
+              <div className="flex flex-col  w-fit  py-2 font-normal text-[14px] text-default items-end acerSwift:max-macair133:text-b4">
                 <p>{getUserName(user)}</p>
                 {user.role == ROLE.ADMIN ? (
                   <p className="acerSwift:max-macair133:-mt-1">ผู้ดูแลระบบ</p>
@@ -52,8 +52,8 @@ export default function Profile() {
             <Icon
               IconComponent={IconUser}
               className={` stroke-default stroke-[1px] ${
-                isPhone ? "!size-10 translate-x-1" : "!size-10"
-              }   acerSwift:max-macair133:!size-9`}
+                isPhone ? " translate-x-1" : ""
+              } !size-10  acerSwift:max-macair133:!size-9`}
             />
           </Button>
         </PopoverTrigger>
@@ -64,17 +64,14 @@ export default function Profile() {
         >
           {isPhone && (
             <div
-              style={{
-                boxShadow:
-                  "rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em",
-              }}
-              className="flex px-2 py-3 mt-1 mb-2 mx-1 rounded-lg gap-3 items-center"
+             
+              className="flex px-1 pt-3 pb-4 mt-1 mb-2 mx-1 border-b-[2px]  gap-3 items-center"
             >
               <Icon
                 IconComponent={IconUser}
                 className={` stroke-primary stroke-[1.1px] size-9  acerSwift:max-macair133:!size-9`}
               />
-              <div className="flex flex-col w-fit text-start justify-start items-start  py-2 font-normal text-[14px] text-default  acerSwift:max-macair133:text-b4">
+              <div className="flex flex-col w-fit text-start justify-start items-start   py-2 font-normal text-[14px] text-default  acerSwift:max-macair133:text-b4">
                 <p className="text-primary font-[500]">{getUserName(user)}</p>
                 {user.role == ROLE.ADMIN ? (
                   <p className="acerSwift:max-macair133:-mt-1">ผู้ดูแลระบบ</p>
